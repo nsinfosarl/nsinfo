@@ -82,7 +82,9 @@ $supportvalue.= " * Version PHP : ".PHP_VERSION."<br>";
 $supportvalue.= " *****/"."<br>";
 $supportvalue.= "Description de votre problème :"."<br>";
 
-
+// Initialize technical objects
+$className = 'mod' . ucfirst($namemodule);
+$modModule = new $className($db);
 
 /*
  * Actions
@@ -152,6 +154,8 @@ print '<td align="left" valign="top"><p>'. $langs->trans("NSINFOAboutDescDolisto
 print '</tr>';
 
 print '</table>' . "\n";
+
+print $modModule->getDescLong();
 
 // Page end
 dol_fiche_end();

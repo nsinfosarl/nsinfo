@@ -51,8 +51,8 @@ class modNsinfo extends DolibarrModules
 		$this->descriptionlong = "Nsinfo description (Long)";
 		$this->editor_name = 'NS INFO';
 		$this->editor_url = 'https://www.ns-info.fr';
-		$this->version = '4.0.5';
-		$this->url_last_version = 'https://www.ns-info.fr/dolibarr/ver.php?m=nsinfo';
+		$this->version = trim(file_get_contents(__DIR__.'/../../VERSION'));
+        $this->url_last_version = 'https://www.ns-info.fr/dolibarr/ver.php?m=nsinfo';
 		$this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
 		$this->picto = 'nsinfo@nsinfo';
 
@@ -79,7 +79,9 @@ class modNsinfo extends DolibarrModules
 		//$this->automatic_activation = array('FR'=>'NsinfoWasAutomaticallyActivatedBecauseOfYourCountryChoice');
 
 
-		$this->const = array();
+		$this->const = array(
+            1 => array('NSINFO_VERSIONMODULE', 'varchar', 1, $langs->trans('NSINFO_VERSIONMODULE'), 0)
+        );
 
 		if (!isset($conf->nsinfo) || !isset($conf->nsinfo->enabled)) {
 			$conf->nsinfo = new stdClass();

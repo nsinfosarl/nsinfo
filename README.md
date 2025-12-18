@@ -1,86 +1,41 @@
 # NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
-## Features
+## Informations
 
-Description...
+- Numéro du module : 172760
+- Dernière mise à jour : 25/11/2025
+- Éditeur : [NSINFO](https://www.ns-info.fr)
+- Thème : Eldy Menu
+- Licence : GPLv3
+- Disponible sur : Windows - MacOS - Linux
 
-<!--
-![Screenshot nsinfo](img/screenshot_nsinfo.png?raw=true "Nsinfo"){imgmd}
--->
+## Version
 
-Other modules are available on [Dolistore.com](https://www.dolistore.com).
+- Version : 4.0.9
+- PHP : 7.4
+- Compatibilité : Dolibarr 14.0.0 - 22.0.x
 
-## Translations
+## Liens
 
-Translations can be define manually by editing files into directories *langs*.
+- Support & Assistance : [Forum dolibarr.fr](https://dolibarr.fr) / Par mail à contact@ns-info.fr
+- Nsinfo Framework : [Télécharger Nsinfo](https://www.dolistore.com/product.php?id=713)
+- D'autres modules développés par NSINFO disponibles sur [Dolistore.com](https://www.dolistore.com/index.php?controller=search&orderby=position&orderway=desc&tag=&website=marketplace&search_query=NSINFO)
 
-<!--
-This module contains also a sample configuration for Transifex, under the hidden directory [.tx](.tx), so it is possible to manage translation using this service.
+## Fonctionnalités
 
-For more informations, see the [translator's documentation](https://wiki.dolibarr.org/index.php/Translator_documentation).
+NSINFO est un Framework, librairie d’objets et fonctions de NSINFO.
+Il est indispensable pour tous les modules de NSINFO
 
-There is a [Transifex project](https://transifex.com/projects/p/dolibarr-module-template) for this module.
--->
+## Traduction
 
-<!--
+- Français
+- Anglais
 
 ## Installation
 
-### From the ZIP file and GUI interface
+### Méthode :
 
-- If you get the module in a zip file (like when downloading it from the market place [Dolistore](https://www.dolistore.com)), go into
-menu ```Home - Setup - Modules - Deploy external module``` and upload the zip file.
+- Depuis le menu "Déployer/Installer un module externe" de Dolibarr :
+- Glisser l'archive ZIP 'module_nsinfo-X.Y.Z' et cliquer sur "ENVOYER FICHIER"
+- Activer le module dans la liste des Modules/Applications installés
 
-Note: If this screen tell you there is no custom directory, check your setup is correct:
-
-- In your Dolibarr installation directory, edit the ```htdocs/conf/conf.php``` file and check that following lines are not commented:
-
-    ```php
-    //$dolibarr_main_url_root_alt ...
-    //$dolibarr_main_document_root_alt ...
-    ```
-
-- Uncomment them if necessary (delete the leading ```//```) and assign a sensible value according to your Dolibarr installation
-
-    For example :
-
-    - UNIX:
-        ```php
-        $dolibarr_main_url_root_alt = '/custom';
-        $dolibarr_main_document_root_alt = '/var/www/Dolibarr/htdocs/custom';
-        ```
-
-    - Windows:
-        ```php
-        $dolibarr_main_url_root_alt = '/custom';
-        $dolibarr_main_document_root_alt = 'C:/My Web Sites/Dolibarr/htdocs/custom';
-        ```
-
-### From a GIT repository
-
-- Clone the repository in ```$dolibarr_main_document_root_alt/nsinfo```
-
-```sh
-cd ....../custom
-git clone git@github.com:gitlogin/nsinfo.git nsinfo
-```
-
-### <a name="final_steps"></a>Final steps
-
-From your browser:
-
-  - Log into Dolibarr as a super-administrator
-  - Go to "Setup" -> "Modules"
-  - You should now be able to find and enable the module
-
--->
-
-## Licenses
-
-### Main code
-
-GPLv3 or (at your option) any later version. See file COPYING for more information.
-
-### Documentation
-
-All texts and readmes are licensed under GFDL.

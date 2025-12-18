@@ -62,6 +62,8 @@ $supportvalue.= " * Option colonne sélection à gauche : ".(isset($conf->global
 $supportvalue.= " * Version PHP : ".PHP_VERSION."<br>";
 $supportvalue.= " *****/"."<br>";
 $supportvalue.= "Description de votre problème :"."<br>";
+
+
 /*
  * Actions
  */
@@ -118,7 +120,7 @@ print '<td align="left" valign="top"><p>'. $langs->trans("NSINFOAboutDescDolisto
 print '</tr>';
 
 print '</table>' . "\n";
-
+print $modClass->getDescLong();
 
 // Page end
 dol_fiche_end();

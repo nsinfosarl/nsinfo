@@ -546,6 +546,43 @@ function nsinfoSetup($arrayofparameters)
                     print '</td>';
                     break;
 
+                case "multisellist" :
+                    $rootfile = $desc['rootfile'];
+                    $rootlib = $desc['rootlib'];
+                    $size = !empty($desc['size']) ? $desc['size'] : 0;
+                    $arrayval = !empty($desc['arrayval']) ? $desc['arrayval'] : '';
+                    $preselect = !empty($desc['preselect']) ? $desc['preselect'] : '';
+//					$css = !empty($desc['css']) ? $desc['css'] : '';
+                    $css = !empty($desc['css']) ? $desc['css'] : 'minwidth300';
+                    $show_empty = !empty($desc['show_empty']) ? $desc['show_empty'] : 0;
+                    print '<tr class="oddeven"><td>';
+                    print !empty($desc['Tooltip']) ? $form->textwithpicto($langs->trans($key), $langs->trans($key . '_Tooltip')) : $langs->transnoentitiesnoconv($key);
+                    if (!empty($rootfile)) print ' <a href="' . $rootfile . '" target="_blank">' . $rootlib . '</a></>';
+                    print '</td>';
+
+                    print '<td>';
+                    print '<form method="post" action="' . $_SERVER['PHP_SELF'] . '" style="display: inline;">';
+                    print '<input type="hidden" name="token" value="' . $_SESSION['newtoken'] . '">';
+                    print '<input type="hidden" name="action" value="multilistsel" />';
+                    print '<input type="hidden" name="varlst" value="' . $key . '" />';
+                    print $form->multiselectarray($key, $arrayval, $preselect, 0, 0, $css, 0, 0);
+                    print '&emsp;';
+                    print '</td><td>';
+                    print '<input type="submit" class="button" value="' . $langs->trans("Update") . '" />';
+                    print '</form>';
+                    if (!empty($desc['default'])) {
+                        print '<form method="post" action="' . $_SERVER['PHP_SELF'] . '" style="display: inline;">';
+                        print '<input type="hidden" name="token" value="' . $_SESSION['newtoken'] . '">';
+                        print '<input type="hidden" name="action" value="reset" />';
+                        print '<input type="hidden" name="var" value="' . $key . '" />';
+                        print '&emsp;';
+                        print '<input type="submit" class="button" value="' . $langs->trans("SetDefault") . '" />';
+                        print '</form>';
+                    }
+
+                    print '</td>';
+                    break;
+
                 case "selliststring" :
                     $rootfile = $desc['rootfile'];
                     $rootlib = $desc['rootlib'];
@@ -678,6 +715,28 @@ function nsinfoSetup($arrayofparameters)
                     break;
 
 
+                case "selDate" :
+                    $size = !empty($desc['size']) ? $desc['size'] : 0;
+                    $css = !empty($desc['css']) ? $desc['css'] : '';
+                    print '<tr class="oddeven"><td>';
+                    print !empty($desc['Tooltip']) ? $form->textwithpicto($langs->trans($key), $langs->trans($key . '_Tooltip')) : $langs->transnoentitiesnoconv($key);
+
+                    print '</td>';
+
+                    print '<td>';
+                    print '<form method="post" action="' . $_SERVER['PHP_SELF'] . '" style="display: inline;">';
+                    print '<input type="hidden" name="token" value="' . $_SESSION['newtoken'] . '">';
+                    print '<input type="hidden" name="action" value="datesel" />';
+                    print '<input type="hidden" name="vardate" value="' . $key . '" />';
+                    $seldate = explode('/', getDolGlobalString($key));
+                    print $form->selectDate(mktime(0,0,0,$seldate[1],$seldate[0],$seldate[2]), $key, 0, 0, 0, "addprop", 1, 1);
+                    print '&emsp;';
+                    print '</td><td>';
+                    print '<input type="submit" class="button" value="' . $langs->trans("Update") . '" />';
+                    print '</td>';
+                    break;
+
+
                 case "selproduct" :
                     $size = !empty($desc['size']) ? $desc['size'] : 0;
                     $css = !empty($desc['css']) ? $desc['css'] : '';
@@ -777,11 +836,19 @@ function nsinfoAction($action, $var, $value, $vartxt, $varround, $valuetxt, $def
     elseif ($action == 'setcolor') {
         $const = implode(', ', colorStringToArray(GETPOST($varcolor, 'alpha')));
         dolibarr_set_const($db, $varcolor, $const, 'chaine', 0, '', $conf->entity);
-    } elseif ($action == 'listsel' && !empty($varlist)) {
-        dolibarr_set_const($db, $varlist, GETPOST($varlist, 'int'), 'int', 0, '', $conf->entity);
-    } elseif ($action == 'listselstrg' && !empty($varlist)) {
-        dolibarr_set_const($db, $varlist, GETPOST($varlist, 'alpha'), 'chaine', 0, '', $conf->entity);
     }
+    elseif ($action == 'multilistsel' && !empty($varlist)) {
+        $arr = GETPOST($varlist, 'array');
+        $res = '';
+        foreach ($arr as $item) {
+            if (!empty($res)) $res.=',';
+            $res .= $item;
+        }
+        dolibarr_set_const($db, $varlist, $res, 'chaine', 0, '', $conf->entity);
+    }
+    elseif ($action == 'listsel' && !empty($varlist)) dolibarr_set_const($db, $varlist, GETPOST($varlist, 'int'), 'int', 0, '', $conf->entity);
+    elseif ($action == 'listselstrg' && !empty($varlist)) dolibarr_set_const($db, $varlist, GETPOST($varlist, 'alpha'), 'chaine', 0, '', $conf->entity);
+    elseif ($action == 'datesel') dolibarr_set_const($db, $var, date(GETPOST($var)), 'date', 0, '', $conf->entity);
 
     if (!empty($action)) return 1;
     else return 0;

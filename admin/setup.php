@@ -51,7 +51,7 @@ require_once DOL_DOCUMENT_ROOT.'/core/class/html.formother.class.php';
 require_once DOL_DOCUMENT_ROOT.'/core/lib/date.lib.php';
 dol_include_once('/nsinfo/lib/nsinfo.lib.php');
 dol_include_once('/nsinfo/lib/setup.lib.php');
-//require_once "../class/myclass.class.php";
+
 
 // Translations
 $langs->loadLangs(array("admin", "nsinfo@nsinfo"));

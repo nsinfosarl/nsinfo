@@ -1,5 +1,17 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 4.0.9 - 18/12/2025
+- Ajout d'une option de sélection multiple dans une liste
+
+## 4.0.8 - 16/12/2025
+- Option date dans les réglages
+
+## 4.0.7 - 09/12/2025
+- Ajout d'une traduction
+
+## 4.0.6 - 25/11/2025
+- Ajout d'un champ date dans les réglages
+
 ## 4.0.5 - 05/08/2025
 - Ajout du numéro de version du Framework dans la déclaration d'incident des autres modules
 - Ajout du numéro de version du Framework dans la page "A propos" des autres modules
@@ -17,7 +29,7 @@
 - Verif version Dolibarr pour la fonction isModEnabled
 
 ## 4.0.0 - 15/05/2025
-- Création d'un setup
+- Création d'un réglages
 - Options:
   - Afficher la version du module visible (si possible)
   - Désactiver la recherche de la version des modules

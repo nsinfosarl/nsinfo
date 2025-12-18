@@ -40,7 +40,7 @@ function nsinfoAdminPrepareHead()
 	$head[$h][2] = 'settings';
 	$h++;
 	$head[$h][0] = dol_buildpath("/nsinfo/admin/changelog.php", 1);
-	$head[$h][1] = '<i class="fas fa-code-branch paddingright pictofixedwidth valignmiddle"></i>' . $langs->trans("ChangeLog");
+	$head[$h][1] = '<i class="fas fa-code-branch paddingright pictofixedwidth valignmiddle"></i>' . $langs->trans("NSINFOChangeLog");
 	$head[$h][2] = 'changelog';
 	$h++;
 	$head[$h][0] = dol_buildpath("/nsinfo/admin/about.php", 1);
