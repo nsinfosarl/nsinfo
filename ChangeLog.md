@@ -1,5 +1,25 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 22.0.0 - 28/03/2026
+- Alignement des versions Numérotation NSINFO
+- Option : sep fusion de colonne (argument col = nb de colonne, title = Titre, class = 'center')
+
+## 4.2.0 - 04/03/2026
+- Correction PHP 8
+
+## 4.1.3 - 06/02/2026
+- Réglage des tableaux Colonnes 1, 2 et 3
+  - ('type' => 'tabdeb', 'td1'=>70, 'td2'=>15, 'td3'=>15)
+
+## 4.1.2 - 03/02/2026
+- Ajout d'un option de saut de ligne dans les configuration type=>sep
+
+## 4.1.1 - 02/01/2026
+- Ajout d'un affichage d'unité dans les dimensions de paramétrage ('unit'=>'px')
+
+## 4.1.0 - 21/12/2025
+- Ajout d'une hidden value pour les tableaux des paramètres
+
 ## 4.0.9 - 18/12/2025
 - Ajout d'une option de sélection multiple dans une liste
 

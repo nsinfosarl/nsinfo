@@ -98,11 +98,14 @@ dol_include_once('/'.$namemodule.'/core/modules/mod'.ucfirst($namemodule).'.clas
 $nameMod = "mod".$modM;
 $tmpmodule = new $nameMod($db);
 
+$moduleUrlPath='';
+
 print '<a href="https://www.ns-info.fr" border=0 target="_blank"><img src="../img/nsinfo.png" width="200" align="right"></a>';
 $modulePath = dol_buildpath('/'.strtolower($namemodule), 0);
 $pathoffile = $modulePath . '/ChangeLog.md';
 $moduleUrlPath = dol_buildpath('/'.strtolower($namemodule), 1);
 
+$content  = '';
 $content = file_get_contents($pathoffile);
 @include_once DOL_DOCUMENT_ROOT . '/core/lib/parsemd.lib.php';
 $content = dolMd2Html($content, 'parsedown', array('doc/' => $moduleUrlPath . '/doc/'));

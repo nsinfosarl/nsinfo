@@ -85,6 +85,7 @@ $arrayofparameters = array(
 
 $error = 0;
 $setupnotempty = 0;
+$defaultvalue = '';
 $defaultvalue = $arrayofparameters[$var]['default'];
 /*
  * Actions
