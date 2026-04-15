@@ -186,6 +186,9 @@ function nsinfoSetup($arrayofparameters)
                     $formproduct = new FormProduct($db);
 //					$tmpobject = $desc['object'];
                     $css = !empty($desc['css']) ? $desc['css'] : 'minwidth200';
+                    $urlnew = !empty($desc['urlnew']) ? $desc['urlnew'] : '';
+                    $urlnewtoolip = !empty($desc['urlnewtoolip']) ? $desc['urlnewtoolip'] : '';
+
                     print '<tr class="oddeven">';
                     print '<td>';
                     print !empty($desc['Tooltip']) ? $form->textwithpicto($langs->trans($key), $langs->trans($key . '_Tooltip')) : $langs->transnoentitiesnoconv($key);
@@ -198,6 +201,8 @@ function nsinfoSetup($arrayofparameters)
 //					var_dump(getDolGlobalInt($key));
                     print $formproduct->selectWarehouses(getDolGlobalInt($key), $key, '', 1, 0, 0, '', 0, 0, array(), $css);
                     print '&emsp;';
+                    if (!empty($urlnew)) print '<a href="' . DOL_URL_ROOT . $urlnew .'&backtopage=' . urlencode($_SERVER["PHP_SELF"]) . '"><span class="fa fa-plus-circle valignmiddle" title="' . $langs->trans("AddProject") . '"></span></a>';
+
                     print '</td><td>';
                     print '<input type="submit" class="button" value="' . $langs->trans("Update") . '" />';
                     print '</form>';

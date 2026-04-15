@@ -121,4 +121,9 @@ function nsSendMail($object, $diroutput, $outputlangs, $modelmail, $socpeople=''
 		}
 	}
 
+
+
 }
+
+
+
