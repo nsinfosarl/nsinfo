@@ -1,0 +1,23 @@
+# Button - Bouton
+
+Thel                             = L'%s
+
+ReOpenDoli                       = Rouvrir
+Sign                             = Signer
+Lock                             = Verrouiller
+Archive                          = Archiver
+Clone                            = Cloner
+ObjectMustBeDraft                = %s doit être au statut (brouillon)
+ObjectMustBeValidated            = %s doit être au statut (validé)
+ObjectMustBeLocked               = %s doit être au statut (verrouillé)
+ObjectMustBeValidatedToGenerate  = %s doit être au statut (validé) pour générer le document
+ObjectMustBeLockedToGenerate     = %s doit être au statut (verrouillé) pour générer le document
+ObjectMustBeValidatedToSign      = %s doit être au statut (validé) pour que les participants puissent signer
+AllSignatoriesMustHaveSigned     = Tous les participants doivent avoir signé pour verrouiller %s
+ObjectMustBeValidatedToSendEmail = %s doit être au statut (validé) pour envoyer un email
+ObjectMustBeLockedToSendEmail    = %s doit être au statut (verrouillé) pour envoyer un email
+ObjectMustBeLockedToArchive      = %s doit être au statut (verrouillé) afin de pouvoir l'archiver
+
+ObjectMustBeUnActive             = %s doit être au status (Désactivé)
+ObjectMustBeArchive              = %s doit être au status (Archivé)
+
