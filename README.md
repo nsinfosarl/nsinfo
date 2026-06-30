@@ -3,7 +3,7 @@
 ## Informations
 
 - Numéro du module : 172760
-- Dernière mise à jour : 29/03/2026
+- Dernière mise à jour : 07/05/2026
 - Éditeur : [NSINFO](https://www.ns-info.fr)
 - Thème : Eldy Menu
 - Licence : GPLv3
@@ -11,9 +11,9 @@
 
 ## Version
 
-- Version : 22.0.0
-- PHP : 7.4
-- Compatibilité : Dolibarr 14.0.0 - 22.0.x
+- Version : 23.0.2
+- PHP : 7.4 - 8.3
+- Compatibilité : Dolibarr 14.0.0 - 23.0.x
 
 ## Liens
 
