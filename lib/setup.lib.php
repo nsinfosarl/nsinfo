@@ -201,7 +201,7 @@ function nsinfoSetup($arrayofparameters)
 //					var_dump(getDolGlobalInt($key));
                     print $formproduct->selectWarehouses(getDolGlobalInt($key), $key, '', 1, 0, 0, '', 0, 0, array(), $css);
                     print '&emsp;';
-                    if (!empty($urlnew)) print '<a href="' . DOL_URL_ROOT . $urlnew .'&backtopage=' . urlencode($_SERVER["PHP_SELF"]) . '"><span class="fa fa-plus-circle valignmiddle" title="' . $langs->trans("AddProject") . '"></span></a>';
+                    if (!empty($urlnew)) print '<a href="' . DOL_URL_ROOT . $urlnew . '&backtopage=' . urlencode($_SERVER["PHP_SELF"]) . '"><span class="fa fa-plus-circle valignmiddle" title="' . $langs->trans("AddProject") . '"></span></a>';
 
                     print '</td><td>';
                     print '<input type="submit" class="button" value="' . $langs->trans("Update") . '" />';
@@ -256,28 +256,28 @@ function nsinfoSetup($arrayofparameters)
                 case 'sep';
                     $title = $desc['title'];
                     $nbcol = $desc['col'];
-                    $class = !empty($desc['class']) ? ' class="'.$desc['class'].'"' : '';
+                    $class = !empty($desc['class']) ? ' class="' . $desc['class'] . '"' : '';
                     print '<tr class="nstabletitle">';
-                    print '<td colspan="'.$nbcol.'" '.$class.'>';
+                    print '<td colspan="' . $nbcol . '" ' . $class . '>';
                     print $title;
                     print '</td>';
                     print '</tr>';
                     break;
 
                 case 'tabdeb' :
-                    $hiddenname = !empty($desc['hidden_name']) ? $desc['hidden_name']: '';
+                    $hiddenname = !empty($desc['hidden_name']) ? $desc['hidden_name'] : '';
                     $hiddenvalue = !empty($desc['hidden_value']) ? $desc['hidden_value'] : '';
-                    $td1= !empty($desc['td1']) ? ' style="width: '.$desc['td1'].'px;"': '';
-                    $td2= !empty($desc['td2']) ? ' style="width: '.$desc['td2'].'px;"': '';
-                    $td3= !empty($desc['td3']) ? ' style="width: '.$desc['td3'].'px;"': '';
+                    $td1 = !empty($desc['td1']) ? ' style="width: ' . $desc['td1'] . 'px;"' : '';
+                    $td2 = !empty($desc['td2']) ? ' style="width: ' . $desc['td2'] . 'px;"' : '';
+                    $td3 = !empty($desc['td3']) ? ' style="width: ' . $desc['td3'] . 'px;"' : '';
 
                     print '<form method="POST" action="' . $_SERVER["PHP_SELF"] . '">';
                     print '<input type="hidden" name="token" value="' . newToken() . '">';
                     if (!empty($hiddenname) && !empty($hiddenvalue)) print '<input type="hidden" name="' . $hiddenname . '" value="' . $hiddenvalue . '" />';
                     print '<table class="tablens noborder" width="100%">';
-                    print '<tr class="nstabletitle">	<td'.$td1.'>' . $langs->trans("Parameter") . '</td>
-                                                    <td'.$td2.'>' . $langs->trans("Value") . '</td>
-                                                    <td'.$td3.'> </td></tr>';
+                    print '<tr class="nstabletitle">	<td' . $td1 . '>' . $langs->trans("Parameter") . '</td>
+                                                    <td' . $td2 . '>' . $langs->trans("Value") . '</td>
+                                                    <td' . $td3 . '> </td></tr>';
                     break;
 
                 case 'tabdeb2' :
@@ -296,14 +296,16 @@ function nsinfoSetup($arrayofparameters)
                     break;
 
                 case 'hidden':
-                    $hiddenname = !empty($desc['hidden_name']) ? $desc['hidden_name']: '';
+                    $hiddenname = !empty($desc['hidden_name']) ? $desc['hidden_name'] : '';
                     $hiddenvalue = !empty($desc['hidden_value']) ? $desc['hidden_value'] : '';
                     print '<input type="hidden" name="' . $hiddenname . '" value="' . $hiddenvalue . '" />';
                     break;
 
                 case 'titletab':
                     $titletab = $desc['title'];
-                    print load_fiche_titre($langs->transnoentities($titletab), '', '');
+                    $picto = '';
+                    $picto = $desc['picto'] ? $desc['picto'] : '';
+                    print load_fiche_titre($langs->transnoentities($titletab), '', $picto);
                     break;
 
                 case 'titletabdesc':
@@ -428,6 +430,8 @@ function nsinfoSetup($arrayofparameters)
                 case "round" :
                     $step = !empty($desc['step']) ? $desc['step'] : 'any';
                     $size = !empty($desc['size']) ? $desc['size'] : 4;
+                    $min = !empty($desc['min']) ? $desc['min'] : '';
+                    $max = !empty($desc['max']) ? $desc['max'] : '';
                     $unit = !empty($desc['unit']) ? ' ' . $desc['unit'] : '';
 
 
@@ -459,7 +463,7 @@ function nsinfoSetup($arrayofparameters)
                     $size = $desc['size'];
                     $typetexte = empty($desc['typetext']) ? 'text' : $desc['typetext'];
                     $defaultvalue = !empty($desc['default']) ? 1 : 0;
-                    $hiddenname = !empty($desc['hidden_name']) ? $desc['hidden_name']: '';
+                    $hiddenname = !empty($desc['hidden_name']) ? $desc['hidden_name'] : '';
                     $hiddenvalue = !empty($desc['hidden_value']) ? $desc['hidden_value'] : '';
 
                     print '<tr class="oddeven"><td>';
@@ -493,7 +497,7 @@ function nsinfoSetup($arrayofparameters)
 //					$typetexte = empty($desc['typetext']) ? 'text' : $desc['typetext'];
                     $cols = empty($desc['cols']) ? 55 : $desc['cols'];
                     $rows = empty($desc['rows']) ? 5 : $desc['rows'];
-                    $hiddenname = !empty($desc['hidden_name']) ? $desc['hidden_name']: '';
+                    $hiddenname = !empty($desc['hidden_name']) ? $desc['hidden_name'] : '';
                     $hiddenvalue = !empty($desc['hidden_value']) ? $desc['hidden_value'] : '';
 
 
@@ -519,6 +523,35 @@ function nsinfoSetup($arrayofparameters)
 //					print '&emsp;';
 //					print '<input type="submit" class="button" value="' . $langs->trans("SetDefault") . '" />';
 //					print '</form>';
+                    print '</td>';
+                    break;
+
+                case "textarea2" :
+                    $size = 0;
+                    $size = $desc['size'];
+//					$typetexte = empty($desc['typetext']) ? 'text' : $desc['typetext'];
+                    $cols = empty($desc['cols']) ? 55 : $desc['cols'];
+                    $rows = empty($desc['rows']) ? 5 : $desc['rows'];
+                    $hiddenname = !empty($desc['hidden_name']) ? $desc['hidden_name'] : '';
+                    $hiddenvalue = !empty($desc['hidden_value']) ? $desc['hidden_value'] : '';
+
+
+                    print '<tr class="oddeven"><td>';
+                    print !empty($desc['Tooltip']) ? $form->textwithpicto($langs->transnoentitiesnoconv($key), $langs->trans($key . '_Tooltip')) : $langs->transnoentitiesnoconv($key);
+                    print '</td>';
+
+                    print '<td>';
+                    print '<form method="post" action="' . $_SERVER['PHP_SELF'] . '" style="display: inline;">';
+                    print '<input type="hidden" name="token" value="' . $_SESSION['newtoken'] . '">';
+                    print '<input type="hidden" name="action" value="settxt" />';
+                    if (!empty($hiddenname) && !empty($hiddenvalue)) print '<input type="hidden" name="' . $hiddenname . '" value="' . $hiddenvalue . '" />';
+                    print '<input type="hidden" name="vartxt" value="' . $key . '" />';
+                    print '<textarea name="' . $key . '" cols= "' . $cols . '" rows= "' . $rows . '" value="' . getDolGlobalString($key) . '" />' . getDolGlobalString($key) . '</textarea>';
+                    print '&emsp;';
+                    print '</td><td>';
+                    print '<input type="submit" class="button" value="' . $langs->trans("Update") . '" />';
+                    print '</form>';
+
                     print '</td>';
                     break;
 
@@ -611,7 +644,7 @@ function nsinfoSetup($arrayofparameters)
                     print '<input type="hidden" name="varlst" value="' . $key . '" />';
                     print $form->selectarray($key, $arrayval, getDolGlobalInt($key), $show_empty, 0, 0, '', 0, 0, 0, '', $css);
                     print '&emsp;';
-                    print '<a href="' . DOL_URL_ROOT . $urlnew .'&backtopage=' . urlencode($_SERVER["PHP_SELF"]) . '"><span class="fa fa-plus-circle valignmiddle" title="' . $langs->trans("AddProject") . '"></span></a>';
+                    print '<a href="' . DOL_URL_ROOT . $urlnew . '&backtopage=' . urlencode($_SERVER["PHP_SELF"]) . '"><span class="fa fa-plus-circle valignmiddle" title="' . $langs->trans("AddProject") . '"></span></a>';
                     print '</td><td>';
                     print '<input type="submit" class="button" value="' . $langs->trans("Update") . '" />';
                     print '</form>';
@@ -811,7 +844,10 @@ function nsinfoSetup($arrayofparameters)
                     print '<input type="hidden" name="action" value="datesel" />';
                     print '<input type="hidden" name="vardate" value="' . $key . '" />';
                     $seldate = explode('/', getDolGlobalString($key));
-                    print $form->selectDate(mktime(0, 0, 0, $seldate[1], $seldate[0], $seldate[2]), $key, 0, 0, 0, "addprop", 1, 1);
+                    $ts = (count($seldate) === 3 && $seldate[0] && $seldate[1] && $seldate[2])
+                        ? mktime(0, 0, 0, (int)$seldate[1], (int)$seldate[0], (int)$seldate[2])
+                        : -1;
+                    print $form->selectDate($ts, $key, 0, 0, 0, "addprop", 1, 1);
                     print '&emsp;';
                     print '</td><td>';
                     print '<input type="submit" class="button" value="' . $langs->trans("Update") . '" />';

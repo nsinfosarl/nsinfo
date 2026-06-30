@@ -1,5 +1,17 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.0.2 - 09/06/2026
+- Ajout type textarea2
+
+## 23.0.1 - 14/05/2026
+- Correction en lien avec le module BomPdf
+
+## 23.0.0 - 07/05/2026
+- Php8 Correction SelectDate
+
+## 22.0.2 - 17/04/2026
+- Ajout 'picto' sur 'titletab'
+
 ## 22.0.0 - 28/03/2026
 - Alignement des versions Numérotation NSINFO
 - Option : sep fusion de colonne (argument col = nb de colonne, title = Titre, class = 'center')
