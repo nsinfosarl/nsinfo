@@ -86,7 +86,9 @@ $arrayofparameters = array(
 $error = 0;
 $setupnotempty = 0;
 $defaultvalue = '';
-$defaultvalue = $arrayofparameters[$var]['default'];
+if (!empty($var) && isset($arrayofparameters[$var]['default'])) {
+	$defaultvalue = $arrayofparameters[$var]['default'];
+}
 /*
  * Actions
  */
