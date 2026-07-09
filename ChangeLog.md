@@ -1,5 +1,8 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.0.3 - 09/07/2026
+-  Fix #20: setup.lib.php warning si picto non défini
+
 ## 23.0.2 - 09/06/2026
 - Ajout type textarea2
 

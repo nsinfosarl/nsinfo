@@ -304,7 +304,7 @@ function nsinfoSetup($arrayofparameters)
                 case 'titletab':
                     $titletab = $desc['title'];
                     $picto = '';
-                    $picto = $desc['picto'] ? $desc['picto'] : '';
+                    $picto = $desc['picto'] ? $desc['picto'] : 'generic';
                     print load_fiche_titre($langs->transnoentities($titletab), '', $picto);
                     break;
 
