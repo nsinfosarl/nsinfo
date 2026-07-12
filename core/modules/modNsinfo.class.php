@@ -57,7 +57,15 @@ class modNsinfo extends DolibarrModules
 		$this->picto = 'nsinfo@nsinfo';
 
 		$this->module_parts = array(
-			'css' => array('/nsinfo/css/nsinfo.css.php')
+			'css' => array('/nsinfo/css/nsinfo.css.php'),
+			// Set this to relative path of js file if module must load a js on all pages
+			'js' => array(
+				'/nsinfo/js/nsinfo.js',
+				'/nsinfo/js/modules/toolbox.js',
+				'/nsinfo/js/modules/loader.js',
+				'/nsinfo/js/modules/modal.js',
+				'/nsinfo/js/modules/mediaGallery.js',
+			)
 		);
 		// Data directories to create when module is enabled.
 		// Example: this->dirs = array("/nsinfo/temp","/nsinfo/subdir");

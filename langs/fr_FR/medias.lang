@@ -1,0 +1,30 @@
+# Copyright (C) 2026 NSINFO <contact@ns-info.fr>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+#
+# Media Gallery - Bibliothèque de médias
+#
+
+MediaGallery              = Bibliothèque de médias
+ErrorThisFileSizeTooLarge = Le fichier %s est trop volumineux
+ErrorThisFileExists       = Le fichier %s existe déjà
+EmptyMediaGallery         = La bibliothèque de médias est vide
+SearchFile                = Rechercher un fichier
+PhotoWellSent             = La photo a été ajoutée à la bibliothèque de médias
+PhotoNotSent              = La photo ne s'est pas correctement envoyée
+ConfirmUnlinkMedia        = Êtes-vous sûr de vouloir détacher le média sélectionné ?
+DeleteFiles               = Supprimer les fichiers sélectionnés ?
+AddPhotoFromComputer      = Ajouter une photo depuis la galerie de l'appareil
+AddPhotoFromMediaGallery  = Ajouter une photo depuis la bibliothèque de médias

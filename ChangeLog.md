@@ -1,5 +1,8 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.1.0 - 12/07/2026
+- Ajout de gestion d'import d'image
+
 ## 23.0.3 - 09/07/2026
 -  Fix #20: setup.lib.php warning si picto non défini
 

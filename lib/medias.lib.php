@@ -25,7 +25,168 @@ include_once DOL_DOCUMENT_ROOT . '/core/lib/files.lib.php';
 include_once DOL_DOCUMENT_ROOT . '/core/lib/images.lib.php';
 require_once DOL_DOCUMENT_ROOT . '/core/lib/date.lib.php';
 
+/**
+ * Default max width/height (px) used to generate a media thumb when no
+ * {MODULEPART}_MEDIA_MAX_WIDTH_{SIZE} / _HEIGHT_ setup constant is defined.
+ */
+const NSINFO_MEDIA_DEFAULT_THUMB_SIZES = [
+    'mini'   => ['width' => 100, 'height' => 100],
+    'small'  => ['width' => 200, 'height' => 200],
+    'medium' => ['width' => 500, 'height' => 500],
+    'large'  => ['width' => 1000, 'height' => 1000],
+];
 
+/**
+ * Return the configured (or default) max width/height for a thumb size, for a given module.
+ *
+ * @param  string $modulepart Module name (e.g. 'gmao')
+ * @param  string $size       Thumb size (mini, small, medium, large)
+ * @return array              ['width' => int, 'height' => int]
+ */
+function nsinfo_get_media_thumb_size(string $modulepart, string $size): array
+{
+    $defaults = NSINFO_MEDIA_DEFAULT_THUMB_SIZES[$size] ?? NSINFO_MEDIA_DEFAULT_THUMB_SIZES['small'];
+
+    return [
+        'width'  => getDolGlobalInt(dol_strtoupper($modulepart) . '_MEDIA_MAX_WIDTH_' . dol_strtoupper($size), $defaults['width']),
+        'height' => getDolGlobalInt(dol_strtoupper($modulepart) . '_MEDIA_MAX_HEIGHT_' . dol_strtoupper($size), $defaults['height']),
+    ];
+}
+
+/**
+ * Generate a thumb for a media file (thin wrapper on Dolibarr's native vignette()).
+ *
+ * @param  string $file      Full path of the source file
+ * @param  int    $maxWidth  Thumb max width
+ * @param  int    $maxHeight Thumb max height
+ * @param  string $extName   Suffix of the generated thumb (e.g. '_small')
+ * @return string             Full path of the generated thumb, or an error message
+ */
+function nsinfo_vignette(string $file, int $maxWidth = 160, int $maxHeight = 120, string $extName = '_small')
+{
+    require_once DOL_DOCUMENT_ROOT . '/core/lib/images.lib.php';
+
+    return vignette($file, $maxWidth, $maxHeight, $extName);
+}
+
+/**
+ * Return file specified thumb name, generating it if it does not exist yet.
+ *
+ * @param  string $filename   File name
+ * @param  string $modulepart Module name, used to read the {MODULE}_MEDIA_MAX_WIDTH/HEIGHT_{SIZE} config
+ * @param  string $thumbType  Thumb type (mini, small, medium, large)
+ * @param  string $filePath   Directory containing the file
+ * @return string|int         Thumb filename, or -1 on error
+ */
+function nsinfo_get_thumb_name(string $filename, string $modulepart, string $thumbType = 'small', string $filePath = '')
+{
+    $fileName      = pathinfo($filename, PATHINFO_FILENAME);
+    $fileExtension = pathinfo($filename, PATHINFO_EXTENSION);
+    $thumbFileName = $fileName . '_' . $thumbType . '.' . $fileExtension;
+
+    if (!empty($filePath)) {
+        $filePathThumb = $filePath . '/thumbs';
+        if (!dol_is_dir($filePathThumb)) {
+            dol_mkdir($filePathThumb);
+        }
+
+        if (dol_is_file($filePathThumb . '/' . $thumbFileName)) {
+            return $thumbFileName;
+        }
+
+        // vignette() returns the full path of the generated thumb (or an error string), not just its name.
+        // We only care whether generation succeeded: re-check for the expected basename afterwards.
+        $thumbSize = nsinfo_get_media_thumb_size($modulepart, $thumbType);
+        nsinfo_vignette($filePath . '/' . $filename, $thumbSize['width'], $thumbSize['height'], '_' . $thumbType);
+
+        return dol_is_file($filePathThumb . '/' . $thumbFileName) ? $thumbFileName : -1;
+    }
+
+    return $fileName . '_' . $thumbType . '.' . $fileExtension;
+}
+
+/**
+ * Print medias from the shared module media gallery (browse-all grid, with pagination).
+ *
+ * @param  string $modulepart Module name
+ * @param  string $sdir       Directory path holding the gallery staging files
+ * @param  string $size       Media size (mini or small)
+ * @param  int    $maxHeight  Media max height
+ * @param  int    $maxWidth   Media max width
+ * @param  int    $offset     Media gallery offset page
+ */
+function nsinfo_show_medias(string $modulepart, string $sdir = '', string $size = 'small', int $maxHeight = 80, int $maxWidth = 80, int $offset = 1): void
+{
+    global $conf, $langs, $user;
+
+    $sortfield = 'date';
+    $sortorder = 'desc';
+    $dir       = $sdir . '/';
+
+    $nbphoto = 0;
+
+    $filearray = dol_dir_list($dir, 'files', 0, '', '(\.meta|_preview.*\.png)$', $sortfield, (strtolower($sortorder) == 'desc' ? SORT_DESC : SORT_ASC));
+
+    if (!empty($user->conf->NSINFO_MEDIA_GALLERY_SHOW_TODAY_MEDIAS)) {
+        $yesterdayTimeStamp = dol_time_plus_duree(dol_now(), -1, 'd');
+        $filearray          = array_filter($filearray, function ($file) use ($yesterdayTimeStamp) {
+            return $file['date'] > $yesterdayTimeStamp;
+        });
+    }
+
+    if ($sortfield && $sortorder) {
+        $filearray = dol_sort_array($filearray, $sortfield, $sortorder);
+    }
+    $filearray = array_values($filearray);
+
+    $imageNumberPerPage = getDolGlobalInt(dol_strtoupper($modulepart) . '_DISPLAY_NUMBER_MEDIA_GALLERY', 20);
+
+    if (count($filearray)) {
+        print '<div class="wpeo-gridlayout grid-5 grid-gap-3 grid-margin-2 ecm-photo-list">';
+
+        $j = 0;
+        for ($i = (($offset - 1) * $imageNumberPerPage); $i < ($imageNumberPerPage + (($offset - 1) * $imageNumberPerPage)); $i++) {
+            if (empty($filearray[$i])) {
+                continue;
+            }
+
+            $fileName = $filearray[$i]['name'];
+            if (image_format_supported($fileName) < 0) {
+                continue;
+            }
+            $nbphoto++;
+
+            $thumbName = nsinfo_get_thumb_name($fileName, $modulepart, $size, $filearray[$i]['path']);
+            $path      = DOL_URL_ROOT . '/document.php?modulepart=ecm&attachment=0&file=' . str_replace('/', '%2F', $modulepart . '/medias/thumbs');
+            $fullpath  = $path . '/' . urlencode((string) $thumbName) . '&entity=' . $conf->entity;
+
+            print '<div class="center clickable-photo clickable-photo' . $j . '" value="' . $j . '">';
+            print '  <figure class="photo-image">';
+            if ($thumbName !== -1 && dol_is_file($filearray[$i]['path'] . '/thumbs/' . $thumbName)) {
+                print '    <input class="filename" type="hidden" value="' . dol_escape_htmltag($fileName) . '">';
+                print '    <img class="photo photo' . $j . '" width="' . $maxWidth . '" height="' . $maxHeight . '" data-src="' . $fullpath . '" loading="lazy">';
+            } else {
+                print '    <input type="hidden" class="fullname" data-fullname="' . dol_escape_htmltag($filearray[$i]['fullname']) . '">';
+                print '    <i class="clicked-photo-preview regenerate-thumbs fas fa-redo"></i>';
+                print '    <img class="photo photo' . $j . '" width="' . $maxWidth . '" height="' . $maxHeight . '" data-src="' . DOL_URL_ROOT . '/public/theme/common/nophoto.png" loading="lazy">';
+            }
+            print '  </figure>';
+            print '  <div class="title">' . dol_escape_htmltag($fileName) . '</div>';
+            print '</div>';
+            $j++;
+        }
+        print '</div>';
+    } else {
+        print '<br>';
+        print '<div class="ecm-photo-list">';
+        print $langs->trans('EmptyMediaGallery');
+        print '</div>';
+    }
+
+    if (is_object($user)) {
+        $user->nbphotogallery = $nbphoto;
+    }
+}
 
 /**
  * Show medias linked to an object
@@ -86,6 +247,16 @@ function nsinfo_show_medias_linked(string $modulepart = 'ecm', string $sdir, $si
             }
         }
 
+        if ($show_unlink_button) {
+            $confirmationParams = [
+                'picto'             => 'fontawesome_fa-unlink_fas_#e05353',
+                'color'             => '#e05353',
+                'confirmationTitle' => 'ConfirmUnlinkMedia',
+                'buttonParams'      => ['No' => 'button-blue marginrightonly confirmation-close', 'Yes' => 'button-red confirmation-delete']
+            ];
+            require __DIR__ . '/../core/tpl/utils/confirmation_view.tpl.php';
+        }
+
         foreach ($filearray as $file) {
             $photo    = '';
             $fileName = $file['name'];
@@ -140,10 +311,10 @@ function nsinfo_show_medias_linked(string $modulepart = 'ecm', string $sdir, $si
                         if ($usesharelink) {
                             if (empty($maxHeight) || $photo_vignette && $imgarray['height'] > $maxHeight) {
                                 $return .= '<!-- Show thumb file -->';
-                                $return .= '<img width="' . $maxWidth . '" height="' . $maxHeight . '" class="photo '. $morecss .' photowithmargin" height="' . $maxHeight . '" src="' . DOL_URL_ROOT . '/custom/saturne/utils/viewimage.php?modulepart=' . $modulepart . '&entity=' . $object->entity . '&file=' . urlencode($pdirthumb . $photo_vignette) . '" title="' . dol_escape_htmltag($alt) . '" data-object-id="' . $object->id . '">';
+                                $return .= '<img width="' . $maxWidth . '" height="' . $maxHeight . '" class="photo '. $morecss .' photowithmargin" height="' . $maxHeight . '" src="' . DOL_URL_ROOT . '/viewimage.php?modulepart=' . $modulepart . '&entity=' . $object->entity . '&file=' . urlencode($pdirthumb . $photo_vignette) . '" title="' . dol_escape_htmltag($alt) . '" data-object-id="' . $object->id . '">';
                             } else {
                                 $return .= '<!-- Show original file -->';
-                                $return .= '<img width="' . $maxWidth . '" height="' . $maxHeight . '" class="photo '. $morecss .' photowithmargin" src="' . DOL_URL_ROOT . '/custom/saturne/utils/viewimage.php?modulepart=' . $modulepart . '&entity=' . $object->entity . '&file=' . urlencode($pdir . $photo) . '" title="' . dol_escape_htmltag($alt) . '" data-object-id="' . $object->id . '">';
+                                $return .= '<img width="' . $maxWidth . '" height="' . $maxHeight . '" class="photo '. $morecss .' photowithmargin" src="' . DOL_URL_ROOT . '/viewimage.php?modulepart=' . $modulepart . '&entity=' . $object->entity . '&file=' . urlencode($pdir . $photo) . '" title="' . dol_escape_htmltag($alt) . '" data-object-id="' . $object->id . '">';
                             }
                         } else {
                             if (empty($maxHeight) || $photo_vignette && $imgarray['height'] > $maxHeight) {
@@ -207,13 +378,6 @@ function nsinfo_show_medias_linked(string $modulepart = 'ecm', string $sdir, $si
 						</div>';
                 }
                 if ($show_unlink_button) {
-                    $confirmationParams = [
-                        'picto'             => 'fontawesome_fa-unlink_fas_#e05353',
-                        'color'             => '#e05353',
-                        'confirmationTitle' => 'ConfirmUnlinkMedia',
-                        'buttonParams'      => ['No' => 'button-blue marginrightonly confirmation-close', 'Yes' => 'button-red confirmation-delete']
-                    ];
-                    require __DIR__ . '/../core/tpl/utils/confirmation_view.tpl.php';
                     $return .=
                         '<div class="wpeo-button button-square-50 button-grey ' . $object->element . ' media-gallery-unlink" value="' . $object->id . '">
 							<input class="element-linked-id" type="hidden" value="' . ($object->id > 0 ? $object->id : 0) . '">

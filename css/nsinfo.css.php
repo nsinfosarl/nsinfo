@@ -119,5 +119,238 @@ div.mainmenu.nsinfo {
 	background: var(--colorbacktitle1) !important;
 }
 
+/* ------------------------------------------------------------------
+ * NSINFO media gallery + confirmation popup
+ * Without these rules, .modal-active / inline display toggles set by
+ * js/modules/{modal,mediaGallery}.js have nothing to switch "into":
+ * the elements stay in the normal page flow instead of overlaying it.
+ * ------------------------------------------------------------------ */
+.hidden {
+	display: none !important;
+}
+
+.card__confirmation {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.2);
+	z-index: 1100;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.card__confirmation .confirmation-container {
+	width: 100%;
+	max-width: 460px;
+	background: #fff;
+	box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.1);
+	padding: 1.5em;
+	text-align: center;
+	border-radius: 10px;
+}
+.card__confirmation .confirmation-icon {
+	font-size: 60px;
+}
+.card__confirmation .confirmation-title {
+	font-size: 18px;
+	font-weight: 600;
+	margin: 1em 0;
+}
+.card__confirmation .confirmation-close-button {
+	display: flex;
+	justify-content: flex-end;
+	color: rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+}
+.card__confirmation .wpeo-button {
+	margin: 0.3em;
+}
+
+.wpeo-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	background: rgba(39, 42, 53, 0.85);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.2s ease-out;
+}
+.wpeo-modal.modal-active {
+	opacity: 1;
+	pointer-events: auto;
+	z-index: 1002;
+}
+.wpeo-modal .modal-container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	max-width: 860px;
+	max-height: 80vh;
+	overflow-y: auto;
+	background: #fff;
+	padding: 1em;
+	border-radius: 6px;
+}
+.wpeo-modal .modal-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 0.5em;
+}
+.wpeo-modal .modal-close {
+	cursor: pointer;
+	color: rgba(0, 0, 0, 0.4);
+}
+.wpeo-modal .modal-footer {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 0.5em;
+	margin-top: 0.5em;
+}
+
+.wpeo-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	border-radius: 4px;
+	padding: 0.4em 0.8em;
+	margin: 0.2em;
+}
+.wpeo-button.button-square-50 {
+	width: 50px;
+	height: 50px;
+	padding: 0;
+}
+.wpeo-button.button-blue {
+	background: #0b419b;
+	color: #fff;
+}
+.wpeo-button.button-grey {
+	background: #e5e5e5;
+	color: #333;
+}
+.wpeo-button.button-red {
+	background: #e05353;
+	color: #fff;
+}
+.wpeo-button.button-disable {
+	opacity: 0.4;
+	pointer-events: none;
+}
+.media-gallery-favorite.favorite {
+	background: #f5b400;
+}
+
+.wpeo-gridlayout {
+	display: grid;
+	gap: 0.5em;
+}
+.wpeo-gridlayout.grid-3 {
+	grid-template-columns: repeat(3, 1fr);
+}
+.wpeo-gridlayout.grid-5 {
+	grid-template-columns: repeat(5, 1fr);
+}
+@media (max-width: 767px) {
+	.wpeo-gridlayout.grid-3,
+	.wpeo-gridlayout.grid-5 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+.clickable-photo {
+	position: relative;
+	cursor: pointer;
+	border: 3px solid transparent;
+}
+.clickable-photo.clicked-photo {
+	border-color: #0b419b;
+}
+
+.wpeo-pagination {
+	display: inline-flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	gap: 0.2em;
+}
+.wpeo-pagination .pagination-element {
+	padding: 0.2em 0.6em;
+	cursor: pointer;
+}
+.wpeo-pagination .pagination-current {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.wpeo-loader {
+	position: relative;
+}
+.wpeo-loader .loader-spin {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.6);
+}
+
+.linked-medias .linked-medias-list {
+	flex-wrap: wrap;
+}
+.linked-medias .media-container {
+	position: relative;
+	display: inline-block;
+}
+.linked-medias .media-container .media-gallery-unlink {
+	position: absolute;
+	top: -14px;
+	right: -14px;
+	left: auto;
+	width: 28px;
+	height: 28px;
+	min-width: 0;
+	border-radius: 50%;
+	z-index: 2;
+	font-size: 12px;
+}
+
+.photo-btn {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	background: #0b419b;
+	color: #fff;
+	cursor: pointer;
+	font-size: 28px;
+}
+.photo-btn::after {
+	content: "+";
+	position: absolute;
+	bottom: -6px;
+	left: -6px;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background: #e05353;
+	color: #fff;
+	font-size: 22px;
+	font-weight: bold;
+	line-height: 30px;
+	text-align: center;
+}
 
 
