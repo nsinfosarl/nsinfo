@@ -340,16 +340,16 @@ div.mainmenu.nsinfo {
 .photo-btn::after {
 	content: "+";
 	position: absolute;
-	bottom: -6px;
-	left: -6px;
-	width: 30px;
-	height: 30px;
+	bottom: -4px;
+	left: -4px;
+	width: 18px;
+	height: 18px;
 	border-radius: 50%;
-	background: #e05353;
+	background: #7ec8e3;
 	color: #fff;
-	font-size: 22px;
+	font-size: 14px;
 	font-weight: bold;
-	line-height: 30px;
+	line-height: 18px;
 	text-align: center;
 }
 

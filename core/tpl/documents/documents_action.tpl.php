@@ -30,6 +30,8 @@
  * Variable   : $permissiontoadd, $permissiontodelete, $shouldRedirect (optional)
  */
 
+require_once DOL_DOCUMENT_ROOT . '/core/lib/functions2.lib.php';
+
 // Build doc action.
 if (($action == 'builddoc' || GETPOST('forcebuilddoc')) && $permissiontoadd) {
     global $hookmanager;
@@ -61,10 +63,12 @@ if (($action == 'builddoc' || GETPOST('forcebuilddoc')) && $permissiontoadd) {
 
     if (GETPOST('forcebuilddoc')) {
         $model      = '';
-        $modelLists = saturne_get_list_of_models($db, $object->element . 'document');
+        $modelLists = getListOfModels($db, $object->element . 'document');
         if (is_array($modelLists) && !empty($modelLists)) {
             asort($modelLists);
-            $modelLists = array_filter($modelLists, 'saturne_remove_index');
+            $modelLists = array_filter($modelLists, function ($modelName) {
+                return !preg_match('/index.php/', $modelName);
+            });
             foreach ($modelLists as $key => $modelList) {
                 $confName = dol_strtoupper($object->module . '_' . $document->element) . '_DEFAULT_MODEL';
                 if (dol_strlen(getDolGlobalString($confName)) > 0 && strpos($key, getDolGlobalString($confName)) !== false) {
@@ -88,7 +92,7 @@ if (($action == 'builddoc' || GETPOST('forcebuilddoc')) && $permissiontoadd) {
 
     if (!empty($model)) {
         $parameters = ['model' => $model, 'outputlangs' => $outputLangs, 'hidedetails' => $hideDetails, 'hidedesc' => $hideDesc, 'hideref' => $hideRef, 'moreparams' => $moreParams];
-        $hookmanager->executeHooks('saturneBuildDoc', $parameters, $object, $action);
+        $hookmanager->executeHooks('nsinfoBuildDoc', $parameters, $object, $action);
 
         $result = $document->generateDocument($model, $outputLangs, $hideDetails, $hideDesc, $hideRef, $moreParams);
         if ($result <= 0) {
