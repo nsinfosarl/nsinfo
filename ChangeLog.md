@@ -1,5 +1,10 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.1.1 - 21/07/2026
+- Correction Warning PHP 8
+
+
+
 ## 23.1.0 - 12/07/2026
 - Ajout de gestion d'import d'image
 

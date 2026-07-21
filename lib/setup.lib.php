@@ -304,7 +304,7 @@ function nsinfoSetup($arrayofparameters)
                 case 'titletab':
                     $titletab = $desc['title'];
                     $picto = '';
-                    $picto = $desc['picto'] ? $desc['picto'] : 'generic';
+                    $picto = !empty($desc['picto']) ? $desc['picto'] : 'generic';
                     print load_fiche_titre($langs->transnoentities($titletab), '', $picto);
                     break;
 
@@ -459,8 +459,7 @@ function nsinfoSetup($arrayofparameters)
                     break;
 
                 case "text" :
-                    $size = 0;
-                    $size = $desc['size'];
+                    $size = !empty($desc['size']) ? $desc['size'] : 0;
                     $typetexte = empty($desc['typetext']) ? 'text' : $desc['typetext'];
                     $defaultvalue = !empty($desc['default']) ? 1 : 0;
                     $hiddenname = !empty($desc['hidden_name']) ? $desc['hidden_name'] : '';
@@ -578,14 +577,14 @@ function nsinfoSetup($arrayofparameters)
                     break;
 
                 case 'link' :
-                    $rootfile = $desc['rootfile'];
+                    $rootfile = !empty($desc['rootfile']) ? $desc['rootfile'] : '';
 
                     print '<center><a href="' . $rootfile . '" target="_blank">' . $langs->transnoentities($key) . '</a></center>';
                     break;
 
                 case "sellist" :
-                    $rootfile = $desc['rootfile'];
-                    $rootlib = $desc['rootlib'];
+                    $rootfile = !empty($desc['rootfile']) ? $desc['rootfile'] : '';
+                    $rootlib = !empty($desc['rootlib']) ? $desc['rootlib'] : '';
                     $size = !empty($desc['size']) ? $desc['size'] : 0;
                     $arrayval = !empty($desc['arrayval']) ? $desc['arrayval'] : '';
 //					$css = !empty($desc['css']) ? $desc['css'] : '';
@@ -621,8 +620,8 @@ function nsinfoSetup($arrayofparameters)
                     break;
 
                 case "sellistadd" :
-                    $rootfile = $desc['rootfile'];
-                    $rootlib = $desc['rootlib'];
+                    $rootfile = !empty($desc['rootfile']) ? $desc['rootfile'] : '';
+                    $rootlib = !empty($desc['rootlib']) ? $desc['rootlib'] : '';
                     $size = !empty($desc['size']) ? $desc['size'] : 0;
                     $arrayval = !empty($desc['arrayval']) ? $desc['arrayval'] : '';
 //					$css = !empty($desc['css']) ? $desc['css'] : '';
@@ -662,8 +661,8 @@ function nsinfoSetup($arrayofparameters)
                     break;
 
                 case "multisellist" :
-                    $rootfile = $desc['rootfile'];
-                    $rootlib = $desc['rootlib'];
+                    $rootfile = !empty($desc['rootfile']) ? $desc['rootfile'] : '';
+                    $rootlib = !empty($desc['rootlib']) ? $desc['rootlib'] : '';
                     $size = !empty($desc['size']) ? $desc['size'] : 0;
                     $arrayval = !empty($desc['arrayval']) ? $desc['arrayval'] : '';
                     $preselect = !empty($desc['preselect']) ? $desc['preselect'] : '';
@@ -699,8 +698,8 @@ function nsinfoSetup($arrayofparameters)
                     break;
 
                 case "selliststring" :
-                    $rootfile = $desc['rootfile'];
-                    $rootlib = $desc['rootlib'];
+                    $rootfile = !empty($desc['rootfile']) ? $desc['rootfile'] : '';
+                    $rootlib = !empty($desc['rootlib']) ? $desc['rootlib'] : '';
                     $size = !empty($desc['size']) ? $desc['size'] : 0;
                     $arrayval = !empty($desc['arrayval']) ? $desc['arrayval'] : '';
                     $css = !empty($desc['css']) ? $desc['css'] : '';
