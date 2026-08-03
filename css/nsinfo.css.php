@@ -125,9 +125,9 @@ div.mainmenu.nsinfo {
  * js/modules/{modal,mediaGallery}.js have nothing to switch "into":
  * the elements stay in the normal page flow instead of overlaying it.
  * ------------------------------------------------------------------ */
-.hidden {
-	display: none !important;
-}
+/*.hidden {*/
+/*	display: none !important;*/
+/*}*/
 
 .card__confirmation {
 	position: fixed;

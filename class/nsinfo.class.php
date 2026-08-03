@@ -103,34 +103,4 @@ class Nsinfo
 		return $data;
 	}
 
-	public function extraSelectValues()
-	{
-
-	}
-
-	/**
-	 * $type = $extrafields->attributes[$elementtype]['type'][$varkey];
-	 * $size = $extrafields->attributes[$elementtype]['size'][$varkey];
-	 * $computed = $extrafields->attributes[$elementtype]['computed'][$varkey];
-	 * $default = $extrafields->attributes[$elementtype]['default'][$varkey];
-	 * $unique = $extrafields->attributes[$elementtype]['unique'][$varkey];
-	 * $required = $extrafields->attributes[$elementtype]['required'][$varkey];
-	 * $pos = $extrafields->attributes[$elementtype]['pos'][$varkey];
-	 * $alwayseditable = $extrafields->attributes[$elementtype]['alwayseditable'][$varkey];
-	 * $params = $extrafields->attributes[$elementtype]['param'][$varkey];
-	 * $perms = $extrafields->attributes[$elementtype]['perms'][$varkey];
-	 * $langfile = $extrafields->attributes[$elementtype]['langfile'][$varkey];
-	 * $list = $extrafields->attributes[$elementtype]['list'][$varkey];
-	 * $totalizable = $extrafields->attributes[$elementtype]['totalizable'][$varkey];
-	 * $help = $extrafields->attributes[$elementtype]['help'][$varkey];
-	 * $entitycurrentorall = $extrafields->attributes[$elementtype]['entityid'][$varkey];
-	 * $printable = $extrafields->attributes[$elementtype]['printable'][$varkey];
-	 * $enabled = $extrafields->attributes[$elementtype]['enabled'][$varkey];
-	 * $css = $extrafields->attributes[$elementtype]['css'][$varkey];
-	 * $cssview = $extrafields->attributes[$elementtype]['cssview'][$varkey];
-	 * $csslist = $extrafields->attributes[$elementtype]['csslist'][$varkey];
-	 * $label = $extrafields->attributes[$elementtype]['label'][$varkey];
-	 *
-	 * $res=$extrainventplusdet->addExtraField($varkey, $label, $type, $pos, $size, $elementinventory, $unique, $required, $defaultvalue, $params, $alwayseditable, $perms, $list, $help, $computed, $entitycurrentorall, $langfile, $enabled, $totalizable, $printable);
-	 */
 }

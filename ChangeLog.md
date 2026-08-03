@@ -1,9 +1,13 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.2.0 - 03/08/2026
+- Changement URL Ticket
+
+## 23.1.2 - 30/07/2026
+- Correction ajout  de fichier zone document (correction css)
+
 ## 23.1.1 - 21/07/2026
 - Correction Warning PHP 8
-
-
 
 ## 23.1.0 - 12/07/2026
 - Ajout de gestion d'import d'image

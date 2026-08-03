@@ -121,7 +121,7 @@ dol_include_once('/'.$namemodule.'/core/modules/mod'.ucfirst($namemodule).'.clas
 
 $nameMod = "mod".$modM;
 $tmpmodule = new $nameMod($db);
-print '<form id="ticket" method="POST" target="_blank" action="https://gestdoli.ns-info90.fr/public/ticket/create_ticket.php">';
+print '<form id="ticket" method="POST" target="_blank" action="https://support.ns-info.fr/">';
 print '<input name=message type="hidden" value="'.$supportvalue.'" />';
 print '<input name=type_code type="hidden" value="2" />';
 print '<input name=severity_code type="hidden" value="NORMAL" />';
