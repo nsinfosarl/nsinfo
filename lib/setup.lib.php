@@ -255,7 +255,7 @@ function nsinfoSetup($arrayofparameters)
 
                 case 'sep';
                     $title = $desc['title'];
-                    $nbcol = $desc['col'];
+                    $nbcol = !empty($desc['col']) ? $desc['col'] : 1;
                     $class = !empty($desc['class']) ? ' class="' . $desc['class'] . '"' : '';
                     print '<tr class="nstabletitle">';
                     print '<td colspan="' . $nbcol . '" ' . $class . '>';
@@ -331,6 +331,29 @@ function nsinfoSetup($arrayofparameters)
                     print '</td><td>';
                     print '&emsp;';
                     print '</td>';
+                    break;
+
+                case 'boolall' :
+                    // One switch to enable / disable all the boolean constants listed in $desc['keys']
+                    // (switch on when all are enabled ; the list is read from $arrayofparameters in nsinfoAction, not from the url)
+                    $allon = !empty($desc['keys']);
+                    foreach ((array) $desc['keys'] as $boolkey) {
+                        if (!getDolGlobalInt($boolkey)) {
+                            $allon = false;
+                        }
+                    }
+                    print '<tr class="oddeven">';
+                    print '<td>';
+                    print !empty($desc['Tooltip']) ? $form->textwithpicto($langs->trans($key), $langs->trans($key . '_Tooltip')) : $langs->transnoentitiesnoconv($key);
+                    print '</td>';
+                    print '<td>';
+                    print '<a class="reposition" href="' . $_SERVER['PHP_SELF'] . '?action=' . ($allon ? 'boolall_off' : 'boolall_on') . '&var=' . urlencode($key) . '&token=' . newToken() . '">';
+                    print img_picto($langs->trans($allon ? "Enabled" : "Disabled"), $allon ? 'switch_on' : 'switch_off');
+                    print '</a>';
+                    print '</td><td>';
+                    print '&emsp;';
+                    print '</td>';
+                    print '</tr>';
                     break;
 
                 case 'bool2' :
@@ -444,7 +467,7 @@ function nsinfoSetup($arrayofparameters)
                     print '<input type="hidden" name="token" value="' . $_SESSION['newtoken'] . '">';
                     print '<input type="hidden" name="action" value="setround" />';
                     print '<input type="hidden" name="varround" value="' . $key . '" />';
-                    print '<input type="number" step = "' . $step . '" size = "' . $size . '" style = "text-align: right; margin: 0; padding: 0;" dir="rtl" id = "' . $key . '" name = "' . $key . '" min = "' . $desc['min'] . '" max = "' . $desc['max'] . '" value = "' . getDolGlobalString($key) . '">' . $unit;
+                    print '<input type="number" step = "' . $step . '" size = "' . $size . '" style = "text-align: right; margin: 0; padding: 0;" dir="rtl" id = "' . $key . '" name = "' . $key . '" min = "' . $min . '" max = "' . $max . '" value = "' . getDolGlobalString($key) . '">' . $unit;
                     print '&emsp;';
                     print '</td><td>';
                     print '<input type="submit" class="button" value="' . $langs->trans("Update") . '" />';
@@ -766,6 +789,29 @@ function nsinfoSetup($arrayofparameters)
                     print '</td>';
                     break;
 
+                case "seltags":
+                    $size = !empty($desc['size']) ? $desc['size'] : 0;
+                    $css = !empty($desc['css']) ? $desc['css'] : '';
+                    $typtag = !empty($desc['typtag']) ? $desc['typtag'] : 'propal';
+
+                    print '<tr class="oddeven"><td>';
+                    print !empty($desc['Tooltip']) ? $form->textwithpicto($langs->trans($key), $langs->trans($key . '_Tooltip')) : $langs->transnoentitiesnoconv($key);
+                    print '</td>';
+
+                    print '<td>';
+                    print '<form method="post" action="' . $_SERVER['PHP_SELF'] . '" style="display: inline;">';
+                    print '<input type="hidden" name="token" value="' . $_SESSION['newtoken'] . '">';
+                    print '<input type="hidden" name="action" value="seltags" />';
+                    print '<input type="hidden" name="varlst" value="' . $key . '" />';
+                    print $form->selectCategories($typtag, $key);
+                    print '&emsp;';
+                    print '</td><td>';
+                    print '<input type="submit" class="button" value="' . $langs->trans("Update") . '" />';
+
+                    print '</form>';
+                    print '</td>';
+                    break;
+
                 case "seluser" :
                     $size = !empty($desc['size']) ? $desc['size'] : 0;
                     $arrayval = !empty($desc['arrayval']) ? $desc['arrayval'] : '';
@@ -921,10 +967,25 @@ function nsinfoSetup($arrayofparameters)
 
 }
 
-function nsinfoAction($action, $var, $value, $vartxt, $varround, $valuetxt, $defaultvalue = '', $varcolor = '', $varlist = '', $vartxtadv = '', $varselectfa = '')
+function nsinfoAction($action, $var, $value, $vartxt, $varround, $valuetxt, $defaultvalue = '', $varcolor = '', $varlist = '', $vartxtadv = '', $varselectfa = '', $arrayofparameters = array())
 {
 
     global $db, $conf, $langs;
+
+    // Type 'boolall' : enable / disable all the boolean constants of the parameter (list read from $arrayofparameters)
+    if (($action == 'boolall_on' || $action == 'boolall_off') && !empty($arrayofparameters[$var]['keys']) && $arrayofparameters[$var]['type'] == 'boolall') {
+        if (GETPOST('token', 'alpha') != currentToken()) {
+            return 0;
+        }
+        foreach ((array) $arrayofparameters[$var]['keys'] as $boolkey) {
+            if ($action == 'boolall_on') {
+                dolibarr_set_const($db, $boolkey, '1', 'chaine', 0, '', $conf->entity);
+            } else {
+                dolibarr_del_const($db, $boolkey, $conf->entity);
+            }
+        }
+        return 1;
+    }
 
     if ($action == 'activate') dolibarr_set_const($db, $var, "1", 'chaine', 0, '', $conf->entity);
     elseif (preg_match('/set_(.*)/', $action, $reg)) {

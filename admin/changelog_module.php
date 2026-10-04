@@ -91,7 +91,10 @@ if ($namemodule == 'factory') $namehead = 'factory_admin_prepare_head';
 else $namehead = $namemodule."AdminPrepareHead";
 $head = $namehead();
 
-print dol_get_fiche_head($head, 'changelog', $langs->trans("ChangeLog"), -1, "{$namemodule}@{$namemodule}");
+$picto = "{$namemodule}@{$namemodule}";
+if ($namemodule == 'nsinfo') $picto = "boulensinfo@{$namemodule}";
+
+print dol_get_fiche_head($head, 'changelog', $langs->trans("ChangeLog"), -1, $picto);
 
 dol_include_once('/'.$namemodule.'/core/modules/mod'.ucfirst($namemodule).'.class.php');
 

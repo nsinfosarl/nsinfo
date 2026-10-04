@@ -39,14 +39,16 @@ function nsinfoAdminPrepareHead()
 	$head[$h][1] = '<i class="fas fa-cogs paddingright pictofixedwidth valignmiddle"></i>' . $langs->trans("Settings");
 	$head[$h][2] = 'settings';
 	$h++;
-	$head[$h][0] = dol_buildpath("/nsinfo/admin/changelog.php", 1);
-	$head[$h][1] = '<i class="fas fa-code-branch paddingright pictofixedwidth valignmiddle"></i>' . $langs->trans("NSINFOChangeLog");
-	$head[$h][2] = 'changelog';
-	$h++;
-	$head[$h][0] = dol_buildpath("/nsinfo/admin/about.php", 1);
-	$head[$h][1] = '<i class="fab fa-readme paddingright pictofixedwidth valignmiddle"></i>' . $langs->trans("About");
-	$head[$h][2] = 'about';
-	$h++;
+    $head[$h][0] = dol_buildpath("/nsinfo/admin/changelog_module.php?namemodule=nsinfo", 1);
+    $head[$h][1] = '<i class="fas fa-code-branch paddingright pictofixedwidth valignmiddle"></i>' . $langs->trans("NSINFOChangeLog");
+    $head[$h][2] = 'changelog';
+    $h++;
+
+
+    $head[$h][0] = dol_buildpath("/nsinfo/admin/about_module.php?namemodule=nsinfo", 1);
+    $head[$h][1] = '<i class="fab fa-readme paddingright pictofixedwidth valignmiddle"></i>' . $langs->trans("About");
+    $head[$h][2] = 'about';
+    $h++;
 
 	complete_head_from_modules($conf, $langs, null, $head, $h, 'nsinfo');
 

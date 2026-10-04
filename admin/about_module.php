@@ -114,8 +114,11 @@ print load_fiche_titre($langs->trans($page_name), $linkback, "object_{$namemodul
 if ($namemodule == 'factory') $namehead = 'factory_admin_prepare_head';
 else $namehead = $namemodule."AdminPrepareHead";
 $head = $namehead();
+$picto = "{$namemodule}@{$namemodule}";
+if ($namemodule == 'nsinfo') $picto = "boulensinfo@{$namemodule}";
 
-print dol_get_fiche_head($head, 'about', $langs->trans("About"), -1, "{$namemodule}@{$namemodule}");
+
+print dol_get_fiche_head($head, 'about', $langs->trans("About"), -1, $picto);
 
 dol_include_once('/'.$namemodule.'/core/modules/mod'.ucfirst($namemodule).'.class.php');
 

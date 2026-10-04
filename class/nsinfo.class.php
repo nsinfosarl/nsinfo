@@ -77,7 +77,9 @@ class Nsinfo
 //		var_dump($sql);
 		if ($resql) {
 			$obj = $this->db->fetch_object($resql);
-			$res = $obj->rowid;
+			if ($obj) {
+				$res = $obj->rowid;
+			}
 		}
 		$this->db->free($resql);
 		return $res;

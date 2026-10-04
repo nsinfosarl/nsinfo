@@ -1,5 +1,20 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.3.1 - 01/10/2026
+- nsinfoSetup : type de paramètre « boolall » (un interrupteur pour activer / désactiver toutes les constantes booléennes listées dans 'keys') ; nsinfoAction : paramètre optionnel $arrayofparameters (liste des constantes lue côté serveur, jeton CSRF vérifié)
+
+## 23.3.0 - 28/09/2026
+- Selecteur de tags
+
+## 23.2.3 - 25/08/2026
+- fetch_extrafield()
+
+## 23.2.2 - 25/08/2026
+- Correction PHP8
+
+## 23.2.1 - 03/08/2026
+- Forcer le CSS pour les status
+
 ## 23.2.0 - 03/08/2026
 - Changement URL Ticket
 

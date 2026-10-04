@@ -63,3 +63,6 @@ MyWidgetDescription = Description de mon widget
 
 SetDefault=Valeur par défaut
 
+
+
+NSINFO_CSSSTATUS=Forcer le CSS pour les status des objects

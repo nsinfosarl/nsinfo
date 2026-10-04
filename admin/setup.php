@@ -77,6 +77,7 @@ $arrayofparameters = array(
 	'TABDEB' 						=> array('type' => 'tabdeb'),
 	'NSINFO_VERSIONMODULE'			=> array('type' => 'bool'),
 	'NSINFO_LASTVERSION'			=> array('type' => 'bool'),
+	'NSINFO_CSSSTATUS'			=> array('type' => 'bool'),
 	'TABFIN1' 						=> array('type' => 'tabfin'),
 
 );
@@ -86,7 +87,7 @@ $arrayofparameters = array(
 $error = 0;
 $setupnotempty = 0;
 $defaultvalue = '';
-$defaultvalue = $arrayofparameters[$var]['default'];
+$defaultvalue = $arrayofparameters[$var]['default'] ?? null;
 /*
  * Actions
  */
