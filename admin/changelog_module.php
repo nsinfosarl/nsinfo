@@ -92,7 +92,7 @@ else $namehead = $namemodule."AdminPrepareHead";
 $head = $namehead();
 
 $picto = "{$namemodule}@{$namemodule}";
-if ($namemodule == 'nsinfo') $picto = "boulensinfo@{$namemodule}";
+if ($namemodule == 'nsinfo') $picto = "object_nsinfo.png@{$namemodule}";
 
 print dol_get_fiche_head($head, 'changelog', $langs->trans("ChangeLog"), -1, $picto);
 

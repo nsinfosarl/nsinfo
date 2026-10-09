@@ -115,7 +115,7 @@ if ($namemodule == 'factory') $namehead = 'factory_admin_prepare_head';
 else $namehead = $namemodule."AdminPrepareHead";
 $head = $namehead();
 $picto = "{$namemodule}@{$namemodule}";
-if ($namemodule == 'nsinfo') $picto = "boulensinfo@{$namemodule}";
+if ($namemodule == 'nsinfo') $picto = "object_nsinfo.png@{$namemodule}";
 
 
 print dol_get_fiche_head($head, 'about', $langs->trans("About"), -1, $picto);

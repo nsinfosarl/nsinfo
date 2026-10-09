@@ -1,7 +1,10 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.4.0 - 04/10/2026
+- Nouveau logo du module (boule NS INFO + pièces de puzzle), aussi devant les onglets Réglages, ChangeLog et À propos
+
 ## 23.3.1 - 01/10/2026
-- nsinfoSetup : type de paramètre « boolall » (un interrupteur pour activer / désactiver toutes les constantes booléennes listées dans 'keys') ; nsinfoAction : paramètre optionnel $arrayofparameters (liste des constantes lue côté serveur, jeton CSRF vérifié)
+- Réglages : option « Tout activer / tout désactiver » pour un groupe d'interrupteurs (type boolall)
 
 ## 23.3.0 - 28/09/2026
 - Selecteur de tags
