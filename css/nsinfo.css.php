@@ -353,4 +353,112 @@ div.mainmenu.nsinfo {
 	text-align: center;
 }
 
+/* Zone de dépôt de fichiers (nsinfoDropZone, js/modules/dropZone.js) */
+.nsinfo-dropzone {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	min-height: 60px;
+	padding: 12px;
+	border: 2px dashed rgba(0, 0, 0, 0.25);
+	border-radius: 6px;
+	background-color: rgba(0, 0, 0, 0.02);
+	cursor: pointer;
+	text-align: center;
+	transition: background-color 0.15s, border-color 0.15s;
+}
+.nsinfo-dropzone:hover,
+.nsinfo-dropzone:focus,
+.nsinfo-dropzone.nsinfo-dropzone-over {
+	border-color: var(--colortextlink, #263c5c);
+	background-color: rgba(38, 60, 92, 0.06);
+	outline: none;
+}
+.nsinfo-dropzone-icon {
+	font-size: 1.8em;
+	opacity: 0.6;
+}
+.nsinfo-dropzone.nsinfo-dropzone-sending {
+	cursor: progress;
+	opacity: 0.6;
+}
+.nsinfo-dropzone.nsinfo-dropzone-disabled {
+	cursor: not-allowed;
+	opacity: 0.4;
+}
 
+/* Groupes de menus déroulants (nsinfoMenuGroupParent / nsinfoMenuGroupChild, js/modules/menu.js) */
+.nsinfo-menugroup-toggle {
+	float: right;
+	cursor: pointer;
+	padding: 4px 2px 4px 8px;
+	margin-right: 10px;	/* flèche rentrée à l'intérieur du menu */
+	opacity: 0.7;
+}
+.nsinfo-menugroup-toggle:hover {
+	opacity: 1;
+}
+.nsinfo-menugroup-sub {
+	margin: 2px 0 4px 6px;
+	padding-left: 6px;
+	border-left: 2px solid rgba(0, 0, 0, 0.15);
+}
+div.nsinfo-menugroup-sub div.nsinfo-menugroup-child-block {
+	border: none !important;
+	background: none;
+	padding: 0 !important;
+	margin: 0;
+}
+/* Menu réduit à ses icônes : entrées de même largeur, centrées dans le menu, icône au milieu */
+#id-left.nsinfo-menu-minimized div.blockvmenu,
+#id-left.nsinfo-menu-minimized div.blockvmenufirst,
+#id-left.nsinfo-menu-minimized div.blockvmenulast,
+#id-left.nsinfo-menu-minimized div.blockvmenupair,
+#id-left.nsinfo-menu-minimized div.blockvmenuimpair {
+	box-sizing: border-box;
+	width: 24px !important;	/* même largeur pour toutes les entrées : icône de 16 px + 4 px de chaque côté */
+	padding-left: 4px !important;
+	padding-right: 4px !important;
+	margin-left: auto !important;	/* entrées centrées dans le menu */
+	margin-right: auto !important;
+}
+#id-left.nsinfo-menu-minimized div.blockvmenu div.menu_titre {
+	width: auto !important;
+	text-align: center !important;
+}
+#id-left.nsinfo-menu-minimized div.menu_titre a.vmenu,
+#id-left.nsinfo-menu-minimized div.menu_titre span.vmenu,
+#id-left.nsinfo-menu-minimized div.menu_titre span.vmenudisabled {
+	margin-left: 0 !important;	/* marge gauche du thème : l'icône serait décalée vers la droite */
+	margin-right: 0 !important;
+}
+#id-left.nsinfo-menu-minimized div.menu_titre .pictofixedwidth {
+	width: 16px !important;	/* largeur de l'icône seule : le texte est masqué */
+	text-align: center !important;
+	padding-right: 0 !important;
+	margin-right: 0 !important;
+}
+
+/* Menu réduit à ses icônes : seules les entrées principales restent, groupes masqués et sans flèche */
+#id-left.nsinfo-menu-minimized .nsinfo-menugroup-toggle,
+#id-left.nsinfo-menu-minimized .nsinfo-menugroup-sub {
+	display: none !important;
+}
+<?php if (getDolGlobalInt('NSINFO_MENUMINIMIZED_SUBMENU')) { ?>
+/* Option « Menu réduit : afficher les entrées des menus déroulants » : icônes des entrées des groupes affichées, sans retrait */
+#id-left.nsinfo-menu-minimized .nsinfo-menugroup-sub {
+	display: block !important;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+/* Groupe rangé dans le bloc de son entrée parente : entrées à la largeur de ce bloc */
+#id-left.nsinfo-menu-minimized .nsinfo-menugroup-sub:not(.nsinfo-menugroup-outside) div.nsinfo-menugroup-child-block {
+	width: auto !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+<?php } ?>

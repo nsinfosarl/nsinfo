@@ -64,6 +64,9 @@ MyWidgetDescription = Beschreibung meines Widgets
 SetDefault=Standardwert
 
 NSINFO_CSSSTATUS=CSS für den Status der Objekte erzwingen
+NSINFO_MENUMINIMIZED_SUBMENU=Eingeklapptes Menü: Einträge der Aufklappmenüs anzeigen (Seite nach einer Änderung mit Strg+F5 neu laden)
 
 NSINFO_MinimizeMenu=Menü einklappen
 NSINFO_MaximizeMenu=Menü ausklappen
+NSINFO_DropZoneLabel=Dateien hier ablegen oder klicken, um sie auszuwählen
+NSINFO_DropZoneSending=Wird hochgeladen…

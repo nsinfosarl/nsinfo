@@ -1,5 +1,11 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.7.0 - 11/10/2026
+- Nouveau : zone de dépôt de fichiers nsinfoDropZone() (lib/nsinfo.lib.php, js/modules/dropZone.js) : glisser-déposer ou clic, envoi immédiat par formulaire ; libellés dans les 5 langues
+- Nouveau réglage « Menu réduit : afficher les entrées des menus déroulants » : en menu réduit, les icônes des entrées des groupes restent affichées (désactivé : seules les entrées principales)
+- Menu réduit à ses icônes : entrées de même largeur, centrées dans le menu, icône au milieu (css/nsinfo.css.php)
+- Nouveau : groupes de menus déroulants, fonctions nsinfoMenuGroupParent() et nsinfoMenuGroupChild() (lib/nsinfo.lib.php) à ajouter au « prefix » des entrées de menu de gauche : les entrées d'un groupe sont rangées, avec leurs sous-menus, sous l'entrée parente, qui reçoit une flèche pour les déplier / replier avec ses propres sous-menus (une entrée parente seule rend ses sous-menus déroulants ; option pour afficher le groupe sous le bloc de l'entrée parente plutôt qu'à l'intérieur) ; choix mémorisé dans le navigateur, ouvert d'office sur une page du groupe ; masqué quand le menu est réduit à ses icônes, seules les entrées principales restent (js/modules/menu.js, css/nsinfo.css.php)
+
 ## 23.6.0 - 11/10/2026
 - Nouveau : fonction nsinfoMenuMinimize() (lib/nsinfo.lib.php) et script js/modules/menu.js : entrée de menu « Réduire le menu » pour les modules, qui réduit le menu de gauche à ses icônes ou le rétablit, choix mémorisé dans le navigateur (même technique que le module Saturne) ; libellés dans les 5 langues ; réactiver le module pour charger le script ; en mode réduit, les sous-menus (sans icône) et les séparateurs sont masqués et les blocs resserrés, sans espacement vertical
 

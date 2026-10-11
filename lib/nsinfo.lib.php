@@ -98,3 +98,83 @@ function nsinfoMenuMinimize($mainmenu, $position, $enabled = '1')
 		'user' => 2,
 	);
 }
+
+/**
+ * Groupe de menus déroulant (js/modules/menu.js) : marqueur de l'entrée parente, à ajouter au « prefix » de l'entrée
+ * de menu de gauche qui contiendra le groupe. Une flèche y est ajoutée pour déplier / replier ses propres sous-menus
+ * et les entrées du groupe (seule, sans entrée du groupe, elle rend simplement ses sous-menus déroulants).
+ *     'prefix' => img_picto('', 'monicone.png@monmodule', 'class="pictofixedwidth valignmiddle marginrightonlyshort"').nsinfoMenuGroupParent('monmodule_groupe'),
+ *
+ * @param	string	$group		Identifiant du groupe (lettres, chiffres, tiret, souligné), unique dans le menu
+ * @param	int		$outside	1 = groupe affiché juste sous le bloc de l'entrée parente, hors de ce bloc (par exemple
+ *								pour garder un cadre autour de l'entrée seule) ; 0 = dans le bloc de l'entrée parente
+ * @return	string				HTML à ajouter au prefix
+ */
+function nsinfoMenuGroupParent($group, $outside = 0)
+{
+	// Marqueur court : le prefix est enregistré dans llx_menu.prefix (255 caractères), avec l'image de l'entrée
+	return '<i class="nsinfo-mgp" data-mg="' . preg_replace('/[^a-zA-Z0-9_\-]/', '', $group) . '"' . ($outside ? ' data-mgout="1"' : '') . '></i>';
+}
+
+/**
+ * Groupe de menus déroulant (js/modules/menu.js) : marqueur d'une entrée du groupe, à ajouter au « prefix » de chaque
+ * entrée de menu de gauche (niveau 0) à ranger, avec ses sous-menus, sous l'entrée parente du même groupe.
+ *     'prefix' => img_picto('', 'monicone.png@monmodule', 'class="pictofixedwidth valignmiddle marginrightonlyshort"').nsinfoMenuGroupChild('monmodule_groupe'),
+ *
+ * @param	string	$group	Identifiant du groupe, le même que pour nsinfoMenuGroupParent()
+ * @return	string			HTML à ajouter au prefix
+ */
+function nsinfoMenuGroupChild($group)
+{
+	return '<i class="nsinfo-mgc" data-mg="' . preg_replace('/[^a-zA-Z0-9_\-]/', '', $group) . '"></i>';
+}
+
+/**
+ * Zone de dépôt de fichiers (glisser-déposer ou clic), script js/modules/dropZone.js : les fichiers déposés ou choisis
+ * sont envoyés aussitôt par un formulaire POST (multipart) vers $url, avec le jeton de sécurité, l'action $action et
+ * les champs cachés $hiddens. Côté page, les fichiers arrivent dans $_FILES[$htmlname] (plusieurs fichiers), par
+ * exemple pour dol_add_file_process($upload_dir, 0, 1, $htmlname).
+ *     print nsinfoDropZone('monfichier', $_SERVER['PHP_SELF'], 'addmonfichier', array('id' => $object->id));
+ *
+ * @param	string					$htmlname	Nom du champ fichier (lettres, chiffres, souligné)
+ * @param	string					$url		Adresse du formulaire
+ * @param	string					$action		Valeur du champ caché « action »
+ * @param	array<string,string>	$hiddens	Autres champs cachés (nom => valeur)
+ * @param	string					$label		Texte de la zone (par défaut : « Déposez vos fichiers ici ou cliquez pour les choisir »)
+ * @param	string					$accept		Types de fichiers proposés par le sélecteur (attribut accept, ex : '.pdf,image/*')
+ * @param	int						$disabled	1 = zone affichée inactive (pas de droit d'ajout)
+ * @return	string								HTML de la zone (et chargement du script, une seule fois par page)
+ */
+function nsinfoDropZone($htmlname, $url, $action, $hiddens = array(), $label = '', $accept = '', $disabled = 0)
+{
+	global $langs;
+	static $scriptloaded = 0;
+
+	$langs->load('nsinfo@nsinfo');
+	$htmlname = preg_replace('/[^a-zA-Z0-9_]/', '', $htmlname);
+	if ($label === '') {
+		$label = $langs->trans('NSINFO_DropZoneLabel');
+	}
+
+	$out = '';
+	if (!$scriptloaded) {
+		$version = @file_get_contents(dol_buildpath('/nsinfo/VERSION', 0));
+		$out .= '<script src="' . dol_buildpath('/nsinfo/js/modules/dropZone.js', 1) . '?v=' . urlencode(trim((string) $version)) . '"></script>' . "\n";
+		$scriptloaded = 1;
+	}
+
+	$out .= '<form class="nsinfo-dropzone-form" method="POST" enctype="multipart/form-data" action="' . dol_escape_htmltag($url) . '">';
+	$out .= '<input type="hidden" name="token" value="' . newToken() . '">';
+	$out .= '<input type="hidden" name="action" value="' . dol_escape_htmltag($action) . '">';
+	foreach ($hiddens as $key => $value) {
+		$out .= '<input type="hidden" name="' . dol_escape_htmltag($key) . '" value="' . dol_escape_htmltag($value) . '">';
+	}
+	$out .= '<input type="file" class="nsinfo-dropzone-input hideobject" name="' . $htmlname . '[]" multiple' . ($accept ? ' accept="' . dol_escape_htmltag($accept) . '"' : '') . ($disabled ? ' disabled' : '') . '>';
+	$out .= '<div class="nsinfo-dropzone' . ($disabled ? ' nsinfo-dropzone-disabled' : '') . '" role="button" tabindex="0" data-sending="' . dol_escape_htmltag($langs->trans('NSINFO_DropZoneSending')) . '">';
+	$out .= '<span class="fas fa-cloud-upload-alt nsinfo-dropzone-icon"></span>';
+	$out .= '<span class="nsinfo-dropzone-label">' . dol_escape_htmltag($label) . '</span>';
+	$out .= '</div>';
+	$out .= '</form>';
+
+	return $out;
+}

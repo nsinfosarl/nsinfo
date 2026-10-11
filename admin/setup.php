@@ -78,6 +78,7 @@ $arrayofparameters = array(
 	'NSINFO_VERSIONMODULE'			=> array('type' => 'bool'),
 	'NSINFO_LASTVERSION'			=> array('type' => 'bool'),
 	'NSINFO_CSSSTATUS'			=> array('type' => 'bool'),
+	'NSINFO_MENUMINIMIZED_SUBMENU'	=> array('type' => 'bool'),
 	'TABFIN1' 						=> array('type' => 'tabfin'),
 
 );

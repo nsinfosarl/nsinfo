@@ -17,7 +17,8 @@
 /**
  * \file    js/modules/menu.js
  * \ingroup nsinfo
- * \brief   Réduction du menu de gauche à ses icônes (même technique que le module Saturne).
+ * \brief   Réduction du menu de gauche à ses icônes (même technique que le module Saturne), et groupes de menus
+ *          déroulants (nsinfoMenuGroupParent / nsinfoMenuGroupChild, voir setGroups).
  *          L'entrée de menu est fournie par nsinfoMenuMinimize() (lib/nsinfo.lib.php) : son icône porte la classe
  *          « nsinfo-toggle-menu » et les libellés dans data-title-minimize / data-title-maximize.
  *          Le choix est mémorisé dans le navigateur (localStorage « nsinfo_menu_minimized »).
@@ -31,7 +32,95 @@ window.nsinfo.menu = {};
  * @return {void}
  */
 window.nsinfo.menu.init = function() {
+	window.nsinfo.menu.setGroups();
 	window.nsinfo.menu.setMenu();
+};
+
+/**
+ * Groupes de menus déroulants : les sous-menus de l'entrée marquée par nsinfoMenuGroupParent('groupe')
+ * (lib/nsinfo.lib.php) et les entrées marquées par nsinfoMenuGroupChild('groupe'), avec leurs sous-menus, sont rangés
+ * sous cette entrée ; une flèche les déplie ou les replie. Choix mémorisé dans le navigateur (localStorage « nsinfo_menugroup_<groupe> »),
+ * ouvert par défaut, et toujours ouvert sur une page de l'une des entrées du groupe.
+ *
+ * @return {void}
+ */
+window.nsinfo.menu.setGroups = function() {
+	const menuLeft = $('#id-left div.vmenu').first();
+	const blockSelector = '.blockvmenu, .blockvmenulast, .blockvmenufirst, .blockvmenupair, .blockvmenuimpair';
+
+	menuLeft.find('.nsinfo-mgp').each(function() {
+		const group       = $(this).attr('data-mg');
+		const parentBlock = $(this).closest(blockSelector);
+		if (!group || parentBlock.length === 0 || parentBlock.find('.nsinfo-menugroup-sub').length) {
+			return;
+		}
+
+		// Sous-menus propres de l'entrée parente, puis blocs des entrées du groupe dans l'ordre du menu,
+		// rangés dans un conteneur sous l'entrée parente
+		const sub = $('<div class="nsinfo-menugroup-sub"></div>');
+		parentBlock.children('.menu_contenu').each(function() {
+			sub.append($(this));
+		});
+		menuLeft.find('.nsinfo-mgc').filter(function() {
+			return $(this).attr('data-mg') === group;
+		}).each(function() {
+			const childBlock = $(this).closest(blockSelector);
+			if (childBlock.length && !childBlock.is(parentBlock)) {
+				sub.append(childBlock.addClass('nsinfo-menugroup-child-block'));
+			}
+		});
+		if (sub.children().length === 0) {
+			return;
+		}
+		// Juste sous le bloc parent (option « outside »), sinon dans ce bloc avant son séparateur de fin s'il existe
+		const menuEnd = parentBlock.children('.menu_end').first();
+		if ($(this).attr('data-mgout') === '1') {
+			sub.addClass('nsinfo-menugroup-outside').insertAfter(parentBlock);
+		} else if (menuEnd.length) {
+			sub.insertBefore(menuEnd);
+		} else {
+			parentBlock.append(sub);
+		}
+
+		// État : ouvert sur une page du groupe, sinon dernier choix (ouvert par défaut)
+		const storageKey = 'nsinfo_menugroup_' + group;
+		let open = true;
+		try {
+			open = (window.localStorage.getItem(storageKey) !== '0');
+		} catch (e) {
+			// stockage indisponible : ouvert
+		}
+		sub.find('a[href]').each(function() {
+			if (this.pathname === window.location.pathname) {
+				open = true;
+			}
+		});
+
+		const toggle = $('<span class="nsinfo-menugroup-toggle fas" role="button" tabindex="0"></span>');
+		parentBlock.find('.menu_titre').first().append(toggle);
+
+		const apply = function() {
+			sub.toggle(open);
+			toggle.toggleClass('fa-chevron-down', open).toggleClass('fa-chevron-right', !open).attr('aria-expanded', open ? 'true' : 'false');
+		};
+		const switchState = function(event) {
+			event.preventDefault();
+			event.stopPropagation();
+			open = !open;
+			apply();
+			try {
+				window.localStorage.setItem(storageKey, open ? '1' : '0');
+			} catch (e) {
+				// stockage indisponible : choix non mémorisé
+			}
+		};
+		toggle.on('click', switchState).on('keydown', function(event) {
+			if (event.key === 'Enter' || event.key === ' ') {
+				switchState(event);
+			}
+		});
+		apply();
+	});
 };
 
 /**

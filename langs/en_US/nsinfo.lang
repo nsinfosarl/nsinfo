@@ -64,6 +64,9 @@ MyWidgetDescription = My widget description
 SetDefault=Default value
 
 NSINFO_CSSSTATUS=Force the CSS for the objects status
+NSINFO_MENUMINIMIZED_SUBMENU=Collapsed menu: show the entries of the drop-down menus (refresh the page with Ctrl+F5 after a change)
 
 NSINFO_MinimizeMenu=Collapse the menu
 NSINFO_MaximizeMenu=Expand the menu
+NSINFO_DropZoneLabel=Drop your files here or click to choose them
+NSINFO_DropZoneSending=Uploading…

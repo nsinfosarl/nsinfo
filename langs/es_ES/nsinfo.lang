@@ -64,6 +64,9 @@ MyWidgetDescription = Descripción de mi widget
 SetDefault=Valor por defecto
 
 NSINFO_CSSSTATUS=Forzar el CSS para el estado de los objetos
+NSINFO_MENUMINIMIZED_SUBMENU=Menú contraído: mostrar las entradas de los menús desplegables (actualizar la página con Ctrl+F5 tras un cambio)
 
 NSINFO_MinimizeMenu=Contraer el menú
 NSINFO_MaximizeMenu=Desplegar el menú
+NSINFO_DropZoneLabel=Suelte sus archivos aquí o haga clic para elegirlos
+NSINFO_DropZoneSending=Enviando…

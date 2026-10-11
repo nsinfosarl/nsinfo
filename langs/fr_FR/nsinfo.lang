@@ -67,6 +67,9 @@ SetDefault=Valeur par défaut
 
 
 NSINFO_CSSSTATUS=Forcer le CSS pour les status des objects
+NSINFO_MENUMINIMIZED_SUBMENU=Menu réduit : afficher les entrées des menus déroulants (actualiser la page avec Ctrl+F5 après changement)
 
 NSINFO_MinimizeMenu=Réduire le menu
 NSINFO_MaximizeMenu=Agrandir le menu
+NSINFO_DropZoneLabel=Déposez vos fichiers ici ou cliquez pour les choisir
+NSINFO_DropZoneSending=Envoi en cours…
