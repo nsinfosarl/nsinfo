@@ -68,6 +68,7 @@ class modNsinfo extends DolibarrModules
 				'/nsinfo/js/modules/loader.js',
 				'/nsinfo/js/modules/modal.js',
 				'/nsinfo/js/modules/mediaGallery.js',
+				'/nsinfo/js/modules/menu.js',	// Réduction du menu de gauche (nsinfoMenuMinimize)
 			)
 		);
 		// Data directories to create when module is enabled.

@@ -1,0 +1,34 @@
+# Copyright (C) 2026 Nicolas SILOBRE <contact@ns-info.fr>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Schaltfläche
+Thel                             = %s
+ReOpenDoli                       = Wieder öffnen
+Sign                             = Unterschreiben
+Lock                             = Sperren
+Archive                          = Archivieren
+Clone                            = Klonen
+ObjectMustBeDraft                = %s muss den Status (Entwurf) haben
+ObjectMustBeValidated            = %s muss den Status (validiert) haben
+ObjectMustBeLocked               = %s muss den Status (gesperrt) haben
+ObjectMustBeValidatedToGenerate  = %s muss den Status (validiert) haben, um das Dokument zu erzeugen
+ObjectMustBeLockedToGenerate     = %s muss den Status (gesperrt) haben, um das Dokument zu erzeugen
+ObjectMustBeValidatedToSign      = %s muss den Status (validiert) haben, damit die Teilnehmer unterschreiben können
+AllSignatoriesMustHaveSigned     = Alle Teilnehmer müssen unterschrieben haben, um %s zu sperren
+ObjectMustBeValidatedToSendEmail = %s muss den Status (validiert) haben, um eine E-Mail zu senden
+ObjectMustBeLockedToSendEmail    = %s muss den Status (gesperrt) haben, um eine E-Mail zu senden
+ObjectMustBeLockedToArchive      = %s muss den Status (gesperrt) haben, um archiviert zu werden
+ObjectMustBeUnActive             = %s muss den Status (deaktiviert) haben
+ObjectMustBeArchive              = %s muss den Status (archiviert) haben

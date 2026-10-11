@@ -1,0 +1,69 @@
+# Copyright (C) 2026 Nicolas SILOBRE <contact@ns-info.fr>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+#
+# General
+#
+
+# Module label 'ModuleNsinfoName'
+ModuleNsinfoName = Nsinfo
+# Module description 'ModuleNsinfoDesc'
+ModuleNsinfoDesc = Framework de funciones para los módulos y el desarrollo NSINFO
+NsinfoArea = Área NS INFO
+
+NSINFOAboutDesc1=Este módulo ha sido desarrollado por <b><a href ="https://www.ns-info.fr/" target="_blank">NSINFO SARL</a></b>
+NSINFOAboutDesc2=<br>Documentación de los módulos <b><a href="https://www.ns-info.fr/documentation/" target="_blank">Wiki</a></b>
+NSINFOAboutDesc3=<br>Para cualquier pregunta comercial o técnica o un comentario,
+NSINFOAboutDesc4=<br>contáctenos en <b><a href="mailto:contact@ns-info.fr">contact@ns-info.fr</a></b> o
+NSINFOAboutDesc45=<b>nuestro soporte</b>
+
+NSINFOAboutDescDolistore=Encuentre todos nuestros módulos en el
+
+NSINFOChangeLog=ChangeLog
+
+#
+# Página de administración
+#
+NsinfoSetup = Configuración del módulo Nsinfo
+
+NsinfoSetupPage = NSINFO - Framework
+
+NSINFO_VERSIONMODULE=Mostrar la versión del módulo (si es posible)
+NSINFO_LASTVERSION=Desactivar la búsqueda de la versión de los módulos
+
+#
+# Página Acerca de
+#
+About = Acerca de
+NsinfoAbout = Acerca de Nsinfo
+NsinfoAboutPage = Página acerca de Nsinfo
+
+#
+# Página de ejemplo
+#
+MyPageName = Nombre de mi página
+
+#
+# Widget de ejemplo
+#
+MyWidget = Mi widget
+MyWidgetDescription = Descripción de mi widget
+
+SetDefault=Valor por defecto
+
+NSINFO_CSSSTATUS=Forzar el CSS para el estado de los objetos
+
+NSINFO_MinimizeMenu=Contraer el menú
+NSINFO_MaximizeMenu=Desplegar el menú

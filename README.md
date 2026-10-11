@@ -3,7 +3,7 @@
 ## Informations
 
 - Numéro du module : 172760
-- Dernière mise à jour : 04/10/2026
+- Dernière mise à jour : 11/10/2026
 - Éditeur : [NSINFO](https://www.ns-info.fr)
 - Thème : Eldy Menu
 - Licence : GPLv3
@@ -11,7 +11,7 @@
 
 ## Version
 
-- Version : 23.4.0
+- Version : 23.6.0
 - PHP : 5.5 - 8.3
 - Compatibilité : Dolibarr 11.0.0 - 24.0.x
 
@@ -26,10 +26,16 @@
 NSINFO est un Framework, librairie d’objets et fonctions de NSINFO.
 Il est indispensable pour tous les modules de NSINFO
 
+- Pages de réglages des modules (nsinfoSetup / nsinfoAction), dont l'interrupteur « Tout activer / tout désactiver » d'un groupe d'options (type boolall)
+- Entrée de menu « Réduire le menu » pour les modules (nsinfoMenuMinimize) : réduit le menu de gauche à ses icônes, choix mémorisé dans le navigateur
+
 ## Traduction
 
 - Français
 - Anglais
+- Allemand
+- Italien
+- Espagnol
 
 ## Installation
 

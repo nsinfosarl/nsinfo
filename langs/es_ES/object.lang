@@ -1,0 +1,34 @@
+# Copyright (C) 2026 Nicolas SILOBRE <contact@ns-info.fr>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Botón
+Thel                             = %s
+ReOpenDoli                       = Reabrir
+Sign                             = Firmar
+Lock                             = Bloquear
+Archive                          = Archivar
+Clone                            = Clonar
+ObjectMustBeDraft                = %s debe estar en estado (borrador)
+ObjectMustBeValidated            = %s debe estar en estado (validado)
+ObjectMustBeLocked               = %s debe estar en estado (bloqueado)
+ObjectMustBeValidatedToGenerate  = %s debe estar en estado (validado) para generar el documento
+ObjectMustBeLockedToGenerate     = %s debe estar en estado (bloqueado) para generar el documento
+ObjectMustBeValidatedToSign      = %s debe estar en estado (validado) para que los participantes puedan firmar
+AllSignatoriesMustHaveSigned     = Todos los participantes deben haber firmado para bloquear %s
+ObjectMustBeValidatedToSendEmail = %s debe estar en estado (validado) para enviar un correo
+ObjectMustBeLockedToSendEmail    = %s debe estar en estado (bloqueado) para enviar un correo
+ObjectMustBeLockedToArchive      = %s debe estar en estado (bloqueado) para poder archivarlo
+ObjectMustBeUnActive             = %s debe estar en estado (desactivado)
+ObjectMustBeArchive              = %s debe estar en estado (archivado)

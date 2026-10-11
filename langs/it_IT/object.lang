@@ -1,0 +1,34 @@
+# Copyright (C) 2026 Nicolas SILOBRE <contact@ns-info.fr>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Pulsante
+Thel                             = %s
+ReOpenDoli                       = Riapri
+Sign                             = Firma
+Lock                             = Blocca
+Archive                          = Archivia
+Clone                            = Clona
+ObjectMustBeDraft                = %s deve essere nello stato (bozza)
+ObjectMustBeValidated            = %s deve essere nello stato (convalidato)
+ObjectMustBeLocked               = %s deve essere nello stato (bloccato)
+ObjectMustBeValidatedToGenerate  = %s deve essere nello stato (convalidato) per generare il documento
+ObjectMustBeLockedToGenerate     = %s deve essere nello stato (bloccato) per generare il documento
+ObjectMustBeValidatedToSign      = %s deve essere nello stato (convalidato) perché i partecipanti possano firmare
+AllSignatoriesMustHaveSigned     = Tutti i partecipanti devono aver firmato per bloccare %s
+ObjectMustBeValidatedToSendEmail = %s deve essere nello stato (convalidato) per inviare un'email
+ObjectMustBeLockedToSendEmail    = %s deve essere nello stato (bloccato) per inviare un'email
+ObjectMustBeLockedToArchive      = %s deve essere nello stato (bloccato) per poter essere archiviato
+ObjectMustBeUnActive             = %s deve essere nello stato (disattivato)
+ObjectMustBeArchive              = %s deve essere nello stato (archiviato)

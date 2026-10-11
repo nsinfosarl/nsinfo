@@ -21,6 +21,7 @@
 ModuleNsinfoName = Nsinfo
 # Module description 'ModuleNsinfoDesc'
 ModuleNsinfoDesc = Framework de fonctions liées aux modules et développement NSINFO
+NsinfoArea = Espace NS INFO
 
 NSINFOAboutDesc1=Ce module a été développé par <b><a href ="https://www.ns-info.fr/" target="_blank">NSINFO SARL</a></b>
 NSINFOAboutDesc2=<br>Documentation des modules <b><a href="https://www.ns-info.fr/documentation/" target="_blank">Wiki</a></b>
@@ -66,3 +67,6 @@ SetDefault=Valeur par défaut
 
 
 NSINFO_CSSSTATUS=Forcer le CSS pour les status des objects
+
+NSINFO_MinimizeMenu=Réduire le menu
+NSINFO_MaximizeMenu=Agrandir le menu

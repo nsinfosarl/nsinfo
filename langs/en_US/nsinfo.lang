@@ -20,19 +20,28 @@
 # Module label 'ModuleNsinfoName'
 ModuleNsinfoName = Nsinfo
 # Module description 'ModuleNsinfoDesc'
-ModuleNsinfoDesc = Nsinfo description
+ModuleNsinfoDesc = Framework of functions for NSINFO modules and development
+NsinfoArea = NS INFO area
+
+NSINFOAboutDesc1=This module was developed by <b><a href ="https://www.ns-info.fr/" target="_blank">NSINFO SARL</a></b>
+NSINFOAboutDesc2=<br>Modules documentation <b><a href="https://www.ns-info.fr/documentation/" target="_blank">Wiki</a></b>
+NSINFOAboutDesc3=<br>For any commercial or technical question or feedback,
+NSINFOAboutDesc4=<br>Contact us at <b><a href="mailto:contact@ns-info.fr">contact@ns-info.fr</a></b> or
+NSINFOAboutDesc45=<b>our support</b>
+
+NSINFOAboutDescDolistore=Find all our modules on the
+
+NSINFOChangeLog=ChangeLog
 
 #
 # Admin page
 #
-NsinfoSetup = Nsinfo setup
-Settings = Settings
-NsinfoSetupPage = Nsinfo setup page
-NSINFO_MYPARAM1 = My param 1
-NSINFO_MYPARAM1Tooltip = My param 1 tooltip
-NSINFO_MYPARAM2=My param 2
-NSINFO_MYPARAM2Tooltip=My param 2 tooltip
+NsinfoSetup = Nsinfo module setup
 
+NsinfoSetupPage = NSINFO - Framework
+
+NSINFO_VERSIONMODULE=Show the module version (if possible)
+NSINFO_LASTVERSION=Disable the search for the modules version
 
 #
 # About page
@@ -51,3 +60,10 @@ MyPageName = My page name
 #
 MyWidget = My widget
 MyWidgetDescription = My widget description
+
+SetDefault=Default value
+
+NSINFO_CSSSTATUS=Force the CSS for the objects status
+
+NSINFO_MinimizeMenu=Collapse the menu
+NSINFO_MaximizeMenu=Expand the menu

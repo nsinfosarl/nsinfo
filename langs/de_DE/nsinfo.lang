@@ -1,0 +1,69 @@
+# Copyright (C) 2026 Nicolas SILOBRE <contact@ns-info.fr>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+#
+# Allgemein
+#
+
+# Module label 'ModuleNsinfoName'
+ModuleNsinfoName = Nsinfo
+# Module description 'ModuleNsinfoDesc'
+ModuleNsinfoDesc = Funktions-Framework für die NSINFO-Module und -Entwicklung
+NsinfoArea = NS INFO Bereich
+
+NSINFOAboutDesc1=Dieses Modul wurde von <b><a href ="https://www.ns-info.fr/" target="_blank">NSINFO SARL</a></b> entwickelt
+NSINFOAboutDesc2=<br>Dokumentation der Module <b><a href="https://www.ns-info.fr/documentation/" target="_blank">Wiki</a></b>
+NSINFOAboutDesc3=<br>Für kaufmännische oder technische Fragen oder Rückmeldungen,
+NSINFOAboutDesc4=<br>kontaktieren Sie uns unter <b><a href="mailto:contact@ns-info.fr">contact@ns-info.fr</a></b> oder
+NSINFOAboutDesc45=<b>unseren Support</b>
+
+NSINFOAboutDescDolistore=Alle unsere Module finden Sie im
+
+NSINFOChangeLog=ChangeLog
+
+#
+# Verwaltungsseite
+#
+NsinfoSetup = Konfiguration des Moduls Nsinfo
+
+NsinfoSetupPage = NSINFO - Framework
+
+NSINFO_VERSIONMODULE=Modulversion anzeigen (falls möglich)
+NSINFO_LASTVERSION=Suche nach der Version der Module deaktivieren
+
+#
+# Seite Über
+#
+About = Über
+NsinfoAbout = Über Nsinfo
+NsinfoAboutPage = Seite Über Nsinfo
+
+#
+# Beispielseite
+#
+MyPageName = Name meiner Seite
+
+#
+# Beispiel-Widget
+#
+MyWidget = Mein Widget
+MyWidgetDescription = Beschreibung meines Widgets
+
+SetDefault=Standardwert
+
+NSINFO_CSSSTATUS=CSS für den Status der Objekte erzwingen
+
+NSINFO_MinimizeMenu=Menü einklappen
+NSINFO_MaximizeMenu=Menü ausklappen

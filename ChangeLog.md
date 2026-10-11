@@ -1,5 +1,17 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.6.0 - 11/10/2026
+- Nouveau : fonction nsinfoMenuMinimize() (lib/nsinfo.lib.php) et script js/modules/menu.js : entrée de menu « Réduire le menu » pour les modules, qui réduit le menu de gauche à ses icônes ou le rétablit, choix mémorisé dans le navigateur (même technique que le module Saturne) ; libellés dans les 5 langues ; réactiver le module pour charger le script ; en mode réduit, les sous-menus (sans icône) et les séparateurs sont masqués et les blocs resserrés, sans espacement vertical
+
+## 23.5.1 - 11/10/2026
+- Correction : réglages, balise de fin de ligne du tableau imprimée deux fois (types sep, tabdeb, tabdeb2) ou sans ligne ouverte (tabfin, hidden, titletab, titletabdesc, link)
+- Correction : réglages, types selectsocid et seluser, options typecompany et showempty ignorées (variable $desk au lieu de $desc)
+- Langue française : en-tête de licence du fichier object.lang ; « statut » au lieu de « status »
+
+## 23.5.0 - 10/10/2026
+- Nouveau : traductions allemande, italienne et espagnole ; traduction anglaise complétée (fichier object.lang, textes du module et de la page À propos à la place des textes d'exemple) ; titre de l'accueil du module (NsinfoArea) traduit
+- Correction : réglages, type boolall (« Tout activer / tout désactiver »), balise de fin de ligne du tableau imprimée deux fois
+
 ## 23.4.0 - 04/10/2026
 - Nouveau logo du module (boule NS INFO + pièces de puzzle), aussi devant les onglets Réglages, ChangeLog et À propos
 

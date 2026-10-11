@@ -56,3 +56,45 @@ function nsinfoAdminPrepareHead()
 }
 
 
+
+/**
+ * Entrée de menu de gauche « Réduire le menu » (même technique que le module Saturne) : un clic réduit le menu
+ * de gauche à ses icônes ou le rétablit ; le choix est mémorisé dans le navigateur (js/modules/menu.js).
+ * À ajouter en dernière position des menus de gauche d'un module, dans le constructeur du descripteur :
+ *     dol_include_once('/nsinfo/lib/nsinfo.lib.php');
+ *     if (function_exists('nsinfoMenuMinimize')) $this->menu[$r++] = nsinfoMenuMinimize('monmodule', 2000 + $r);
+ *
+ * @param	string	$mainmenu	Code du menu principal du module (ex : 'gmao')
+ * @param	int		$position	Position de l'entrée (à placer après les autres entrées)
+ * @param	string	$enabled	Condition d'affichage (dol_eval)
+ * @return	array<string,mixed>	Entrée de menu pour $this->menu
+ */
+function nsinfoMenuMinimize($mainmenu, $position, $enabled = '1')
+{
+	global $langs;
+
+	if (is_object($langs)) {
+		$langs->load('nsinfo@nsinfo');
+		$titleminimize = $langs->transnoentities('NSINFO_MinimizeMenu');
+		$titlemaximize = $langs->transnoentities('NSINFO_MaximizeMenu');
+	} else {
+		$titleminimize = 'NSINFO_MinimizeMenu';
+		$titlemaximize = 'NSINFO_MaximizeMenu';
+	}
+
+	return array(
+		'fk_menu' => 'fk_mainmenu=' . $mainmenu,
+		'type' => 'left',
+		'titre' => 'NSINFO_MinimizeMenu',
+		'prefix' => '<span class="fas fa-chevron-circle-left pictofixedwidth valignmiddle marginrightonlyshort nsinfo-toggle-menu" title="' . dol_escape_htmltag($titleminimize) . '" data-title-minimize="' . dol_escape_htmltag($titleminimize) . '" data-title-maximize="' . dol_escape_htmltag($titlemaximize) . '"></span>',
+		'mainmenu' => $mainmenu,
+		'leftmenu' => $mainmenu . '_nsinfominimizemenu',
+		'url' => '',
+		'langs' => 'nsinfo@nsinfo',
+		'position' => (int) $position,
+		'enabled' => $enabled,
+		'perms' => '1',
+		'target' => '',
+		'user' => 2,
+	);
+}

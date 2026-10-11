@@ -1,0 +1,34 @@
+# Copyright (C) 2026 Nicolas SILOBRE <contact@ns-info.fr>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Button
+Thel                             = The %s
+ReOpenDoli                       = Reopen
+Sign                             = Sign
+Lock                             = Lock
+Archive                          = Archive
+Clone                            = Clone
+ObjectMustBeDraft                = %s must be in status (draft)
+ObjectMustBeValidated            = %s must be in status (validated)
+ObjectMustBeLocked               = %s must be in status (locked)
+ObjectMustBeValidatedToGenerate  = %s must be in status (validated) to generate the document
+ObjectMustBeLockedToGenerate     = %s must be in status (locked) to generate the document
+ObjectMustBeValidatedToSign      = %s must be in status (validated) so that the participants can sign
+AllSignatoriesMustHaveSigned     = All participants must have signed to lock %s
+ObjectMustBeValidatedToSendEmail = %s must be in status (validated) to send an email
+ObjectMustBeLockedToSendEmail    = %s must be in status (locked) to send an email
+ObjectMustBeLockedToArchive      = %s must be in status (locked) to be archived
+ObjectMustBeUnActive             = %s must be in status (disabled)
+ObjectMustBeArchive              = %s must be in status (archived)

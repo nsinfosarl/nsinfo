@@ -233,7 +233,7 @@ function nsinfoSetup($arrayofparameters)
                     break;
 
                 case 'selectsocid':
-                    $typesocid = !empty($desk['typecompany']) ? $desk['typecompany'] : 1;
+                    $typesocid = !empty($desc['typecompany']) ? $desc['typecompany'] : 1;
                     $css = !empty($desc['css']) ? $desc['css'] : 'minwidth300';
                     print '<tr class="oddeven">';
                     print '<td>';
@@ -253,7 +253,7 @@ function nsinfoSetup($arrayofparameters)
 
                     break;
 
-                case 'sep';
+                case 'sep' :
                     $title = $desc['title'];
                     $nbcol = !empty($desc['col']) ? $desc['col'] : 1;
                     $class = !empty($desc['class']) ? ' class="' . $desc['class'] . '"' : '';
@@ -353,8 +353,7 @@ function nsinfoSetup($arrayofparameters)
                     print '</td><td>';
                     print '&emsp;';
                     print '</td>';
-                    print '</tr>';
-                    break;
+                    break;	// La ligne est fermée après le switch, comme pour les autres types
 
                 case 'bool2' :
                     $const_prefixe = !empty($desc['const_prefixe']) ? $desc['const_prefixe'] . '_' : '';
@@ -815,7 +814,7 @@ function nsinfoSetup($arrayofparameters)
                 case "seluser" :
                     $size = !empty($desc['size']) ? $desc['size'] : 0;
                     $arrayval = !empty($desc['arrayval']) ? $desc['arrayval'] : '';
-                    $showempty = !empty($desk['showempty']) ? $desk['showempty'] : 1;
+                    $showempty = !empty($desc['showempty']) ? $desc['showempty'] : 1;
                     $css = !empty($desc['css']) ? $desc['css'] : '';
                     print '<tr class="oddeven"><td>';
                     print !empty($desc['Tooltip']) ? $form->textwithpicto($langs->trans($key), $langs->trans($key . '_Tooltip')) : $langs->transnoentitiesnoconv($key);
@@ -958,7 +957,10 @@ function nsinfoSetup($arrayofparameters)
                     print '</td>';
             }
 
-            print '</tr>';
+            // Fermeture de la ligne, sauf pour les types qui n'en ouvrent pas ou la ferment eux-mêmes
+            if (!in_array($desc['type'], array('sep', 'tabdeb', 'tabdeb2', 'tabfin', 'hidden', 'titletab', 'titletabdesc', 'link'))) {
+                print '</tr>';
+            }
         }
 
     } else {
