@@ -118,6 +118,22 @@ div.mainmenu.nsinfo {
 	height: 28px;
 	background: var(--colorbacktitle1) !important;
 }
+/* Column titles (Parameter / Value) : bold, the td rules of the theme win over the tr */
+.nstabletitle td {
+	font-weight: bold;
+}
+/* Separator (type sep with 'class' => 'nssep') : purple line above, light background, purple bold text */
+.nstabletitle td.nssep {
+	border-top: 2px solid #523280;
+	background: rgba(82, 50, 128, 0.08);
+	color: #523280;
+	font-weight: bold;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+tr.nstabletitle:has(td.nssep) {
+	opacity: 1;
+}
 
 /* ------------------------------------------------------------------
  * NSINFO media gallery + confirmation popup

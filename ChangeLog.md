@@ -1,5 +1,18 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.8.0 - 24/10/2026
+- Nouveau : dossier backport/ pour les modules NS INFO construits avec le ModuleBuilder de Dolibarr 23 : fonctions getDolDefaultContextPage(), dolBuildUrl() et getCallerInfoString() reprises de Dolibarr 23.0.4, chargées seulement si Dolibarr est antérieur à la 23 ; à inclure par le module avec dol_include_once('/nsinfo/backport/backport.inc.php') (compatibilité de ces modules à partir de Dolibarr 20)
+- Menu réductible : nsinfoMenuMinimize($mainmenu, 0, …) calcule elle-même la position de l'entrée « Réduire le menu » (nouvelle fonction nsinfoMenuMinimizePosition()) : après les entrées du module, stable d'une activation à l'autre et sans collision avec l'entrée d'un autre module (Saturne…) ; corrige « Menu entry (all,2012,) already exists » à l'activation ; une position donnée par le module reste utilisée
+
+## 23.7.2 - 22/10/2026
+- Réglages, type link : option 'row' => 1 pour afficher le lien dans une ligne du tableau (libellé avec info-bulle 'Tooltip', texte 'linklabel', picto 'picto', 'col', 'sametab' pour ouvrir dans le même onglet) ; sans 'row', affichage inchangé
+- Réglages, type seltags (catégorie) : valeur enregistrée (actions listsel, ou multilistsel avec 'multiple' => 1) et présélectionnée, liste simple par défaut, bouton « + » pour créer une catégorie du type ('typtag') puis revenir aux réglages (droit de créer des catégories)
+
+## 23.7.1 - 22/10/2026
+- Réglages : titres de colonnes « Paramètre » / « Valeur » en gras (css/nsinfo.css.php)
+- Réglages : nouvelle classe « nssep » pour le type sep ('class' => 'nssep') : séparateur bien visible, trait violet au-dessus, fond léger, texte violet en gras
+- Correction : réglages, balise </td> en trop sur les types bool, bool3 et rec (HTML du tableau)
+
 ## 23.7.0 - 11/10/2026
 - Nouveau : zone de dépôt de fichiers nsinfoDropZone() (lib/nsinfo.lib.php, js/modules/dropZone.js) : glisser-déposer ou clic, envoi immédiat par formulaire ; libellés dans les 5 langues
 - Nouveau réglage « Menu réduit : afficher les entrées des menus déroulants » : en menu réduit, les icônes des entrées des groupes restent affichées (désactivé : seules les entrées principales)

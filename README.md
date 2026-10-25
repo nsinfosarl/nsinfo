@@ -3,7 +3,7 @@
 ## Informations
 
 - Numéro du module : 172760
-- Dernière mise à jour : 11/10/2026
+- Dernière mise à jour : 24/10/2026
 - Éditeur : [NSINFO](https://www.ns-info.fr)
 - Thème : Eldy Menu
 - Licence : GPLv3
@@ -11,13 +11,14 @@
 
 ## Version
 
-- Version : 23.7.0
+- Version : 23.8.0
 - PHP : 5.5 - 8.3
 - Compatibilité : Dolibarr 11.0.0 - 24.0.x
 
 ## Liens
 
 - Support & Assistance : [Forum dolibarr.fr](https://dolibarr.fr) / Par mail à contact@ns-info.fr
+- Support déclaration : [Ticket](https://support.ns-info.fr)
 - Nsinfo Framework : [Télécharger Nsinfo](https://www.dolistore.com/product.php?id=713)
 - D'autres modules développés par NSINFO disponibles sur [Dolistore.com](https://www.dolistore.com/index.php?controller=search&orderby=position&orderway=desc&tag=&website=marketplace&search_query=NSINFO)
 

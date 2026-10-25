@@ -136,7 +136,7 @@ function Listmodelmail($user, $typecmde, $outputlangs)
 function nsinfoSetup($arrayofparameters)
 {
 
-    global $langs, $conf, $db;
+    global $langs, $conf, $db, $user;
 
 
     $formother = new FormOther($db);
@@ -328,7 +328,7 @@ function nsinfoSetup($arrayofparameters)
                             print '<a href="' . $_SERVER['PHP_SELF'] . '?action=del_' . $key . '&var=' . $key . '">' . img_picto($langs->trans("Enabled"), 'switch_on') . '</a>';
                     }
                     print '</td>';
-                    print '</td><td>';
+                    print '<td>';
                     print '&emsp;';
                     print '</td>';
                     break;
@@ -397,7 +397,7 @@ function nsinfoSetup($arrayofparameters)
                         print '<a href="' . $_SERVER['PHP_SELF'] . '?action=del_' . $key . '&var=' . $key . '&token=' . $_SESSION['newtoken'] . '">' . img_picto($langs->trans("Enabled"), 'switch_on') . '</a>';
 
                     print '</td>';
-                    print '</td><td>';
+                    print '<td>';
                     print '&emsp;';
                     print '</td>';
                     break;
@@ -417,7 +417,7 @@ function nsinfoSetup($arrayofparameters)
                     }
                     print '<input type="submit" class="button" value="' . $langs->trans("Update") . '" />';
                     print '</td>';
-                    print '</td><td>';
+                    print '<td>';
                     print '&emsp;';
                     print '</td>';
 
@@ -601,7 +601,18 @@ function nsinfoSetup($arrayofparameters)
                 case 'link' :
                     $rootfile = !empty($desc['rootfile']) ? $desc['rootfile'] : '';
 
-                    print '<center><a href="' . $rootfile . '" target="_blank">' . $langs->transnoentities($key) . '</a></center>';
+                    if (!empty($desc['row'])) {
+                        // Line of the table : label (with tooltip) then link ('linklabel' : text of the link, 'picto' : picto before it)
+                        $linklabel = !empty($desc['linklabel']) ? $langs->trans($desc['linklabel']) : $rootfile;
+                        $nbcol = !empty($desc['col']) ? $desc['col'] - 1 : 2;
+                        print '<tr class="oddeven"><td>';
+                        print !empty($desc['Tooltip']) ? $form->textwithpicto($langs->trans($key), $langs->trans($key . '_Tooltip')) : $langs->transnoentitiesnoconv($key);
+                        print '</td><td colspan="' . $nbcol . '">';
+                        print '<a href="' . $rootfile . '"' . (empty($desc['sametab']) ? ' target="_blank"' : '') . '>' . (!empty($desc['picto']) ? img_picto('', $desc['picto'], 'class="pictofixedwidth"') : '') . dol_escape_htmltag($linklabel) . '</a>';
+                        print '</td></tr>';
+                    } else {
+                        print '<center><a href="' . $rootfile . '" target="_blank">' . $langs->transnoentities($key) . '</a></center>';
+                    }
                     break;
 
                 case "sellist" :
@@ -789,9 +800,12 @@ function nsinfoSetup($arrayofparameters)
                     break;
 
                 case "seltags":
-                    $size = !empty($desc['size']) ? $desc['size'] : 0;
-                    $css = !empty($desc['css']) ? $desc['css'] : '';
+                    // Category (tag) : 'typtag' => type of category (Categorie::TYPE_xxx), 'multiple' => 1 for several categories (saved comma separated)
                     $typtag = !empty($desc['typtag']) ? $desc['typtag'] : 'propal';
+                    $multiple = !empty($desc['multiple']);
+                    $css = !empty($desc['css']) ? $desc['css'] : 'minwidth300';
+                    $langs->load("categories");
+                    require_once DOL_DOCUMENT_ROOT . '/core/lib/ajax.lib.php';
 
                     print '<tr class="oddeven"><td>';
                     print !empty($desc['Tooltip']) ? $form->textwithpicto($langs->trans($key), $langs->trans($key . '_Tooltip')) : $langs->transnoentitiesnoconv($key);
@@ -799,10 +813,22 @@ function nsinfoSetup($arrayofparameters)
 
                     print '<td>';
                     print '<form method="post" action="' . $_SERVER['PHP_SELF'] . '" style="display: inline;">';
-                    print '<input type="hidden" name="token" value="' . $_SESSION['newtoken'] . '">';
-                    print '<input type="hidden" name="action" value="seltags" />';
+                    print '<input type="hidden" name="token" value="' . newToken() . '">';
+                    print '<input type="hidden" name="action" value="' . ($multiple ? 'multilistsel' : 'listsel') . '" />';
                     print '<input type="hidden" name="varlst" value="' . $key . '" />';
-                    print $form->selectCategories($typtag, $key);
+                    print img_picto('', 'category', 'class="pictofixedwidth"');
+                    if ($multiple) {
+                        $selected = array_filter(explode(',', getDolGlobalString($key)));
+                        print $form->multiselectarray($key, $form->select_all_categories($typtag, '', '', 64, 0, 3), $selected, 0, 0, $css, 0, 0);
+                    } else {
+                        print $form->select_all_categories($typtag, getDolGlobalInt($key), $key, 64, 0, 0, 0, $css, 1);
+                        print ajax_combobox($key);
+                    }
+                    if ($user->hasRight('categorie', 'creer')) {
+                        // Button + : creation of a category of this type, then back to the setup page
+                        $urlnew = DOL_URL_ROOT . '/categories/card.php?action=create&type=' . urlencode($typtag) . '&backtopage=' . urlencode($_SERVER['PHP_SELF']);
+                        print ' <a class="editfielda marginleftonly" href="' . $urlnew . '" title="' . dol_escape_htmltag($langs->trans('CreateCat')) . '"><span class="fa fa-plus-circle valignmiddle"></span></a>';
+                    }
                     print '&emsp;';
                     print '</td><td>';
                     print '<input type="submit" class="button" value="' . $langs->trans("Update") . '" />';

@@ -60,18 +60,25 @@ function nsinfoAdminPrepareHead()
 /**
  * Entrée de menu de gauche « Réduire le menu » (même technique que le module Saturne) : un clic réduit le menu
  * de gauche à ses icônes ou le rétablit ; le choix est mémorisé dans le navigateur (js/modules/menu.js).
- * À ajouter en dernière position des menus de gauche d'un module, dans le constructeur du descripteur :
+ * À ajouter aux menus de gauche d'un module, dans le constructeur du descripteur :
  *     dol_include_once('/nsinfo/lib/nsinfo.lib.php');
- *     if (function_exists('nsinfoMenuMinimize')) $this->menu[$r++] = nsinfoMenuMinimize('monmodule', 2000 + $r);
+ *     if (function_exists('nsinfoMenuMinimize')) $this->menu[$r++] = nsinfoMenuMinimize('monmodule', 0, 'isModEnabled("monmodule")');
+ * Position 0 (conseillé) : nsinfo la calcule (nsinfoMenuMinimizePosition()), toujours après les autres entrées du
+ * module et sans collision avec l'entrée « Réduire le menu » d'un autre module (Dolibarr refuse deux entrées de même
+ * position et de même url : « Menu entry (all,2012,) already exists »).
  *
  * @param	string	$mainmenu	Code du menu principal du module (ex : 'gmao')
- * @param	int		$position	Position de l'entrée (à placer après les autres entrées)
+ * @param	int		$position	Position de l'entrée, 0 = calculée par nsinfo (conseillé)
  * @param	string	$enabled	Condition d'affichage (dol_eval)
  * @return	array<string,mixed>	Entrée de menu pour $this->menu
  */
-function nsinfoMenuMinimize($mainmenu, $position, $enabled = '1')
+function nsinfoMenuMinimize($mainmenu, $position = 0, $enabled = '1')
 {
 	global $langs;
+
+	if ((int) $position <= 0) {
+		$position = nsinfoMenuMinimizePosition($mainmenu);
+	}
 
 	if (is_object($langs)) {
 		$langs->load('nsinfo@nsinfo');
@@ -97,6 +104,43 @@ function nsinfoMenuMinimize($mainmenu, $position, $enabled = '1')
 		'target' => '',
 		'user' => 2,
 	);
+}
+
+/**
+ * Position de l'entrée « Réduire le menu » d'un module : après les entrées du module (9000 et plus), stable d'une
+ * activation à l'autre (calculée à partir du code du menu) et libre : une position déjà prise par une entrée sans url
+ * d'un autre module (« Réduire le menu » de Saturne ou d'un autre module NS INFO) est sautée.
+ *
+ * @param	string	$mainmenu	Code du menu principal du module
+ * @return	int					Position
+ */
+function nsinfoMenuMinimizePosition($mainmenu)
+{
+	global $db, $conf;
+
+	$position = 9000 + (abs(crc32((string) $mainmenu)) % 900);
+	if (!is_object($db)) {
+		return $position;
+	}
+
+	// Positions already used by an entry without url of another module (the own entry of the module is replaced at activation)
+	$used = array();
+	$sql = "SELECT m.position FROM ".$db->prefix()."menu as m";
+	$sql .= " WHERE (m.url = '' OR m.url IS NULL)";
+	$sql .= " AND COALESCE(m.leftmenu, '') <> '".$db->escape($mainmenu.'_nsinfominimizemenu')."'";
+	$sql .= " AND m.entity = ".((int) $conf->entity);
+	$resql = $db->query($sql);
+	if ($resql) {
+		while ($obj = $db->fetch_object($resql)) {
+			$used[(int) $obj->position] = 1;
+		}
+		$db->free($resql);
+	}
+	while (isset($used[$position])) {
+		$position++;
+	}
+
+	return $position;
 }
 
 /**
