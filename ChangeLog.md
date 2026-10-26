@@ -1,5 +1,8 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.8.1 - 26/10/2026
+- Réglages, type warehouse : l'entrepôt créé avec le bouton « + » revient sélectionné et enregistré dans les réglages (retour de la fiche entrepôt avec l'action listsel)
+
 ## 23.8.0 - 24/10/2026
 - Nouveau : dossier backport/ pour les modules NS INFO construits avec le ModuleBuilder de Dolibarr 23 : fonctions getDolDefaultContextPage(), dolBuildUrl() et getCallerInfoString() reprises de Dolibarr 23.0.4, chargées seulement si Dolibarr est antérieur à la 23 ; à inclure par le module avec dol_include_once('/nsinfo/backport/backport.inc.php') (compatibilité de ces modules à partir de Dolibarr 20)
 - Menu réductible : nsinfoMenuMinimize($mainmenu, 0, …) calcule elle-même la position de l'entrée « Réduire le menu » (nouvelle fonction nsinfoMenuMinimizePosition()) : après les entrées du module, stable d'une activation à l'autre et sans collision avec l'entrée d'un autre module (Saturne…) ; corrige « Menu entry (all,2012,) already exists » à l'activation ; une position donnée par le module reste utilisée

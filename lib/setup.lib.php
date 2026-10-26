@@ -201,7 +201,8 @@ function nsinfoSetup($arrayofparameters)
 //					var_dump(getDolGlobalInt($key));
                     print $formproduct->selectWarehouses(getDolGlobalInt($key), $key, '', 1, 0, 0, '', 0, 0, array(), $css);
                     print '&emsp;';
-                    if (!empty($urlnew)) print '<a href="' . DOL_URL_ROOT . $urlnew . '&backtopage=' . urlencode($_SERVER["PHP_SELF"]) . '"><span class="fa fa-plus-circle valignmiddle" title="' . $langs->trans("AddProject") . '"></span></a>';
+                    // The warehouse created by the button + comes back selected and saved (__ID__ is replaced by Dolibarr, action listsel of nsinfoAction)
+                    if (!empty($urlnew)) print '<a href="' . DOL_URL_ROOT . $urlnew . '&backtopage=' . urlencode($_SERVER["PHP_SELF"] . '?action=listsel&varlst=' . $key . '&' . $key . '=__ID__') . '"><span class="fa fa-plus-circle valignmiddle" title="' . $langs->trans("AddProject") . '"></span></a>';
 
                     print '</td><td>';
                     print '<input type="submit" class="button" value="' . $langs->trans("Update") . '" />';
