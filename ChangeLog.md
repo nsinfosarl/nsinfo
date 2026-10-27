@@ -1,5 +1,8 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.8.2 - 27/10/2026
+- Nouveau : calendrier de plage entre deux dates (js/modules/rangePicker.js, fonction PHP nsinfoRangePickerLoad(), fonction JavaScript nsinfoRangePicker()) : sélection à la souris ou au doigt par glisser d'un jour à l'autre (la plage donne les bornes début et fin) ou un clic sur le premier jour puis un clic sur le dernier, deux mois côte à côte, jours non travaillés grisés, nombre de jours, feuille en bas d'écran sur mobile, sans bibliothèque ; styles dans nsinfo.css.php (.nsinfo-cal, .nsinfo-period-chip)
+
 ## 23.8.1 - 26/10/2026
 - Réglages, type warehouse : l'entrepôt créé avec le bouton « + » revient sélectionné et enregistré dans les réglages (retour de la fiche entrepôt avec l'action listsel)
 

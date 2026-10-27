@@ -478,3 +478,36 @@ div.nsinfo-menugroup-sub div.nsinfo-menugroup-child-block {
 	margin-right: 0 !important;
 }
 <?php } ?>
+/* Calendar of a period between two dates (js/modules/rangePicker.js) */
+.nsinfo-cal { position: absolute; z-index: 2000; background: #fff; color: #1f2937; border: 1px solid #d5dbe3; border-radius: 12px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18); padding: 12px 14px; font-size: 0.95em; }
+.nsinfo-cal-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.nsinfo-cal-nav button, .nsinfo-cal-foot button { border: 0; background: transparent; cursor: pointer; border-radius: 8px; padding: 4px 10px; color: #3879B2; font-size: 1.1em; }
+.nsinfo-cal-nav button:hover, .nsinfo-cal-foot button:hover { background: #eef3f9; }
+.nsinfo-cal-summary { flex: 1; text-align: center; font-size: 0.9em; color: #4b5563; }
+.nsinfo-cal-months { display: flex; gap: 22px; }
+.nsinfo-cal-title { text-align: center; font-weight: 600; margin-bottom: 4px; }
+.nsinfo-cal-grid { display: grid; grid-template-columns: repeat(7, 2.3em); row-gap: 2px; }
+.nsinfo-cal-dow { text-align: center; font-size: 0.78em; color: #9ca3af; padding: 3px 0; }
+.nsinfo-cal { user-select: none; -webkit-user-select: none; }
+.nsinfo-cal-day { touch-action: none; border: 0; background: transparent; height: 2.3em; cursor: pointer; border-radius: 0; color: inherit; font: inherit; position: relative; }
+.nsinfo-cal-day:hover { background: #eef3f9; border-radius: 8px; }
+.nsinfo-cal-day.off { color: #b6bcc6; }
+.nsinfo-cal-day.today { font-weight: 700; box-shadow: inset 0 -3px 0 #3879B2; }
+.nsinfo-cal-day.inrange { background: #e3edf8; }
+.nsinfo-cal-day.edge { background: #3879B2; color: #fff; font-weight: 600; }
+.nsinfo-cal-day.edge.first { border-radius: 8px 0 0 8px; }
+.nsinfo-cal-day.edge.last { border-radius: 0 8px 8px 0; }
+.nsinfo-cal-day.edge.first.last { border-radius: 8px; }
+.nsinfo-cal-foot { display: flex; justify-content: space-between; margin-top: 8px; border-top: 1px solid #eef0f3; padding-top: 6px; }
+.nsinfo-period-chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; background: #eef3f9; color: #1f2937; cursor: pointer; border: 1px solid transparent; }
+.nsinfo-period-chip:hover { border-color: #3879B2; }
+.nsinfo-period-chip .fa { color: #3879B2; }
+@media (max-width: 640px) {
+	/* Mobile : the calendar is a sheet at the bottom of the screen, one month, large touch targets */
+	.nsinfo-cal { position: fixed; top: auto !important; left: 0 !important; right: 0; bottom: 0; width: auto; border-radius: 16px 16px 0 0; padding: 14px 12px 18px; max-height: 90vh; overflow-y: auto; }
+	.nsinfo-cal-months { display: block; }
+	.nsinfo-cal-months .nsinfo-cal-month + .nsinfo-cal-month { display: none; }
+	.nsinfo-cal-grid { grid-template-columns: repeat(7, 1fr); row-gap: 4px; }
+	.nsinfo-cal-day { height: 2.9em; font-size: 1.05em; }
+	.nsinfo-cal-nav button, .nsinfo-cal-foot button { padding: 10px 16px; }
+}

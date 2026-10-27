@@ -174,6 +174,30 @@ function nsinfoMenuGroupChild($group)
 }
 
 /**
+ * Calendrier de plage entre deux dates (js/modules/rangePicker.js) : sélection à la souris ou au doigt par glisser d'un
+ * jour à l'autre (la plage donne les bornes début et fin) ou un clic sur le premier jour puis un clic sur le dernier,
+ * deux mois côte à côte, feuille en bas d'écran sur mobile. Retourne la balise script (une seule fois par page) ;
+ * ensuite, en JavaScript :
+ *     nsinfoRangePicker(ancre, {start: 'AAAA-MM-JJ', end: 'AAAA-MM-JJ', workdays: [1,2,3,4,5], lang: 'fr-FR',
+ *         labels: {today: '', clear: '', days: '', from: '', to: '', pick: ''}, onChange: function (start, end) {}});
+ * Pastille cliquable conseillée pour afficher une date : <span class="nsinfo-period-chip">…</span>
+ *
+ * @return	string	HTML (balise script)
+ */
+function nsinfoRangePickerLoad()
+{
+	static $loaded = 0;
+
+	if ($loaded) {
+		return '';
+	}
+	$loaded = 1;
+	$version = @file_get_contents(dol_buildpath('/nsinfo/VERSION', 0));
+
+	return '<script src="' . dol_buildpath('/nsinfo/js/modules/rangePicker.js', 1) . '?v=' . urlencode(trim((string) $version)) . '"></script>' . "\n";
+}
+
+/**
  * Zone de dépôt de fichiers (glisser-déposer ou clic), script js/modules/dropZone.js : les fichiers déposés ou choisis
  * sont envoyés aussitôt par un formulaire POST (multipart) vers $url, avec le jeton de sécurité, l'action $action et
  * les champs cachés $hiddens. Côté page, les fichiers arrivent dans $_FILES[$htmlname] (plusieurs fichiers), par
