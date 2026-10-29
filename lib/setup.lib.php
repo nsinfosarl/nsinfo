@@ -990,24 +990,29 @@ function nsinfoSetup($arrayofparameters)
             }
         }
 
-        // Enregistrement automatique au changement des champs texte, nombre et couleur (le bouton Mettre à jour reste affiché)
-        $autosave = array();
-        foreach ($arrayofparameters as $akey => $adesc) {
-            if (in_array($adesc['type'], array('text', 'round', 'color'))) {
-                $autosave[] = $akey;
-            }
-        }
-        if (!empty($autosave)) {
-            print '<script' . (function_exists('getNonce') ? ' nonce="' . getNonce() . '"' : '') . '>
+        // Enregistrement automatique au changement de tous les champs de réglage (texte, nombre, couleur, listes, dates,
+        // zones de texte...), sans recharger la page : coche verte en bout de ligne une fois enregistré (le bouton Mettre à jour reste affiché)
+        $autoactions = array('settxt', 'settxtadv', 'setround', 'setcolor', 'set', 'listsel', 'multilistsel', 'listselstrg', 'datesel', 'selectfont', 'set_selectformaddress');
+        print '<script' . (function_exists('getNonce') ? ' nonce="' . getNonce() . '"' : '') . '>
 jQuery(function($) {
-	$.each(' . json_encode($autosave) . ', function(i, key) {
-		var $field = $(\'[name="\' + key + \'"]\');
-		var $form = $field.closest("form");
-		$field.on("change", function() { $form.trigger("submit"); });
+	var actions = ' . json_encode($autoactions) . ';
+	var title = ' . json_encode($langs->trans("RecordSaved")) . ';
+	$("form").each(function() {
+		var $form = $(this);
+		var action = $form.find("input[type=hidden][name=action]").val();
+		var $fields = $form.find("input, select, textarea").not("[type=hidden], [type=submit], [type=button]");
+		if ($form.data("nsinfoAuto") || actions.indexOf(action) < 0 || !$fields.length) return;
+		$form.data("nsinfoAuto", 1);
+		var $mark = $(\'<span class="nsinfo-saved" style="margin-left:8px;font-weight:bold"></span>\').appendTo($form.closest("tr").find("td:last"));
+		$form.on("change", "input, select, textarea", function() {
+			$mark.css("color", "#888").attr("title", "").text("\\u2026");
+			$.ajax({type: "POST", url: $form.attr("action"), data: $form.serialize()})
+				.done(function() { $mark.css("color", "#2e9e4f").attr("title", title).text("\\u2714"); })
+				.fail(function() { $mark.css("color", "#d9534f").text("\\u2716"); });
+		});
 	});
 });
 </script>';
-        }
 
     } else {
         print '<br>' . $langs->trans("NothingToSetup");
