@@ -990,6 +990,25 @@ function nsinfoSetup($arrayofparameters)
             }
         }
 
+        // Enregistrement automatique au changement des champs texte, nombre et couleur (le bouton Mettre à jour reste affiché)
+        $autosave = array();
+        foreach ($arrayofparameters as $akey => $adesc) {
+            if (in_array($adesc['type'], array('text', 'round', 'color'))) {
+                $autosave[] = $akey;
+            }
+        }
+        if (!empty($autosave)) {
+            print '<script' . (function_exists('getNonce') ? ' nonce="' . getNonce() . '"' : '') . '>
+jQuery(function($) {
+	$.each(' . json_encode($autosave) . ', function(i, key) {
+		var $field = $(\'[name="\' + key + \'"]\');
+		var $form = $field.closest("form");
+		$field.on("change", function() { $form.trigger("submit"); });
+	});
+});
+</script>';
+        }
+
     } else {
         print '<br>' . $langs->trans("NothingToSetup");
     }

@@ -1,5 +1,8 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.8.4 - 29/10/2026
+- Réglages : nsinfoSetup() enregistre automatiquement les champs texte, nombre et couleur au changement (bouton Mettre à jour conservé), pour tous les modules
+
 ## 23.8.3 - 29/10/2026
 - Sécurité : nsinfoAction() exige le jeton de sécurité pour les actions GET qui modifient une constante (activer / désactiver, set_*, del_*, reset, settxt…) ; les liens des interrupteurs de réglages (fiche, champs visible / obligatoire) portent maintenant le jeton ; un lien sans jeton (modules qui n'en portent pas encore) reste accepté seulement s'il vient d'une page du même site (en-tête Referer) ; l'action listsel reste acceptée sans jeton (retour de la création d'une fiche depuis le bouton « + »)
 
