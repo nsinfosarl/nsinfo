@@ -1,5 +1,8 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.8.3 - 29/10/2026
+- Sécurité : nsinfoAction() exige le jeton de sécurité pour les actions GET qui modifient une constante (activer / désactiver, set_*, del_*, reset, settxt…) ; les liens des interrupteurs de réglages (fiche, champs visible / obligatoire) portent maintenant le jeton ; un lien sans jeton (modules qui n'en portent pas encore) reste accepté seulement s'il vient d'une page du même site (en-tête Referer) ; l'action listsel reste acceptée sans jeton (retour de la création d'une fiche depuis le bouton « + »)
+
 ## 23.8.2 - 27/10/2026
 - Nouveau : calendrier de plage entre deux dates (js/modules/rangePicker.js, fonction PHP nsinfoRangePickerLoad(), fonction JavaScript nsinfoRangePicker()) : sélection à la souris ou au doigt par glisser d'un jour à l'autre (la plage donne les bornes début et fin) ou un clic sur le premier jour puis un clic sur le dernier, deux mois côte à côte, jours non travaillés grisés, nombre de jours, feuille en bas d'écran sur mobile, sans bibliothèque ; styles dans nsinfo.css.php (.nsinfo-cal, .nsinfo-period-chip)
 

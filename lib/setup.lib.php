@@ -324,9 +324,9 @@ function nsinfoSetup($arrayofparameters)
                         print ajax_constantonoff($key, '', $conf->entity);
                     } else {
                         if (empty(getDolGlobalInt($key)))
-                            print '<a href="' . $_SERVER['PHP_SELF'] . '?action=set_' . $key . '&var=' . $key . '">' . img_picto($langs->trans("Disabled"), 'switch_off') . '</a>';
+                            print '<a href="' . $_SERVER['PHP_SELF'] . '?action=set_' . $key . '&var=' . $key . '&token=' . newToken() . '">' . img_picto($langs->trans("Disabled"), 'switch_off') . '</a>';
                         else
-                            print '<a href="' . $_SERVER['PHP_SELF'] . '?action=del_' . $key . '&var=' . $key . '">' . img_picto($langs->trans("Enabled"), 'switch_on') . '</a>';
+                            print '<a href="' . $_SERVER['PHP_SELF'] . '?action=del_' . $key . '&var=' . $key . '&token=' . newToken() . '">' . img_picto($langs->trans("Enabled"), 'switch_on') . '</a>';
                     }
                     print '</td>';
                     print '<td>';
@@ -369,9 +369,9 @@ function nsinfoSetup($arrayofparameters)
                         print ajax_constantonoff($const_prefixe . strtoupper($key) . '_VISIBLE', '', $conf->entity);
                     } else {
                         if (empty(getDolGlobalInt($const_prefixe . strtoupper($key) . '_VISIBLE')))
-                            print '<a href="' . $_SERVER['PHP_SELF'] . '?action=set_' . $key . '&var=' . $const_prefixe . strtoupper($key) . '_VISIBLE' . '">' . img_picto($langs->trans("Disabled"), 'switch_off') . '</a>';
+                            print '<a href="' . $_SERVER['PHP_SELF'] . '?action=set_' . $key . '&var=' . $const_prefixe . strtoupper($key) . '_VISIBLE' . '&token=' . newToken() . '">' . img_picto($langs->trans("Disabled"), 'switch_off') . '</a>';
                         else
-                            print '<a href="' . $_SERVER['PHP_SELF'] . '?action=del_' . $key . '&var=' . $const_prefixe . strtoupper($key) . '_VISIBLE' . '">' . img_picto($langs->trans("Enabled"), 'switch_on') . '</a>';
+                            print '<a href="' . $_SERVER['PHP_SELF'] . '?action=del_' . $key . '&var=' . $const_prefixe . strtoupper($key) . '_VISIBLE' . '&token=' . newToken() . '">' . img_picto($langs->trans("Enabled"), 'switch_on') . '</a>';
                     }
                     print '</td>';
                     print '<td>';
@@ -379,9 +379,9 @@ function nsinfoSetup($arrayofparameters)
                         print ajax_constantonoff($const_prefixe . strtoupper($key) . '_NOTNULL', '', $conf->entity);
                     } else {
                         if (empty(getDolGlobalInt($const_prefixe . strtoupper($key) . '_NOTNULL')))
-                            print '<a href="' . $_SERVER['PHP_SELF'] . '?action=set_' . $key . '&var=' . $const_prefixe . strtoupper($key) . '_NOTNULL' . '">' . img_picto($langs->trans("Disabled"), 'switch_off') . '</a>';
+                            print '<a href="' . $_SERVER['PHP_SELF'] . '?action=set_' . $key . '&var=' . $const_prefixe . strtoupper($key) . '_NOTNULL' . '&token=' . newToken() . '">' . img_picto($langs->trans("Disabled"), 'switch_off') . '</a>';
                         else
-                            print '<a href="' . $_SERVER['PHP_SELF'] . '?action=del_' . $key . '&var=' . $const_prefixe . strtoupper($key) . '_NOTNULL' . '">' . img_picto($langs->trans("Enabled"), 'switch_on') . '</a>';
+                            print '<a href="' . $_SERVER['PHP_SELF'] . '?action=del_' . $key . '&var=' . $const_prefixe . strtoupper($key) . '_NOTNULL' . '&token=' . newToken() . '">' . img_picto($langs->trans("Enabled"), 'switch_on') . '</a>';
                     }
                     print '</td>';
                     break;
@@ -1000,6 +1000,22 @@ function nsinfoAction($action, $var, $value, $vartxt, $varround, $valuetxt, $def
 {
 
     global $db, $conf, $langs;
+
+    // GET requests are not protected by the core CSRF check (POST forms are): require the token for every action
+    // that writes a constant ('listsel' is also reached from the return link of a creation card, without token)
+    if (!empty($action) && $_SERVER['REQUEST_METHOD'] != 'POST' && $action != 'listsel'
+        && ($action == 'activate' || $action == 'disable' || $action == 'set' || $action == 'reset' || $action == 'datesel' || $action == 'selectfont'
+            || preg_match('/^(set_|del_|set|multilistsel|listselstrg)/', $action))) {
+        // Modules built on nsinfo whose links carry no token yet: accepted only when the request comes from a page of the same host
+        $sametoken = (GETPOST('token', 'alpha') == currentToken());
+        $referer = isset($_SERVER['HTTP_REFERER']) ? parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) : '';
+        $samehost = (GETPOST('token', 'alpha') === '' && !empty($referer) && isset($_SERVER['HTTP_HOST'])
+            && strcasecmp($referer, preg_replace('/:\d+$/', '', $_SERVER['HTTP_HOST'])) == 0);
+        if (!$sametoken && !$samehost) {
+            setEventMessages($langs->trans('SecurityTokenHasExpiredSoActionHasBeenCanceledPleaseRetry'), null, 'errors');
+            return 0;
+        }
+    }
 
     // Type 'boolall' : enable / disable all the boolean constants of the parameter (list read from $arrayofparameters)
     if (($action == 'boolall_on' || $action == 'boolall_off') && !empty($arrayofparameters[$var]['keys']) && $arrayofparameters[$var]['type'] == 'boolall') {
