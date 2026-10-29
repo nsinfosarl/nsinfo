@@ -435,7 +435,8 @@ function nsinfoSetup($arrayofparameters)
                     print '<input type="hidden" name="token" value="' . $_SESSION['newtoken'] . '">';
                     print '<input type="hidden" name="action" value="setcolor" />';
                     print '<input type="hidden" name="varcolor" value="' . $key . '" />';
-                    print $formother->selectColor($txtcolor, $key);
+                    // Sélecteur de couleur natif (deux clics, enregistrement immédiat au choix de la couleur)
+                    print '<input type="color" id="' . $key . '" name="' . $key . '" value="#' . ltrim($txtcolor, '#') . '" style="width: 56px; height: 32px; padding: 2px; border: 1px solid #ccc; border-radius: 6px; background: none; cursor: pointer; vertical-align: middle;" />';
                     print '&emsp;';
                     print '</td><td>';
                     print '<input type="submit" class="button" value="' . $langs->trans("Update") . '" />';
@@ -997,19 +998,42 @@ function nsinfoSetup($arrayofparameters)
 jQuery(function($) {
 	var actions = ' . json_encode($autoactions) . ';
 	var title = ' . json_encode($langs->trans("RecordSaved")) . ';
-	$("form").each(function() {
-		var $form = $(this);
-		var action = $form.find("input[type=hidden][name=action]").val();
-		var $fields = $form.find("input, select, textarea").not("[type=hidden], [type=submit], [type=button]");
-		if ($form.data("nsinfoAuto") || actions.indexOf(action) < 0 || !$fields.length) return;
-		$form.data("nsinfoAuto", 1);
-		var $mark = $(\'<span class="nsinfo-saved" style="margin-left:8px;font-weight:bold"></span>\').appendTo($form.closest("tr").find("td:last"));
-		$form.on("change", "input, select, textarea", function() {
-			$mark.css("color", "#888").attr("title", "").text("\\u2026");
-			$.ajax({type: "POST", url: $form.attr("action"), data: $form.serialize()})
-				.done(function() { $mark.css("color", "#2e9e4f").attr("title", title).text("\\u2714"); })
-				.fail(function() { $mark.css("color", "#d9534f").text("\\u2716"); });
-		});
+	// Enregistre le formulaire de réglage sans recharger la page et affiche la coche au bout du champ modifié, pendant 1 seconde
+	function save($form, $field) {
+		if (!$field || !$field.length) {
+			$field = $form.find("input, select, textarea").not("[type=hidden], [type=submit], [type=button]").first();
+		}
+		var $mark = $form.data("nsinfoMark");
+		if (!$mark) {
+			$mark = $(\'<span class="nsinfo-saved" style="margin-left:8px;font-weight:bold"></span>\');
+			$form.data("nsinfoMark", $mark);
+		}
+		clearTimeout($mark.data("timer"));
+		var $anchor = $field.next(".select2, .select2-container").length ? $field.next(".select2, .select2-container") : $field;
+		$mark.stop(true, true).show().css("color", "#888").attr("title", "").text("\\u2026").insertAfter($anchor);
+		$.ajax({type: "POST", url: $form.attr("action") || window.location.href, data: $form.serialize()})
+			.done(function() {
+				$mark.css("color", "#2e9e4f").attr("title", title).text("\\u2714");
+				$mark.data("timer", setTimeout(function() { $mark.fadeOut(200); }, 1000));
+			})
+			.fail(function() { $mark.css("color", "#d9534f").text("\\u2716"); });
+	}
+	function isAuto($form) {
+		return actions.indexOf($form.find("input[type=hidden][name=action]").first().val()) >= 0;
+	}
+	// Au changement d\'un champ
+	$(document).on("change", "form input, form select, form textarea", function() {
+		var form = this.form || $(this).closest("form")[0];
+		if (!form || $(this).is("[type=hidden], [type=submit], [type=button]")) return;
+		if (isAuto($(form))) save($(form), $(this));
+	});
+	// Au clic sur Mettre à jour ou à la touche Entrée : même enregistrement, sans rechargement
+	$(document).on("submit", "form", function(e) {
+		if ($(this).find("input[type=hidden][name=action]").length && isAuto($(this)) && $(this).find("input, select, textarea").not("[type=hidden], [type=submit], [type=button]").length) {
+			e.preventDefault();
+			e.stopPropagation();
+			save($(this));
+		}
 	});
 });
 </script>';
