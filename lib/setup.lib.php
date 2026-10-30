@@ -499,7 +499,7 @@ function nsinfoSetup($arrayofparameters)
                     print '<input type="hidden" name="action" value="settxt" />';
                     if (!empty($hiddenname) && !empty($hiddenvalue)) print '<input type="hidden" name="' . $hiddenname . '" value="' . $hiddenvalue . '" />';
                     print '<input type="hidden" name="vartxt" value="' . $key . '" />';
-                    print '<input type="' . $typetexte . '" name="' . $key . '" size= "' . $size . '" value="' . getDolGlobalString($key) . '" />';
+                    print '<input type="' . $typetexte . '" name="' . $key . '" size= "' . $size . '" value="' . dol_escape_htmltag(getDolGlobalString($key, isset($desc['default']) && is_scalar($desc['default']) && $desc['default'] !== true ? (string) $desc['default'] : '')) . '" />';
                     print '&emsp;';
                     print '</td><td>';
                     print '<input type="submit" class="button" value="' . $langs->trans("Update") . '" />';
@@ -637,6 +637,10 @@ function nsinfoSetup($arrayofparameters)
                     print '<input type="hidden" name="action" value="listsel" />';
                     print '<input type="hidden" name="varlst" value="' . $key . '" />';
                     print $form->selectarray($key, $arrayval, getDolGlobalInt($key), $show_empty, 0, 0, '', 0, 0, 0, '', $css);
+                    if (!empty($desc['addurl'])) {
+                        // Button + at the end of the list : creation of a new element of the list
+                        print ' <a class="editfielda marginleftonly" href="' . $desc['addurl'] . '" title="' . dol_escape_htmltag(!empty($desc['addtitle']) ? $desc['addtitle'] : $langs->trans('Add')) . '"><span class="fa fa-plus-circle valignmiddle"></span></a>';
+                    }
                     print '&emsp;';
                     print '</td><td>';
                     print '<input type="submit" class="button" value="' . $langs->trans("Update") . '" />';

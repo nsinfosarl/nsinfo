@@ -1,6 +1,11 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.8.5 - 30/10/2026
+- Calendrier : option `single: true` de nsinfoRangePicker() pour choisir un seul jour (un mois, un clic, début = fin), pour les champs d'une seule date
+
 ## 23.8.4 - 29/10/2026
+- Réglages : le type text de nsinfoSetup() préaffiche la valeur par défaut (`default`, si c'est un texte) tant que rien n'est enregistré
+- Réglages : le type sellist de nsinfoSetup() accepte `addurl` (et `addtitle`) : bouton + au bout de la liste de sélection pour créer un nouvel élément
 - Réglages : champ de type color de nsinfoSetup() en sélecteur de couleur natif moderne (à la place du sélecteur Dolibarr à code hexadécimal), enregistré dès le choix de la couleur
 - Réglages : nsinfoSetup() enregistre automatiquement tous les champs de réglage au changement (texte, nombre, couleur, zones de texte, listes, dates), sans recharger la page (au changement du champ comme au clic sur Mettre à jour ou à la touche Entrée), avec une coche verte au bout du champ modifié une fois enregistré (affichée 1 seconde) (croix rouge en cas d'échec), pour tous les modules
 

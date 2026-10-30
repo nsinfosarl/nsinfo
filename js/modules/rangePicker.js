@@ -21,6 +21,8 @@
  *
  *   nsinfoRangePicker(anchor, {start: 'YYYY-MM-DD', end: 'YYYY-MM-DD', workdays: [1,2,3,4,5], lang: 'fr-FR',
  *                               labels: {today:'', clear:'', days:'', from:'', to:''}, onChange: function(start, end) {}})
+ *
+ * Option single: true = one day only (one month, one click chooses the day, start = end), for the fields of one date.
  */
 (function (window, $) {
 	'use strict';
@@ -48,7 +50,7 @@
 		close();
 		var o = $.extend({workdays: [1, 2, 3, 4, 5], lang: 'fr-FR', labels: {}, onChange: function () {}}, options);
 		var labels = $.extend({today: 'Today', clear: 'Clear', days: 'days', from: 'From', to: 'to', pick: 'Choose the first day'}, o.labels);
-		var start = fromIso(o.start), end = fromIso(o.end), hover = null;
+		var start = fromIso(o.start), end = o.single ? fromIso(o.start) : fromIso(o.end), hover = null;
 		var view = start ? new Date(start.getFullYear(), start.getMonth(), 1) : new Date(new Date().getFullYear(), new Date().getMonth(), 1);
 		var today = new Date();
 		today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
@@ -83,6 +85,7 @@
 		}
 
 		function summary() {
+			if (o.single) { return start ? '<b>' + start.toLocaleDateString(o.lang) + '</b>' : labels.pick; }
 			if (start && end) { return labels.from + ' <b>' + start.toLocaleDateString(o.lang) + '</b> ' + labels.to + ' <b>' + end.toLocaleDateString(o.lang) + '</b> &middot; ' + days(start, end) + ' ' + labels.days; }
 			if (start) { return labels.from + ' <b>' + start.toLocaleDateString(o.lang) + '</b> &hellip;'; }
 			return labels.pick;
@@ -91,7 +94,7 @@
 		function render() {
 			var second = new Date(view.getFullYear(), view.getMonth() + 1, 1);
 			el.html('<div class="nsinfo-cal-nav"><button type="button" class="nsinfo-cal-prev" aria-label="&lsaquo;">&lsaquo;</button><span class="nsinfo-cal-summary">' + summary() + '</span><button type="button" class="nsinfo-cal-next" aria-label="&rsaquo;">&rsaquo;</button></div>'
-				+ '<div class="nsinfo-cal-months">' + month(view) + month(second) + '</div>'
+				+ '<div class="nsinfo-cal-months">' + month(view) + (o.single ? '' : month(second)) + '</div>'
 				+ '<div class="nsinfo-cal-foot"><button type="button" class="nsinfo-cal-today">' + labels.today + '</button><button type="button" class="nsinfo-cal-clear">' + labels.clear + '</button></div>');
 		}
 
@@ -125,6 +128,10 @@
 		el.on('pointerdown', '.nsinfo-cal-day', function (ev) {
 			ev.preventDefault();
 			var d = fromIso($(this).data('iso'));
+			if (o.single) {	/* one day : the click chooses it */
+				finish(d, d);
+				return;
+			}
 			if (start && !end) {	/* second click : the days are the bounds */
 				finish(start, d);
 				return;
