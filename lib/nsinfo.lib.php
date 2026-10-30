@@ -198,6 +198,30 @@ function nsinfoRangePickerLoad()
 }
 
 /**
+ * Charge l'horloge de choix d'une heure (js/modules/timePicker.js, à la manière d'Android : l'heure sur le cadran, puis
+ * les minutes), une seule fois par page. À appeler avant le JavaScript qui l'utilise :
+ *     print nsinfoTimePickerLoad();
+ * ensuite, en JavaScript :
+ *     nsinfoTimePicker(ancre, {value: 'HH:MM', lang: 'fr-FR', step: 1,
+ *         labels: {ok: '', cancel: '', now: '', clear: ''}, onChange: function (hhmm) {}});
+ * Pastille cliquable conseillée pour afficher l'heure : <span class="nsinfo-period-chip">…</span>
+ *
+ * @return	string	HTML (balise script)
+ */
+function nsinfoTimePickerLoad()
+{
+	static $loaded = 0;
+
+	if ($loaded) {
+		return '';
+	}
+	$loaded = 1;
+	$version = @file_get_contents(dol_buildpath('/nsinfo/VERSION', 0));
+
+	return '<script src="' . dol_buildpath('/nsinfo/js/modules/timePicker.js', 1) . '?v=' . urlencode(trim((string) $version)) . '"></script>' . "\n";
+}
+
+/**
  * Zone de dépôt de fichiers (glisser-déposer ou clic), script js/modules/dropZone.js : les fichiers déposés ou choisis
  * sont envoyés aussitôt par un formulaire POST (multipart) vers $url, avec le jeton de sécurité, l'action $action et
  * les champs cachés $hiddens. Côté page, les fichiers arrivent dans $_FILES[$htmlname] (plusieurs fichiers), par

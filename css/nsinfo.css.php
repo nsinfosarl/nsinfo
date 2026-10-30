@@ -502,6 +502,25 @@ div.nsinfo-menugroup-sub div.nsinfo-menugroup-child-block {
 .nsinfo-period-chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; background: #eef3f9; color: #1f2937; cursor: pointer; border: 1px solid transparent; }
 .nsinfo-period-chip:hover { border-color: #3879B2; }
 .nsinfo-period-chip .fa { color: #3879B2; }
+/* Clock to choose a time (js/modules/timePicker.js) */
+.nsinfo-clock { position: absolute; z-index: 2000; background: #fff; color: #1f2937; border: 1px solid #d5dbe3; border-radius: 16px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18); padding: 14px 16px; user-select: none; -webkit-user-select: none; text-align: center; }
+.nsinfo-clock-head { display: flex; align-items: center; justify-content: center; gap: 4px; font-size: 2.4em; line-height: 1.1; margin-bottom: 10px; }
+.nsinfo-clock-seg { border: 0; background: #eef0f3; border-radius: 10px; padding: 4px 14px; font: inherit; color: inherit; cursor: pointer; }
+.nsinfo-clock-seg.on { background: #3879B2; color: #fff; }
+.nsinfo-clock-dial { position: relative; margin: 0 auto; border-radius: 50%; background: #eef3f9; touch-action: none; cursor: pointer; }
+.nsinfo-clock-hand { position: absolute; left: 0; top: 0; pointer-events: none; }
+.nsinfo-clock-hand line { stroke: #3879B2; stroke-width: 2; }
+.nsinfo-clock-hand circle { fill: #3879B2; }
+.nsinfo-clock-hand circle.tip { fill: #3879B2; }
+.nsinfo-clock-hand text { fill: #fff; font-size: 13px; text-anchor: middle; }
+.nsinfo-clock-n { position: absolute; width: 34px; height: 34px; margin: -17px 0 0 -17px; line-height: 34px; text-align: center; border-radius: 50%; pointer-events: none; font-size: 0.95em; }
+.nsinfo-clock-n.in { font-size: 0.8em; color: #6b7280; }
+.nsinfo-clock-n.sel { color: #fff; }
+.nsinfo-clock-foot { display: flex; align-items: center; gap: 4px; margin-top: 10px; }
+.nsinfo-clock-sp { flex: 1; }
+.nsinfo-clock-foot button { border: 0; background: transparent; cursor: pointer; border-radius: 8px; padding: 6px 10px; color: #3879B2; font: inherit; }
+.nsinfo-clock-foot button:hover { background: #eef3f9; }
+.nsinfo-clock-foot .nsinfo-clock-ok { font-weight: 600; }
 @media (max-width: 640px) {
 	/* Mobile : the calendar is a sheet at the bottom of the screen, one month, large touch targets */
 	.nsinfo-cal { position: fixed; top: auto !important; left: 0 !important; right: 0; bottom: 0; width: auto; border-radius: 16px 16px 0 0; padding: 14px 12px 18px; max-height: 90vh; overflow-y: auto; }
@@ -510,4 +529,7 @@ div.nsinfo-menugroup-sub div.nsinfo-menugroup-child-block {
 	.nsinfo-cal-grid { grid-template-columns: repeat(7, 1fr); row-gap: 4px; }
 	.nsinfo-cal-day { height: 2.9em; font-size: 1.05em; }
 	.nsinfo-cal-nav button, .nsinfo-cal-foot button { padding: 10px 16px; }
+	/* The clock too is a sheet at the bottom of the screen */
+	.nsinfo-clock { position: fixed; top: auto !important; left: 0 !important; right: 0; bottom: 0; width: auto; border-radius: 16px 16px 0 0; padding: 14px 12px 18px; }
+	.nsinfo-clock-foot button { padding: 10px 16px; }
 }
