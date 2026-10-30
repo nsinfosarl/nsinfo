@@ -521,6 +521,26 @@ div.nsinfo-menugroup-sub div.nsinfo-menugroup-child-block {
 .nsinfo-clock-foot button { border: 0; background: transparent; cursor: pointer; border-radius: 8px; padding: 6px 10px; color: #3879B2; font: inherit; }
 .nsinfo-clock-foot button:hover { background: #eef3f9; }
 .nsinfo-clock-foot .nsinfo-clock-ok { font-weight: 600; }
+/* Main tabs and the tab bar nested under them (e.g. one sub-tab per object) of the NS INFO modules (bar holding the ChangeLog tab of nsinfo): same look as the sub-tabs, rounded top, soft background and grey outline on the active tab (the theme puts the active state on div.tab.tabactive) */
+div.tabs:has(a[href*="changelog_module.php"]),
+div.tabs:has(a[href*="changelog_module.php"]) + div.tabBar div.tabs { display: flex; flex-wrap: wrap; gap: 4px; padding-left: 0; border-bottom: 1px solid var(--colortopbordertitle1, #d5dbe3); margin-bottom: 14px; }
+div.tabs:has(a[href*="changelog_module.php"]) > div.tabsElem,
+div.tabs:has(a[href*="changelog_module.php"]) + div.tabBar div.tabs > div.tabsElem { display: inline-flex; margin: 0; }
+div.tabs:has(a[href*="changelog_module.php"]) > div.tabsElem.floatright,
+div.tabs:has(a[href*="changelog_module.php"]) + div.tabBar div.tabs > div.tabsElem.floatright { margin-left: auto; }
+div.tabs:has(a[href*="changelog_module.php"]) div.tab,
+div.tabs:has(a[href*="changelog_module.php"]) + div.tabBar div.tabs div.tab { margin: 0 !important; padding: 0; border: 0; border-bottom: 3px solid transparent !important; border-radius: 10px 10px 0 0; background: transparent; }
+div.tabs:has(a[href*="changelog_module.php"]) div.tab > a.tab,
+div.tabs:has(a[href*="changelog_module.php"]) + div.tabBar div.tabs div.tab > a.tab { display: inline-block; padding: 8px 16px; margin: 0; border: 0; background: transparent; color: inherit !important; text-decoration: none !important; box-shadow: none; }
+div.tabs:has(a[href*="changelog_module.php"]) div.tab:hover,
+div.tabs:has(a[href*="changelog_module.php"]) + div.tabBar div.tabs div.tab:hover { background: rgba(127, 127, 127, 0.12); box-shadow: 0 0 0 1px rgba(127, 127, 127, 0.35) inset; }
+div.tabs:has(a[href*="changelog_module.php"]) div.tab.tabactive,
+div.tabs:has(a[href*="changelog_module.php"]) + div.tabBar div.tabs div.tab.tabactive { font-weight: 600; background: rgba(127, 127, 127, 0.12); box-shadow: 0 0 0 1px rgba(127, 127, 127, 0.35) inset; border-bottom-color: var(--colortextlink, #3879B2) !important; }
+/* Sub-tabs of the NS INFO modules (<div class="nsinfo-subtabs"><a class="nsinfo-subtab [active]">) */
+.nsinfo-subtabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--colortopbordertitle1, #d5dbe3); margin: 0 0 14px; }
+.nsinfo-subtab { padding: 8px 16px; border-radius: 10px 10px 0 0; color: inherit; text-decoration: none; border-bottom: 3px solid transparent; }
+.nsinfo-subtab:hover { background: rgba(127, 127, 127, 0.12); box-shadow: 0 0 0 1px rgba(127, 127, 127, 0.35) inset; }
+.nsinfo-subtab.active { font-weight: 600; background: rgba(127, 127, 127, 0.12); box-shadow: 0 0 0 1px rgba(127, 127, 127, 0.35) inset; border-bottom-color: var(--colortextlink, #3879B2); }
 @media (max-width: 640px) {
 	/* Mobile : the calendar is a sheet at the bottom of the screen, one month, large touch targets */
 	.nsinfo-cal { position: fixed; top: auto !important; left: 0 !important; right: 0; bottom: 0; width: auto; border-radius: 16px 16px 0 0; padding: 14px 12px 18px; max-height: 90vh; overflow-y: auto; }

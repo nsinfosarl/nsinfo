@@ -1,6 +1,7 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
 ## 23.8.5 - 30/10/2026
+- Onglets d'administration de tous les modules NS INFO (barre contenant l'onglet ChangeLog) : même présentation que les sous-onglets (haut arrondi, fond doux au survol et sur l'onglet actif en gras, trait de couleur sous l'onglet actif), par nsinfo.css.php ; sous-onglets disponibles pour tous les modules (classes .nsinfo-subtabs / .nsinfo-subtab, .active)
 - Nouveau : horloge de choix d'une heure à la manière d'Android (js/modules/timePicker.js, fonction PHP nsinfoTimePickerLoad(), fonction JavaScript nsinfoTimePicker()) : l'heure sur le cadran (anneau extérieur de 1 à 12, anneau intérieur de 13 à 00), puis les minutes, à la souris ou au doigt (appuyer, glisser, relâcher), boutons Maintenant / Effacer / Annuler / OK, feuille en bas d'écran sur mobile, sans bibliothèque ; styles dans nsinfo.css.php (.nsinfo-clock)
 - Calendrier : option `single: true` de nsinfoRangePicker() pour choisir un seul jour (un mois, un clic, début = fin), pour les champs d'une seule date
 
