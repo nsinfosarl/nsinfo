@@ -1,5 +1,8 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.8.7 - 02/11/2026
+- Correction (option « Badges de statut » NSINFO_CSSSTATUS) : les pastilles d'état affichées seules (mode picto, par exemple la colonne « État » des objets liés d'une commande ou d'une facture) étaient masquées par la feuille de style (marqueurs fa-statutX en display: none) ; elles s'affichent maintenant en pastille de la couleur du statut, et restent masquées quand elles accompagnent un libellé ou une référence (badge porté par le libellé)
+
 ## 23.8.6 - 30/10/2026
 - Onglets d'administration de tous les modules NS INFO (barre contenant l'onglet ChangeLog) : même présentation que les sous-onglets (haut arrondi, fond doux au survol et sur l'onglet actif en gras, trait de couleur sous l'onglet actif), par nsinfo.css.php ; sous-onglets disponibles pour tous les modules (classes .nsinfo-subtabs / .nsinfo-subtab, .active)
 

@@ -196,7 +196,8 @@ span.hideonsmartphone:has(+ span.fa-statut10) {
 }
 
 /* ------------------------------------------------------------
-   Masquage des marqueurs fa-statutX (jamais affichés directement)
+   Marqueur fa-statutX seul (affichage « picto » seul, ex. colonne État des objets liés) : pastille de la couleur du statut.
+   Masqué quand il accompagne un libellé (le libellé porte alors le badge) ou une référence (.statusref).
    ------------------------------------------------------------ */
 span.fa-statut0,
 span.fa-statut1,
@@ -211,8 +212,70 @@ span.fa-statut7,
 span.fa-statut8,
 span.fa-statut9,
 span.fa-statut10 {
+    display: inline-block !important;
+    width: .8em;
+    height: .8em;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 2px solid transparent;
+    font-size: 100%;
+}
+
+span.hideonsmartphone + span.fa-statut0,
+span.hideonsmartphone + span.fa-statut1,
+span.hideonsmartphone + span.fa-statut1b,
+span.hideonsmartphone + span.fa-statut2,
+span.hideonsmartphone + span.fa-statut3,
+span.hideonsmartphone + span.fa-statut4,
+span.hideonsmartphone + span.fa-statut4b,
+span.hideonsmartphone + span.fa-statut5,
+span.hideonsmartphone + span.fa-statut6,
+span.hideonsmartphone + span.fa-statut7,
+span.hideonsmartphone + span.fa-statut8,
+span.hideonsmartphone + span.fa-statut9,
+span.hideonsmartphone + span.fa-statut10,
+.statusref > span.fa-statut0,
+.statusref > span.fa-statut1,
+.statusref > span.fa-statut1b,
+.statusref > span.fa-statut2,
+.statusref > span.fa-statut3,
+.statusref > span.fa-statut4,
+.statusref > span.fa-statut4b,
+.statusref > span.fa-statut5,
+.statusref > span.fa-statut6,
+.statusref > span.fa-statut7,
+.statusref > span.fa-statut8,
+.statusref > span.fa-statut9,
+.statusref > span.fa-statut10,
+span.fa-statut0:has(+ span.hideonsmartphone),
+span.fa-statut1:has(+ span.hideonsmartphone),
+span.fa-statut1b:has(+ span.hideonsmartphone),
+span.fa-statut2:has(+ span.hideonsmartphone),
+span.fa-statut3:has(+ span.hideonsmartphone),
+span.fa-statut4:has(+ span.hideonsmartphone),
+span.fa-statut4b:has(+ span.hideonsmartphone),
+span.fa-statut5:has(+ span.hideonsmartphone),
+span.fa-statut6:has(+ span.hideonsmartphone),
+span.fa-statut7:has(+ span.hideonsmartphone),
+span.fa-statut8:has(+ span.hideonsmartphone),
+span.fa-statut9:has(+ span.hideonsmartphone),
+span.fa-statut10:has(+ span.hideonsmartphone) {
     display: none !important;
 }
+
+span.fa-statut0 { background-color: #cbd3d3; border-color: #cbd3d3; }
+span.fa-statut1 { background-color: #bc9526; border-color: #bc9526; }
+span.fa-statut1b { background-color: #bc9526; border-color: #bc9526; }
+span.fa-statut2 { background-color: #9c9c26; border-color: #9c9c26; }
+span.fa-statut3 { background-color: #bca52b; border-color: #bca52b; }
+span.fa-statut4 { background-color: #25a580; border-color: #25a580; }
+span.fa-statut4b { background-color: #25a580; border-color: #25a580; }
+span.fa-statut5 { background-color: #cad2d2; border-color: #cad2d2; }
+span.fa-statut6 { background-color: #cad2d2; border-color: #cad2d2; }
+span.fa-statut7 { background-color: #25a580; border-color: #25a580; }
+span.fa-statut8 { background-color: #994013; border-color: #994013; }
+span.fa-statut9 { background-color: #e7f0f0; border-color: #e7f0f0; }
+span.fa-statut10 { background-color: #993013; border-color: #993013; }
 
 /* ------------------------------------------------------------
    Version "référence" : le marqueur fa-statutX est enfant direct
