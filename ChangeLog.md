@@ -1,5 +1,11 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.8.9 - 04/11/2026
+- Calendrier de période : option exclusive (le dernier jour est le jour du retour : du 4 au 6 = 2 jours, un jour au minimum) pour le nombre de jours affiché, utilisée par le prêt de digipickupreturn
+
+## 23.8.8 - 03/11/2026
+- Réglages (nsinfoSetup), type « warehouse » : sélection simple ou multiple (option 'multiple' => 1, identifiants séparés par des virgules, comme la catégorie multiple), enregistrée à chaque changement ; la liste déroulante simple s'affiche sans la flèche de droite, comme la sélection multiple, y compris sur la première ligne du tableau (la classe est posée sur un conteneur : le formulaire de la première ligne, imbriqué dans celui du tableau, est ignoré par le navigateur) ; le bouton « Mettre à jour » est retiré (il ne servait plus à rien) et le bouton + ajoute l'entrepôt créé à la sélection (nouvelle action multiadd de nsinfoAction, entrepôt de l'entité vérifié)
+
 ## 23.8.7 - 02/11/2026
 - Correction (option « Badges de statut » NSINFO_CSSSTATUS) : les pastilles d'état affichées seules (mode picto, par exemple la colonne « État » des objets liés d'une commande ou d'une facture) étaient masquées par la feuille de style (marqueurs fa-statutX en display: none) ; elles s'affichent maintenant en pastille de la couleur du statut, et restent masquées quand elles accompagnent un libellé ou une référence (badge porté par le libellé)
 

@@ -23,6 +23,7 @@
  *                               labels: {today:'', clear:'', days:'', from:'', to:''}, onChange: function(start, end) {}})
  *
  * Option single: true = one day only (one month, one click chooses the day, start = end), for the fields of one date.
+ * Option exclusive: true = the last day is the day of the return (loan : 4 to 6 = 2 days, minimum 1), the number of days shown is the difference.
  */
 (function (window, $) {
 	'use strict';
@@ -86,7 +87,7 @@
 
 		function summary() {
 			if (o.single) { return start ? '<b>' + start.toLocaleDateString(o.lang) + '</b>' : labels.pick; }
-			if (start && end) { return labels.from + ' <b>' + start.toLocaleDateString(o.lang) + '</b> ' + labels.to + ' <b>' + end.toLocaleDateString(o.lang) + '</b> &middot; ' + days(start, end) + ' ' + labels.days; }
+			if (start && end) { return labels.from + ' <b>' + start.toLocaleDateString(o.lang) + '</b> ' + labels.to + ' <b>' + end.toLocaleDateString(o.lang) + '</b> &middot; ' + (o.exclusive ? Math.max(1, days(start, end) - 1) : days(start, end)) + ' ' + labels.days; }
 			if (start) { return labels.from + ' <b>' + start.toLocaleDateString(o.lang) + '</b> &hellip;'; }
 			return labels.pick;
 		}

@@ -182,31 +182,54 @@ function nsinfoSetup($arrayofparameters)
                     break;
 
                 case 'warehouse' :
+                    // One warehouse, or several with 'multiple' => 1 (ids saved comma separated, like the categories of 'seltags') ; saved at each change
+                    // (script at the end of the page, no button) ; 'urlnew' : button + to create a warehouse, which comes back selected (or added)
                     require_once DOL_DOCUMENT_ROOT . '/product/class/html.formproduct.class.php';
                     $formproduct = new FormProduct($db);
-//					$tmpobject = $desc['object'];
                     $css = !empty($desc['css']) ? $desc['css'] : 'minwidth200';
                     $urlnew = !empty($desc['urlnew']) ? $desc['urlnew'] : '';
                     $urlnewtoolip = !empty($desc['urlnewtoolip']) ? $desc['urlnewtoolip'] : '';
+                    $multiple = !empty($desc['multiple']);
 
                     print '<tr class="oddeven">';
                     print '<td>';
                     print !empty($desc['Tooltip']) ? $form->textwithpicto($langs->trans($key), $langs->trans($key . '_Tooltip')) : $langs->transnoentitiesnoconv($key);
                     print '</td>';
                     print '<td>';
+                    // Drop-down list without the arrow on the right, like the multiple selection (one style for the page)
+                    static $noarrowstyle = false;
+                    if (!$noarrowstyle) {
+                        $noarrowstyle = true;
+                        print '<style>
+.nsinfo-noarrow .select2-container--default .select2-selection--single .select2-selection__arrow { display: none; }
+.nsinfo-noarrow .select2-container--default .select2-selection--single .select2-selection__rendered { padding-right: 8px; }
+.nsinfo-noarrow select { -webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: none; padding-right: 8px; }
+</style>';
+                    }
                     print '<form method="post" action="' . $_SERVER['PHP_SELF'] . '" style="display: inline;">';
                     print '<input type="hidden" name="token" value="' . $_SESSION['newtoken'] . '">';
-                    print '<input type="hidden" name="action" value="listsel" />';
+                    print '<input type="hidden" name="action" value="' . ($multiple ? 'multilistsel' : 'listsel') . '" />';
                     print '<input type="hidden" name="varlst" value="' . $key . '" />';
-//					var_dump(getDolGlobalInt($key));
-                    print $formproduct->selectWarehouses(getDolGlobalInt($key), $key, '', 1, 0, 0, '', 0, 0, array(), $css);
+                    // The class is on a container, not on the form : the form of the first row is nested in the one of the table and ignored by the browser
+                    print '<span class="nsinfo-noarrow">';
+                    if ($multiple) {
+                        $formproduct->loadWarehouses('', '', '', false);
+                        $warehouselist = array();
+                        foreach ($formproduct->cache_warehouses as $whid => $whdesc) {
+                            $warehouselist[$whid] = $whdesc['label'];
+                        }
+                        print img_picto('', 'stock', 'class="pictofixedwidth"');
+                        print $form->multiselectarray($key, $warehouselist, array_filter(explode(',', getDolGlobalString($key))), 0, 0, !empty($desc['css']) ? $desc['css'] : 'minwidth300', 0, 0);
+                    } else {
+                        print $formproduct->selectWarehouses(getDolGlobalInt($key), $key, '', 1, 0, 0, '', 0, 0, array(), $css);
+                    }
+                    print '</span>';
                     print '&emsp;';
-                    // The warehouse created by the button + comes back selected and saved (__ID__ is replaced by Dolibarr, action listsel of nsinfoAction)
-                    if (!empty($urlnew)) print '<a href="' . DOL_URL_ROOT . $urlnew . '&backtopage=' . urlencode($_SERVER["PHP_SELF"] . '?action=listsel&varlst=' . $key . '&' . $key . '=__ID__') . '"><span class="fa fa-plus-circle valignmiddle" title="' . $langs->trans("AddProject") . '"></span></a>';
+                    // The warehouse created by the button + comes back selected (or added to the list) and saved (__ID__ is replaced by Dolibarr, actions listsel / multiadd of nsinfoAction)
+                    if (!empty($urlnew)) print '<a href="' . DOL_URL_ROOT . $urlnew . '&backtopage=' . urlencode($_SERVER["PHP_SELF"] . '?action=' . ($multiple ? 'multiadd' : 'listsel') . '&varlst=' . $key . '&' . $key . '=__ID__') . '"><span class="fa fa-plus-circle valignmiddle" title="' . $langs->trans("AddProject") . '"></span></a>';
 
-                    print '</td><td>';
-                    print '<input type="submit" class="button" value="' . $langs->trans("Update") . '" />';
                     print '</form>';
+                    print '</td><td>';
                     print '</td>';
                     break;
 
@@ -1055,7 +1078,7 @@ function nsinfoAction($action, $var, $value, $vartxt, $varround, $valuetxt, $def
 
     // GET requests are not protected by the core CSRF check (POST forms are): require the token for every action
     // that writes a constant ('listsel' is also reached from the return link of a creation card, without token)
-    if (!empty($action) && $_SERVER['REQUEST_METHOD'] != 'POST' && $action != 'listsel'
+    if (!empty($action) && $_SERVER['REQUEST_METHOD'] != 'POST' && $action != 'listsel' && $action != 'multiadd'
         && ($action == 'activate' || $action == 'disable' || $action == 'set' || $action == 'reset' || $action == 'datesel' || $action == 'selectfont'
             || preg_match('/^(set_|del_|set|multilistsel|listselstrg)/', $action))) {
         // Modules built on nsinfo whose links carry no token yet: accepted only when the request comes from a page of the same host
@@ -1111,6 +1134,19 @@ function nsinfoAction($action, $var, $value, $vartxt, $varround, $valuetxt, $def
     elseif ($action == 'setcolor') {
         $const = implode(', ', colorStringToArray(GETPOST($varcolor, 'alpha')));
         dolibarr_set_const($db, $varcolor, $const, 'chaine', 0, '', $conf->entity);
+    } elseif ($action == 'multiadd' && !empty($varlist)) {
+        // A warehouse (or other element) just created is added to the selection of a multiple list ; the id must be a warehouse of the entity
+        $newid = GETPOSTINT($varlist);
+        if ($newid > 0) {
+            $resw = $db->query("SELECT rowid FROM " . MAIN_DB_PREFIX . "entrepot WHERE rowid = " . ((int) $newid) . " AND entity IN (" . getEntity('stock') . ")");
+            if ($resw && $db->num_rows($resw) > 0) {
+                $cur = array_filter(explode(',', getDolGlobalString($varlist)));
+                if (!in_array($newid, $cur)) {
+                    $cur[] = $newid;
+                    dolibarr_set_const($db, $varlist, implode(',', $cur), 'chaine', 0, '', $conf->entity);
+                }
+            }
+        }
     } elseif ($action == 'multilistsel' && !empty($varlist)) {
         $arr = GETPOST($varlist, 'array');
         $res = '';
