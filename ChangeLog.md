@@ -1,5 +1,10 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.8.10 - 04/11/2026
+- Réglages (nsinfoSetup), type « color » : le sélecteur affiche la valeur par défaut ('default') tant qu'aucune couleur n'est enregistrée
+- Réglages (nsinfoSetup), type « bool » : option 'picto' pour afficher un picto devant le libellé
+- Mise en page à onglets verticaux (liste à gauche, contenu à droite) : nsinfoVerticalTabsStart() / nsinfoVerticalTabsEnd(), même tableau d'onglets que dol_get_fiche_head
+
 ## 23.8.9 - 04/11/2026
 - Réglages (nsinfoSetup), type « warehouse » en sélection simple : picto de stock devant la liste, comme en sélection multiple
 - Calendrier de période : option exclusive (le dernier jour est le jour du retour : du 4 au 6 = 2 jours, un jour au minimum) pour le nombre de jours affiché, utilisée par le prêt de digipickupreturn

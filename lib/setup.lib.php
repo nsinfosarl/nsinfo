@@ -129,6 +129,48 @@ function Listmodelmail($user, $typecmde, $outputlangs)
 }
 
 /**
+ * Ouvre une mise en page à onglets verticaux : liste des onglets à gauche, contenu à droite
+ * (même tableau d'onglets que dol_get_fiche_head : url, libellé HTML, clé) ; à fermer avec nsinfoVerticalTabsEnd()
+ *
+ * @param	array<int,array{0:string,1:string,2:string}>	$head	Onglets (url, libellé, clé)
+ * @param	string											$active	Clé de l'onglet actif
+ * @return	void
+ */
+function nsinfoVerticalTabsStart($head, $active)
+{
+    static $styled = false;
+
+    if (!$styled) {
+        $styled = true;
+        print '<style>
+.nsinfo-vtabs { display: flex; align-items: flex-start; gap: 20px; margin: 10px 0 20px; }
+.nsinfo-vtabs-nav { flex: 0 0 230px; display: flex; flex-direction: column; border: 1px solid var(--colortopbordertitle1, #ddd); border-radius: 10px; overflow: hidden; background: var(--colorbackbody, #fff); }
+.nsinfo-vtabs-nav a { display: block; padding: 11px 16px; text-decoration: none !important; color: inherit !important; border-bottom: 1px solid var(--colortopbordertitle1, #ddd); border-left: 4px solid transparent; }
+.nsinfo-vtabs-nav a:last-child { border-bottom: 0; }
+.nsinfo-vtabs-nav a:hover { background: rgba(85, 56, 133, .08); }
+.nsinfo-vtabs-nav a.active { background: rgba(85, 56, 133, .14); border-left-color: #553885; font-weight: bold; }
+.nsinfo-vtabs-content { flex: 1 1 auto; min-width: 0; }
+@media (max-width: 800px) { .nsinfo-vtabs { flex-direction: column; } .nsinfo-vtabs-nav { flex: none; width: 100%; } }
+</style>';
+    }
+    print '<div class="nsinfo-vtabs"><nav class="nsinfo-vtabs-nav">';
+    foreach ($head as $tab) {
+        print '<a href="' . dol_escape_htmltag($tab[0]) . '" class="' . ($tab[2] == $active ? 'active' : '') . '">' . $tab[1] . '</a>';
+    }
+    print '</nav><div class="nsinfo-vtabs-content">';
+}
+
+/**
+ * Ferme la mise en page à onglets verticaux ouverte par nsinfoVerticalTabsStart()
+ *
+ * @return	void
+ */
+function nsinfoVerticalTabsEnd()
+{
+    print '</div></div>';
+}
+
+/**
  * @param $arrayofparameters
  * @return void
  * @throws Exception
@@ -344,6 +386,7 @@ function nsinfoSetup($arrayofparameters)
                 case 'bool' :
                     print '<tr class="oddeven">';
                     print '<td>';
+                    if (!empty($desc['picto'])) print img_picto('', $desc['picto'], 'class="pictofixedwidth valignmiddle"');	// picto optionnel devant le libellé
                     print !empty($desc['Tooltip']) ? $form->textwithpicto($langs->trans($key), $langs->trans($key . '_Tooltip')) : $langs->transnoentitiesnoconv($key);
                     print '</td>';
                     print '<td>';
@@ -452,7 +495,10 @@ function nsinfoSetup($arrayofparameters)
                     break;
 
                 case 'color' :
-                    $txtcolor = !empty(getDolGlobalString($key)) ? colorArrayToHex(explode(',', getDolGlobalString($key))) : colorArrayToHex('0, 0, 0');
+                    // Sans valeur enregistrée : la valeur par défaut du réglage ('default', « r,g,b »), sinon noir
+                    $currentcolor = getDolGlobalString($key);
+                    if ($currentcolor === '' && !empty($desc['default'])) $currentcolor = $desc['default'];
+                    $txtcolor = !empty($currentcolor) ? colorArrayToHex(explode(',', $currentcolor)) : colorArrayToHex('0, 0, 0');
                     print '<tr class="oddeven">';
                     print '<td>';
                     print !empty($desc['Tooltip']) ? $form->textwithpicto($langs->trans($key), $langs->trans($key . '_Tooltip')) : $langs->transnoentitiesnoconv($key);
