@@ -1,6 +1,7 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
 ## 23.8.9 - 04/11/2026
+- Réglages (nsinfoSetup), type « warehouse » en sélection simple : picto de stock devant la liste, comme en sélection multiple
 - Calendrier de période : option exclusive (le dernier jour est le jour du retour : du 4 au 6 = 2 jours, un jour au minimum) pour le nombre de jours affiché, utilisée par le prêt de digipickupreturn
 
 ## 23.8.8 - 03/11/2026

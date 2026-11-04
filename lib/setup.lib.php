@@ -204,6 +204,9 @@ function nsinfoSetup($arrayofparameters)
 .nsinfo-noarrow .select2-container--default .select2-selection--single .select2-selection__arrow { display: none; }
 .nsinfo-noarrow .select2-container--default .select2-selection--single .select2-selection__rendered { padding-right: 8px; }
 .nsinfo-noarrow select { -webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: none; padding-right: 8px; }
+/* Même largeur et même position pour la sélection simple et la sélection multiple */
+.nsinfo-noarrow .select2-container { width: 300px !important; min-width: 300px; margin: 0 !important; box-sizing: border-box; }
+.nsinfo-noarrow .select2-container .select2-selection { box-sizing: border-box; min-height: 28px; }
 </style>';
                     }
                     print '<form method="post" action="' . $_SERVER['PHP_SELF'] . '" style="display: inline;">';
@@ -221,6 +224,7 @@ function nsinfoSetup($arrayofparameters)
                         print img_picto('', 'stock', 'class="pictofixedwidth"');
                         print $form->multiselectarray($key, $warehouselist, array_filter(explode(',', getDolGlobalString($key))), 0, 0, !empty($desc['css']) ? $desc['css'] : 'minwidth300', 0, 0);
                     } else {
+                        print img_picto('', 'stock', 'class="pictofixedwidth"');	// même picto que la sélection multiple
                         print $formproduct->selectWarehouses(getDolGlobalInt($key), $key, '', 1, 0, 0, '', 0, 0, array(), $css);
                     }
                     print '</span>';
