@@ -1,5 +1,15 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.9.0 - 05/11/2026
+- Traduction automatique partagée par les modules NS INFO : bibliothèque lib/autotrad.lib.php (DeepL API Free / Pro, Google Cloud Translation, Microsoft Azure Translator, LibreTranslate, MyMemory, Lingva Translate ; fonctions nsinfoTradTranslate(), nsinfoTradActiveProvider(), nsinfoTradLangIndex()) et ajax/translate.php (texte, langue d'arrivée, HTML ou non ; langue de départ = langue de l'utilisateur)
+- Page de réglages admin/trad_module.php?namemodule=<module>, sur le principe de changelog_module.php : choix de l'API dans une liste, réglages utiles à chacune (constantes NSINFO_TRAD_*), conditions de fonctionnement et test ; elle n'est pas affichée dans le module nsinfo, chaque module ajoute l'onglet dans son AdminPrepareHead (code d'onglet « trad »)
+- Traduction automatique : couleur du pictogramme réglable dans la page admin (vert par défaut, NSINFO_TRAD_COLOR, bouton pour remettre le vert)
+- Traduction automatique : le pictogramme n'apparaît que sur les champs cochés, dans un sous-onglet « Champs avec le pictogramme » de la page admin (l'autre sous-onglet « API et affichage » garde l'API, la portée, la position et la couleur ; liste fournie par le module avec la fonction <module>TradFields(), constante NSINFO_TRAD_FIELDS, aucun champ par défaut ; fonctions nsinfoTradFields() / nsinfoTradFieldEnabled())
+- Import de code HTML par glisser-déposer (lib/htmlimport.lib.php, 5 langues) : nsinfoHtmlDropZone($champ) (zone sur un champ HTML, remplacement après confirmation), nsinfoHtmlImportDialog() (bouton et fenêtre de dépôt d'un fichier) et nsinfoHtmlToStored() (format de stockage d'un code HTML saisi en texte), utilisables par tous les modules
+- Traduction automatique : réglages communs à tous les modules (Dolibarr) ou propres à un module, au choix dans la page admin (option « Portée des réglages », constantes NSINFO_TRAD_SCOPE_<MODULE> et NSINFO_TRAD_<MODULE>_*) ; un module appelant fait nsinfoTradContext('<module>') avant d'utiliser la bibliothèque (ajax/translate.php accepte le paramètre module)
+- Traduction automatique : le bouton « Traduire » devient un simple pictogramme (fa-language) à côté du champ, présent seulement quand une API est configurée ; sa position est réglée dans la page admin (à droite du champ, ou dans le champ en haut / en bas à droite : NSINFO_TRAD_POSITION) ; fonctions nsinfoTradWrapOpen() / nsinfoTradPictoHtml() / nsinfoTradCss() pour les autres modules
+- Traduction automatique : textes de l'onglet traduits dans les 5 langues (fr, en, de, it, es), liens vers la création de compte / de clé d'API de chaque service (ouverts dans un nouvel onglet)
+
 ## 23.8.10 - 04/11/2026
 - Réglages (nsinfoSetup), type « color » : le sélecteur affiche la valeur par défaut ('default') tant qu'aucune couleur n'est enregistrée
 - Réglages (nsinfoSetup), type « bool » : option 'picto' pour afficher un picto devant le libellé
