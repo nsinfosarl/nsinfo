@@ -138,3 +138,5 @@ NsinfoHtmlImportHelp = Il file HTML (.html, .htm o .txt) sostituisce il codice H
 NsinfoHtmlImportDrop = Rilasciate qui il file HTML o fate clic per sceglierlo
 NsinfoHtmlImportEmpty = File vuoto, troppo grande (1 MB al massimo) o illeggibile
 NsinfoHtmlImportDone = Codice HTML sostituito dal file
+NsinfoResetDefault = Ripristina predefinito
+NsinfoResetDefaultConfirm = Ripristinare queste impostazioni al valore predefinito?

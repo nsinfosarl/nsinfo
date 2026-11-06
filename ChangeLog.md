@@ -1,5 +1,10 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.9.1 - 06/11/2026
+- nsinfoSetup() : les pictos « remettre par défaut » apparaissent et disparaissent aussitôt après chaque changement (interrupteur ou champ), sans recharger la page
+- nsinfoSetup() : un picto ↺ « remettre par défaut » devant chaque réglage qui déclare une valeur par défaut (clé « default »), visible seulement si la valeur diffère ; le type « resetdefault » remet les valeurs par défaut déclarées
+- nsinfoSetup() : nouveau type « resetdefault » (liste de constantes dans « keys », bouton « Remettre par défaut » avec confirmation, supprime les constantes pour revenir aux valeurs par défaut du module ; traitement dans nsinfoAction, jeton exigé)
+
 ## 23.9.0 - 05/11/2026
 - Traduction automatique partagée par les modules NS INFO : bibliothèque lib/autotrad.lib.php (DeepL API Free / Pro, Google Cloud Translation, Microsoft Azure Translator, LibreTranslate, MyMemory, Lingva Translate ; fonctions nsinfoTradTranslate(), nsinfoTradActiveProvider(), nsinfoTradLangIndex()) et ajax/translate.php (texte, langue d'arrivée, HTML ou non ; langue de départ = langue de l'utilisateur)
 - Page de réglages admin/trad_module.php?namemodule=<module>, sur le principe de changelog_module.php : choix de l'API dans une liste, réglages utiles à chacune (constantes NSINFO_TRAD_*), conditions de fonctionnement et test ; elle n'est pas affichée dans le module nsinfo, chaque module ajoute l'onglet dans son AdminPrepareHead (code d'onglet « trad »)

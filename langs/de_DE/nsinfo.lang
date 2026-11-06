@@ -138,3 +138,5 @@ NsinfoHtmlImportHelp = Die HTML-Datei (.html, .htm oder .txt) ersetzt den HTML-C
 NsinfoHtmlImportDrop = HTML-Datei hier ablegen oder zum Auswählen klicken
 NsinfoHtmlImportEmpty = Datei leer, zu groß (höchstens 1 MB) oder nicht lesbar
 NsinfoHtmlImportDone = HTML-Code durch die Datei ersetzt
+NsinfoResetDefault = Auf Standard zurücksetzen
+NsinfoResetDefaultConfirm = Diese Einstellungen auf den Standardwert zurücksetzen?

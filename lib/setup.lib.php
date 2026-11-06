@@ -171,6 +171,37 @@ function nsinfoVerticalTabsEnd()
 }
 
 /**
+ * Picto « remettre par défaut » d'un réglage : affiché seulement si la valeur en cours diffère de la valeur par défaut déclarée par le module
+ * (clé 'default' du paramètre). Un interrupteur éteint n'a pas de constante : il compte pour 0.
+ *
+ * @param	string					$key	Constante
+ * @param	array<string,mixed>		$desc	Description du paramètre (clé 'default' : valeur par défaut)
+ * @return	string							HTML (vide si la valeur est la valeur par défaut)
+ */
+function nsinfoDefaultPicto($key, $desc)
+{
+	global $langs;
+
+	if (!array_key_exists('default', $desc)) {
+		return '';
+	}
+	$current = strtolower(trim(getDolGlobalString($key)));
+	$default = strtolower(trim((string) $desc['default']));
+	if (in_array($desc['type'], array('bool', 'bool2', 'boolall'), true)) {
+		$current = ($current === '' ? '0' : $current);
+		$default = ($default === '' ? '0' : $default);
+	}
+	if ($current === $default || ($current === '' && $default === '0')) {
+		return '';
+	}
+	$query = array();
+	parse_str((string) (isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : ''), $query);
+	unset($query['action'], $query['var'], $query['token']);
+	$query = array_merge($query, array('action' => 'nsinforeset', 'var' => $key, 'token' => newToken()));
+	return ' <a class="reposition nsinfo-default" href="' . $_SERVER['PHP_SELF'] . '?' . http_build_query($query) . '" title="' . dol_escape_htmltag($langs->trans('NsinfoResetDefault')) . '"><span class="fas fa-undo-alt" style="color: #553885"></span></a>';
+}
+
+/**
  * @param $arrayofparameters
  * @return void
  * @throws Exception
@@ -189,6 +220,11 @@ function nsinfoSetup($arrayofparameters)
     if (!empty($arrayofparameters)) {
         $desc = array();
         foreach ($arrayofparameters as $key => $desc) {
+            // Réglage avec valeur par défaut (clé 'default') : la sortie de la ligne est capturée pour y ajouter le picto « remettre par défaut »
+            $withdefault = array_key_exists('default', $desc) && !in_array($desc['type'], array('sep', 'tabdeb', 'tabdeb2', 'tabfin', 'hidden', 'titletab', 'titletabdesc', 'link', 'resetdefault'));
+            if ($withdefault) {
+                ob_start();
+            }
             switch ($desc['type']) {
                 case 'listfont' :
                     $selected_font = getDolGlobalString('DPERSOPLUS_DEFFONT') !== null ? getDolGlobalString('DPERSOPLUS_DEFFONT') : 'centurygothic';
@@ -425,6 +461,22 @@ function nsinfoSetup($arrayofparameters)
                     print '&emsp;';
                     print '</td>';
                     break;	// La ligne est fermée après le switch, comme pour les autres types
+
+                case 'resetdefault' :
+                    // One button that puts back the default value of the constants listed in $desc['keys'] (they are deleted : the code of the
+                    // module then uses its default) ; the list is read from $arrayofparameters in nsinfoAction, not from the url
+                    print '<tr class="oddeven">';
+                    print '<td>';
+                    if (!empty($desc['picto'])) print img_picto('', $desc['picto'], 'class="pictofixedwidth valignmiddle"');
+                    print !empty($desc['Tooltip']) ? $form->textwithpicto($langs->trans($key), $langs->trans($key . '_Tooltip')) : $langs->transnoentitiesnoconv($key);
+                    print '</td>';
+                    print '<td>';
+                    $resetlabel = !empty($desc['label']) ? $langs->trans($desc['label']) : $langs->trans('NsinfoResetDefault');
+                    print '<a class="button button-cancel reposition" href="' . $_SERVER['PHP_SELF'] . '?action=resetdefault&var=' . urlencode($key) . '&token=' . newToken() . '" onclick="return confirm(' . dol_escape_htmltag(json_encode($langs->transnoentitiesnoconv('NsinfoResetDefaultConfirm'))) . ');"><span class="fas fa-undo-alt paddingright"></span>' . dol_escape_htmltag($resetlabel) . '</a>';
+                    print '</td><td>';
+                    print '&emsp;';
+                    print '</td>';
+                    break;
 
                 case 'bool2' :
                     $const_prefixe = !empty($desc['const_prefixe']) ? $desc['const_prefixe'] . '_' : '';
@@ -1066,7 +1118,37 @@ function nsinfoSetup($arrayofparameters)
             if (!in_array($desc['type'], array('sep', 'tabdeb', 'tabdeb2', 'tabfin', 'hidden', 'titletab', 'titletabdesc', 'link'))) {
                 print '</tr>';
             }
+            if ($withdefault) {
+                $rowhtml = ob_get_clean();
+                $pictohtml = nsinfoDefaultPicto($key, $desc);
+                $lastcell = strrpos($rowhtml, '</td>');
+                $slot = '<span class="nsinfo-dp" data-key="' . dol_escape_htmltag($key) . '">' . $pictohtml . '</span>';
+                echo ($lastcell !== false) ? substr($rowhtml, 0, $lastcell) . $slot . substr($rowhtml, $lastcell) : $rowhtml;
+            }
         }
+
+        // Les pictos « remettre par défaut » se mettent à jour après chaque enregistrement (interrupteur ou champ), sans recharger la page
+        print '<script' . (function_exists('getNonce') ? ' nonce="' . getNonce() . '"' : '') . '>
+jQuery(function($) {
+	var timer = null;
+	function refreshDefaults() {
+		$.get(window.location.href, function(html) {
+			var $new = $("<div></div>").append($.parseHTML(html));
+			$(".nsinfo-dp").each(function() {
+				var key = $(this).data("key");
+				var $src = $new.find(".nsinfo-dp").filter(function() { return $(this).data("key") === key; });
+				if ($src.length) { $(this).html($src.first().html()); }
+			});
+		});
+	}
+	$(document).ajaxComplete(function(e, xhr, settings) {
+		if (settings && ((settings.url && settings.url.indexOf("constantonoff.php") >= 0) || settings.type === "POST")) {
+			clearTimeout(timer);
+			timer = setTimeout(refreshDefaults, 400);
+		}
+	});
+});
+</script>';
 
         // Enregistrement automatique au changement de tous les champs de réglage (texte, nombre, couleur, listes, dates,
         // zones de texte...), sans recharger la page : coche verte en bout de ligne une fois enregistré (le bouton Mettre à jour reste affiché)
@@ -1142,6 +1224,21 @@ function nsinfoAction($action, $var, $value, $vartxt, $varround, $valuetxt, $def
         }
     }
 
+    // Un réglage remis à sa valeur par défaut (picto devant chaque réglage qui déclare 'default')
+    if ($action == 'nsinforeset' && isset($arrayofparameters[$var]) && array_key_exists('default', $arrayofparameters[$var])) {
+        if (GETPOST('token', 'alpha') != currentToken()) {
+            return 0;
+        }
+        $resetdefault = (string) $arrayofparameters[$var]['default'];
+        if ($resetdefault === '' || $resetdefault === '0') {
+            dolibarr_del_const($db, $var, $conf->entity);
+        } else {
+            dolibarr_set_const($db, $var, $resetdefault, 'chaine', 0, '', $conf->entity);
+        }
+        setEventMessages($langs->trans('SetupSaved'), null, 'mesgs');
+        return 1;
+    }
+
     // Type 'boolall' : enable / disable all the boolean constants of the parameter (list read from $arrayofparameters)
     if (($action == 'boolall_on' || $action == 'boolall_off') && !empty($arrayofparameters[$var]['keys']) && $arrayofparameters[$var]['type'] == 'boolall') {
         if (GETPOST('token', 'alpha') != currentToken()) {
@@ -1154,6 +1251,23 @@ function nsinfoAction($action, $var, $value, $vartxt, $varround, $valuetxt, $def
                 dolibarr_del_const($db, $boolkey, $conf->entity);
             }
         }
+        return 1;
+    }
+
+    // Type 'resetdefault' : delete the constants of the parameter, so that the module goes back to its default values (list read from $arrayofparameters)
+    if ($action == 'resetdefault' && !empty($arrayofparameters[$var]['keys']) && $arrayofparameters[$var]['type'] == 'resetdefault') {
+        if (GETPOST('token', 'alpha') != currentToken()) {
+            return 0;
+        }
+        foreach ((array) $arrayofparameters[$var]['keys'] as $resetkey) {
+            $resetvalue = isset($arrayofparameters[$resetkey]) && array_key_exists('default', $arrayofparameters[$resetkey]) ? (string) $arrayofparameters[$resetkey]['default'] : '';
+            if ($resetvalue === '' || $resetvalue === '0') {
+                dolibarr_del_const($db, $resetkey, $conf->entity);
+            } else {
+                dolibarr_set_const($db, $resetkey, $resetvalue, 'chaine', 0, '', $conf->entity);
+            }
+        }
+        setEventMessages($langs->trans('SetupSaved'), null, 'mesgs');
         return 1;
     }
 
