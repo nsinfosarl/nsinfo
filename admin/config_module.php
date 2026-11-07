@@ -41,6 +41,7 @@ require_once DOL_DOCUMENT_ROOT.'/core/class/html.form.class.php';
 dol_include_once('/nsinfo/lib/nsinfo.lib.php');
 
 /**
+ * @var Societe $mysoc
  * @var Conf $conf
  * @var DoliDB $db
  * @var Translate $langs
@@ -123,12 +124,15 @@ if ($action == 'download' && $tokenok) {
 		'format' => 'nsinfo-module-config',
 		'module' => $namemodule,
 		'module_version' => trim((string) @file_get_contents(dol_buildpath('/'.$namemodule.'/VERSION', 0))),
+		'company' => (string) $mysoc->name,
 		'dolibarr' => DOL_VERSION,
 		'date' => dol_print_date(dol_now(), '%Y-%m-%d %H:%M:%S'),
 		'constants' => $constants,
 	);
 	header('Content-Type: application/json; charset=utf-8');
-	header('Content-Disposition: attachment; filename="'.$namemodule.'_parametres.json"');
+	// The name of the file carries the name of the module, the name of the company and the date of creation
+	$company = trim(preg_replace('/[^A-Za-z0-9]+/', '_', dol_string_unaccent((string) $mysoc->name)), '_');
+	header('Content-Disposition: attachment; filename="'.$namemodule.'_parametres'.($company !== '' ? '_'.$company : '').'_'.dol_print_date(dol_now(), '%Y-%m-%d_%H%M').'.json"');
 	print json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)."\n";
 	exit;
 }
