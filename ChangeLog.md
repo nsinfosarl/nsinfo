@@ -1,5 +1,8 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.9.2 - 07/11/2026
+- Sauvegarde des paramètres d'un module : page générique admin/config_module.php?namemodule=<module>, sur le principe de changelog_module.php et trad_module.php (code d'onglet « configmodule », ajoutée par chaque module dans son AdminPrepareHead) ; export dans un fichier JSON (format « nsinfo-module-config ») des constantes du module choisies dans une liste, mots de passe / clés / jetons exclus sauf case cochée ; import par glisser-déposer ou texte collé vers un autre Dolibarr (seules les constantes du module sont acceptées, jeton exigé, fichier d'un autre module refusé) ; le détail des constantes n'est affiché que si l'on coche « Afficher le détail » (sinon résumé et export de tout sauf les données sensibles) ; l'onglet se place toujours juste avant « ChangeLog » ; textes dans les 5 langues
+
 ## 23.9.1 - 06/11/2026
 - nsinfoSetup() : les pictos « remettre par défaut » apparaissent et disparaissent aussitôt après chaque changement (interrupteur ou champ), sans recharger la page
 - nsinfoSetup() : un picto ↺ « remettre par défaut » devant chaque réglage qui déclare une valeur par défaut (clé « default »), visible seulement si la valeur diffère ; le type « resetdefault » remet les valeurs par défaut déclarées
