@@ -1,2 +1,5 @@
 # Documentation of the module (Dolistore page): kept on the network share, not in the repository
 description.md
+
+# Archives zip du module (générées par l'utilisateur)
+bin/module_nsinfo-*.zip
