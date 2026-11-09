@@ -66,6 +66,7 @@ $langs->loadLangs(array("admin", "nsinfo@nsinfo", $namemodule.'@'.$namemodule));
 // Settings common to all the modules, or specific to the module (option shown below)
 nsinfoTradContext($namemodule);
 $prefix = nsinfoTradPrefix();
+$forcedscope = nsinfoTradForcedScope($namemodule);	// Scope imposed by the module (<module>TradScope()), '' = free choice
 $canscope = ($namemodule != 'nsinfo');
 
 if (!$user->admin) {
@@ -81,7 +82,7 @@ $providers = nsinfoTradProviders();
 if ($action == 'setconst') {
 	$name = GETPOST('name', 'aZ09');
 	$value = trim((string) GETPOST('value', 'restricthtml'));
-	$allowed = array($prefix.'PROVIDER', $prefix.'POSITION', $prefix.'COLOR', $prefix.'FIELDS');
+	$allowed = array($prefix.'PROVIDER', $prefix.'POSITION', $prefix.'COLOR', nsinfoTradFieldsConst());
 	if ($canscope) {
 		$allowed[] = 'NSINFO_TRAD_SCOPE_'.strtoupper($namemodule);
 	}
@@ -95,7 +96,7 @@ if ($action == 'setconst') {
 		if ($name == $prefix.'PROVIDER' && $value !== '' && !isset($providers[$value])) {
 			$value = '';
 		}
-		if ($name == $prefix.'FIELDS') {
+		if ($name == nsinfoTradFieldsConst()) {
 			// Only the fields listed by the module
 			$known = function_exists($namemodule.'TradFields') ? array_keys(call_user_func($namemodule.'TradFields')) : array();
 			$value = implode(',', array_intersect(array_map('trim', explode(',', $value)), $known));
@@ -184,7 +185,9 @@ print '</div><span class="tdl-ok">&#10004;</span><br><span class="opacitymedium 
 } else {
 // List of the providers
 print '<table class="border centpercent">';
-if ($canscope) {
+if ($canscope && $forcedscope !== '') {
+	print '<tr><td class="titlefield">'.$langs->trans('NsinfoTradScope').'</td><td>'.dol_escape_htmltag($forcedscope == 'module' ? $langs->transnoentitiesnoconv('NsinfoTradScopeModule', $modulelabel) : $langs->transnoentitiesnoconv('NsinfoTradScopeGlobal')).'<br><span class="opacitymedium small">'.$langs->trans('NsinfoTradScopeForced').'</span></td></tr>';
+} elseif ($canscope) {
 	// Settings common to all the modules (Dolibarr) or specific to this module
 	print '<tr><td class="titlefield">'.$langs->trans('NsinfoTradScope').'</td><td><select id="tdl-scope" class="flat minwidth300">';
 	print '<option value="global"'.(nsinfoTradIsModuleScope() ? '' : ' selected').'>'.dol_escape_htmltag($langs->transnoentitiesnoconv('NsinfoTradScopeGlobal')).'</option>';
@@ -199,6 +202,9 @@ foreach ($providers as $code => $p) {
 print '</select><span class="tdl-ok" id="tdl-ok-provider">&#10004;</span></td></tr>';
 // Position of the picto of translation beside the fields (shown only when an API is active)
 $position = nsinfoTradPosition();
+if (function_exists($namemodule.'TradPositionForced')) {	// A module can force the position (function <module>TradPositionForced() returns a note) : no choice, the note is shown
+print '<tr><td class="titlefield">'.$langs->trans('NsinfoTradPosition').'</td><td>'.dol_escape_htmltag(call_user_func($namemodule.'TradPositionForced')).'</td></tr>';
+} else {
 print '<tr><td class="titlefield">'.$langs->trans('NsinfoTradPosition').'</td><td><div class="tdl-pos">';
 foreach (array('right' => 'NsinfoTradPosRight', 'top' => 'NsinfoTradPosTop', 'bottom' => 'NsinfoTradPosBottom') as $k => $key) {
 	// Mini preview of a field with the picto at the position
@@ -207,6 +213,7 @@ foreach (array('right' => 'NsinfoTradPosRight', 'top' => 'NsinfoTradPosTop', 'bo
 	print '<div class="tdl-pos-label">'.dol_escape_htmltag($langs->transnoentitiesnoconv($key)).'</div></div>';
 }
 print '</div><span class="tdl-ok">&#10004;</span><br><span class="opacitymedium small">'.$langs->trans('NsinfoTradPositionHelp').'</span></td></tr>';
+}
 // Color of the picto (green by default), saved at each change
 print '<tr><td class="titlefield">'.$langs->trans('NsinfoTradColor').'</td><td><input type="color" class="tdl-set tdl-color" data-name="'.$prefix.'COLOR" value="'.nsinfoTradColor().'"><span class="tdl-ok">&#10004;</span> <a href="#" id="tdl-color-reset" class="opacitymedium small">'.$langs->trans('NsinfoTradColorReset').'</a></td></tr></table>';
 
@@ -292,7 +299,7 @@ print '<script>
 	fieldBoxes.forEach(function (c) {
 		c.addEventListener("change", function () {
 			var v = []; fieldBoxes.forEach(function (o) { if (o.checked) { v.push(o.value); } });
-			post({action: "setconst", name: '.json_encode($prefix.'FIELDS').', value: v.join(",")}).then(function () { tick(c); });
+			post({action: "setconst", name: '.json_encode(nsinfoTradFieldsConst()).', value: v.join(",")}).then(function () { tick(c); });
 		});
 	});
 	var col = document.querySelector(".tdl-color"), samples = document.querySelectorAll(".tdl-sample");

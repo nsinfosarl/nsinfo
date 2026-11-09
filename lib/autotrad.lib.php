@@ -43,7 +43,29 @@ function nsinfoTradContext($module = null)
 }
 
 /**
+ * Scope imposed by the module : its function <module>TradScope() (file /<module>/lib/<module>.lib.php) returns 'global' (settings common to all
+ * the modules) or 'module' (settings of its own). Without this function the scope is chosen in the setup page.
+ *
+ * @param	string	$module		Code of the module ('' = the current one)
+ * @return	string				'global', 'module' or '' (not imposed)
+ */
+function nsinfoTradForcedScope($module = '')
+{
+	$module = $module !== '' ? preg_replace('/[^a-z0-9_]/', '', strtolower($module)) : nsinfoTradContext();
+	if ($module === '' || $module === 'nsinfo') {
+		return '';
+	}
+	if (!function_exists($module.'TradScope') && $module != 'factory') {
+		dol_include_once('/'.$module.'/lib/'.$module.'.lib.php');
+	}
+	$scope = function_exists($module.'TradScope') ? call_user_func($module.'TradScope') : '';
+
+	return in_array($scope, array('global', 'module'), true) ? $scope : '';
+}
+
+/**
  * Is the setup of the module specific (not common to all the modules) ?
+ * The module can impose its scope (nsinfoTradForcedScope()), otherwise it is the choice made in the setup page.
  *
  * @param	string	$module		Code of the module ('' = the current one)
  * @return	bool
@@ -51,8 +73,12 @@ function nsinfoTradContext($module = null)
 function nsinfoTradIsModuleScope($module = '')
 {
 	$module = $module !== '' ? preg_replace('/[^a-z0-9_]/', '', strtolower($module)) : nsinfoTradContext();
+	if ($module === '' || $module === 'nsinfo') {
+		return false;
+	}
+	$forced = nsinfoTradForcedScope($module);
 
-	return ($module !== '' && $module !== 'nsinfo' && getDolGlobalString('NSINFO_TRAD_SCOPE_'.strtoupper($module)) === 'module');
+	return $forced !== '' ? ($forced == 'module') : (getDolGlobalString('NSINFO_TRAD_SCOPE_'.strtoupper($module)) === 'module');
 }
 
 /**
@@ -162,7 +188,20 @@ function nsinfoTradPosition()
 }
 
 /**
- * Fields of the module that have the translation picto : codes ticked in the setup (constant <prefix>FIELDS, comma separated).
+ * Name of the constant of the fields that have the picto : always specific to the module (even when the API settings are common to all the modules)
+ *
+ * @param	string	$module		Code of the module ('' = the current one)
+ * @return	string
+ */
+function nsinfoTradFieldsConst($module = '')
+{
+	$module = $module !== '' ? preg_replace('/[^a-z0-9_]/', '', strtolower($module)) : nsinfoTradContext();
+
+	return $module !== '' ? 'NSINFO_TRAD_'.strtoupper($module).'_FIELDS' : 'NSINFO_TRAD_FIELDS';
+}
+
+/**
+ * Fields of the module that have the translation picto : codes ticked in the setup (constant nsinfoTradFieldsConst(), comma separated).
  * The module lists its translatable fields with a function <module>TradFields() returning code => label ; none is ticked
  * by default : the picto is shown only on the fields asked for.
  *
@@ -170,7 +209,7 @@ function nsinfoTradPosition()
  */
 function nsinfoTradFields()
 {
-	return array_values(array_filter(array_map('trim', explode(',', getDolGlobalString(nsinfoTradPrefix().'FIELDS')))));
+	return array_values(array_filter(array_map('trim', explode(',', getDolGlobalString(nsinfoTradFieldsConst())))));
 }
 
 /**

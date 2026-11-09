@@ -156,3 +156,4 @@ NsinfoCfgSkipped = %s parametro/i ignorato/i (fuori dal modulo).
 NsinfoCfgImportHelp = Sono importati solo i parametri il cui nome inizia con %s; quelli già presenti vengono sostituiti.
 NsinfoCfgCount = %s parametro/i salvato/i in questo modulo, di cui %s sensibile/i (password, chiave, token).
 NsinfoCfgShowDetail = Mostra il dettaglio dei parametri (per scegliere quelli da esportare)
+NsinfoTradScopeForced = Ambito imposto da questo modulo (non modificabile).

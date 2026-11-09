@@ -156,3 +156,4 @@ NsinfoCfgSkipped = %s Einstellung(en) ignoriert (außerhalb des Moduls).
 NsinfoCfgImportHelp = Nur Einstellungen, deren Name mit %s beginnt, werden importiert; bereits vorhandene werden ersetzt.
 NsinfoCfgCount = %s Einstellung(en) in diesem Modul gespeichert, davon %s sensibel (Passwort, Schlüssel, Token).
 NsinfoCfgShowDetail = Details der Einstellungen anzeigen (zur Auswahl der zu exportierenden)
+NsinfoTradScopeForced = Von diesem Modul vorgegebener Geltungsbereich (nicht änderbar).

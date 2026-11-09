@@ -156,3 +156,4 @@ NsinfoCfgSkipped = %s setting(s) ignored (outside the module).
 NsinfoCfgImportHelp = Only the settings whose name starts with %s are imported; the ones already present are replaced.
 NsinfoCfgCount = %s setting(s) saved in this module, including %s sensitive (password, key, token).
 NsinfoCfgShowDetail = Show the detail of the settings (to choose the ones to export)
+NsinfoTradScopeForced = Scope imposed by this module (cannot be changed).

@@ -1,6 +1,7 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
 ## 23.9.2 - 07/11/2026
+- Traduction automatique (trad_module.php) : réglages indépendants par module ou communs à tous (choix dans la page) ; un module peut imposer l'un ou l'autre avec une fonction <module>TradScope() renvoyant 'global' ou 'module' (la page affiche alors la portée sans choix) ; la liste des champs avec le pictogramme est toujours propre au module ; <module>TradPositionForced() impose la position du pictogramme (note affichée à la place du choix) ; textes dans les 5 langues
 - Sauvegarde des paramètres d'un module : page générique admin/config_module.php?namemodule=<module>, sur le principe de changelog_module.php et trad_module.php (code d'onglet « configmodule », ajoutée par chaque module dans son AdminPrepareHead) ; export dans un fichier JSON nommé <module>_parametres_<société>_<date>.json (format « nsinfo-module-config ») des constantes du module choisies dans une liste, mots de passe / clés / jetons exclus sauf case cochée ; import par glisser-déposer ou texte collé vers un autre Dolibarr (seules les constantes du module sont acceptées, jeton exigé, fichier d'un autre module refusé) ; le détail des constantes n'est affiché que si l'on coche « Afficher le détail » (sinon résumé et export de tout sauf les données sensibles) ; l'onglet se place toujours juste avant « ChangeLog » ; textes dans les 5 langues
 
 ## 23.9.1 - 06/11/2026
