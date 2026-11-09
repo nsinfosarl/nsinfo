@@ -536,6 +536,9 @@ div.tabs:has(a[href*="changelog_module.php"]) div.tab:hover,
 div.tabs:has(a[href*="changelog_module.php"]) + div.tabBar div.tabs div.tab:hover { background: rgba(127, 127, 127, 0.12); box-shadow: 0 0 0 1px rgba(127, 127, 127, 0.35) inset; }
 div.tabs:has(a[href*="changelog_module.php"]) div.tab.tabactive,
 div.tabs:has(a[href*="changelog_module.php"]) + div.tabBar div.tabs div.tab.tabactive { font-weight: 600; background: rgba(127, 127, 127, 0.12); box-shadow: 0 0 0 1px rgba(127, 127, 127, 0.35) inset; border-bottom-color: var(--colortextlink, #3879B2) !important; }
+/* No second line under the tabs : the tabs already have their own bottom border, the frame that follows (main tabs and sub tabs) loses its top border */
+div.tabs:has(a[href*="changelog_module.php"]) + div.tabBar,
+div.tabs:has(a[href*="changelog_module.php"]) + div.tabBar div.tabs + div.tabBar { border-top: 0 !important; }
 /* Sub-tabs of the NS INFO modules (<div class="nsinfo-subtabs"><a class="nsinfo-subtab [active]">) */
 .nsinfo-subtabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--colortopbordertitle1, #d5dbe3); margin: 0 0 14px; }
 .nsinfo-subtab { padding: 8px 16px; border-radius: 10px 10px 0 0; color: inherit; text-decoration: none; border-bottom: 3px solid transparent; }

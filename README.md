@@ -11,7 +11,7 @@
 
 ## Version
 
-- Version : 23.9.2
+- Version : 23.9.3
 - PHP : 5.5 - 8.3
 - Compatibilité : Dolibarr 11.0.0 - 24.0.x
 
