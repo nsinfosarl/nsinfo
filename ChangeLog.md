@@ -1,5 +1,8 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.9.4 - 09/11/2026
+- nsinfoSetup() (enrauto) : le bouton « Modifier » est masqué dans les formulaires à enregistrement automatique ; le bouton « Valeur par défaut » est masqué aussi, le picto ↺ devant le réglage le remplace ; le message « Enregistré » n'est plus affiché à la page suivante après un enregistrement automatique (les erreurs restent signalées)
+
 ## 23.9.3 - 09/11/2026
 - Onglets des pages d'administration des modules (css/nsinfo.css.php) : trait en trop supprimé sous les onglets et sous les sous-onglets (le cadre qui suit n'a plus de bordure haute) ; concerne toutes les pages à onglets ChangeLog / À propos des modules NS INFO
 

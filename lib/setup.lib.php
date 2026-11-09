@@ -1170,7 +1170,7 @@ jQuery(function($) {
 		clearTimeout($mark.data("timer"));
 		var $anchor = $field.next(".select2, .select2-container").length ? $field.next(".select2, .select2-container") : $field;
 		$mark.stop(true, true).show().css("color", "#888").attr("title", "").text("\\u2026").insertAfter($anchor);
-		$.ajax({type: "POST", url: $form.attr("action") || window.location.href, data: $form.serialize()})
+		$.ajax({type: "POST", url: $form.attr("action") || window.location.href, data: $form.serialize() + "&nsinfoenrauto=1"})
 			.done(function() {
 				$mark.css("color", "#2e9e4f").attr("title", title).text("\\u2714");
 				$mark.data("timer", setTimeout(function() { $mark.fadeOut(200); }, 1000));
@@ -1180,6 +1180,17 @@ jQuery(function($) {
 	function isAuto($form) {
 		return actions.indexOf($form.find("input[type=hidden][name=action]").first().val()) >= 0;
 	}
+	// Pas de bouton « Modifier » : chaque champ s\'enregistre au changement (le bouton « Valeur par défaut » reste)
+	var updatelabel = ' . json_encode($langs->transnoentitiesnoconv("Update")) . ';
+	// Pas de bouton « Valeur par défaut » non plus : le picto \u21ba devant le réglage (visible quand la valeur diffère du défaut) le remplace
+	var defaultlabel = ' . json_encode($langs->transnoentitiesnoconv("SetDefault")) . ';
+	$("form").each(function() {
+		var $f = $(this);
+		if ($f.find("input[type=hidden][name=action]").length && isAuto($f)) {
+			$f.find("input[type=submit]").filter(function() { return $(this).val() === updatelabel; }).hide();
+		}
+		$f.find("input[type=submit]").filter(function() { return $(this).val() === defaultlabel; }).hide();
+	});
 	// Au changement d\'un champ
 	$(document).on("change", "form input, form select, form textarea", function() {
 		var form = this.form || $(this).closest("form")[0];
@@ -1207,6 +1218,16 @@ function nsinfoAction($action, $var, $value, $vartxt, $varround, $valuetxt, $def
 {
 
     global $db, $conf, $langs;
+
+    // Enregistrement automatique (ajax, sans rechargement) : le message « Enregistré » ne doit pas s'afficher à la page suivante
+    // (les messages d'erreur sont conservés)
+    if (!empty($action) && $_SERVER['REQUEST_METHOD'] == 'POST' && GETPOST('nsinfoenrauto', 'int')) {
+        register_shutdown_function(function () {
+            if (isset($_SESSION['dol_events']['mesgs'])) {
+                unset($_SESSION['dol_events']['mesgs']);
+            }
+        });
+    }
 
     // GET requests are not protected by the core CSRF check (POST forms are): require the token for every action
     // that writes a constant ('listsel' is also reached from the return link of a creation card, without token)
