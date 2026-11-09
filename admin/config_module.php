@@ -127,6 +127,7 @@ if ($action == 'download' && $tokenok) {
 		'company' => (string) $mysoc->name,
 		'dolibarr' => DOL_VERSION,
 		'date' => dol_print_date(dol_now(), '%Y-%m-%d %H:%M:%S'),
+		'secrets' => $withsecrets ? 1 : 0,
 		'constants' => $constants,
 	);
 	header('Content-Type: application/json; charset=utf-8');
@@ -168,8 +169,22 @@ if ($action == 'import' && $tokenok) {
 				$skipped++;
 			}
 		}
+		// A setting of the module that is not in the file goes back to zero (constant deleted : the module uses its default).
+		// Kept : the markers of first activation (*_INIT) and the sensitive settings when the file was made without them
+		$reset = 0;
+		foreach ($all as $name => $info) {
+			if (array_key_exists($name, $data['constants']) || substr($name, -5) === '_INIT' || (nsinfoCfgIsSecret($name) && empty($data['secrets']))) {
+				continue;
+			}
+			if (dolibarr_del_const($db, $name, $conf->entity) > 0) {
+				$reset++;
+			}
+		}
 		$db->commit();
 		setEventMessages($langs->trans('NsinfoCfgImported', $nb), null, 'mesgs');
+		if ($reset > 0) {
+			setEventMessages($langs->trans('NsinfoCfgReset', $reset), null, 'mesgs');
+		}
 		if ($skipped > 0) {
 			setEventMessages($langs->trans('NsinfoCfgSkipped', $skipped), null, 'warnings');
 		}

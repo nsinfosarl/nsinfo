@@ -1,5 +1,9 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.9.5 - 09/11/2026
+- Réglages : signal « réglages différents de la valeur par défaut » dans toute page d'administration : nsinfoIsDefault(), nsinfoDefaultsBySection() et nsinfoDefaultsNotice() (nombre de réglages modifiés + lien ↺ « Tout remettre par défaut », action nsinforesetall de nsinfoAction()) ; textes dans les 5 langues
+- Sauvegarde des paramètres : à l'import, les paramètres du module absents du fichier sont remis à zéro (constante supprimée, le module reprend sa valeur par défaut) ; les mots de passe, clés et jetons sont conservés si le fichier a été fait sans eux (l'export indique s'il en contient) ; les marqueurs de première activation sont conservés
+
 ## 23.9.4 - 09/11/2026
 - nsinfoSetup() (enrauto) : le bouton « Modifier » est masqué dans les formulaires à enregistrement automatique ; le bouton « Valeur par défaut » est masqué aussi, le picto ↺ devant le réglage le remplace ; le message « Enregistré » n'est plus affiché à la page suivante après un enregistrement automatique (les erreurs restent signalées)
 

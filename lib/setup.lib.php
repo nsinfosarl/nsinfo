@@ -171,6 +171,85 @@ function nsinfoVerticalTabsEnd()
 }
 
 /**
+ * Un réglage a-t-il sa valeur par défaut ? (vrai aussi si le réglage ne déclare pas de 'default')
+ *
+ * @param	string					$key	Constante
+ * @param	array<string,mixed>		$desc	Description du paramètre (clé 'default' : valeur par défaut)
+ * @return	bool							True si la valeur en cours est la valeur par défaut
+ */
+function nsinfoIsDefault($key, $desc)
+{
+	if (!array_key_exists('default', $desc) || in_array($desc['type'], array('sep', 'tabdeb', 'tabdeb2', 'tabfin', 'hidden', 'titletab', 'titletabdesc', 'link', 'resetdefault'), true)) {
+		return true;
+	}
+	$current = strtolower(trim(getDolGlobalString($key)));
+	$default = strtolower(trim((string) $desc['default']));
+	if (in_array($desc['type'], array('bool', 'bool2', 'boolall'), true)) {
+		$current = ($current === '' ? '0' : $current);
+		$default = ($default === '' ? '0' : $default);
+	}
+	return ($current === $default || ($current === '' && $default === '0'));
+}
+
+/**
+ * Réglages qui ne sont pas à leur valeur par défaut, rangés par section (une section commence à chaque paramètre de type 'titletab')
+ *
+ * @param	array<string,array<string,mixed>>	$arrayofparameters	Paramètres de nsinfoSetup()
+ * @return	array<int,string[]>									Clés des réglages modifiés, par numéro de section (0 = première section)
+ */
+function nsinfoDefaultsBySection($arrayofparameters)
+{
+	$result = array();
+	$section = -1;
+	foreach ($arrayofparameters as $key => $desc) {
+		if ($desc['type'] === 'titletab' || $desc['type'] === 'titletabdesc') {
+			$section++;
+			$result[$section] = array();
+			continue;
+		}
+		if ($section < 0) {
+			$section = 0;
+			$result[0] = array();
+		}
+		if (!nsinfoIsDefault($key, $desc)) {
+			$result[$section][] = $key;
+		}
+	}
+	return $result;
+}
+
+/**
+ * Signal « réglages différents du défaut » d'une page d'administration : nombre de réglages modifiés et picto ↺ pour tout remettre par défaut
+ * (action nsinforesetall, traitée par nsinfoAction()). Chaînes vides si tout est par défaut.
+ *
+ * @param	array<string,array<string,mixed>>	$arrayofparameters	Paramètres de nsinfoSetup()
+ * @param	string[]|null						$keys				Limiter à ces réglages (null = tous)
+ * @return	string													HTML (vide si tout est par défaut)
+ */
+function nsinfoDefaultsNotice($arrayofparameters, $keys = null)
+{
+	global $langs;
+
+	$changed = array();
+	foreach (nsinfoDefaultsBySection($arrayofparameters) as $list) {
+		$changed = array_merge($changed, $list);
+	}
+	if ($keys !== null) {
+		$changed = array_values(array_intersect($changed, $keys));
+	}
+	if (!count($changed)) {
+		return '';
+	}
+	$query = array();
+	parse_str((string) (isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : ''), $query);
+	unset($query['action'], $query['var'], $query['token']);
+	$query = array_merge($query, array('action' => 'nsinforesetall', 'token' => newToken()));
+	return '<div class="opacitymedium nsinfo-defaults-notice" style="margin: 6px 0 10px;"><span class="fas fa-undo-alt paddingright" style="color: #553885"></span>'
+		. dol_escape_htmltag($langs->trans('NsinfoDefaultsDiffer', count($changed))) . ' '
+		. '<a class="reposition" href="' . $_SERVER['PHP_SELF'] . '?' . http_build_query($query) . '">' . dol_escape_htmltag($langs->trans('NsinfoResetAllDefaults')) . '</a></div>';
+}
+
+/**
  * Picto « remettre par défaut » d'un réglage : affiché seulement si la valeur en cours diffère de la valeur par défaut déclarée par le module
  * (clé 'default' du paramètre). Un interrupteur éteint n'a pas de constante : il compte pour 0.
  *
@@ -182,16 +261,7 @@ function nsinfoDefaultPicto($key, $desc)
 {
 	global $langs;
 
-	if (!array_key_exists('default', $desc)) {
-		return '';
-	}
-	$current = strtolower(trim(getDolGlobalString($key)));
-	$default = strtolower(trim((string) $desc['default']));
-	if (in_array($desc['type'], array('bool', 'bool2', 'boolall'), true)) {
-		$current = ($current === '' ? '0' : $current);
-		$default = ($default === '' ? '0' : $default);
-	}
-	if ($current === $default || ($current === '' && $default === '0')) {
+	if (nsinfoIsDefault($key, $desc)) {
 		return '';
 	}
 	$query = array();
@@ -1243,6 +1313,25 @@ function nsinfoAction($action, $var, $value, $vartxt, $varround, $valuetxt, $def
             setEventMessages($langs->trans('SecurityTokenHasExpiredSoActionHasBeenCanceledPleaseRetry'), null, 'errors');
             return 0;
         }
+    }
+
+    // Tous les réglages remis à leur valeur par défaut (lien de nsinfoDefaultsNotice())
+    if ($action == 'nsinforesetall' && count($arrayofparameters)) {
+        if (GETPOST('token', 'alpha') != currentToken()) {
+            return 0;
+        }
+        foreach (nsinfoDefaultsBySection($arrayofparameters) as $list) {
+            foreach ($list as $resetkey) {
+                $resetvalue = (string) $arrayofparameters[$resetkey]['default'];
+                if ($resetvalue === '' || $resetvalue === '0') {
+                    dolibarr_del_const($db, $resetkey, $conf->entity);
+                } else {
+                    dolibarr_set_const($db, $resetkey, $resetvalue, 'chaine', 0, '', $conf->entity);
+                }
+            }
+        }
+        setEventMessages($langs->trans('SetupSaved'), null, 'mesgs');
+        return 1;
     }
 
     // Un réglage remis à sa valeur par défaut (picto devant chaque réglage qui déclare 'default')
