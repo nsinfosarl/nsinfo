@@ -11,14 +11,14 @@
 
 ## Version
 
-- Version : 23.9.5
+- Version : 23.9.6
 - PHP : 5.5 - 8.3
 - Compatibilité : Dolibarr 11.0.0 - 24.0.x
 
 ## Liens
 
 - Support & Assistance : [Forum dolibarr.fr](https://dolibarr.fr) / Par mail à contact@ns-info.fr
-- Support déclaration : [Ticket](https://support.ns-info.fr)
+- Support déclaration : [Ticket](https://support.ns-info.fr/)
 - Nsinfo Framework : [Télécharger Nsinfo](https://www.dolistore.com/product.php?id=713)
 - D'autres modules développés par NSINFO disponibles sur [Dolistore.com](https://www.dolistore.com/index.php?controller=search&orderby=position&orderway=desc&tag=&website=marketplace&search_query=NSINFO)
 

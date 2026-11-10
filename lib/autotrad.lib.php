@@ -483,6 +483,16 @@ function nsinfoTradTranslate($text, $from, $to, $ishtml, &$error, $provider = ''
 	if (trim($text) === '') {
 		return '';
 	}
+	// Providers that only translate plain text : the HTML is translated text by text, the markup is kept
+	if ($ishtml && empty($providers[$provider]['html'])) {
+		$byNodes = nsinfoTradHtmlNodes($text, $src, $dst, $error, $provider);
+		if ($byNodes !== null) {
+			return $byNodes;
+		}
+		if ($error !== '') {
+			return null;
+		}
+	}
 	$json = array('Content-Type: application/json');
 
 	switch ($provider) {
@@ -558,6 +568,61 @@ function nsinfoTradTranslate($text, $from, $to, $ishtml, &$error, $provider = ''
 
 	$error = 'NsinfoTradNotConfigured';
 	return null;
+}
+
+/**
+ * HTML text translated by a provider that only translates plain text (MyMemory, Lingva) : the markup is kept, only the texts
+ * between the tags are translated, one by one, and put back in place (bold, lists, links, colours... are kept).
+ *
+ * @param	string	$html		HTML text
+ * @param	string	$from		Code of the language of the text
+ * @param	string	$to			Code of the target language
+ * @param	string	$error		Error message (output)
+ * @param	string	$provider	Provider
+ * @return	string|null			HTML translated, null on error
+ */
+function nsinfoTradHtmlNodes($html, $from, $to, &$error, $provider)
+{
+	if (!class_exists('DOMDocument')) {
+		return null;
+	}
+	$doc = new DOMDocument();
+	$previous = libxml_use_internal_errors(true);
+	$doc->loadHTML('<?xml encoding="UTF-8"><div id="nsinfo-root">'.$html.'</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+	libxml_clear_errors();
+	libxml_use_internal_errors($previous);
+	$root = $doc->getElementById('nsinfo-root');
+	if (!$root) {
+		return null;
+	}
+	$xpath = new DOMXPath($doc);
+	$known = array();
+	foreach (iterator_to_array($xpath->query('.//text()[not(ancestor::script) and not(ancestor::style)]', $root)) as $node) {
+		$value = $node->nodeValue;
+		if (trim($value) === '') {
+			continue;
+		}
+		preg_match('/^(\s*)(.*?)(\s*)$/su', $value, $m);
+		$core = $m[2];
+		// A text without any letter (numbers, signs) is kept as is
+		if (!preg_match('/\p{L}/u', $core)) {
+			continue;
+		}
+		if (!isset($known[$core])) {
+			$translated = nsinfoTradTranslate($core, $from, $to, false, $error, $provider);
+			if ($translated === null) {
+				return null;
+			}
+			$known[$core] = trim($translated) !== '' ? trim($translated) : $core;
+		}
+		$node->nodeValue = $m[1].$known[$core].$m[3];
+	}
+	$out = '';
+	foreach ($root->childNodes as $child) {
+		$out .= $doc->saveHTML($child);
+	}
+
+	return $out;
 }
 
 /**

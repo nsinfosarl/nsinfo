@@ -1,5 +1,8 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.9.6 - 10/11/2026
+- Traduction automatique d'un texte HTML avec un fournisseur qui ne traduit que du texte simple (MyMemory, Lingva) : le balisage est conservé (gras, listes, liens, couleurs), seuls les textes entre les balises sont traduits, un par un et remis à leur place (nsinfoTradHtmlNodes())
+
 ## 23.9.5 - 09/11/2026
 - Calendrier de période / de jour (rangePicker.js) : les dates peuvent aussi être saisies au clavier dans des champs en haut du calendrier (28/02/2026, 28.2.26, 280226 ou 28/02 pour l'année en cours, selon l'ordre jour / mois / année de la langue ; année sur deux chiffres : 20xx jusqu'à 20 ans dans le futur, sinon 19xx, donc 10/05/75 donne 1975) ; Entrée ou la sortie du champ lit la date, Entrée sur une période complète l'applique, une date invalide est entourée en rouge ; le premier champ est prêt à saisir à l'ouverture (pas sur téléphone)
 - Réglages différents de la valeur par défaut : un réglage texte, nombre, couleur ou liste sans valeur enregistrée est à sa valeur par défaut (affichée et utilisée) : plus d'avertissement ni de picto ↺ pour lui
