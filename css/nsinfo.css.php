@@ -484,6 +484,10 @@ div.nsinfo-menugroup-sub div.nsinfo-menugroup-child-block {
 .nsinfo-cal-nav button, .nsinfo-cal-foot button { border: 0; background: transparent; cursor: pointer; border-radius: 8px; padding: 4px 10px; color: #3879B2; font-size: 1.1em; }
 .nsinfo-cal-nav button:hover, .nsinfo-cal-foot button:hover { background: #eef3f9; }
 .nsinfo-cal-summary { flex: 1; text-align: center; font-size: 0.9em; color: #4b5563; }
+.nsinfo-cal-summary { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px 6px; }
+.nsinfo-cal-in { width: 7.6em; text-align: center; border: 1px solid #cbd5e1; border-radius: 8px; padding: 3px 6px; font: inherit; color: #1f2937; background: #fff; }
+.nsinfo-cal-in:focus { outline: 2px solid #3879B2; outline-offset: 0; }
+.nsinfo-cal-in.nsinfo-cal-bad { border-color: #d9534f; background: #fff5f5; }
 .nsinfo-cal-months { display: flex; gap: 22px; }
 .nsinfo-cal-title { text-align: center; font-weight: 600; margin-bottom: 4px; }
 .nsinfo-cal-grid { display: grid; grid-template-columns: repeat(7, 2.3em); row-gap: 2px; }

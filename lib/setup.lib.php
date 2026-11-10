@@ -182,11 +182,16 @@ function nsinfoIsDefault($key, $desc)
 	if (!array_key_exists('default', $desc) || in_array($desc['type'], array('sep', 'tabdeb', 'tabdeb2', 'tabfin', 'hidden', 'titletab', 'titletabdesc', 'link', 'resetdefault'), true)) {
 		return true;
 	}
+	global $conf;
+
 	$current = strtolower(trim(getDolGlobalString($key)));
 	$default = strtolower(trim((string) $desc['default']));
 	if (in_array($desc['type'], array('bool', 'bool2', 'boolall'), true)) {
 		$current = ($current === '' ? '0' : $current);
 		$default = ($default === '' ? '0' : $default);
+	} elseif (!isset($conf->global->$key)) {
+		// Text, number, colour, list : nothing saved, the default value is the one shown and used
+		return true;
 	}
 	return ($current === $default || ($current === '' && $default === '0'));
 }

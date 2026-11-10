@@ -39,6 +39,48 @@
 	function sameDay(a, b) { return a && b && toIso(a) === toIso(b); }
 	function days(a, b) { return Math.round((b - a) / 86400000) + 1; }
 
+	/* Typed dates : order of the day, month and year of the language (Intl), reading of what is typed (28/02/2026, 28.2.26, 280226,
+	 * 28/02 for the current year), writing in the usual form */
+	var HINTS = {fr: ['jj', 'mm', 'aaaa'], es: ['dd', 'mm', 'aaaa'], it: ['gg', 'mm', 'aaaa'], de: ['TT', 'MM', 'JJJJ']};
+	function order(lang) {
+		var res = [];
+		try {
+			$.each(new Intl.DateTimeFormat(lang).formatToParts(new Date(2030, 10, 25)), function (i, p) { if (p.type === 'day' || p.type === 'month' || p.type === 'year') { res.push(p.type); } });
+		} catch (e) {}
+		return res.length === 3 ? res : ['day', 'month', 'year'];
+	}
+	function hint(lang) {
+		var h = HINTS[String(lang).substr(0, 2).toLowerCase()] || ['dd', 'mm', 'yyyy'], map = {day: h[0], month: h[1], year: h[2]};
+		return $.map(order(lang), function (k) { return map[k]; }).join('/');
+	}
+	function fmt(d, lang) { return d ? d.toLocaleDateString(lang, {day: '2-digit', month: '2-digit', year: 'numeric'}) : ''; }
+	function parseTyped(text, lang) {
+		var t = $.trim(String(text)), ord = order(lang), parts;
+		if (t === '') { return null; }
+		if (/^\d+$/.test(t)) {	/* digits only : ddmmyyyy, ddmmyy */
+			var n = t.length;
+			if (n === 8) { parts = [t.substr(0, 2), t.substr(2, 2), t.substr(4, 4)]; if (ord[0] === 'year') { parts = [t.substr(0, 4), t.substr(4, 2), t.substr(6, 2)]; } }
+			else if (n === 6) { parts = [t.substr(0, 2), t.substr(2, 2), t.substr(4, 2)]; }
+			else if (n === 4) { parts = [t.substr(0, 2), t.substr(2, 2)]; }
+			else { return false; }
+		} else {
+			parts = t.split(/[^0-9]+/);
+			if (parts[parts.length - 1] === '') { parts.pop(); }
+			if (parts.length < 2 || parts.length > 3) { return false; }
+		}
+		var v = {};
+		if (parts.length === 2) {	/* day and month : the current year */
+			var dm = $.grep(ord, function (k) { return k !== 'year'; });
+			v[dm[0]] = +parts[0]; v[dm[1]] = +parts[1]; v.year = new Date().getFullYear();
+		} else {
+			$.each(ord, function (i, k) { v[k] = +parts[i]; });
+			/* Year on two digits : the 20 coming years are 20xx, the others 19xx (10/05/75 is 1975, 10/05/35 is 2035) */
+			if (v.year < 100) { v.year += 2000; if (v.year > new Date().getFullYear() + 20) { v.year -= 100; } }
+		}
+		var d = new Date(v.year, v.month - 1, v.day);
+		return (d.getFullYear() === v.year && d.getMonth() === v.month - 1 && d.getDate() === v.day) ? d : false;
+	}
+
 	function close() {
 		if (current) {
 			current.el.remove();
@@ -85,18 +127,14 @@
 			return html + '</div></div>';
 		}
 
-		function summary() {
-			if (o.single) { return start ? '<b>' + start.toLocaleDateString(o.lang) + '</b>' : labels.pick; }
-			if (start && end) { return labels.from + ' <b>' + start.toLocaleDateString(o.lang) + '</b> ' + labels.to + ' <b>' + end.toLocaleDateString(o.lang) + '</b> &middot; ' + (o.exclusive ? Math.max(1, days(start, end) - 1) : days(start, end)) + ' ' + labels.days; }
-			if (start) { return labels.from + ' <b>' + start.toLocaleDateString(o.lang) + '</b> &hellip;'; }
-			return labels.pick;
+		/* The dates can also be typed : one field for the day (single) or two fields (period) */
+		function field(which, d) {
+			return '<input type="text" class="nsinfo-cal-in nsinfo-cal-in-' + which + '" data-which="' + which + '" inputmode="numeric" autocomplete="off" size="10" value="' + fmt(d, o.lang) + '" placeholder="' + hint(o.lang) + '" aria-label="' + (which === 'start' ? labels.from : labels.to) + '">';
 		}
-
-		function render() {
-			var second = new Date(view.getFullYear(), view.getMonth() + 1, 1);
-			el.html('<div class="nsinfo-cal-nav"><button type="button" class="nsinfo-cal-prev" aria-label="&lsaquo;">&lsaquo;</button><span class="nsinfo-cal-summary">' + summary() + '</span><button type="button" class="nsinfo-cal-next" aria-label="&rsaquo;">&rsaquo;</button></div>'
-				+ '<div class="nsinfo-cal-months">' + month(view) + (o.single ? '' : month(second)) + '</div>'
-				+ '<div class="nsinfo-cal-foot"><button type="button" class="nsinfo-cal-today">' + labels.today + '</button><button type="button" class="nsinfo-cal-clear">' + labels.clear + '</button></div>');
+		function summary() {
+			if (o.single) { return field('start', start); }
+			var n = (start && end) ? ' &middot; ' + (o.exclusive ? Math.max(1, days(start, end) - 1) : days(start, end)) + ' ' + labels.days : '';
+			return labels.from + ' ' + field('start', start) + ' ' + labels.to + ' ' + field('end', end) + n;
 		}
 
 		function place() {
@@ -104,13 +142,43 @@
 			el.css({top: a.top + h + 6, left: left});
 		}
 
+		var focusKey = null;
+		function render() {
+			var second = new Date(view.getFullYear(), view.getMonth() + 1, 1);
+			el.html('<div class="nsinfo-cal-nav"><button type="button" class="nsinfo-cal-prev" aria-label="&lsaquo;">&lsaquo;</button><span class="nsinfo-cal-summary">' + summary() + '</span><button type="button" class="nsinfo-cal-next" aria-label="&rsaquo;">&rsaquo;</button></div>'
+				+ '<div class="nsinfo-cal-months">' + month(view) + (o.single ? '' : month(second)) + '</div>'
+				+ '<div class="nsinfo-cal-foot"><button type="button" class="nsinfo-cal-today">' + labels.today + '</button><button type="button" class="nsinfo-cal-clear">' + labels.clear + '</button></div>');
+			if (focusKey) { el.find('.nsinfo-cal-in-' + focusKey).trigger('focus').trigger('select'); focusKey = null; }
+		}
+
 		render();
 		place();
+		/* Keyboard : the first field is ready to type (not on a phone, where the keyboard would hide the calendar) */
+		if ($(window).width() > 640) { el.find('.nsinfo-cal-in-start').trigger('focus').trigger('select'); }
 
 		el.on('click', '.nsinfo-cal-prev', function () { view = new Date(view.getFullYear(), view.getMonth() - 1, 1); render(); });
 		el.on('click', '.nsinfo-cal-next', function () { view = new Date(view.getFullYear(), view.getMonth() + 1, 1); render(); });
 		el.on('click', '.nsinfo-cal-today', function () { view = new Date(today.getFullYear(), today.getMonth(), 1); render(); });
 		el.on('click', '.nsinfo-cal-clear', function () { start = end = hover = null; render(); o.onChange('', ''); close(); });
+		/* Typed dates : Enter or leaving the field reads the date ; Enter on a complete period applies it */
+		function commit(input, enter) {
+			var which = $(input).data('which'), d = parseTyped($(input).val(), o.lang);
+			if (d === false) { $(input).addClass('nsinfo-cal-bad'); return; }
+			if (which === 'start') {
+				start = d;
+				if (o.single) { end = d; } else if (start && end && start > end) { end = start; }
+			} else {
+				end = d;
+				if (start && end && end < start) { var t = start; start = end; end = t; }
+			}
+			if (d) { view = new Date(d.getFullYear(), d.getMonth(), 1); }
+			hover = null;
+			if (enter && start && (o.single || end)) { finish(start, end || start); return; }
+			focusKey = (enter && which === 'start' && !o.single) ? 'end' : null;
+			render();
+		}
+		el.on('keydown', '.nsinfo-cal-in', function (ev) { if (ev.key === 'Enter') { ev.preventDefault(); commit(this, true); } });
+		el.on('change', '.nsinfo-cal-in', function () { commit(this, false); });
 		/* Selection with the mouse or the finger : press on a day and drag to another day (the range is the bounds), or click
 		 * the first day then the last day */
 		var dragging = false, anchorDay = null;

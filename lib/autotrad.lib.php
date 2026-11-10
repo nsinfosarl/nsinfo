@@ -342,6 +342,119 @@ function nsinfoTradLangIndex($locale)
 }
 
 /**
+ * Languages the provider of the setup can translate to (list asked to its API, kept one day), used by the modules to offer the
+ * choice of a language. Without a provider (or if its API does not answer) : the five languages of the module.
+ *
+ * @param	string	$provider	Provider ('' = the one of the setup)
+ * @param	bool	$refresh	Ignore the list kept
+ * @return	array<string,string>	Name of the language, by code of the provider ; the favourite languages first, then by name
+ */
+function nsinfoTradLanguages($provider = '', $refresh = false)
+{
+	static $memo = array();
+
+	$base = array('en' => 'English', 'fr' => 'Français', 'de' => 'Deutsch', 'it' => 'Italiano', 'es' => 'Español');
+	$provider = $provider !== '' ? $provider : nsinfoTradActiveProvider();
+	$providers = nsinfoTradProviders();
+	if (!isset($providers[$provider])) {
+		return $base;
+	}
+	$sign = $provider.'|'.nsinfoTradSetting($provider, 'URL').'|'.nsinfoTradSetting($provider, 'PLAN').'|'.md5(nsinfoTradSetting($provider, 'KEY'));
+	if (isset($memo[$sign]) && !$refresh) {
+		return $memo[$sign];
+	}
+	$dir = DOL_DATA_ROOT.'/nsinfo/temp';
+	$file = $dir.'/trad_languages_'.md5($sign).'.json';
+	if (!$refresh && is_readable($file) && filemtime($file) > dol_now() - 86400) {
+		$kept = json_decode((string) file_get_contents($file), true);
+		if (is_array($kept) && count($kept)) {
+			return $memo[$sign] = $kept;
+		}
+	}
+
+	$list = array();
+	$error = '';
+	switch ($provider) {
+		case 'deepl':
+			$host = (nsinfoTradSetting('deepl', 'PLAN') == 'pro') ? 'https://api.deepl.com' : 'https://api-free.deepl.com';
+			$data = nsinfoTradDecode(nsinfoTradCall($host.'/v2/languages?type=target', 'GET', '', array('Authorization: DeepL-Auth-Key '.nsinfoTradSetting('deepl', 'KEY')), 0), $error);
+			foreach ($data as $row) {
+				if (!empty($row['language']) && !empty($row['name'])) {
+					$list[(string) $row['language']] = (string) $row['name'];
+				}
+			}
+			break;
+		case 'google':
+			$data = nsinfoTradDecode(nsinfoTradCall('https://translation.googleapis.com/language/translate/v2/languages?target=en&key='.urlencode(nsinfoTradSetting('google', 'KEY')), 'GET', '', array(), 0), $error);
+			foreach ((isset($data['data']['languages']) ? $data['data']['languages'] : array()) as $row) {
+				if (!empty($row['language'])) {
+					$list[(string) $row['language']] = (string) (isset($row['name']) ? $row['name'] : $row['language']);
+				}
+			}
+			break;
+		case 'azure':
+			$data = nsinfoTradDecode(nsinfoTradCall('https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation', 'GET', '', array('Accept-Language: en'), 0), $error);
+			foreach ((isset($data['translation']) ? $data['translation'] : array()) as $code => $row) {
+				$list[(string) $code] = (string) (isset($row['name']) ? $row['name'] : $code);
+			}
+			break;
+		case 'libretranslate':
+			$data = nsinfoTradDecode(nsinfoTradCall(rtrim(nsinfoTradSetting('libretranslate', 'URL'), '/').'/languages', 'GET', '', array(), 2), $error);
+			foreach ($data as $row) {
+				if (!empty($row['code'])) {
+					$list[(string) $row['code']] = (string) (isset($row['name']) ? $row['name'] : $row['code']);
+				}
+			}
+			break;
+		case 'lingva':
+			$data = nsinfoTradDecode(nsinfoTradCall(rtrim(nsinfoTradSetting('lingva', 'URL'), '/').'/api/v1/languages/target', 'GET', '', array(), 2), $error);
+			foreach ((isset($data['languages']) ? $data['languages'] : array()) as $row) {
+				if (!empty($row['code']) && $row['code'] != 'auto') {
+					$list[(string) $row['code']] = (string) (isset($row['name']) ? $row['name'] : $row['code']);
+				}
+			}
+			break;
+		default:
+			// MyMemory has no list of languages : the usual ones
+			$list = $base + array('pt' => 'Português', 'nl' => 'Nederlands', 'pl' => 'Polski', 'ru' => 'Русский', 'ja' => '日本語', 'zh' => '中文', 'ar' => 'العربية', 'sv' => 'Svenska', 'da' => 'Dansk', 'fi' => 'Suomi', 'el' => 'Ελληνικά', 'tr' => 'Türkçe');
+	}
+	if (!count($list)) {
+		return $memo[$sign] = $base;	// API not reachable : the five languages, not kept
+	}
+
+	// Favourite languages first, then by name
+	$favourites = array_keys($base);
+	uksort($list, function ($a, $b) use ($list, $favourites) {
+		$pa = array_search(strtolower(preg_replace('/[-_].*$/', '', $a)), $favourites);
+		$pb = array_search(strtolower(preg_replace('/[-_].*$/', '', $b)), $favourites);
+		$pa = ($pa === false ? 99 : $pa);
+		$pb = ($pb === false ? 99 : $pb);
+		return $pa == $pb ? strcasecmp($list[$a], $list[$b]) : $pa - $pb;
+	});
+	if (dol_mkdir($dir) >= 0) {
+		@file_put_contents($file, json_encode($list));
+	}
+
+	return $memo[$sign] = $list;
+}
+
+/**
+ * Code of a language for the API : an index (1..5) of the module, or a code of the provider (fr, pt-BR, EN-US...)
+ *
+ * @param	int|string	$value	Index or code
+ * @return	string				Code, '' if not valid
+ */
+function nsinfoTradIsoCode($value)
+{
+	$index = array(1 => 'en', 2 => 'fr', 3 => 'de', 4 => 'it', 5 => 'es');
+	if (is_int($value) || (is_string($value) && ctype_digit($value))) {
+		return isset($index[(int) $value]) ? $index[(int) $value] : '';
+	}
+
+	return preg_match('/^[A-Za-z]{2,3}([-_][A-Za-z0-9]{2,8})?$/', (string) $value) ? str_replace('_', '-', (string) $value) : '';
+}
+
+/**
  * Translate a text with the provider chosen in the setup
  *
  * @param	string	$text		Text to translate
@@ -360,22 +473,25 @@ function nsinfoTradTranslate($text, $from, $to, $ishtml, &$error, $provider = ''
 		$error = 'NsinfoTradNotConfigured';
 		return null;
 	}
-	$iso = array(1 => 'en', 2 => 'fr', 3 => 'de', 4 => 'it', 5 => 'es');
-	if (empty($iso[$from]) || empty($iso[$to]) || $from == $to) {
+	// Languages : index (1..5) of the module or code of the language of the provider (see nsinfoTradLanguages())
+	$src = nsinfoTradIsoCode($from);
+	$dst = nsinfoTradIsoCode($to);
+	if ($src === '' || $dst === '' || strtolower($src) == strtolower($dst)) {
 		$error = 'NsinfoTradBadLanguages';
 		return null;
 	}
 	if (trim($text) === '') {
 		return '';
 	}
-	$src = $iso[$from];
-	$dst = $iso[$to];
 	$json = array('Content-Type: application/json');
 
 	switch ($provider) {
 		case 'deepl':
 			$base = (nsinfoTradSetting('deepl', 'PLAN') == 'pro') ? 'https://api.deepl.com' : 'https://api-free.deepl.com';
-			$body = array('text' => array($text), 'source_lang' => strtoupper($src), 'target_lang' => ($dst == 'en' ? 'EN-US' : strtoupper($dst)));
+			// DeepL : source = language only (EN), target = EN-GB / EN-US and PT-BR / PT-PT for these two languages
+			$deepltarget = strtoupper($dst);
+			$deepltarget = ($deepltarget == 'EN' ? 'EN-US' : ($deepltarget == 'PT' ? 'PT-PT' : $deepltarget));
+			$body = array('text' => array($text), 'source_lang' => strtoupper(preg_replace('/-.*$/', '', $src)), 'target_lang' => $deepltarget);
 			if ($ishtml) {
 				$body['tag_handling'] = 'html';
 			}

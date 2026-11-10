@@ -1,6 +1,10 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
 ## 23.9.5 - 09/11/2026
+- Calendrier de période / de jour (rangePicker.js) : les dates peuvent aussi être saisies au clavier dans des champs en haut du calendrier (28/02/2026, 28.2.26, 280226 ou 28/02 pour l'année en cours, selon l'ordre jour / mois / année de la langue ; année sur deux chiffres : 20xx jusqu'à 20 ans dans le futur, sinon 19xx, donc 10/05/75 donne 1975) ; Entrée ou la sortie du champ lit la date, Entrée sur une période complète l'applique, une date invalide est entourée en rouge ; le premier champ est prêt à saisir à l'ouverture (pas sur téléphone)
+- Réglages différents de la valeur par défaut : un réglage texte, nombre, couleur ou liste sans valeur enregistrée est à sa valeur par défaut (affichée et utilisée) : plus d'avertissement ni de picto ↺ pour lui
+- Traduction automatique : liste des langues du fournisseur choisi (nsinfoTradLanguages() : demandée à son API, DeepL, Google, Azure, LibreTranslate, Lingva ; conservée un jour, repli sur les 5 langues) ; nsinfoTradTranslate() et ajax/translate.php acceptent un code de langue du fournisseur (fr, pt-BR, EN-US…) en plus de l'indice 1 à 5
+- Traduction automatique (ajax/translate.php) : quand le module nstranslate (Traduction à la demande) est activé, seuls les utilisateurs qui ont son droit « Utiliser la traduction à la demande » peuvent traduire (sans ce module, comportement inchangé)
 - Réglages : signal « réglages différents de la valeur par défaut » dans toute page d'administration : nsinfoIsDefault(), nsinfoDefaultsBySection() et nsinfoDefaultsNotice() (nombre de réglages modifiés + lien ↺ « Tout remettre par défaut », action nsinforesetall de nsinfoAction()) ; textes dans les 5 langues
 - Sauvegarde des paramètres : à l'import, les paramètres du module absents du fichier sont remis à zéro (constante supprimée, le module reprend sa valeur par défaut) ; les mots de passe, clés et jetons sont conservés si le fichier a été fait sans eux (l'export indique s'il en contient) ; les marqueurs de première activation sont conservés
 

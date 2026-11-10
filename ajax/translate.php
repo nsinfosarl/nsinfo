@@ -66,12 +66,19 @@ $langs->loadLangs(array('nsinfo@nsinfo'));
 $answer = array();
 if (!empty($user->socid) || !$user->id) {
 	$answer = array('error' => $langs->transnoentities('NotEnoughPermissions'));
+} elseif (isModEnabled('nstranslate') && !$user->hasRight('nstranslate', 'translate', 'use')) {
+	// Module nstranslate enabled: the on-demand translation is reserved to the users who have its right
+	$answer = array('error' => $langs->transnoentities('NotEnoughPermissions'));
 } elseif (nsinfoTradActiveProvider() === '') {
 	$answer = array('error' => $langs->transnoentities('NsinfoTradNotConfigured'));
 } else {
-	$from = GETPOSTINT('from') ? GETPOSTINT('from') : nsinfoTradLangIndex($user->lang ? $user->lang : $langs->defaultlang);
+	// Languages : index (1..5) or code of the language of the provider (fr, pt-BR...)
+	$fromparam = (string) GETPOST('from', 'alphanohtml');
+	$toparam = (string) GETPOST('to', 'alphanohtml');
+	$from = ($fromparam !== '' ? (ctype_digit($fromparam) ? (int) $fromparam : $fromparam) : nsinfoTradLangIndex($user->lang ? $user->lang : $langs->defaultlang));
+	$to = (ctype_digit($toparam) ? (int) $toparam : $toparam);
 	$error = '';
-	$text = nsinfoTradTranslate((string) GETPOST('text', 'restricthtml'), $from, GETPOSTINT('to'), (bool) GETPOSTINT('html'), $error);
+	$text = nsinfoTradTranslate((string) GETPOST('text', 'restricthtml'), $from, $to, (bool) GETPOSTINT('html'), $error);
 	if ($text === null) {
 		$trans = $langs->transnoentities($error);
 		$answer = array('error' => ($trans !== $error ? $trans : $error));

@@ -3,7 +3,7 @@
 ## Informations
 
 - Numéro du module : 172760
-- Dernière mise à jour : 09/11/2026
+- Dernière mise à jour : 10/11/2026
 - Éditeur : [NSINFO](https://www.ns-info.fr)
 - Thème : Eldy Menu
 - Licence : GPLv3
