@@ -1255,6 +1255,29 @@ jQuery(function($) {
 	function isAuto($form) {
 		return actions.indexOf($form.find("input[type=hidden][name=action]").first().val()) >= 0;
 	}
+	// Calendar of Dolibarr (type selDate) : choosing a day calls dpChangeDay() but jQuery UI sends no "change" event when the calendar has an
+	// onSelect function : the setting is saved from here (typing a date still goes through the event "change" of the field)
+	if (typeof window.dpChangeDay === "function" && !window.dpChangeDay.nsinfo) {
+		var dpOriginal = window.dpChangeDay;
+		window.dpChangeDay = function (prefix) {
+			var result = dpOriginal.apply(this, arguments);
+			var $field = $("#" + prefix), $f = $field.closest("form");
+			if ($f.length && isAuto($f)) {
+				clearTimeout($f.data("nsinfoDateTimer"));
+				$f.data("nsinfoDateTimer", setTimeout(function() { save($f, $field); }, 150));
+			}
+			return result;
+		};
+		window.dpChangeDay.nsinfo = true;
+	}
+	// Link "Now" of the calendar of Dolibarr (button of the field of date) : it fills the date without any event, the setting is saved after it
+	$(document).on("click", "button.datenowlink", function() {
+		var $f = $(this).closest("form");
+		if ($f.length && isAuto($f)) {
+			clearTimeout($f.data("nsinfoDateTimer"));
+			$f.data("nsinfoDateTimer", setTimeout(function() { save($f, $f.find("input[type=text]").first()); }, 250));
+		}
+	});
 	// Pas de bouton « Modifier » : chaque champ s\'enregistre au changement (le bouton « Valeur par défaut » reste)
 	var updatelabel = ' . json_encode($langs->transnoentitiesnoconv("Update")) . ';
 	// Pas de bouton « Valeur par défaut » non plus : le picto \u21ba devant le réglage (visible quand la valeur diffère du défaut) le remplace
@@ -1270,6 +1293,7 @@ jQuery(function($) {
 	$(document).on("change", "form input, form select, form textarea", function() {
 		var form = this.form || $(this).closest("form")[0];
 		if (!form || $(this).is("[type=hidden], [type=submit], [type=button]")) return;
+		if (($(this).attr("onchange") || "").indexOf("dpChangeDay") >= 0) return;	/* field of date : saved through dpChangeDay() above */
 		if (isAuto($(form))) save($(form), $(this));
 	});
 	// Au clic sur Mettre à jour ou à la touche Entrée : même enregistrement, sans rechargement

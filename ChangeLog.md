@@ -1,5 +1,8 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.9.7 - 10/11/2026
+- Réglages (enrauto) : un champ de type date (selDate, calendrier de Dolibarr) s'enregistre aussi quand on choisit le jour dans le calendrier (jQuery UI n'envoie pas d'évènement « change » quand le calendrier a une fonction onSelect : dpChangeDay() est interceptée) ; le lien « Maintenant » du champ de date enregistre aussi ; la saisie au clavier de la date reste enregistrée au changement
+
 ## 23.9.6 - 10/11/2026
 - Traduction automatique d'un texte HTML avec un fournisseur qui ne traduit que du texte simple (MyMemory, Lingva) : le balisage est conservé (gras, listes, liens, couleurs), seuls les textes entre les balises sont traduits, un par un et remis à leur place (nsinfoTradHtmlNodes())
 
