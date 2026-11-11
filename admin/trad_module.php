@@ -149,7 +149,8 @@ if ($hasfields) {
 	$subhead = array();
 	$subhead[0] = array(dol_buildpath('/nsinfo/admin/trad_module.php', 1).'?namemodule='.$namemodule.'&subtab=api', '<i class="fas fa-plug paddingright pictofixedwidth valignmiddle" style="color: #2E7D32"></i>'.$langs->trans('NsinfoTradSubApi'), 'api');
 	$subhead[1] = array(dol_buildpath('/nsinfo/admin/trad_module.php', 1).'?namemodule='.$namemodule.'&subtab=fields', '<i class="fas fa-list-check paddingright pictofixedwidth valignmiddle" style="color: #3879B2"></i>'.$langs->trans('NsinfoTradFields'), 'fields');
-	print dol_get_fiche_head($subhead, $subtab, '', -1);
+	dol_include_once('/nsinfo/lib/setup.lib.php');
+	nsinfoVerticalTabsStart($subhead, $subtab);
 }
 
 print '<style>
@@ -261,7 +262,7 @@ if (isset($providers[$current])) {
 }
 
 if ($hasfields) {
-	print dol_get_fiche_end();
+	nsinfoVerticalTabsEnd();
 }
 
 print dol_get_fiche_end();

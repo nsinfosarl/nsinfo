@@ -1,5 +1,8 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.9.8 - 10/11/2026
+- Traduction automatique (admin/trad_module.php) : les sous-onglets « API de traduction » et « Champs traduits » sont verticaux (liste à gauche, contenu à droite), comme les autres réglages des modules
+
 ## 23.9.7 - 10/11/2026
 - Réglages (enrauto) : un champ de type date (selDate, calendrier de Dolibarr) s'enregistre aussi quand on choisit le jour dans le calendrier (jQuery UI n'envoie pas d'évènement « change » quand le calendrier a une fonction onSelect : dpChangeDay() est interceptée) ; le lien « Maintenant » du champ de date enregistre aussi ; la saisie au clavier de la date reste enregistrée au changement
 
