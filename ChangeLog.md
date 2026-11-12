@@ -1,5 +1,8 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.9.9 - 12/11/2026
+- Sous-onglets verticaux : le picto ↺ d'un sous-onglet dont des réglages ne sont pas à leur valeur par défaut est cliquable (`nsinfoSectionResetFlag()`, action `nsinforesetsection` de `nsinfoAction()`) : un clic remet par défaut les réglages de ce sous-onglet ; la liste des réglages du sous-onglet est transmise (sections qui ne sont pas des blocs `titletab`) ; repris par nssubtotal, nsfreeline, nsexportlist, transuserplus et nstranslate
+
 ## 23.9.8 - 10/11/2026
 - Traduction automatique (admin/trad_module.php) : les sous-onglets « API de traduction » et « Champs traduits » sont verticaux (liste à gauche, contenu à droite), comme les autres réglages des modules
 

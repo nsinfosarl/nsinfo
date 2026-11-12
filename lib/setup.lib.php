@@ -152,12 +152,44 @@ function nsinfoVerticalTabsStart($head, $active)
 .nsinfo-vtabs-content { flex: 1 1 auto; min-width: 0; }
 @media (max-width: 800px) { .nsinfo-vtabs { flex-direction: column; } .nsinfo-vtabs-nav { flex: none; width: 100%; } }
 </style>';
+        // Picto ↺ of a flagged sub-tab (nsinfoSectionResetFlag): click = the settings of the section go back to their defaults
+        // (capture phase: runs before the click that switches the sub-tab)
+        print '<script>document.addEventListener("click", function (ev) {
+	var r = ev.target.closest ? ev.target.closest(".nsinfo-reset") : null;
+	if (r) { ev.preventDefault(); ev.stopPropagation(); window.location.href = r.getAttribute("data-url"); }
+}, true);</script>';
     }
     print '<div class="nsinfo-vtabs"><nav class="nsinfo-vtabs-nav">';
     foreach ($head as $tab) {
         print '<a href="' . dol_escape_htmltag($tab[0]) . '" class="' . ($tab[2] == $active ? 'active' : '') . '">' . $tab[1] . '</a>';
     }
     print '</nav><div class="nsinfo-vtabs-content">';
+}
+
+/**
+ * Picto ↺ cliquable d'un sous-onglet vertical dont des réglages ne sont pas à leur valeur par défaut : un clic remet par
+ * défaut les réglages de ce sous-onglet (action nsinforesetsection, traitée par nsinfoAction()). Chaîne vide si tout est par défaut.
+ * À ajouter au libellé du sous-onglet, avec les clés renvoyées par nsinfoDefaultsBySection().
+ *
+ * @param	string[]	$changed	Clés des réglages modifiés de la section
+ * @param	int			$section	Numéro de la section (0 = première)
+ * @return	string
+ */
+function nsinfoSectionResetFlag($changed, $section)
+{
+    global $langs;
+
+    if (empty($changed)) {
+        return '';
+    }
+    $query = array();
+    parse_str((string) ($_SERVER['QUERY_STRING'] ?? ''), $query);
+    unset($query['action'], $query['section'], $query['keys'], $query['token']);
+    // The keys are sent too (a section may be built from a list of settings, not only from a 'titletab' block) ; validated by nsinfoAction()
+    $query = array_merge($query, array('action' => 'nsinforesetsection', 'section' => (int) $section, 'keys' => implode(',', $changed), 'token' => newToken()));
+    $url = $_SERVER['PHP_SELF'] . '?' . http_build_query($query);
+    return ' <span class="fas fa-undo-alt nsinfo-reset" style="color: #553885; cursor: pointer" data-url="' . dol_escape_htmltag($url)
+        . '" title="' . dol_escape_htmltag($langs->trans('NsinfoDefaultsDiffer', count($changed))) . '"></span>';
 }
 
 /**
@@ -1361,6 +1393,39 @@ function nsinfoAction($action, $var, $value, $vartxt, $varround, $valuetxt, $def
         }
         setEventMessages($langs->trans('SetupSaved'), null, 'mesgs');
         return 1;
+    }
+
+    // Les réglages d'un sous-onglet remis par défaut (picto ↺ du sous-onglet : nsinfoSectionResetFlag())
+    if ($action == 'nsinforesetsection' && count($arrayofparameters)) {
+        if (GETPOST('token', 'alpha') != currentToken()) {
+            return 0;
+        }
+        $section = GETPOSTINT('section');
+        $bysection = nsinfoDefaultsBySection($arrayofparameters);
+        $resetkeys = (array) ($bysection[$section] ?? array());
+        if (GETPOST('keys', 'alphanohtml') !== '') {
+            // Explicit list (sections not built from 'titletab' blocks) : only declared settings that are not at their default
+            $resetkeys = array();
+            foreach (explode(',', GETPOST('keys', 'alphanohtml')) as $k) {
+                if (isset($arrayofparameters[$k]) && !nsinfoIsDefault($k, $arrayofparameters[$k])) {
+                    $resetkeys[] = $k;
+                }
+            }
+        }
+        foreach ($resetkeys as $resetkey) {
+            $resetvalue = (string) $arrayofparameters[$resetkey]['default'];
+            if ($resetvalue === '' || $resetvalue === '0') {
+                dolibarr_del_const($db, $resetkey, $conf->entity);
+            } else {
+                dolibarr_set_const($db, $resetkey, $resetvalue, 'chaine', 0, '', $conf->entity);
+            }
+        }
+        setEventMessages($langs->trans('SetupSaved'), null, 'mesgs');
+        $query = array();
+        parse_str((string) ($_SERVER['QUERY_STRING'] ?? ''), $query);
+        unset($query['action'], $query['section'], $query['keys'], $query['token']);
+        header('Location: ' . $_SERVER['PHP_SELF'] . (count($query) ? '?' . http_build_query($query) : '') . '#section' . $section);
+        exit;
     }
 
     // Un réglage remis à sa valeur par défaut (picto devant chaque réglage qui déclare 'default')
