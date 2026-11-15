@@ -270,3 +270,69 @@ function nsinfoDropZone($htmlname, $url, $action, $hiddens = array(), $label = '
 
 	return $out;
 }
+
+/**
+ * Id (llx_rights_def) of a right of the current entity
+ *
+ * @param	string	$module		Module (rights class, e.g. 'produit')
+ * @param	string	$perms		Permission (e.g. 'creer')
+ * @param	string	$subperms	Sub-permission ('' if none)
+ * @return	int					Id, 0 if the right does not exist (module not enabled)
+ */
+function nsinfoRightId($module, $perms, $subperms = '')
+{
+	global $db, $conf;
+
+	$sql = "SELECT id FROM ".MAIN_DB_PREFIX."rights_def WHERE entity = ".((int) $conf->entity)." AND module = '".$db->escape($module)."'";
+	$sql .= " AND perms = '".$db->escape($perms)."'";
+	$sql .= $subperms === '' ? " AND (subperms IS NULL OR subperms = '')" : " AND subperms = '".$db->escape($subperms)."'";
+	$resql = $db->query($sql);
+	$obj = $resql ? $db->fetch_object($resql) : null;
+
+	return $obj ? (int) $obj->id : 0;
+}
+
+/**
+ * State of a list of rights for a user (to show what a module needs)
+ *
+ * @param	User	$targetuser	User (existing)
+ * @param	array<int,array{0:string,1:string,2?:string}>	$rights	Rights wanted : module, permission, sub-permission (as in llx_rights_def)
+ * @return	array<int,array{label:string,id:int,has:int}>	One line by right (id 0 = the right does not exist : module not enabled)
+ */
+function nsinfoRightsState($targetuser, $rights)
+{
+	$targetuser->loadRights();
+	$ret = array();
+	foreach ($rights as $r) {
+		$sub = isset($r[2]) ? (string) $r[2] : '';
+		$id = nsinfoRightId($r[0], $r[1], $sub);
+		$has = 0;
+		if ($id > 0) {
+			$has = $sub === '' ? (!empty($targetuser->rights->{$r[0]}->{$r[1]}) ? 1 : 0) : (!empty($targetuser->rights->{$r[0]}->{$r[1]}->{$sub}) ? 1 : 0);
+		}
+		$ret[] = array('label' => $r[0].' / '.$r[1].($sub !== '' ? ' / '.$sub : ''), 'id' => $id, 'has' => $has);
+	}
+
+	return $ret;
+}
+
+/**
+ * Gives to a user the rights a module needs (generic : any module, any existing user)
+ *
+ * @param	User	$targetuser	User (existing)
+ * @param	array<int,array{0:string,1:string,2?:string}>	$rights	Rights wanted : module, permission, sub-permission
+ * @return	array{added:string[],missing:string[]}	Rights added, rights that do not exist (module not enabled)
+ */
+function nsinfoGiveRights($targetuser, $rights)
+{
+	$res = array('added' => array(), 'missing' => array());
+	foreach (nsinfoRightsState($targetuser, $rights) as $r) {
+		if ($r['id'] <= 0) {
+			$res['missing'][] = $r['label'];
+		} elseif (!$r['has'] && $targetuser->addrights($r['id']) > 0) {
+			$res['added'][] = $r['label'];
+		}
+	}
+
+	return $res;
+}

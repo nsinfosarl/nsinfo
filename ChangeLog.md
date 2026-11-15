@@ -1,5 +1,8 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.9.10 - 15/11/2026
+- Bibliothèque (`lib/nsinfo.lib.php`) : fonctions génériques pour donner à un utilisateur existant les droits dont un module a besoin : `nsinfoRightId()`, `nsinfoRightsState()` (état de chaque droit) et `nsinfoGiveRights()` (ajoute les droits manquants, signale ceux dont le module n'est pas activé)
+
 ## 23.9.9 - 12/11/2026
 - Sous-onglets verticaux : le picto ↺ d'un sous-onglet dont des réglages ne sont pas à leur valeur par défaut est cliquable (`nsinfoSectionResetFlag()`, action `nsinforesetsection` de `nsinfoAction()`) : un clic remet par défaut les réglages de ce sous-onglet ; la liste des réglages du sous-onglet est transmise (sections qui ne sont pas des blocs `titletab`) ; repris par nssubtotal, nsfreeline, nsexportlist, transuserplus et nstranslate
 
