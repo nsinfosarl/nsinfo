@@ -1,5 +1,9 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 23.9.11 - 16/11/2026
+- README : durée de garantie permanente (reprise par le fichier d'import de la documentation et par toolsdolistore)
+- Documentation : sections valeurs par défaut des réglages, sauvegarde des paramètres, traduction automatique et import de code HTML
+
 ## 23.9.10 - 15/11/2026
 - Bibliothèque (`lib/nsinfo.lib.php`) : fonctions génériques pour donner à un utilisateur existant les droits dont un module a besoin : `nsinfoRightId()`, `nsinfoRightsState()` (état de chaque droit) et `nsinfoGiveRights()` (ajoute les droits manquants, signale ceux dont le module n'est pas activé)
 
