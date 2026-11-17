@@ -1,0 +1,11451 @@
+/*!
+ * NS INFO : Font Awesome Free 7.3.1, classes préfixées « nsfa » (isolées de Font Awesome 5 de Dolibarr)
+ * Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ * Copyright 2026 Fonticons, Inc.
+ */
+.nsfa-solid,
+.nsfa-regular,
+.nsfa-brands,
+.nsfa-classic,
+.nsfas,
+.nsfar,
+.nsfab,
+.nsfa {
+  --_nsfa-family: var(--nsfa-family, var(--nsfa-style-family, 'NS Font Awesome 7 Free'));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: var(--nsfa-display, inline-block);
+  font-family: var(--_nsfa-family);
+  font-feature-settings: normal;
+  font-style: normal;
+  font-synthesis: none;
+  font-variant: normal;
+  font-weight: var(--nsfa-style, 900);
+  line-height: 1;
+  text-align: center;
+  text-rendering: auto;
+  width: var(--nsfa-width, 1.25em);
+}
+
+:is(.nsfas,
+.nsfar,
+.nsfab,
+.nsfa-solid,
+.nsfa-regular,
+.nsfa-brands,
+.nsfa-classic,
+.nsfa)::before {
+  content: var(--nsfa)/"";
+}
+
+@supports not (content: ""/"") {
+  :is(.nsfas,
+  .nsfar,
+  .nsfab,
+  .nsfa-solid,
+  .nsfa-regular,
+  .nsfa-brands,
+  .nsfa-classic,
+  .nsfa)::before {
+    content: var(--nsfa);
+  }
+}
+.nsfa-1x {
+  font-size: 1em;
+}
+
+.nsfa-2x {
+  font-size: 2em;
+}
+
+.nsfa-3x {
+  font-size: 3em;
+}
+
+.nsfa-4x {
+  font-size: 4em;
+}
+
+.nsfa-5x {
+  font-size: 5em;
+}
+
+.nsfa-6x {
+  font-size: 6em;
+}
+
+.nsfa-7x {
+  font-size: 7em;
+}
+
+.nsfa-8x {
+  font-size: 8em;
+}
+
+.nsfa-9x {
+  font-size: 9em;
+}
+
+.nsfa-10x {
+  font-size: 10em;
+}
+
+.nsfa-2xs {
+  font-size: calc(10 / 16 * 1em); /* converts a 10px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 10 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 10 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.nsfa-xs {
+  font-size: calc(12 / 16 * 1em); /* converts a 12px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 12 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 12 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.nsfa-sm {
+  font-size: calc(14 / 16 * 1em); /* converts a 14px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 14 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 14 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.nsfa-lg {
+  font-size: calc(20 / 16 * 1em); /* converts a 20px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 20 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 20 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.nsfa-xl {
+  font-size: calc(24 / 16 * 1em); /* converts a 24px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 24 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 24 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.nsfa-2xl {
+  font-size: calc(32 / 16 * 1em); /* converts a 32px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 32 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 32 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.nsfa-width-auto {
+  --nsfa-width: auto;
+}
+
+.nsfa-fw,
+.nsfa-width-fixed {
+  --nsfa-width: 1.25em;
+}
+
+.nsfa-canvas-square {
+  padding-block: 0.125em;
+  margin-block-end: -0.125em;
+}
+
+.nsfa-canvas-roomy {
+  padding-block: 0.25em;
+  padding-inline: 0.125em;
+  margin-block-end: -0.25em;
+  box-sizing: content-box;
+}
+
+.nsfa-ul {
+  list-style-type: none;
+  margin-inline-start: var(--nsfa-li-margin, 2.5em);
+  padding-inline-start: 0;
+}
+.nsfa-ul > li {
+  position: relative;
+}
+
+.nsfa-li {
+  inset-inline-start: calc(-1 * var(--nsfa-li-width, 2em));
+  position: absolute;
+  text-align: center;
+  width: var(--nsfa-li-width, 2em);
+  line-height: inherit;
+}
+
+/* Heads Up: Bordered Icons will not be supported in the future!
+  - This feature will be deprecated in the next major release of Font Awesome (v8)!
+  - You may continue to use it in this version *v7), but it will not be supported in Font Awesome v8.
+*/
+/* Notes:
+* --@{v.$css-prefix}-border-width = 1/16 by default (to render as ~1px based on a 16px default font-size)
+* --@{v.$css-prefix}-border-padding =
+  ** 3/16 for vertical padding (to give ~2px of vertical whitespace around an icon considering it's vertical alignment)
+  ** 4/16 for horizontal padding (to give ~4px of horizontal whitespace around an icon)
+*/
+.nsfa-border {
+  border-color: var(--nsfa-border-color, #eee);
+  border-radius: var(--nsfa-border-radius, 0.1em);
+  border-style: var(--nsfa-border-style, solid);
+  border-width: var(--nsfa-border-width, 0.0625em);
+  box-sizing: var(--nsfa-border-box-sizing, content-box);
+  padding: var(--nsfa-border-padding, 0.1875em 0.25em);
+}
+
+.nsfa-pull-left,
+.nsfa-pull-start {
+  float: inline-start;
+  margin-inline-end: var(--nsfa-pull-margin, 0.3em);
+}
+
+.nsfa-pull-right,
+.nsfa-pull-end {
+  float: inline-end;
+  margin-inline-start: var(--nsfa-pull-margin, 0.3em);
+}
+
+.nsfa-beat {
+  animation-name: fa-beat;
+  animation-delay: var(--nsfa-animation-delay, 0s);
+  animation-direction: var(--nsfa-animation-direction, normal);
+  animation-duration: var(--nsfa-animation-duration, 1s);
+  animation-iteration-count: var(--nsfa-animation-iteration-count, infinite);
+  animation-timing-function: var(--nsfa-animation-timing, ease-in-out);
+}
+
+.nsfa-bounce {
+  animation-name: fa-bounce;
+  animation-delay: var(--nsfa-animation-delay, 0s);
+  animation-direction: var(--nsfa-animation-direction, normal);
+  animation-duration: var(--nsfa-animation-duration, 1s);
+  animation-iteration-count: var(--nsfa-animation-iteration-count, infinite);
+  animation-timing-function: var(--nsfa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+}
+
+.nsfa-fade {
+  animation-name: fa-fade;
+  animation-delay: var(--nsfa-animation-delay, 0s);
+  animation-direction: var(--nsfa-animation-direction, normal);
+  animation-duration: var(--nsfa-animation-duration, 1s);
+  animation-iteration-count: var(--nsfa-animation-iteration-count, infinite);
+  animation-timing-function: var(--nsfa-animation-timing, ease-in-out);
+}
+
+.nsfa-beat-fade {
+  animation-name: fa-beat-fade;
+  animation-delay: var(--nsfa-animation-delay, 0s);
+  animation-direction: var(--nsfa-animation-direction, normal);
+  animation-duration: var(--nsfa-animation-duration, 1s);
+  animation-iteration-count: var(--nsfa-animation-iteration-count, infinite);
+  animation-timing-function: var(--nsfa-animation-timing, ease-in-out);
+}
+
+.nsfa-flip {
+  animation-name: fa-flip;
+  animation-delay: var(--nsfa-animation-delay, 0s);
+  animation-direction: var(--nsfa-animation-direction, normal);
+  animation-duration: var(--nsfa-animation-duration, 1.5s);
+  animation-iteration-count: var(--nsfa-animation-iteration-count, infinite);
+  animation-timing-function: var(--nsfa-animation-timing, ease-in-out);
+}
+
+.nsfa-flip-360 {
+  animation-name: fa-flip-360;
+  animation-delay: var(--nsfa-animation-delay, 0s);
+  animation-direction: var(--nsfa-animation-direction, normal);
+  animation-duration: var(--nsfa-animation-duration, 1s);
+  animation-iteration-count: var(--nsfa-animation-iteration-count, infinite);
+  animation-timing-function: var(--nsfa-animation-timing, ease-in-out);
+}
+
+.nsfa-shake {
+  animation-name: fa-shake;
+  animation-delay: var(--nsfa-animation-delay, 0s);
+  animation-direction: var(--nsfa-animation-direction, normal);
+  animation-duration: var(--nsfa-animation-duration, 0.75s);
+  animation-iteration-count: var(--nsfa-animation-iteration-count, infinite);
+  animation-timing-function: var(--nsfa-animation-timing, ease-in-out);
+}
+
+.nsfa-spin {
+  animation-name: fa-spin;
+  animation-delay: var(--nsfa-animation-delay, 0s);
+  animation-direction: var(--nsfa-animation-direction, normal);
+  animation-duration: var(--nsfa-animation-duration, 2s);
+  animation-iteration-count: var(--nsfa-animation-iteration-count, infinite);
+  animation-timing-function: var(--nsfa-animation-timing, linear);
+}
+
+.nsfa-spin-reverse {
+  --nsfa-animation-direction: reverse;
+}
+
+.nsfa-pulse,
+.nsfa-spin-pulse {
+  animation-name: fa-spin;
+  animation-direction: var(--nsfa-animation-direction, normal);
+  animation-duration: var(--nsfa-animation-duration, 1s);
+  animation-iteration-count: var(--nsfa-animation-iteration-count, infinite);
+  animation-timing-function: var(--nsfa-animation-timing, steps(8));
+}
+
+.nsfa-spin-snap {
+  animation-name: fa-spin-snap;
+  animation-delay: var(--nsfa-animation-delay, 0s);
+  animation-direction: var(--nsfa-animation-direction, normal);
+  animation-duration: var(--nsfa-animation-duration, 3s);
+  animation-iteration-count: var(--nsfa-animation-iteration-count, infinite);
+  animation-timing-function: var(--nsfa-animation-timing, linear);
+}
+
+.nsfa-spin-snap-4 {
+  animation-name: fa-spin-snap-4;
+  animation-delay: var(--nsfa-animation-delay, 0s);
+  animation-direction: var(--nsfa-animation-direction, normal);
+  animation-duration: var(--nsfa-animation-duration, 2.4s);
+  animation-iteration-count: var(--nsfa-animation-iteration-count, infinite);
+  animation-timing-function: var(--nsfa-animation-timing, linear);
+}
+
+.nsfa-spin-snap-8 {
+  animation-name: fa-spin-snap-8;
+  animation-delay: var(--nsfa-animation-delay, 0s);
+  animation-direction: var(--nsfa-animation-direction, normal);
+  animation-duration: var(--nsfa-animation-duration, 4s);
+  animation-iteration-count: var(--nsfa-animation-iteration-count, infinite);
+  animation-timing-function: var(--nsfa-animation-timing, linear);
+}
+
+.nsfa-buzz {
+  animation-name: fa-buzz;
+  animation-delay: var(--nsfa-animation-delay, 0s);
+  animation-direction: var(--nsfa-animation-direction, normal);
+  animation-duration: var(--nsfa-animation-duration, 0.6s);
+  animation-iteration-count: var(--nsfa-animation-iteration-count, infinite);
+  animation-timing-function: var(--nsfa-animation-timing, linear);
+}
+
+.nsfa-wag {
+  animation-name: fa-wag;
+  animation-delay: var(--nsfa-animation-delay, 0s);
+  animation-direction: var(--nsfa-animation-direction, normal);
+  animation-duration: var(--nsfa-animation-duration, 0.9s);
+  animation-iteration-count: var(--nsfa-animation-iteration-count, infinite);
+  animation-timing-function: var(--nsfa-animation-timing, ease-out);
+  transform-origin: bottom center;
+}
+
+.nsfa-float {
+  animation-name: fa-float;
+  animation-delay: var(--nsfa-animation-delay, 0s);
+  animation-direction: var(--nsfa-animation-direction, normal);
+  animation-duration: var(--nsfa-animation-duration, 3s);
+  animation-iteration-count: var(--nsfa-animation-iteration-count, infinite);
+  animation-timing-function: var(--nsfa-animation-timing, ease-in-out);
+  will-change: transform;
+}
+
+.nsfa-swing {
+  animation-name: fa-swing;
+  animation-delay: var(--nsfa-animation-delay, 0s);
+  animation-direction: var(--nsfa-animation-direction, normal);
+  animation-duration: var(--nsfa-animation-duration, 1.2s);
+  animation-iteration-count: var(--nsfa-animation-iteration-count, infinite);
+  animation-timing-function: var(--nsfa-animation-timing, ease-out);
+  transform-origin: top center;
+}
+
+.nsfa-jello {
+  animation-name: fa-jello;
+  animation-delay: var(--nsfa-animation-delay, 0s);
+  animation-direction: var(--nsfa-animation-direction, normal);
+  animation-duration: var(--nsfa-animation-duration, 0.9s);
+  animation-iteration-count: var(--nsfa-animation-iteration-count, infinite);
+  animation-timing-function: var(--nsfa-animation-timing, ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nsfa-beat,
+  .nsfa-bounce,
+  .nsfa-fade,
+  .nsfa-beat-fade,
+  .nsfa-flip,
+  .nsfa-flip-360,
+  .nsfa-pulse,
+  .nsfa-shake,
+  .nsfa-spin,
+  .nsfa-spin-pulse,
+  .nsfa-buzz,
+  .nsfa-float,
+  .nsfa-jello,
+  .nsfa-spin-snap,
+  .nsfa-spin-snap-4,
+  .nsfa-spin-snap-8,
+  .nsfa-swing,
+  .nsfa-wag {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+@keyframes fa-beat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(calc(1.25 * var(--nsfa-beat-scale, 1.25)));
+  }
+  45% {
+    transform: scale(calc(1.22 * var(--nsfa-beat-scale, 1.22)));
+  }
+  65% {
+    transform: scale(calc(1.25 * var(--nsfa-beat-scale, 1.25)));
+  }
+  90% {
+    transform: scale(1);
+  }
+}
+@keyframes fa-bounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+    animation-timing-function: var(--nsfa-animation-timing);
+  }
+  14% {
+    transform: scale(var(--nsfa-bounce-start-scale-x, 1.06), var(--nsfa-bounce-start-scale-y, 0.94)) translateY(var(--nsfa-bounce-anticipation, 3px));
+    animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33);
+  }
+  32% {
+    transform: scale(var(--nsfa-bounce-jump-scale-x, 0.94), var(--nsfa-bounce-jump-scale-y, 1.12)) translateY(calc(-1 * var(--nsfa-bounce-height, 0.5em)));
+    animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 1);
+  }
+  52% {
+    transform: scale(1, 1) translateY(calc(-1 * var(--nsfa-bounce-height, 0.5em) * 1.1));
+    animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+  }
+  70% {
+    transform: scale(var(--nsfa-bounce-land-scale-x, 1.06), var(--nsfa-bounce-land-scale-y, 0.92)) translateY(0);
+    animation-timing-function: cubic-bezier(0.33, 0.33, 0.66, 1);
+  }
+  85% {
+    transform: scale(0.98, 1.04) translateY(calc(-2px * var(--nsfa-bounce-rebound, 1)));
+    animation-timing-function: cubic-bezier(0.33, 0, 0.66, 1);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+@keyframes fa-fade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    animation-timing-function: cubic-bezier(0.2, 0, 0.4, 1);
+  }
+  40% {
+    opacity: var(--nsfa-fade-opacity, 0.4);
+    transform: scale(0.98);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fa-beat-fade {
+  0% {
+    opacity: var(--nsfa-beat-fade-opacity, 0.4);
+    transform: scale(1);
+    animation-timing-function: cubic-bezier(0.2, 0, 0.4, 1);
+  }
+  25% {
+    opacity: calc(var(--nsfa-beat-fade-opacity, 0.4) + 0.4);
+    transform: scale(var(--nsfa-beat-fade-scale, 1.28));
+    animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(var(--nsfa-beat-fade-scale, 1.25));
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  65% {
+    opacity: calc(var(--nsfa-beat-fade-opacity, 0.4) + 0.4);
+    transform: scale(var(--nsfa-beat-fade-scale, 1.28));
+    animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+  100% {
+    opacity: var(--nsfa-beat-fade-opacity, 0.4);
+    transform: scale(1);
+  }
+}
+@keyframes fa-flip {
+  0% {
+    transform: perspective(2em) scale(1) rotate3d(var(--nsfa-flip-x, 0), var(--nsfa-flip-y, 1), var(--nsfa-flip-z, 0), 0deg);
+    animation-timing-function: cubic-bezier(0.2, 0, 0.4, 1);
+  }
+  8% {
+    transform: perspective(2em) scale(var(--nsfa-flip-anticipation-scale, 0.95)) rotate3d(var(--nsfa-flip-x, 0), var(--nsfa-flip-y, 1), var(--nsfa-flip-z, 0), 0deg);
+    animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33);
+  }
+  35% {
+    transform: perspective(2em) scale(1) rotate3d(var(--nsfa-flip-x, 0), var(--nsfa-flip-y, 1), var(--nsfa-flip-z, 0), calc(var(--nsfa-flip-angle, -360deg) * 0.6));
+    animation-timing-function: linear;
+  }
+  65% {
+    transform: perspective(2em) scale(1) rotate3d(var(--nsfa-flip-x, 0), var(--nsfa-flip-y, 1), var(--nsfa-flip-z, 0), calc(var(--nsfa-flip-angle, -360deg) * 0.5));
+    animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 1);
+  }
+  92% {
+    transform: perspective(2em) scale(1) rotate3d(var(--nsfa-flip-x, 0), var(--nsfa-flip-y, 1), var(--nsfa-flip-z, 0), calc(var(--nsfa-flip-angle, -360deg) * var(--nsfa-flip-overshoot, 1.04)));
+    animation-timing-function: cubic-bezier(0.33, 0, 0.66, 1);
+  }
+  100% {
+    transform: perspective(2em) scale(1) rotate3d(var(--nsfa-flip-x, 0), var(--nsfa-flip-y, 1), var(--nsfa-flip-z, 0), var(--nsfa-flip-angle, -360deg));
+  }
+}
+@keyframes fa-flip-360 {
+  0% {
+    transform: perspective(2em) scale(1) rotate3d(var(--nsfa-flip-x, 0), var(--nsfa-flip-y, 1), var(--nsfa-flip-z, 0), 0deg);
+    animation-timing-function: cubic-bezier(0.2, 0, 0.4, 1);
+  }
+  8% {
+    transform: perspective(2em) scale(var(--nsfa-flip-anticipation-scale, 0.95)) rotate3d(var(--nsfa-flip-x, 0), var(--nsfa-flip-y, 1), var(--nsfa-flip-z, 0), 0deg);
+    animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33);
+  }
+  50% {
+    transform: perspective(2em) scale(1) rotate3d(var(--nsfa-flip-x, 0), var(--nsfa-flip-y, 1), var(--nsfa-flip-z, 0), calc(var(--nsfa-flip-angle, -360deg) * 0.6));
+    animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 1);
+  }
+  80% {
+    transform: perspective(2em) scale(1) rotate3d(var(--nsfa-flip-x, 0), var(--nsfa-flip-y, 1), var(--nsfa-flip-z, 0), calc(var(--nsfa-flip-angle, -360deg) * var(--nsfa-flip-overshoot, 1.04)));
+    animation-timing-function: cubic-bezier(0.33, 0, 0.66, 1);
+  }
+  100% {
+    transform: perspective(2em) scale(1) rotate3d(var(--nsfa-flip-x, 0), var(--nsfa-flip-y, 1), var(--nsfa-flip-z, 0), var(--nsfa-flip-angle, -360deg));
+  }
+}
+@keyframes fa-shake {
+  0% {
+    transform: rotate(0deg);
+    animation-timing-function: cubic-bezier(0.2, 0, 0.8, 1);
+  }
+  8% {
+    transform: rotate(35deg) translateX(1px);
+    animation-timing-function: cubic-bezier(0.3, 0, 0.7, 1);
+  }
+  20% {
+    transform: rotate(-22deg) translateX(-1px);
+    animation-timing-function: cubic-bezier(0.3, 0, 0.7, 1);
+  }
+  35% {
+    transform: rotate(15deg) translateX(1px);
+    animation-timing-function: cubic-bezier(0.3, 0, 0.7, 1);
+  }
+  50% {
+    transform: rotate(-9deg);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+  65% {
+    transform: rotate(5deg);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+  78% {
+    transform: rotate(-3deg);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+  90% {
+    transform: rotate(1deg);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fa-spin-snap {
+  0% {
+    transform: rotate(0deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  12% {
+    transform: rotate(60deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  16.67% {
+    transform: rotate(60deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  28.67% {
+    transform: rotate(120deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  33.33% {
+    transform: rotate(120deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  45.33% {
+    transform: rotate(180deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: rotate(180deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  62% {
+    transform: rotate(240deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  66.67% {
+    transform: rotate(240deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  78.67% {
+    transform: rotate(300deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  83.33% {
+    transform: rotate(300deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  95.33% {
+    transform: rotate(360deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fa-spin-snap-4 {
+  0% {
+    transform: rotate(0deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  15% {
+    transform: rotate(90deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  25% {
+    transform: rotate(90deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  40% {
+    transform: rotate(180deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: rotate(180deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  65% {
+    transform: rotate(270deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  75% {
+    transform: rotate(270deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  90% {
+    transform: rotate(360deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fa-spin-snap-8 {
+  0% {
+    transform: rotate(0deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  9% {
+    transform: rotate(45deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  12.5% {
+    transform: rotate(45deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  21.5% {
+    transform: rotate(90deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  25% {
+    transform: rotate(90deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  34% {
+    transform: rotate(135deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  37.5% {
+    transform: rotate(135deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  46.5% {
+    transform: rotate(180deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: rotate(180deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  59% {
+    transform: rotate(225deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  62.5% {
+    transform: rotate(225deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  71.5% {
+    transform: rotate(270deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  75% {
+    transform: rotate(270deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  84% {
+    transform: rotate(315deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  87.5% {
+    transform: rotate(315deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  96.5% {
+    transform: rotate(360deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fa-buzz {
+  0% {
+    transform: translateX(0) rotate(0deg);
+    animation-timing-function: cubic-bezier(0.1, 0, 0.9, 1);
+  }
+  5% {
+    transform: translateX(var(--nsfa-buzz-distance, 4px)) rotate(0.5deg);
+  }
+  10% {
+    transform: translateX(calc(-1 * var(--nsfa-buzz-distance, 4px))) rotate(-0.5deg);
+  }
+  15% {
+    transform: translateX(var(--nsfa-buzz-distance, 4px)) rotate(0.3deg);
+  }
+  20% {
+    transform: translateX(calc(-1 * var(--nsfa-buzz-distance, 4px))) rotate(-0.3deg);
+  }
+  25% {
+    transform: translateX(calc(var(--nsfa-buzz-distance, 4px) * 0.7)) rotate(0.2deg);
+  }
+  30% {
+    transform: translateX(calc(-1 * var(--nsfa-buzz-distance, 4px) * 0.7)) rotate(-0.2deg);
+  }
+  35% {
+    transform: translateX(calc(var(--nsfa-buzz-distance, 4px) * 0.4)) rotate(0.1deg);
+  }
+  40% {
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+}
+@keyframes fa-wag {
+  0% {
+    transform: rotate(0deg);
+    animation-timing-function: cubic-bezier(0.2, 0, 0.6, 1);
+  }
+  12% {
+    transform: rotate(var(--nsfa-wag-angle, 12deg));
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  24% {
+    transform: rotate(2deg);
+    animation-timing-function: cubic-bezier(0.2, 0, 0.6, 1);
+  }
+  36% {
+    transform: rotate(calc(var(--nsfa-wag-angle, 12deg) * 0.85));
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  48% {
+    transform: rotate(1deg);
+    animation-timing-function: cubic-bezier(0.2, 0, 0.6, 1);
+  }
+  58% {
+    transform: rotate(calc(var(--nsfa-wag-angle, 12deg) * 0.6));
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  68% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes fa-float {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg) scale(var(--nsfa-float-squash-x, 1.02), var(--nsfa-float-squash-y, 0.98));
+    animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33);
+  }
+  15% {
+    transform: translateY(calc(-0.4 * var(--nsfa-float-height, 6px))) translateX(var(--nsfa-float-drift, 1px)) rotate(var(--nsfa-float-tilt, 1deg)) scale(1, 1);
+    animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 1);
+  }
+  35% {
+    transform: translateY(calc(-1 * var(--nsfa-float-height, 6px))) translateX(0) rotate(0deg) scale(var(--nsfa-float-stretch-x, 0.98), var(--nsfa-float-stretch-y, 1.03));
+    animation-timing-function: cubic-bezier(0.5, 0, 0.5, 0);
+  }
+  50% {
+    transform: translateY(calc(-0.92 * var(--nsfa-float-height, 6px))) translateX(calc(-0.5 * var(--nsfa-float-drift, 1px))) rotate(calc(-0.5 * var(--nsfa-float-tilt, 1deg))) scale(0.995, 1.01);
+    animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33);
+  }
+  70% {
+    transform: translateY(calc(-0.3 * var(--nsfa-float-height, 6px))) translateX(calc(-1 * var(--nsfa-float-drift, 1px))) rotate(calc(-1 * var(--nsfa-float-tilt, 1deg))) scale(1, 1);
+    animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 1);
+  }
+  90% {
+    transform: translateY(calc(0.05 * var(--nsfa-float-height, 6px))) translateX(0) rotate(0deg) scale(var(--nsfa-float-squash-x, 1.02), var(--nsfa-float-squash-y, 0.98));
+    animation-timing-function: cubic-bezier(0.33, 0, 0.66, 1);
+  }
+  100% {
+    transform: translateY(0) translateX(0) rotate(0deg) scale(var(--nsfa-float-squash-x, 1.02), var(--nsfa-float-squash-y, 0.98));
+  }
+}
+@keyframes fa-swing {
+  0% {
+    transform: rotate(0deg);
+    animation-timing-function: cubic-bezier(0.2, 0, 0.8, 1);
+  }
+  8% {
+    transform: rotate(var(--nsfa-swing-angle, 22deg));
+    animation-timing-function: cubic-bezier(0.3, 0, 0.7, 1);
+  }
+  18% {
+    transform: rotate(calc(-1 * var(--nsfa-swing-angle, 22deg) * 0.85));
+    animation-timing-function: cubic-bezier(0.3, 0, 0.7, 1);
+  }
+  28% {
+    transform: rotate(calc(var(--nsfa-swing-angle, 22deg) * 0.65));
+    animation-timing-function: cubic-bezier(0.35, 0, 0.65, 1);
+  }
+  38% {
+    transform: rotate(calc(-1 * var(--nsfa-swing-angle, 22deg) * 0.45));
+    animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+  48% {
+    transform: rotate(calc(var(--nsfa-swing-angle, 22deg) * 0.25));
+    animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+  56% {
+    transform: rotate(calc(-1 * var(--nsfa-swing-angle, 22deg) * 0.1));
+    animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+  64% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes fa-jello {
+  0% {
+    transform: scale(1, 1);
+    animation-timing-function: cubic-bezier(0.2, 0, 0.8, 1);
+  }
+  12% {
+    transform: scale(var(--nsfa-jello-scale-x, 1.15), calc(2 - var(--nsfa-jello-scale-x, 1.15)));
+    animation-timing-function: cubic-bezier(0.3, 0, 0.7, 1);
+  }
+  24% {
+    transform: scale(calc(2 - var(--nsfa-jello-scale-y, 1.12)), var(--nsfa-jello-scale-y, 1.12));
+    animation-timing-function: cubic-bezier(0.3, 0, 0.7, 1);
+  }
+  36% {
+    transform: scale(calc(1 + (var(--nsfa-jello-scale-x, 1.15) - 1) * 0.5), calc(2 - (1 + (var(--nsfa-jello-scale-x, 1.15) - 1) * 0.5)));
+    animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+  48% {
+    transform: scale(calc(2 - (1 + (var(--nsfa-jello-scale-y, 1.12) - 1) * 0.3)), calc(1 + (var(--nsfa-jello-scale-y, 1.12) - 1) * 0.3));
+    animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+  58% {
+    transform: scale(1.02, 0.98);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  68% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+.nsfa-rotate-90 {
+  transform: rotate(90deg);
+}
+
+.nsfa-rotate-180 {
+  transform: rotate(180deg);
+}
+
+.nsfa-rotate-270 {
+  transform: rotate(270deg);
+}
+
+.nsfa-flip-horizontal {
+  transform: scale(-1, 1);
+}
+
+.nsfa-flip-vertical {
+  transform: scale(1, -1);
+}
+
+.nsfa-flip-both,
+.nsfa-flip-horizontal.nsfa-flip-vertical {
+  transform: scale(-1, -1);
+}
+
+.nsfa-rotate-by {
+  transform: rotate(var(--nsfa-rotate-angle, 0));
+}
+
+.nsfa-stack {
+  display: inline-block;
+  height: 2em;
+  line-height: 2em;
+  position: relative;
+  vertical-align: middle;
+  width: 2.5em;
+}
+
+.nsfa-stack-1x,
+.nsfa-stack-2x {
+  --nsfa-width: 100%;
+  inset: 0;
+  position: absolute;
+  text-align: center;
+  width: var(--nsfa-width);
+  z-index: var(--nsfa-stack-z-index, auto);
+}
+
+.nsfa-stack-1x {
+  line-height: inherit;
+}
+
+.nsfa-stack-2x {
+  font-size: 2em;
+}
+
+.nsfa-inverse {
+  color: var(--nsfa-inverse, #fff);
+}
+
+/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+   readers do not read off random characters that represent icons */
+
+.nsfa-0 {
+  --nsfa: "\30 ";
+}
+
+.nsfa-1 {
+  --nsfa: "\31 ";
+}
+
+.nsfa-2 {
+  --nsfa: "\32 ";
+}
+
+.nsfa-3 {
+  --nsfa: "\33 ";
+}
+
+.nsfa-4 {
+  --nsfa: "\34 ";
+}
+
+.nsfa-5 {
+  --nsfa: "\35 ";
+}
+
+.nsfa-6 {
+  --nsfa: "\36 ";
+}
+
+.nsfa-7 {
+  --nsfa: "\37 ";
+}
+
+.nsfa-8 {
+  --nsfa: "\38 ";
+}
+
+.nsfa-9 {
+  --nsfa: "\39 ";
+}
+
+.nsfa-exclamation {
+  --nsfa: "\!";
+}
+
+.nsfa-hashtag {
+  --nsfa: "\#";
+}
+
+.nsfa-dollar-sign {
+  --nsfa: "\$";
+}
+
+.nsfa-dollar {
+  --nsfa: "\$";
+}
+
+.nsfa-usd {
+  --nsfa: "\$";
+}
+
+.nsfa-percent {
+  --nsfa: "\%";
+}
+
+.nsfa-percentage {
+  --nsfa: "\%";
+}
+
+.nsfa-asterisk {
+  --nsfa: "\*";
+}
+
+.nsfa-plus {
+  --nsfa: "\+";
+}
+
+.nsfa-add {
+  --nsfa: "\+";
+}
+
+.nsfa-less-than {
+  --nsfa: "\<";
+}
+
+.nsfa-equals {
+  --nsfa: "\=";
+}
+
+.nsfa-greater-than {
+  --nsfa: "\>";
+}
+
+.nsfa-question {
+  --nsfa: "\?";
+}
+
+.nsfa-at {
+  --nsfa: "\@";
+}
+
+.nsfa-a {
+  --nsfa: "A";
+}
+
+.nsfa-b {
+  --nsfa: "B";
+}
+
+.nsfa-c {
+  --nsfa: "C";
+}
+
+.nsfa-d {
+  --nsfa: "D";
+}
+
+.nsfa-e {
+  --nsfa: "E";
+}
+
+.nsfa-f {
+  --nsfa: "F";
+}
+
+.nsfa-g {
+  --nsfa: "G";
+}
+
+.nsfa-h {
+  --nsfa: "H";
+}
+
+.nsfa-i {
+  --nsfa: "I";
+}
+
+.nsfa-j {
+  --nsfa: "J";
+}
+
+.nsfa-k {
+  --nsfa: "K";
+}
+
+.nsfa-l {
+  --nsfa: "L";
+}
+
+.nsfa-m {
+  --nsfa: "M";
+}
+
+.nsfa-n {
+  --nsfa: "N";
+}
+
+.nsfa-o {
+  --nsfa: "O";
+}
+
+.nsfa-p {
+  --nsfa: "P";
+}
+
+.nsfa-q {
+  --nsfa: "Q";
+}
+
+.nsfa-r {
+  --nsfa: "R";
+}
+
+.nsfa-s {
+  --nsfa: "S";
+}
+
+.nsfa-t {
+  --nsfa: "T";
+}
+
+.nsfa-u {
+  --nsfa: "U";
+}
+
+.nsfa-v {
+  --nsfa: "V";
+}
+
+.nsfa-w {
+  --nsfa: "W";
+}
+
+.nsfa-x {
+  --nsfa: "X";
+}
+
+.nsfa-y {
+  --nsfa: "Y";
+}
+
+.nsfa-z {
+  --nsfa: "Z";
+}
+
+.nsfa-faucet {
+  --nsfa: "\e005";
+}
+
+.nsfa-faucet-drip {
+  --nsfa: "\e006";
+}
+
+.nsfa-house-chimney-window {
+  --nsfa: "\e00d";
+}
+
+.nsfa-house-signal {
+  --nsfa: "\e012";
+}
+
+.nsfa-temperature-arrow-down {
+  --nsfa: "\e03f";
+}
+
+.nsfa-temperature-down {
+  --nsfa: "\e03f";
+}
+
+.nsfa-temperature-arrow-up {
+  --nsfa: "\e040";
+}
+
+.nsfa-temperature-up {
+  --nsfa: "\e040";
+}
+
+.nsfa-trailer {
+  --nsfa: "\e041";
+}
+
+.nsfa-bacteria {
+  --nsfa: "\e059";
+}
+
+.nsfa-bacterium {
+  --nsfa: "\e05a";
+}
+
+.nsfa-box-tissue {
+  --nsfa: "\e05b";
+}
+
+.nsfa-hand-holding-medical {
+  --nsfa: "\e05c";
+}
+
+.nsfa-hand-sparkles {
+  --nsfa: "\e05d";
+}
+
+.nsfa-hands-bubbles {
+  --nsfa: "\e05e";
+}
+
+.nsfa-hands-wash {
+  --nsfa: "\e05e";
+}
+
+.nsfa-handshake-slash {
+  --nsfa: "\e060";
+}
+
+.nsfa-handshake-alt-slash {
+  --nsfa: "\e060";
+}
+
+.nsfa-handshake-simple-slash {
+  --nsfa: "\e060";
+}
+
+.nsfa-head-side-cough {
+  --nsfa: "\e061";
+}
+
+.nsfa-head-side-cough-slash {
+  --nsfa: "\e062";
+}
+
+.nsfa-head-side-mask {
+  --nsfa: "\e063";
+}
+
+.nsfa-head-side-virus {
+  --nsfa: "\e064";
+}
+
+.nsfa-house-chimney-user {
+  --nsfa: "\e065";
+}
+
+.nsfa-house-laptop {
+  --nsfa: "\e066";
+}
+
+.nsfa-laptop-house {
+  --nsfa: "\e066";
+}
+
+.nsfa-lungs-virus {
+  --nsfa: "\e067";
+}
+
+.nsfa-people-arrows {
+  --nsfa: "\e068";
+}
+
+.nsfa-people-arrows-left-right {
+  --nsfa: "\e068";
+}
+
+.nsfa-plane-slash {
+  --nsfa: "\e069";
+}
+
+.nsfa-pump-medical {
+  --nsfa: "\e06a";
+}
+
+.nsfa-pump-soap {
+  --nsfa: "\e06b";
+}
+
+.nsfa-shield-virus {
+  --nsfa: "\e06c";
+}
+
+.nsfa-sink {
+  --nsfa: "\e06d";
+}
+
+.nsfa-soap {
+  --nsfa: "\e06e";
+}
+
+.nsfa-stopwatch-20 {
+  --nsfa: "\e06f";
+}
+
+.nsfa-shop-slash {
+  --nsfa: "\e070";
+}
+
+.nsfa-store-alt-slash {
+  --nsfa: "\e070";
+}
+
+.nsfa-store-slash {
+  --nsfa: "\e071";
+}
+
+.nsfa-toilet-paper-slash {
+  --nsfa: "\e072";
+}
+
+.nsfa-users-slash {
+  --nsfa: "\e073";
+}
+
+.nsfa-virus {
+  --nsfa: "\e074";
+}
+
+.nsfa-virus-slash {
+  --nsfa: "\e075";
+}
+
+.nsfa-viruses {
+  --nsfa: "\e076";
+}
+
+.nsfa-vest {
+  --nsfa: "\e085";
+}
+
+.nsfa-vest-patches {
+  --nsfa: "\e086";
+}
+
+.nsfa-arrow-trend-down {
+  --nsfa: "\e097";
+}
+
+.nsfa-arrow-trend-up {
+  --nsfa: "\e098";
+}
+
+.nsfa-arrow-up-from-bracket {
+  --nsfa: "\e09a";
+}
+
+.nsfa-austral-sign {
+  --nsfa: "\e0a9";
+}
+
+.nsfa-baht-sign {
+  --nsfa: "\e0ac";
+}
+
+.nsfa-bitcoin-sign {
+  --nsfa: "\e0b4";
+}
+
+.nsfa-bolt-lightning {
+  --nsfa: "\e0b7";
+}
+
+.nsfa-book-bookmark {
+  --nsfa: "\e0bb";
+}
+
+.nsfa-camera-rotate {
+  --nsfa: "\e0d8";
+}
+
+.nsfa-cedi-sign {
+  --nsfa: "\e0df";
+}
+
+.nsfa-chart-column {
+  --nsfa: "\e0e3";
+}
+
+.nsfa-chart-gantt {
+  --nsfa: "\e0e4";
+}
+
+.nsfa-clapperboard {
+  --nsfa: "\e131";
+}
+
+.nsfa-closed-captioning-slash {
+  --nsfa: "\e135";
+}
+
+.nsfa-clover {
+  --nsfa: "\e139";
+}
+
+.nsfa-code-compare {
+  --nsfa: "\e13a";
+}
+
+.nsfa-code-fork {
+  --nsfa: "\e13b";
+}
+
+.nsfa-code-pull-request {
+  --nsfa: "\e13c";
+}
+
+.nsfa-colon-sign {
+  --nsfa: "\e140";
+}
+
+.nsfa-cruzeiro-sign {
+  --nsfa: "\e152";
+}
+
+.nsfa-display {
+  --nsfa: "\e163";
+}
+
+.nsfa-dong-sign {
+  --nsfa: "\e169";
+}
+
+.nsfa-elevator {
+  --nsfa: "\e16d";
+}
+
+.nsfa-filter-circle-xmark {
+  --nsfa: "\e17b";
+}
+
+.nsfa-florin-sign {
+  --nsfa: "\e184";
+}
+
+.nsfa-folder-closed {
+  --nsfa: "\e185";
+}
+
+.nsfa-franc-sign {
+  --nsfa: "\e18f";
+}
+
+.nsfa-guarani-sign {
+  --nsfa: "\e19a";
+}
+
+.nsfa-gun {
+  --nsfa: "\e19b";
+}
+
+.nsfa-hands-clapping {
+  --nsfa: "\e1a8";
+}
+
+.nsfa-house-user {
+  --nsfa: "\e1b0";
+}
+
+.nsfa-home-user {
+  --nsfa: "\e1b0";
+}
+
+.nsfa-indian-rupee-sign {
+  --nsfa: "\e1bc";
+}
+
+.nsfa-indian-rupee {
+  --nsfa: "\e1bc";
+}
+
+.nsfa-inr {
+  --nsfa: "\e1bc";
+}
+
+.nsfa-kip-sign {
+  --nsfa: "\e1c4";
+}
+
+.nsfa-lari-sign {
+  --nsfa: "\e1c8";
+}
+
+.nsfa-litecoin-sign {
+  --nsfa: "\e1d3";
+}
+
+.nsfa-manat-sign {
+  --nsfa: "\e1d5";
+}
+
+.nsfa-mask-face {
+  --nsfa: "\e1d7";
+}
+
+.nsfa-mill-sign {
+  --nsfa: "\e1ed";
+}
+
+.nsfa-money-bills {
+  --nsfa: "\e1f3";
+}
+
+.nsfa-naira-sign {
+  --nsfa: "\e1f6";
+}
+
+.nsfa-notdef {
+  --nsfa: "\e1fe";
+}
+
+.nsfa-panorama {
+  --nsfa: "\e209";
+}
+
+.nsfa-peseta-sign {
+  --nsfa: "\e221";
+}
+
+.nsfa-peso-sign {
+  --nsfa: "\e222";
+}
+
+.nsfa-plane-up {
+  --nsfa: "\e22d";
+}
+
+.nsfa-rupiah-sign {
+  --nsfa: "\e23d";
+}
+
+.nsfa-stairs {
+  --nsfa: "\e289";
+}
+
+.nsfa-timeline {
+  --nsfa: "\e29c";
+}
+
+.nsfa-truck-front {
+  --nsfa: "\e2b7";
+}
+
+.nsfa-turkish-lira-sign {
+  --nsfa: "\e2bb";
+}
+
+.nsfa-try {
+  --nsfa: "\e2bb";
+}
+
+.nsfa-turkish-lira {
+  --nsfa: "\e2bb";
+}
+
+.nsfa-vault {
+  --nsfa: "\e2c5";
+}
+
+.nsfa-wand-magic-sparkles {
+  --nsfa: "\e2ca";
+}
+
+.nsfa-magic-wand-sparkles {
+  --nsfa: "\e2ca";
+}
+
+.nsfa-wheat-awn {
+  --nsfa: "\e2cd";
+}
+
+.nsfa-wheat-alt {
+  --nsfa: "\e2cd";
+}
+
+.nsfa-wheelchair-move {
+  --nsfa: "\e2ce";
+}
+
+.nsfa-wheelchair-alt {
+  --nsfa: "\e2ce";
+}
+
+.nsfa-bangladeshi-taka-sign {
+  --nsfa: "\e2e6";
+}
+
+.nsfa-bowl-rice {
+  --nsfa: "\e2eb";
+}
+
+.nsfa-person-pregnant {
+  --nsfa: "\e31e";
+}
+
+.nsfa-house-chimney {
+  --nsfa: "\e3af";
+}
+
+.nsfa-home-lg {
+  --nsfa: "\e3af";
+}
+
+.nsfa-house-crack {
+  --nsfa: "\e3b1";
+}
+
+.nsfa-house-medical {
+  --nsfa: "\e3b2";
+}
+
+.nsfa-cent-sign {
+  --nsfa: "\e3f5";
+}
+
+.nsfa-plus-minus {
+  --nsfa: "\e43c";
+}
+
+.nsfa-sailboat {
+  --nsfa: "\e445";
+}
+
+.nsfa-section {
+  --nsfa: "\e447";
+}
+
+.nsfa-shrimp {
+  --nsfa: "\e448";
+}
+
+.nsfa-brazilian-real-sign {
+  --nsfa: "\e46c";
+}
+
+.nsfa-chart-simple {
+  --nsfa: "\e473";
+}
+
+.nsfa-diagram-next {
+  --nsfa: "\e476";
+}
+
+.nsfa-diagram-predecessor {
+  --nsfa: "\e477";
+}
+
+.nsfa-diagram-successor {
+  --nsfa: "\e47a";
+}
+
+.nsfa-earth-oceania {
+  --nsfa: "\e47b";
+}
+
+.nsfa-globe-oceania {
+  --nsfa: "\e47b";
+}
+
+.nsfa-bug-slash {
+  --nsfa: "\e490";
+}
+
+.nsfa-file-circle-plus {
+  --nsfa: "\e494";
+}
+
+.nsfa-shop-lock {
+  --nsfa: "\e4a5";
+}
+
+.nsfa-virus-covid {
+  --nsfa: "\e4a8";
+}
+
+.nsfa-virus-covid-slash {
+  --nsfa: "\e4a9";
+}
+
+.nsfa-anchor-circle-check {
+  --nsfa: "\e4aa";
+}
+
+.nsfa-anchor-circle-exclamation {
+  --nsfa: "\e4ab";
+}
+
+.nsfa-anchor-circle-xmark {
+  --nsfa: "\e4ac";
+}
+
+.nsfa-anchor-lock {
+  --nsfa: "\e4ad";
+}
+
+.nsfa-arrow-down-up-across-line {
+  --nsfa: "\e4af";
+}
+
+.nsfa-arrow-down-up-lock {
+  --nsfa: "\e4b0";
+}
+
+.nsfa-arrow-right-to-city {
+  --nsfa: "\e4b3";
+}
+
+.nsfa-arrow-up-from-ground-water {
+  --nsfa: "\e4b5";
+}
+
+.nsfa-arrow-up-from-water-pump {
+  --nsfa: "\e4b6";
+}
+
+.nsfa-arrow-up-right-dots {
+  --nsfa: "\e4b7";
+}
+
+.nsfa-arrows-down-to-line {
+  --nsfa: "\e4b8";
+}
+
+.nsfa-arrows-down-to-people {
+  --nsfa: "\e4b9";
+}
+
+.nsfa-arrows-left-right-to-line {
+  --nsfa: "\e4ba";
+}
+
+.nsfa-arrows-spin {
+  --nsfa: "\e4bb";
+}
+
+.nsfa-arrows-split-up-and-left {
+  --nsfa: "\e4bc";
+}
+
+.nsfa-arrows-to-circle {
+  --nsfa: "\e4bd";
+}
+
+.nsfa-arrows-to-dot {
+  --nsfa: "\e4be";
+}
+
+.nsfa-arrows-to-eye {
+  --nsfa: "\e4bf";
+}
+
+.nsfa-arrows-turn-right {
+  --nsfa: "\e4c0";
+}
+
+.nsfa-arrows-turn-to-dots {
+  --nsfa: "\e4c1";
+}
+
+.nsfa-arrows-up-to-line {
+  --nsfa: "\e4c2";
+}
+
+.nsfa-bore-hole {
+  --nsfa: "\e4c3";
+}
+
+.nsfa-bottle-droplet {
+  --nsfa: "\e4c4";
+}
+
+.nsfa-bottle-water {
+  --nsfa: "\e4c5";
+}
+
+.nsfa-bowl-food {
+  --nsfa: "\e4c6";
+}
+
+.nsfa-boxes-packing {
+  --nsfa: "\e4c7";
+}
+
+.nsfa-bridge {
+  --nsfa: "\e4c8";
+}
+
+.nsfa-bridge-circle-check {
+  --nsfa: "\e4c9";
+}
+
+.nsfa-bridge-circle-exclamation {
+  --nsfa: "\e4ca";
+}
+
+.nsfa-bridge-circle-xmark {
+  --nsfa: "\e4cb";
+}
+
+.nsfa-bridge-lock {
+  --nsfa: "\e4cc";
+}
+
+.nsfa-bridge-water {
+  --nsfa: "\e4ce";
+}
+
+.nsfa-bucket {
+  --nsfa: "\e4cf";
+}
+
+.nsfa-bugs {
+  --nsfa: "\e4d0";
+}
+
+.nsfa-building-circle-arrow-right {
+  --nsfa: "\e4d1";
+}
+
+.nsfa-building-circle-check {
+  --nsfa: "\e4d2";
+}
+
+.nsfa-building-circle-exclamation {
+  --nsfa: "\e4d3";
+}
+
+.nsfa-building-circle-xmark {
+  --nsfa: "\e4d4";
+}
+
+.nsfa-building-flag {
+  --nsfa: "\e4d5";
+}
+
+.nsfa-building-lock {
+  --nsfa: "\e4d6";
+}
+
+.nsfa-building-ngo {
+  --nsfa: "\e4d7";
+}
+
+.nsfa-building-shield {
+  --nsfa: "\e4d8";
+}
+
+.nsfa-building-un {
+  --nsfa: "\e4d9";
+}
+
+.nsfa-building-user {
+  --nsfa: "\e4da";
+}
+
+.nsfa-building-wheat {
+  --nsfa: "\e4db";
+}
+
+.nsfa-burst {
+  --nsfa: "\e4dc";
+}
+
+.nsfa-car-on {
+  --nsfa: "\e4dd";
+}
+
+.nsfa-car-tunnel {
+  --nsfa: "\e4de";
+}
+
+.nsfa-child-combatant {
+  --nsfa: "\e4e0";
+}
+
+.nsfa-child-rifle {
+  --nsfa: "\e4e0";
+}
+
+.nsfa-children {
+  --nsfa: "\e4e1";
+}
+
+.nsfa-circle-nodes {
+  --nsfa: "\e4e2";
+}
+
+.nsfa-clipboard-question {
+  --nsfa: "\e4e3";
+}
+
+.nsfa-cloud-showers-water {
+  --nsfa: "\e4e4";
+}
+
+.nsfa-computer {
+  --nsfa: "\e4e5";
+}
+
+.nsfa-cubes-stacked {
+  --nsfa: "\e4e6";
+}
+
+.nsfa-envelope-circle-check {
+  --nsfa: "\e4e8";
+}
+
+.nsfa-explosion {
+  --nsfa: "\e4e9";
+}
+
+.nsfa-ferry {
+  --nsfa: "\e4ea";
+}
+
+.nsfa-file-circle-exclamation {
+  --nsfa: "\e4eb";
+}
+
+.nsfa-file-circle-minus {
+  --nsfa: "\e4ed";
+}
+
+.nsfa-file-circle-question {
+  --nsfa: "\e4ef";
+}
+
+.nsfa-file-shield {
+  --nsfa: "\e4f0";
+}
+
+.nsfa-fire-burner {
+  --nsfa: "\e4f1";
+}
+
+.nsfa-fish-fins {
+  --nsfa: "\e4f2";
+}
+
+.nsfa-flask-vial {
+  --nsfa: "\e4f3";
+}
+
+.nsfa-glass-water {
+  --nsfa: "\e4f4";
+}
+
+.nsfa-glass-water-droplet {
+  --nsfa: "\e4f5";
+}
+
+.nsfa-group-arrows-rotate {
+  --nsfa: "\e4f6";
+}
+
+.nsfa-hand-holding-hand {
+  --nsfa: "\e4f7";
+}
+
+.nsfa-handcuffs {
+  --nsfa: "\e4f8";
+}
+
+.nsfa-hands-bound {
+  --nsfa: "\e4f9";
+}
+
+.nsfa-hands-holding-child {
+  --nsfa: "\e4fa";
+}
+
+.nsfa-hands-holding-circle {
+  --nsfa: "\e4fb";
+}
+
+.nsfa-heart-circle-bolt {
+  --nsfa: "\e4fc";
+}
+
+.nsfa-heart-circle-check {
+  --nsfa: "\e4fd";
+}
+
+.nsfa-heart-circle-exclamation {
+  --nsfa: "\e4fe";
+}
+
+.nsfa-heart-circle-minus {
+  --nsfa: "\e4ff";
+}
+
+.nsfa-heart-circle-plus {
+  --nsfa: "\e500";
+}
+
+.nsfa-heart-circle-xmark {
+  --nsfa: "\e501";
+}
+
+.nsfa-helicopter-symbol {
+  --nsfa: "\e502";
+}
+
+.nsfa-helmet-un {
+  --nsfa: "\e503";
+}
+
+.nsfa-hill-avalanche {
+  --nsfa: "\e507";
+}
+
+.nsfa-hill-rockslide {
+  --nsfa: "\e508";
+}
+
+.nsfa-house-circle-check {
+  --nsfa: "\e509";
+}
+
+.nsfa-house-circle-exclamation {
+  --nsfa: "\e50a";
+}
+
+.nsfa-house-circle-xmark {
+  --nsfa: "\e50b";
+}
+
+.nsfa-house-fire {
+  --nsfa: "\e50c";
+}
+
+.nsfa-house-flag {
+  --nsfa: "\e50d";
+}
+
+.nsfa-house-flood-water {
+  --nsfa: "\e50e";
+}
+
+.nsfa-house-flood-water-circle-arrow-right {
+  --nsfa: "\e50f";
+}
+
+.nsfa-house-lock {
+  --nsfa: "\e510";
+}
+
+.nsfa-house-medical-circle-check {
+  --nsfa: "\e511";
+}
+
+.nsfa-house-medical-circle-exclamation {
+  --nsfa: "\e512";
+}
+
+.nsfa-house-medical-circle-xmark {
+  --nsfa: "\e513";
+}
+
+.nsfa-house-medical-flag {
+  --nsfa: "\e514";
+}
+
+.nsfa-house-tsunami {
+  --nsfa: "\e515";
+}
+
+.nsfa-jar {
+  --nsfa: "\e516";
+}
+
+.nsfa-jar-wheat {
+  --nsfa: "\e517";
+}
+
+.nsfa-jet-fighter-up {
+  --nsfa: "\e518";
+}
+
+.nsfa-jug-detergent {
+  --nsfa: "\e519";
+}
+
+.nsfa-kitchen-set {
+  --nsfa: "\e51a";
+}
+
+.nsfa-land-mine-on {
+  --nsfa: "\e51b";
+}
+
+.nsfa-landmark-flag {
+  --nsfa: "\e51c";
+}
+
+.nsfa-laptop-file {
+  --nsfa: "\e51d";
+}
+
+.nsfa-lines-leaning {
+  --nsfa: "\e51e";
+}
+
+.nsfa-location-pin-lock {
+  --nsfa: "\e51f";
+}
+
+.nsfa-locust {
+  --nsfa: "\e520";
+}
+
+.nsfa-magnifying-glass-arrow-right {
+  --nsfa: "\e521";
+}
+
+.nsfa-magnifying-glass-chart {
+  --nsfa: "\e522";
+}
+
+.nsfa-mars-and-venus-burst {
+  --nsfa: "\e523";
+}
+
+.nsfa-mask-ventilator {
+  --nsfa: "\e524";
+}
+
+.nsfa-mattress-pillow {
+  --nsfa: "\e525";
+}
+
+.nsfa-mobile-retro {
+  --nsfa: "\e527";
+}
+
+.nsfa-money-bill-transfer {
+  --nsfa: "\e528";
+}
+
+.nsfa-money-bill-trend-up {
+  --nsfa: "\e529";
+}
+
+.nsfa-money-bill-wheat {
+  --nsfa: "\e52a";
+}
+
+.nsfa-mosquito {
+  --nsfa: "\e52b";
+}
+
+.nsfa-mosquito-net {
+  --nsfa: "\e52c";
+}
+
+.nsfa-mound {
+  --nsfa: "\e52d";
+}
+
+.nsfa-mountain-city {
+  --nsfa: "\e52e";
+}
+
+.nsfa-mountain-sun {
+  --nsfa: "\e52f";
+}
+
+.nsfa-oil-well {
+  --nsfa: "\e532";
+}
+
+.nsfa-people-group {
+  --nsfa: "\e533";
+}
+
+.nsfa-people-line {
+  --nsfa: "\e534";
+}
+
+.nsfa-people-pulling {
+  --nsfa: "\e535";
+}
+
+.nsfa-people-robbery {
+  --nsfa: "\e536";
+}
+
+.nsfa-people-roof {
+  --nsfa: "\e537";
+}
+
+.nsfa-person-arrow-down-to-line {
+  --nsfa: "\e538";
+}
+
+.nsfa-person-arrow-up-from-line {
+  --nsfa: "\e539";
+}
+
+.nsfa-person-breastfeeding {
+  --nsfa: "\e53a";
+}
+
+.nsfa-person-burst {
+  --nsfa: "\e53b";
+}
+
+.nsfa-person-cane {
+  --nsfa: "\e53c";
+}
+
+.nsfa-person-chalkboard {
+  --nsfa: "\e53d";
+}
+
+.nsfa-person-circle-check {
+  --nsfa: "\e53e";
+}
+
+.nsfa-person-circle-exclamation {
+  --nsfa: "\e53f";
+}
+
+.nsfa-person-circle-minus {
+  --nsfa: "\e540";
+}
+
+.nsfa-person-circle-plus {
+  --nsfa: "\e541";
+}
+
+.nsfa-person-circle-question {
+  --nsfa: "\e542";
+}
+
+.nsfa-person-circle-xmark {
+  --nsfa: "\e543";
+}
+
+.nsfa-person-dress-burst {
+  --nsfa: "\e544";
+}
+
+.nsfa-person-drowning {
+  --nsfa: "\e545";
+}
+
+.nsfa-person-falling {
+  --nsfa: "\e546";
+}
+
+.nsfa-person-falling-burst {
+  --nsfa: "\e547";
+}
+
+.nsfa-person-half-dress {
+  --nsfa: "\e548";
+}
+
+.nsfa-person-harassing {
+  --nsfa: "\e549";
+}
+
+.nsfa-person-military-pointing {
+  --nsfa: "\e54a";
+}
+
+.nsfa-person-military-rifle {
+  --nsfa: "\e54b";
+}
+
+.nsfa-person-military-to-person {
+  --nsfa: "\e54c";
+}
+
+.nsfa-person-rays {
+  --nsfa: "\e54d";
+}
+
+.nsfa-person-rifle {
+  --nsfa: "\e54e";
+}
+
+.nsfa-person-shelter {
+  --nsfa: "\e54f";
+}
+
+.nsfa-person-walking-arrow-loop-left {
+  --nsfa: "\e551";
+}
+
+.nsfa-person-walking-arrow-right {
+  --nsfa: "\e552";
+}
+
+.nsfa-person-walking-dashed-line-arrow-right {
+  --nsfa: "\e553";
+}
+
+.nsfa-person-walking-luggage {
+  --nsfa: "\e554";
+}
+
+.nsfa-plane-circle-check {
+  --nsfa: "\e555";
+}
+
+.nsfa-plane-circle-exclamation {
+  --nsfa: "\e556";
+}
+
+.nsfa-plane-circle-xmark {
+  --nsfa: "\e557";
+}
+
+.nsfa-plane-lock {
+  --nsfa: "\e558";
+}
+
+.nsfa-plate-wheat {
+  --nsfa: "\e55a";
+}
+
+.nsfa-plug-circle-bolt {
+  --nsfa: "\e55b";
+}
+
+.nsfa-plug-circle-check {
+  --nsfa: "\e55c";
+}
+
+.nsfa-plug-circle-exclamation {
+  --nsfa: "\e55d";
+}
+
+.nsfa-plug-circle-minus {
+  --nsfa: "\e55e";
+}
+
+.nsfa-plug-circle-plus {
+  --nsfa: "\e55f";
+}
+
+.nsfa-plug-circle-xmark {
+  --nsfa: "\e560";
+}
+
+.nsfa-ranking-star {
+  --nsfa: "\e561";
+}
+
+.nsfa-road-barrier {
+  --nsfa: "\e562";
+}
+
+.nsfa-road-bridge {
+  --nsfa: "\e563";
+}
+
+.nsfa-road-circle-check {
+  --nsfa: "\e564";
+}
+
+.nsfa-road-circle-exclamation {
+  --nsfa: "\e565";
+}
+
+.nsfa-road-circle-xmark {
+  --nsfa: "\e566";
+}
+
+.nsfa-road-lock {
+  --nsfa: "\e567";
+}
+
+.nsfa-road-spikes {
+  --nsfa: "\e568";
+}
+
+.nsfa-rug {
+  --nsfa: "\e569";
+}
+
+.nsfa-sack-xmark {
+  --nsfa: "\e56a";
+}
+
+.nsfa-school-circle-check {
+  --nsfa: "\e56b";
+}
+
+.nsfa-school-circle-exclamation {
+  --nsfa: "\e56c";
+}
+
+.nsfa-school-circle-xmark {
+  --nsfa: "\e56d";
+}
+
+.nsfa-school-flag {
+  --nsfa: "\e56e";
+}
+
+.nsfa-school-lock {
+  --nsfa: "\e56f";
+}
+
+.nsfa-sheet-plastic {
+  --nsfa: "\e571";
+}
+
+.nsfa-shield-cat {
+  --nsfa: "\e572";
+}
+
+.nsfa-shield-dog {
+  --nsfa: "\e573";
+}
+
+.nsfa-shield-heart {
+  --nsfa: "\e574";
+}
+
+.nsfa-square-nfi {
+  --nsfa: "\e576";
+}
+
+.nsfa-square-person-confined {
+  --nsfa: "\e577";
+}
+
+.nsfa-square-virus {
+  --nsfa: "\e578";
+}
+
+.nsfa-staff-snake {
+  --nsfa: "\e579";
+}
+
+.nsfa-rod-asclepius {
+  --nsfa: "\e579";
+}
+
+.nsfa-rod-snake {
+  --nsfa: "\e579";
+}
+
+.nsfa-staff-aesculapius {
+  --nsfa: "\e579";
+}
+
+.nsfa-sun-plant-wilt {
+  --nsfa: "\e57a";
+}
+
+.nsfa-tarp {
+  --nsfa: "\e57b";
+}
+
+.nsfa-tarp-droplet {
+  --nsfa: "\e57c";
+}
+
+.nsfa-tent {
+  --nsfa: "\e57d";
+}
+
+.nsfa-tent-arrow-down-to-line {
+  --nsfa: "\e57e";
+}
+
+.nsfa-tent-arrow-left-right {
+  --nsfa: "\e57f";
+}
+
+.nsfa-tent-arrow-turn-left {
+  --nsfa: "\e580";
+}
+
+.nsfa-tent-arrows-down {
+  --nsfa: "\e581";
+}
+
+.nsfa-tents {
+  --nsfa: "\e582";
+}
+
+.nsfa-toilet-portable {
+  --nsfa: "\e583";
+}
+
+.nsfa-toilets-portable {
+  --nsfa: "\e584";
+}
+
+.nsfa-tower-cell {
+  --nsfa: "\e585";
+}
+
+.nsfa-tower-observation {
+  --nsfa: "\e586";
+}
+
+.nsfa-tree-city {
+  --nsfa: "\e587";
+}
+
+.nsfa-trowel {
+  --nsfa: "\e589";
+}
+
+.nsfa-trowel-bricks {
+  --nsfa: "\e58a";
+}
+
+.nsfa-truck-arrow-right {
+  --nsfa: "\e58b";
+}
+
+.nsfa-truck-droplet {
+  --nsfa: "\e58c";
+}
+
+.nsfa-truck-field {
+  --nsfa: "\e58d";
+}
+
+.nsfa-truck-field-un {
+  --nsfa: "\e58e";
+}
+
+.nsfa-truck-plane {
+  --nsfa: "\e58f";
+}
+
+.nsfa-users-between-lines {
+  --nsfa: "\e591";
+}
+
+.nsfa-users-line {
+  --nsfa: "\e592";
+}
+
+.nsfa-users-rays {
+  --nsfa: "\e593";
+}
+
+.nsfa-users-rectangle {
+  --nsfa: "\e594";
+}
+
+.nsfa-users-viewfinder {
+  --nsfa: "\e595";
+}
+
+.nsfa-vial-circle-check {
+  --nsfa: "\e596";
+}
+
+.nsfa-vial-virus {
+  --nsfa: "\e597";
+}
+
+.nsfa-wheat-awn-circle-exclamation {
+  --nsfa: "\e598";
+}
+
+.nsfa-worm {
+  --nsfa: "\e599";
+}
+
+.nsfa-xmarks-lines {
+  --nsfa: "\e59a";
+}
+
+.nsfa-child-dress {
+  --nsfa: "\e59c";
+}
+
+.nsfa-child-reaching {
+  --nsfa: "\e59d";
+}
+
+.nsfa-file-circle-check {
+  --nsfa: "\e5a0";
+}
+
+.nsfa-file-circle-xmark {
+  --nsfa: "\e5a1";
+}
+
+.nsfa-person-through-window {
+  --nsfa: "\e5a9";
+}
+
+.nsfa-plant-wilt {
+  --nsfa: "\e5aa";
+}
+
+.nsfa-stapler {
+  --nsfa: "\e5af";
+}
+
+.nsfa-train-tram {
+  --nsfa: "\e5b4";
+}
+
+.nsfa-table-cells-column-lock {
+  --nsfa: "\e678";
+}
+
+.nsfa-table-cells-row-lock {
+  --nsfa: "\e67a";
+}
+
+.nsfa-web-awesome {
+  --nsfa: "\e682";
+}
+
+.nsfa-thumbtack-slash {
+  --nsfa: "\e68f";
+}
+
+.nsfa-thumb-tack-slash {
+  --nsfa: "\e68f";
+}
+
+.nsfa-table-cells-row-unlock {
+  --nsfa: "\e691";
+}
+
+.nsfa-chart-diagram {
+  --nsfa: "\e695";
+}
+
+.nsfa-comment-nodes {
+  --nsfa: "\e696";
+}
+
+.nsfa-file-fragment {
+  --nsfa: "\e697";
+}
+
+.nsfa-file-half-dashed {
+  --nsfa: "\e698";
+}
+
+.nsfa-hexagon-nodes {
+  --nsfa: "\e699";
+}
+
+.nsfa-hexagon-nodes-bolt {
+  --nsfa: "\e69a";
+}
+
+.nsfa-square-binary {
+  --nsfa: "\e69b";
+}
+
+.nsfa-pentagon {
+  --nsfa: "\e790";
+}
+
+.nsfa-non-binary {
+  --nsfa: "\e807";
+}
+
+.nsfa-spiral {
+  --nsfa: "\e80a";
+}
+
+.nsfa-picture-in-picture {
+  --nsfa: "\e80b";
+}
+
+.nsfa-mobile-vibrate {
+  --nsfa: "\e816";
+}
+
+.nsfa-single-quote-left {
+  --nsfa: "\e81b";
+}
+
+.nsfa-single-quote-right {
+  --nsfa: "\e81c";
+}
+
+.nsfa-bus-side {
+  --nsfa: "\e81d";
+}
+
+.nsfa-septagon {
+  --nsfa: "\e820";
+}
+
+.nsfa-heptagon {
+  --nsfa: "\e820";
+}
+
+.nsfa-aquarius {
+  --nsfa: "\e845";
+}
+
+.nsfa-aries {
+  --nsfa: "\e846";
+}
+
+.nsfa-cancer {
+  --nsfa: "\e847";
+}
+
+.nsfa-capricorn {
+  --nsfa: "\e848";
+}
+
+.nsfa-gemini {
+  --nsfa: "\e849";
+}
+
+.nsfa-leo {
+  --nsfa: "\e84a";
+}
+
+.nsfa-libra {
+  --nsfa: "\e84b";
+}
+
+.nsfa-pisces {
+  --nsfa: "\e84c";
+}
+
+.nsfa-sagittarius {
+  --nsfa: "\e84d";
+}
+
+.nsfa-scorpio {
+  --nsfa: "\e84e";
+}
+
+.nsfa-taurus {
+  --nsfa: "\e84f";
+}
+
+.nsfa-virgo {
+  --nsfa: "\e850";
+}
+
+.nsfa-martini-glass-empty {
+  --nsfa: "\f000";
+}
+
+.nsfa-glass-martini {
+  --nsfa: "\f000";
+}
+
+.nsfa-music {
+  --nsfa: "\f001";
+}
+
+.nsfa-magnifying-glass {
+  --nsfa: "\f002";
+}
+
+.nsfa-search {
+  --nsfa: "\f002";
+}
+
+.nsfa-heart {
+  --nsfa: "\f004";
+}
+
+.nsfa-star {
+  --nsfa: "\f005";
+}
+
+.nsfa-user {
+  --nsfa: "\f007";
+}
+
+.nsfa-user-alt {
+  --nsfa: "\f007";
+}
+
+.nsfa-user-large {
+  --nsfa: "\f007";
+}
+
+.nsfa-film {
+  --nsfa: "\f008";
+}
+
+.nsfa-film-alt {
+  --nsfa: "\f008";
+}
+
+.nsfa-film-simple {
+  --nsfa: "\f008";
+}
+
+.nsfa-table-cells-large {
+  --nsfa: "\f009";
+}
+
+.nsfa-th-large {
+  --nsfa: "\f009";
+}
+
+.nsfa-table-cells {
+  --nsfa: "\f00a";
+}
+
+.nsfa-th {
+  --nsfa: "\f00a";
+}
+
+.nsfa-table-list {
+  --nsfa: "\f00b";
+}
+
+.nsfa-th-list {
+  --nsfa: "\f00b";
+}
+
+.nsfa-check {
+  --nsfa: "\f00c";
+}
+
+.nsfa-xmark {
+  --nsfa: "\f00d";
+}
+
+.nsfa-close {
+  --nsfa: "\f00d";
+}
+
+.nsfa-multiply {
+  --nsfa: "\f00d";
+}
+
+.nsfa-remove {
+  --nsfa: "\f00d";
+}
+
+.nsfa-times {
+  --nsfa: "\f00d";
+}
+
+.nsfa-magnifying-glass-plus {
+  --nsfa: "\f00e";
+}
+
+.nsfa-search-plus {
+  --nsfa: "\f00e";
+}
+
+.nsfa-magnifying-glass-minus {
+  --nsfa: "\f010";
+}
+
+.nsfa-search-minus {
+  --nsfa: "\f010";
+}
+
+.nsfa-power-off {
+  --nsfa: "\f011";
+}
+
+.nsfa-signal {
+  --nsfa: "\f012";
+}
+
+.nsfa-signal-5 {
+  --nsfa: "\f012";
+}
+
+.nsfa-signal-perfect {
+  --nsfa: "\f012";
+}
+
+.nsfa-gear {
+  --nsfa: "\f013";
+}
+
+.nsfa-cog {
+  --nsfa: "\f013";
+}
+
+.nsfa-house {
+  --nsfa: "\f015";
+}
+
+.nsfa-home {
+  --nsfa: "\f015";
+}
+
+.nsfa-home-alt {
+  --nsfa: "\f015";
+}
+
+.nsfa-home-lg-alt {
+  --nsfa: "\f015";
+}
+
+.nsfa-clock {
+  --nsfa: "\f017";
+}
+
+.nsfa-clock-four {
+  --nsfa: "\f017";
+}
+
+.nsfa-road {
+  --nsfa: "\f018";
+}
+
+.nsfa-download {
+  --nsfa: "\f019";
+}
+
+.nsfa-inbox {
+  --nsfa: "\f01c";
+}
+
+.nsfa-arrow-rotate-right {
+  --nsfa: "\f01e";
+}
+
+.nsfa-arrow-right-rotate {
+  --nsfa: "\f01e";
+}
+
+.nsfa-arrow-rotate-forward {
+  --nsfa: "\f01e";
+}
+
+.nsfa-redo {
+  --nsfa: "\f01e";
+}
+
+.nsfa-arrows-rotate {
+  --nsfa: "\f021";
+}
+
+.nsfa-refresh {
+  --nsfa: "\f021";
+}
+
+.nsfa-sync {
+  --nsfa: "\f021";
+}
+
+.nsfa-rectangle-list {
+  --nsfa: "\f022";
+}
+
+.nsfa-list-alt {
+  --nsfa: "\f022";
+}
+
+.nsfa-lock {
+  --nsfa: "\f023";
+}
+
+.nsfa-flag {
+  --nsfa: "\f024";
+}
+
+.nsfa-headphones {
+  --nsfa: "\f025";
+}
+
+.nsfa-headphones-alt {
+  --nsfa: "\f025";
+}
+
+.nsfa-headphones-simple {
+  --nsfa: "\f025";
+}
+
+.nsfa-volume-off {
+  --nsfa: "\f026";
+}
+
+.nsfa-volume-low {
+  --nsfa: "\f027";
+}
+
+.nsfa-volume-down {
+  --nsfa: "\f027";
+}
+
+.nsfa-volume-high {
+  --nsfa: "\f028";
+}
+
+.nsfa-volume-up {
+  --nsfa: "\f028";
+}
+
+.nsfa-qrcode {
+  --nsfa: "\f029";
+}
+
+.nsfa-barcode {
+  --nsfa: "\f02a";
+}
+
+.nsfa-tag {
+  --nsfa: "\f02b";
+}
+
+.nsfa-tags {
+  --nsfa: "\f02c";
+}
+
+.nsfa-book {
+  --nsfa: "\f02d";
+}
+
+.nsfa-bookmark {
+  --nsfa: "\f02e";
+}
+
+.nsfa-print {
+  --nsfa: "\f02f";
+}
+
+.nsfa-camera {
+  --nsfa: "\f030";
+}
+
+.nsfa-camera-alt {
+  --nsfa: "\f030";
+}
+
+.nsfa-font {
+  --nsfa: "\f031";
+}
+
+.nsfa-bold {
+  --nsfa: "\f032";
+}
+
+.nsfa-italic {
+  --nsfa: "\f033";
+}
+
+.nsfa-text-height {
+  --nsfa: "\f034";
+}
+
+.nsfa-text-width {
+  --nsfa: "\f035";
+}
+
+.nsfa-align-left {
+  --nsfa: "\f036";
+}
+
+.nsfa-align-center {
+  --nsfa: "\f037";
+}
+
+.nsfa-align-right {
+  --nsfa: "\f038";
+}
+
+.nsfa-align-justify {
+  --nsfa: "\f039";
+}
+
+.nsfa-list {
+  --nsfa: "\f03a";
+}
+
+.nsfa-list-squares {
+  --nsfa: "\f03a";
+}
+
+.nsfa-outdent {
+  --nsfa: "\f03b";
+}
+
+.nsfa-dedent {
+  --nsfa: "\f03b";
+}
+
+.nsfa-indent {
+  --nsfa: "\f03c";
+}
+
+.nsfa-video {
+  --nsfa: "\f03d";
+}
+
+.nsfa-video-camera {
+  --nsfa: "\f03d";
+}
+
+.nsfa-image {
+  --nsfa: "\f03e";
+}
+
+.nsfa-location-pin {
+  --nsfa: "\f041";
+}
+
+.nsfa-map-marker {
+  --nsfa: "\f041";
+}
+
+.nsfa-circle-half-stroke {
+  --nsfa: "\f042";
+}
+
+.nsfa-adjust {
+  --nsfa: "\f042";
+}
+
+.nsfa-droplet {
+  --nsfa: "\f043";
+}
+
+.nsfa-tint {
+  --nsfa: "\f043";
+}
+
+.nsfa-pen-to-square {
+  --nsfa: "\f044";
+}
+
+.nsfa-edit {
+  --nsfa: "\f044";
+}
+
+.nsfa-arrows-up-down-left-right {
+  --nsfa: "\f047";
+}
+
+.nsfa-arrows {
+  --nsfa: "\f047";
+}
+
+.nsfa-backward-step {
+  --nsfa: "\f048";
+}
+
+.nsfa-step-backward {
+  --nsfa: "\f048";
+}
+
+.nsfa-backward-fast {
+  --nsfa: "\f049";
+}
+
+.nsfa-fast-backward {
+  --nsfa: "\f049";
+}
+
+.nsfa-backward {
+  --nsfa: "\f04a";
+}
+
+.nsfa-play {
+  --nsfa: "\f04b";
+}
+
+.nsfa-pause {
+  --nsfa: "\f04c";
+}
+
+.nsfa-stop {
+  --nsfa: "\f04d";
+}
+
+.nsfa-forward {
+  --nsfa: "\f04e";
+}
+
+.nsfa-forward-fast {
+  --nsfa: "\f050";
+}
+
+.nsfa-fast-forward {
+  --nsfa: "\f050";
+}
+
+.nsfa-forward-step {
+  --nsfa: "\f051";
+}
+
+.nsfa-step-forward {
+  --nsfa: "\f051";
+}
+
+.nsfa-eject {
+  --nsfa: "\f052";
+}
+
+.nsfa-chevron-left {
+  --nsfa: "\f053";
+}
+
+.nsfa-chevron-right {
+  --nsfa: "\f054";
+}
+
+.nsfa-circle-plus {
+  --nsfa: "\f055";
+}
+
+.nsfa-plus-circle {
+  --nsfa: "\f055";
+}
+
+.nsfa-circle-minus {
+  --nsfa: "\f056";
+}
+
+.nsfa-minus-circle {
+  --nsfa: "\f056";
+}
+
+.nsfa-circle-xmark {
+  --nsfa: "\f057";
+}
+
+.nsfa-times-circle {
+  --nsfa: "\f057";
+}
+
+.nsfa-xmark-circle {
+  --nsfa: "\f057";
+}
+
+.nsfa-circle-check {
+  --nsfa: "\f058";
+}
+
+.nsfa-check-circle {
+  --nsfa: "\f058";
+}
+
+.nsfa-circle-question {
+  --nsfa: "\f059";
+}
+
+.nsfa-question-circle {
+  --nsfa: "\f059";
+}
+
+.nsfa-circle-info {
+  --nsfa: "\f05a";
+}
+
+.nsfa-info-circle {
+  --nsfa: "\f05a";
+}
+
+.nsfa-crosshairs {
+  --nsfa: "\f05b";
+}
+
+.nsfa-ban {
+  --nsfa: "\f05e";
+}
+
+.nsfa-cancel {
+  --nsfa: "\f05e";
+}
+
+.nsfa-arrow-left {
+  --nsfa: "\f060";
+}
+
+.nsfa-arrow-right {
+  --nsfa: "\f061";
+}
+
+.nsfa-arrow-up {
+  --nsfa: "\f062";
+}
+
+.nsfa-arrow-down {
+  --nsfa: "\f063";
+}
+
+.nsfa-share {
+  --nsfa: "\f064";
+}
+
+.nsfa-mail-forward {
+  --nsfa: "\f064";
+}
+
+.nsfa-expand {
+  --nsfa: "\f065";
+}
+
+.nsfa-compress {
+  --nsfa: "\f066";
+}
+
+.nsfa-minus {
+  --nsfa: "\f068";
+}
+
+.nsfa-subtract {
+  --nsfa: "\f068";
+}
+
+.nsfa-circle-exclamation {
+  --nsfa: "\f06a";
+}
+
+.nsfa-exclamation-circle {
+  --nsfa: "\f06a";
+}
+
+.nsfa-gift {
+  --nsfa: "\f06b";
+}
+
+.nsfa-leaf {
+  --nsfa: "\f06c";
+}
+
+.nsfa-fire {
+  --nsfa: "\f06d";
+}
+
+.nsfa-eye {
+  --nsfa: "\f06e";
+}
+
+.nsfa-eye-slash {
+  --nsfa: "\f070";
+}
+
+.nsfa-triangle-exclamation {
+  --nsfa: "\f071";
+}
+
+.nsfa-exclamation-triangle {
+  --nsfa: "\f071";
+}
+
+.nsfa-warning {
+  --nsfa: "\f071";
+}
+
+.nsfa-plane {
+  --nsfa: "\f072";
+}
+
+.nsfa-calendar-days {
+  --nsfa: "\f073";
+}
+
+.nsfa-calendar-alt {
+  --nsfa: "\f073";
+}
+
+.nsfa-shuffle {
+  --nsfa: "\f074";
+}
+
+.nsfa-random {
+  --nsfa: "\f074";
+}
+
+.nsfa-comment {
+  --nsfa: "\f075";
+}
+
+.nsfa-magnet {
+  --nsfa: "\f076";
+}
+
+.nsfa-chevron-up {
+  --nsfa: "\f077";
+}
+
+.nsfa-chevron-down {
+  --nsfa: "\f078";
+}
+
+.nsfa-retweet {
+  --nsfa: "\f079";
+}
+
+.nsfa-cart-shopping {
+  --nsfa: "\f07a";
+}
+
+.nsfa-shopping-cart {
+  --nsfa: "\f07a";
+}
+
+.nsfa-folder {
+  --nsfa: "\f07b";
+}
+
+.nsfa-folder-blank {
+  --nsfa: "\f07b";
+}
+
+.nsfa-folder-open {
+  --nsfa: "\f07c";
+}
+
+.nsfa-arrows-up-down {
+  --nsfa: "\f07d";
+}
+
+.nsfa-arrows-v {
+  --nsfa: "\f07d";
+}
+
+.nsfa-arrows-left-right {
+  --nsfa: "\f07e";
+}
+
+.nsfa-arrows-h {
+  --nsfa: "\f07e";
+}
+
+.nsfa-chart-bar {
+  --nsfa: "\f080";
+}
+
+.nsfa-bar-chart {
+  --nsfa: "\f080";
+}
+
+.nsfa-camera-retro {
+  --nsfa: "\f083";
+}
+
+.nsfa-key {
+  --nsfa: "\f084";
+}
+
+.nsfa-gears {
+  --nsfa: "\f085";
+}
+
+.nsfa-cogs {
+  --nsfa: "\f085";
+}
+
+.nsfa-comments {
+  --nsfa: "\f086";
+}
+
+.nsfa-star-half {
+  --nsfa: "\f089";
+}
+
+.nsfa-arrow-right-from-bracket {
+  --nsfa: "\f08b";
+}
+
+.nsfa-sign-out {
+  --nsfa: "\f08b";
+}
+
+.nsfa-thumbtack {
+  --nsfa: "\f08d";
+}
+
+.nsfa-thumb-tack {
+  --nsfa: "\f08d";
+}
+
+.nsfa-arrow-up-right-from-square {
+  --nsfa: "\f08e";
+}
+
+.nsfa-external-link {
+  --nsfa: "\f08e";
+}
+
+.nsfa-arrow-right-to-bracket {
+  --nsfa: "\f090";
+}
+
+.nsfa-sign-in {
+  --nsfa: "\f090";
+}
+
+.nsfa-trophy {
+  --nsfa: "\f091";
+}
+
+.nsfa-upload {
+  --nsfa: "\f093";
+}
+
+.nsfa-lemon {
+  --nsfa: "\f094";
+}
+
+.nsfa-phone {
+  --nsfa: "\f095";
+}
+
+.nsfa-square-phone {
+  --nsfa: "\f098";
+}
+
+.nsfa-phone-square {
+  --nsfa: "\f098";
+}
+
+.nsfa-unlock {
+  --nsfa: "\f09c";
+}
+
+.nsfa-credit-card {
+  --nsfa: "\f09d";
+}
+
+.nsfa-credit-card-alt {
+  --nsfa: "\f09d";
+}
+
+.nsfa-rss {
+  --nsfa: "\f09e";
+}
+
+.nsfa-feed {
+  --nsfa: "\f09e";
+}
+
+.nsfa-hard-drive {
+  --nsfa: "\f0a0";
+}
+
+.nsfa-hdd {
+  --nsfa: "\f0a0";
+}
+
+.nsfa-bullhorn {
+  --nsfa: "\f0a1";
+}
+
+.nsfa-certificate {
+  --nsfa: "\f0a3";
+}
+
+.nsfa-hand-point-right {
+  --nsfa: "\f0a4";
+}
+
+.nsfa-hand-point-left {
+  --nsfa: "\f0a5";
+}
+
+.nsfa-hand-point-up {
+  --nsfa: "\f0a6";
+}
+
+.nsfa-hand-point-down {
+  --nsfa: "\f0a7";
+}
+
+.nsfa-circle-arrow-left {
+  --nsfa: "\f0a8";
+}
+
+.nsfa-arrow-circle-left {
+  --nsfa: "\f0a8";
+}
+
+.nsfa-circle-arrow-right {
+  --nsfa: "\f0a9";
+}
+
+.nsfa-arrow-circle-right {
+  --nsfa: "\f0a9";
+}
+
+.nsfa-circle-arrow-up {
+  --nsfa: "\f0aa";
+}
+
+.nsfa-arrow-circle-up {
+  --nsfa: "\f0aa";
+}
+
+.nsfa-circle-arrow-down {
+  --nsfa: "\f0ab";
+}
+
+.nsfa-arrow-circle-down {
+  --nsfa: "\f0ab";
+}
+
+.nsfa-globe {
+  --nsfa: "\f0ac";
+}
+
+.nsfa-wrench {
+  --nsfa: "\f0ad";
+}
+
+.nsfa-list-check {
+  --nsfa: "\f0ae";
+}
+
+.nsfa-tasks {
+  --nsfa: "\f0ae";
+}
+
+.nsfa-filter {
+  --nsfa: "\f0b0";
+}
+
+.nsfa-briefcase {
+  --nsfa: "\f0b1";
+}
+
+.nsfa-up-down-left-right {
+  --nsfa: "\f0b2";
+}
+
+.nsfa-arrows-alt {
+  --nsfa: "\f0b2";
+}
+
+.nsfa-users {
+  --nsfa: "\f0c0";
+}
+
+.nsfa-link {
+  --nsfa: "\f0c1";
+}
+
+.nsfa-chain {
+  --nsfa: "\f0c1";
+}
+
+.nsfa-cloud {
+  --nsfa: "\f0c2";
+}
+
+.nsfa-flask {
+  --nsfa: "\f0c3";
+}
+
+.nsfa-scissors {
+  --nsfa: "\f0c4";
+}
+
+.nsfa-cut {
+  --nsfa: "\f0c4";
+}
+
+.nsfa-copy {
+  --nsfa: "\f0c5";
+}
+
+.nsfa-paperclip {
+  --nsfa: "\f0c6";
+}
+
+.nsfa-floppy-disk {
+  --nsfa: "\f0c7";
+}
+
+.nsfa-save {
+  --nsfa: "\f0c7";
+}
+
+.nsfa-square {
+  --nsfa: "\f0c8";
+}
+
+.nsfa-bars {
+  --nsfa: "\f0c9";
+}
+
+.nsfa-navicon {
+  --nsfa: "\f0c9";
+}
+
+.nsfa-list-ul {
+  --nsfa: "\f0ca";
+}
+
+.nsfa-list-dots {
+  --nsfa: "\f0ca";
+}
+
+.nsfa-list-ol {
+  --nsfa: "\f0cb";
+}
+
+.nsfa-list-1-2 {
+  --nsfa: "\f0cb";
+}
+
+.nsfa-list-numeric {
+  --nsfa: "\f0cb";
+}
+
+.nsfa-strikethrough {
+  --nsfa: "\f0cc";
+}
+
+.nsfa-underline {
+  --nsfa: "\f0cd";
+}
+
+.nsfa-table {
+  --nsfa: "\f0ce";
+}
+
+.nsfa-wand-magic {
+  --nsfa: "\f0d0";
+}
+
+.nsfa-magic {
+  --nsfa: "\f0d0";
+}
+
+.nsfa-truck {
+  --nsfa: "\f0d1";
+}
+
+.nsfa-money-bill {
+  --nsfa: "\f0d6";
+}
+
+.nsfa-caret-down {
+  --nsfa: "\f0d7";
+}
+
+.nsfa-caret-up {
+  --nsfa: "\f0d8";
+}
+
+.nsfa-caret-left {
+  --nsfa: "\f0d9";
+}
+
+.nsfa-caret-right {
+  --nsfa: "\f0da";
+}
+
+.nsfa-table-columns {
+  --nsfa: "\f0db";
+}
+
+.nsfa-columns {
+  --nsfa: "\f0db";
+}
+
+.nsfa-sort {
+  --nsfa: "\f0dc";
+}
+
+.nsfa-unsorted {
+  --nsfa: "\f0dc";
+}
+
+.nsfa-sort-down {
+  --nsfa: "\f0dd";
+}
+
+.nsfa-sort-desc {
+  --nsfa: "\f0dd";
+}
+
+.nsfa-sort-up {
+  --nsfa: "\f0de";
+}
+
+.nsfa-sort-asc {
+  --nsfa: "\f0de";
+}
+
+.nsfa-envelope {
+  --nsfa: "\f0e0";
+}
+
+.nsfa-arrow-rotate-left {
+  --nsfa: "\f0e2";
+}
+
+.nsfa-arrow-left-rotate {
+  --nsfa: "\f0e2";
+}
+
+.nsfa-arrow-rotate-back {
+  --nsfa: "\f0e2";
+}
+
+.nsfa-arrow-rotate-backward {
+  --nsfa: "\f0e2";
+}
+
+.nsfa-undo {
+  --nsfa: "\f0e2";
+}
+
+.nsfa-gavel {
+  --nsfa: "\f0e3";
+}
+
+.nsfa-legal {
+  --nsfa: "\f0e3";
+}
+
+.nsfa-bolt {
+  --nsfa: "\f0e7";
+}
+
+.nsfa-zap {
+  --nsfa: "\f0e7";
+}
+
+.nsfa-sitemap {
+  --nsfa: "\f0e8";
+}
+
+.nsfa-umbrella {
+  --nsfa: "\f0e9";
+}
+
+.nsfa-paste {
+  --nsfa: "\f0ea";
+}
+
+.nsfa-file-clipboard {
+  --nsfa: "\f0ea";
+}
+
+.nsfa-lightbulb {
+  --nsfa: "\f0eb";
+}
+
+.nsfa-arrow-right-arrow-left {
+  --nsfa: "\f0ec";
+}
+
+.nsfa-exchange {
+  --nsfa: "\f0ec";
+}
+
+.nsfa-cloud-arrow-down {
+  --nsfa: "\f0ed";
+}
+
+.nsfa-cloud-download {
+  --nsfa: "\f0ed";
+}
+
+.nsfa-cloud-download-alt {
+  --nsfa: "\f0ed";
+}
+
+.nsfa-cloud-arrow-up {
+  --nsfa: "\f0ee";
+}
+
+.nsfa-cloud-upload {
+  --nsfa: "\f0ee";
+}
+
+.nsfa-cloud-upload-alt {
+  --nsfa: "\f0ee";
+}
+
+.nsfa-user-doctor {
+  --nsfa: "\f0f0";
+}
+
+.nsfa-user-md {
+  --nsfa: "\f0f0";
+}
+
+.nsfa-stethoscope {
+  --nsfa: "\f0f1";
+}
+
+.nsfa-suitcase {
+  --nsfa: "\f0f2";
+}
+
+.nsfa-bell {
+  --nsfa: "\f0f3";
+}
+
+.nsfa-mug-saucer {
+  --nsfa: "\f0f4";
+}
+
+.nsfa-coffee {
+  --nsfa: "\f0f4";
+}
+
+.nsfa-hospital {
+  --nsfa: "\f0f8";
+}
+
+.nsfa-hospital-alt {
+  --nsfa: "\f0f8";
+}
+
+.nsfa-hospital-wide {
+  --nsfa: "\f0f8";
+}
+
+.nsfa-truck-medical {
+  --nsfa: "\f0f9";
+}
+
+.nsfa-ambulance {
+  --nsfa: "\f0f9";
+}
+
+.nsfa-suitcase-medical {
+  --nsfa: "\f0fa";
+}
+
+.nsfa-medkit {
+  --nsfa: "\f0fa";
+}
+
+.nsfa-jet-fighter {
+  --nsfa: "\f0fb";
+}
+
+.nsfa-fighter-jet {
+  --nsfa: "\f0fb";
+}
+
+.nsfa-beer-mug-empty {
+  --nsfa: "\f0fc";
+}
+
+.nsfa-beer {
+  --nsfa: "\f0fc";
+}
+
+.nsfa-square-h {
+  --nsfa: "\f0fd";
+}
+
+.nsfa-h-square {
+  --nsfa: "\f0fd";
+}
+
+.nsfa-square-plus {
+  --nsfa: "\f0fe";
+}
+
+.nsfa-plus-square {
+  --nsfa: "\f0fe";
+}
+
+.nsfa-angles-left {
+  --nsfa: "\f100";
+}
+
+.nsfa-angle-double-left {
+  --nsfa: "\f100";
+}
+
+.nsfa-angles-right {
+  --nsfa: "\f101";
+}
+
+.nsfa-angle-double-right {
+  --nsfa: "\f101";
+}
+
+.nsfa-angles-up {
+  --nsfa: "\f102";
+}
+
+.nsfa-angle-double-up {
+  --nsfa: "\f102";
+}
+
+.nsfa-angles-down {
+  --nsfa: "\f103";
+}
+
+.nsfa-angle-double-down {
+  --nsfa: "\f103";
+}
+
+.nsfa-angle-left {
+  --nsfa: "\f104";
+}
+
+.nsfa-angle-right {
+  --nsfa: "\f105";
+}
+
+.nsfa-angle-up {
+  --nsfa: "\f106";
+}
+
+.nsfa-angle-down {
+  --nsfa: "\f107";
+}
+
+.nsfa-laptop {
+  --nsfa: "\f109";
+}
+
+.nsfa-tablet-button {
+  --nsfa: "\f10a";
+}
+
+.nsfa-mobile-button {
+  --nsfa: "\f10b";
+}
+
+.nsfa-quote-left {
+  --nsfa: "\f10d";
+}
+
+.nsfa-quote-left-alt {
+  --nsfa: "\f10d";
+}
+
+.nsfa-quote-right {
+  --nsfa: "\f10e";
+}
+
+.nsfa-quote-right-alt {
+  --nsfa: "\f10e";
+}
+
+.nsfa-spinner {
+  --nsfa: "\f110";
+}
+
+.nsfa-circle {
+  --nsfa: "\f111";
+}
+
+.nsfa-face-smile {
+  --nsfa: "\f118";
+}
+
+.nsfa-smile {
+  --nsfa: "\f118";
+}
+
+.nsfa-face-frown {
+  --nsfa: "\f119";
+}
+
+.nsfa-frown {
+  --nsfa: "\f119";
+}
+
+.nsfa-face-meh {
+  --nsfa: "\f11a";
+}
+
+.nsfa-meh {
+  --nsfa: "\f11a";
+}
+
+.nsfa-gamepad {
+  --nsfa: "\f11b";
+}
+
+.nsfa-keyboard {
+  --nsfa: "\f11c";
+}
+
+.nsfa-flag-checkered {
+  --nsfa: "\f11e";
+}
+
+.nsfa-terminal {
+  --nsfa: "\f120";
+}
+
+.nsfa-code {
+  --nsfa: "\f121";
+}
+
+.nsfa-reply-all {
+  --nsfa: "\f122";
+}
+
+.nsfa-mail-reply-all {
+  --nsfa: "\f122";
+}
+
+.nsfa-location-arrow {
+  --nsfa: "\f124";
+}
+
+.nsfa-crop {
+  --nsfa: "\f125";
+}
+
+.nsfa-code-branch {
+  --nsfa: "\f126";
+}
+
+.nsfa-link-slash {
+  --nsfa: "\f127";
+}
+
+.nsfa-chain-broken {
+  --nsfa: "\f127";
+}
+
+.nsfa-chain-slash {
+  --nsfa: "\f127";
+}
+
+.nsfa-unlink {
+  --nsfa: "\f127";
+}
+
+.nsfa-info {
+  --nsfa: "\f129";
+}
+
+.nsfa-superscript {
+  --nsfa: "\f12b";
+}
+
+.nsfa-subscript {
+  --nsfa: "\f12c";
+}
+
+.nsfa-eraser {
+  --nsfa: "\f12d";
+}
+
+.nsfa-puzzle-piece {
+  --nsfa: "\f12e";
+}
+
+.nsfa-microphone {
+  --nsfa: "\f130";
+}
+
+.nsfa-microphone-slash {
+  --nsfa: "\f131";
+}
+
+.nsfa-shield {
+  --nsfa: "\f132";
+}
+
+.nsfa-shield-blank {
+  --nsfa: "\f132";
+}
+
+.nsfa-calendar {
+  --nsfa: "\f133";
+}
+
+.nsfa-fire-extinguisher {
+  --nsfa: "\f134";
+}
+
+.nsfa-rocket {
+  --nsfa: "\f135";
+}
+
+.nsfa-circle-chevron-left {
+  --nsfa: "\f137";
+}
+
+.nsfa-chevron-circle-left {
+  --nsfa: "\f137";
+}
+
+.nsfa-circle-chevron-right {
+  --nsfa: "\f138";
+}
+
+.nsfa-chevron-circle-right {
+  --nsfa: "\f138";
+}
+
+.nsfa-circle-chevron-up {
+  --nsfa: "\f139";
+}
+
+.nsfa-chevron-circle-up {
+  --nsfa: "\f139";
+}
+
+.nsfa-circle-chevron-down {
+  --nsfa: "\f13a";
+}
+
+.nsfa-chevron-circle-down {
+  --nsfa: "\f13a";
+}
+
+.nsfa-anchor {
+  --nsfa: "\f13d";
+}
+
+.nsfa-unlock-keyhole {
+  --nsfa: "\f13e";
+}
+
+.nsfa-unlock-alt {
+  --nsfa: "\f13e";
+}
+
+.nsfa-bullseye {
+  --nsfa: "\f140";
+}
+
+.nsfa-ellipsis {
+  --nsfa: "\f141";
+}
+
+.nsfa-ellipsis-h {
+  --nsfa: "\f141";
+}
+
+.nsfa-ellipsis-vertical {
+  --nsfa: "\f142";
+}
+
+.nsfa-ellipsis-v {
+  --nsfa: "\f142";
+}
+
+.nsfa-square-rss {
+  --nsfa: "\f143";
+}
+
+.nsfa-rss-square {
+  --nsfa: "\f143";
+}
+
+.nsfa-circle-play {
+  --nsfa: "\f144";
+}
+
+.nsfa-play-circle {
+  --nsfa: "\f144";
+}
+
+.nsfa-ticket {
+  --nsfa: "\f145";
+}
+
+.nsfa-square-minus {
+  --nsfa: "\f146";
+}
+
+.nsfa-minus-square {
+  --nsfa: "\f146";
+}
+
+.nsfa-arrow-turn-up {
+  --nsfa: "\f148";
+}
+
+.nsfa-level-up {
+  --nsfa: "\f148";
+}
+
+.nsfa-arrow-turn-down {
+  --nsfa: "\f149";
+}
+
+.nsfa-level-down {
+  --nsfa: "\f149";
+}
+
+.nsfa-square-check {
+  --nsfa: "\f14a";
+}
+
+.nsfa-check-square {
+  --nsfa: "\f14a";
+}
+
+.nsfa-square-pen {
+  --nsfa: "\f14b";
+}
+
+.nsfa-pen-square {
+  --nsfa: "\f14b";
+}
+
+.nsfa-pencil-square {
+  --nsfa: "\f14b";
+}
+
+.nsfa-square-arrow-up-right {
+  --nsfa: "\f14c";
+}
+
+.nsfa-external-link-square {
+  --nsfa: "\f14c";
+}
+
+.nsfa-share-from-square {
+  --nsfa: "\f14d";
+}
+
+.nsfa-share-square {
+  --nsfa: "\f14d";
+}
+
+.nsfa-compass {
+  --nsfa: "\f14e";
+}
+
+.nsfa-square-caret-down {
+  --nsfa: "\f150";
+}
+
+.nsfa-caret-square-down {
+  --nsfa: "\f150";
+}
+
+.nsfa-square-caret-up {
+  --nsfa: "\f151";
+}
+
+.nsfa-caret-square-up {
+  --nsfa: "\f151";
+}
+
+.nsfa-square-caret-right {
+  --nsfa: "\f152";
+}
+
+.nsfa-caret-square-right {
+  --nsfa: "\f152";
+}
+
+.nsfa-euro-sign {
+  --nsfa: "\f153";
+}
+
+.nsfa-eur {
+  --nsfa: "\f153";
+}
+
+.nsfa-euro {
+  --nsfa: "\f153";
+}
+
+.nsfa-sterling-sign {
+  --nsfa: "\f154";
+}
+
+.nsfa-gbp {
+  --nsfa: "\f154";
+}
+
+.nsfa-pound-sign {
+  --nsfa: "\f154";
+}
+
+.nsfa-rupee-sign {
+  --nsfa: "\f156";
+}
+
+.nsfa-rupee {
+  --nsfa: "\f156";
+}
+
+.nsfa-yen-sign {
+  --nsfa: "\f157";
+}
+
+.nsfa-cny {
+  --nsfa: "\f157";
+}
+
+.nsfa-jpy {
+  --nsfa: "\f157";
+}
+
+.nsfa-rmb {
+  --nsfa: "\f157";
+}
+
+.nsfa-yen {
+  --nsfa: "\f157";
+}
+
+.nsfa-ruble-sign {
+  --nsfa: "\f158";
+}
+
+.nsfa-rouble {
+  --nsfa: "\f158";
+}
+
+.nsfa-rub {
+  --nsfa: "\f158";
+}
+
+.nsfa-ruble {
+  --nsfa: "\f158";
+}
+
+.nsfa-won-sign {
+  --nsfa: "\f159";
+}
+
+.nsfa-krw {
+  --nsfa: "\f159";
+}
+
+.nsfa-won {
+  --nsfa: "\f159";
+}
+
+.nsfa-file {
+  --nsfa: "\f15b";
+}
+
+.nsfa-file-lines {
+  --nsfa: "\f15c";
+}
+
+.nsfa-file-alt {
+  --nsfa: "\f15c";
+}
+
+.nsfa-file-text {
+  --nsfa: "\f15c";
+}
+
+.nsfa-arrow-down-a-z {
+  --nsfa: "\f15d";
+}
+
+.nsfa-sort-alpha-asc {
+  --nsfa: "\f15d";
+}
+
+.nsfa-sort-alpha-down {
+  --nsfa: "\f15d";
+}
+
+.nsfa-arrow-up-a-z {
+  --nsfa: "\f15e";
+}
+
+.nsfa-sort-alpha-up {
+  --nsfa: "\f15e";
+}
+
+.nsfa-arrow-down-wide-short {
+  --nsfa: "\f160";
+}
+
+.nsfa-sort-amount-asc {
+  --nsfa: "\f160";
+}
+
+.nsfa-sort-amount-down {
+  --nsfa: "\f160";
+}
+
+.nsfa-arrow-up-wide-short {
+  --nsfa: "\f161";
+}
+
+.nsfa-sort-amount-up {
+  --nsfa: "\f161";
+}
+
+.nsfa-arrow-down-1-9 {
+  --nsfa: "\f162";
+}
+
+.nsfa-sort-numeric-asc {
+  --nsfa: "\f162";
+}
+
+.nsfa-sort-numeric-down {
+  --nsfa: "\f162";
+}
+
+.nsfa-arrow-up-1-9 {
+  --nsfa: "\f163";
+}
+
+.nsfa-sort-numeric-up {
+  --nsfa: "\f163";
+}
+
+.nsfa-thumbs-up {
+  --nsfa: "\f164";
+}
+
+.nsfa-thumbs-down {
+  --nsfa: "\f165";
+}
+
+.nsfa-arrow-down-long {
+  --nsfa: "\f175";
+}
+
+.nsfa-long-arrow-down {
+  --nsfa: "\f175";
+}
+
+.nsfa-arrow-up-long {
+  --nsfa: "\f176";
+}
+
+.nsfa-long-arrow-up {
+  --nsfa: "\f176";
+}
+
+.nsfa-arrow-left-long {
+  --nsfa: "\f177";
+}
+
+.nsfa-long-arrow-left {
+  --nsfa: "\f177";
+}
+
+.nsfa-arrow-right-long {
+  --nsfa: "\f178";
+}
+
+.nsfa-long-arrow-right {
+  --nsfa: "\f178";
+}
+
+.nsfa-person-dress {
+  --nsfa: "\f182";
+}
+
+.nsfa-female {
+  --nsfa: "\f182";
+}
+
+.nsfa-person {
+  --nsfa: "\f183";
+}
+
+.nsfa-male {
+  --nsfa: "\f183";
+}
+
+.nsfa-sun {
+  --nsfa: "\f185";
+}
+
+.nsfa-moon {
+  --nsfa: "\f186";
+}
+
+.nsfa-box-archive {
+  --nsfa: "\f187";
+}
+
+.nsfa-archive {
+  --nsfa: "\f187";
+}
+
+.nsfa-bug {
+  --nsfa: "\f188";
+}
+
+.nsfa-square-caret-left {
+  --nsfa: "\f191";
+}
+
+.nsfa-caret-square-left {
+  --nsfa: "\f191";
+}
+
+.nsfa-circle-dot {
+  --nsfa: "\f192";
+}
+
+.nsfa-dot-circle {
+  --nsfa: "\f192";
+}
+
+.nsfa-wheelchair {
+  --nsfa: "\f193";
+}
+
+.nsfa-lira-sign {
+  --nsfa: "\f195";
+}
+
+.nsfa-shuttle-space {
+  --nsfa: "\f197";
+}
+
+.nsfa-space-shuttle {
+  --nsfa: "\f197";
+}
+
+.nsfa-square-envelope {
+  --nsfa: "\f199";
+}
+
+.nsfa-envelope-square {
+  --nsfa: "\f199";
+}
+
+.nsfa-building-columns {
+  --nsfa: "\f19c";
+}
+
+.nsfa-bank {
+  --nsfa: "\f19c";
+}
+
+.nsfa-institution {
+  --nsfa: "\f19c";
+}
+
+.nsfa-museum {
+  --nsfa: "\f19c";
+}
+
+.nsfa-university {
+  --nsfa: "\f19c";
+}
+
+.nsfa-graduation-cap {
+  --nsfa: "\f19d";
+}
+
+.nsfa-mortar-board {
+  --nsfa: "\f19d";
+}
+
+.nsfa-language {
+  --nsfa: "\f1ab";
+}
+
+.nsfa-fax {
+  --nsfa: "\f1ac";
+}
+
+.nsfa-building {
+  --nsfa: "\f1ad";
+}
+
+.nsfa-child {
+  --nsfa: "\f1ae";
+}
+
+.nsfa-paw {
+  --nsfa: "\f1b0";
+}
+
+.nsfa-cube {
+  --nsfa: "\f1b2";
+}
+
+.nsfa-cubes {
+  --nsfa: "\f1b3";
+}
+
+.nsfa-recycle {
+  --nsfa: "\f1b8";
+}
+
+.nsfa-car {
+  --nsfa: "\f1b9";
+}
+
+.nsfa-automobile {
+  --nsfa: "\f1b9";
+}
+
+.nsfa-taxi {
+  --nsfa: "\f1ba";
+}
+
+.nsfa-cab {
+  --nsfa: "\f1ba";
+}
+
+.nsfa-tree {
+  --nsfa: "\f1bb";
+}
+
+.nsfa-database {
+  --nsfa: "\f1c0";
+}
+
+.nsfa-file-pdf {
+  --nsfa: "\f1c1";
+}
+
+.nsfa-file-word {
+  --nsfa: "\f1c2";
+}
+
+.nsfa-file-excel {
+  --nsfa: "\f1c3";
+}
+
+.nsfa-file-powerpoint {
+  --nsfa: "\f1c4";
+}
+
+.nsfa-file-image {
+  --nsfa: "\f1c5";
+}
+
+.nsfa-file-zipper {
+  --nsfa: "\f1c6";
+}
+
+.nsfa-file-archive {
+  --nsfa: "\f1c6";
+}
+
+.nsfa-file-audio {
+  --nsfa: "\f1c7";
+}
+
+.nsfa-file-video {
+  --nsfa: "\f1c8";
+}
+
+.nsfa-file-code {
+  --nsfa: "\f1c9";
+}
+
+.nsfa-life-ring {
+  --nsfa: "\f1cd";
+}
+
+.nsfa-circle-notch {
+  --nsfa: "\f1ce";
+}
+
+.nsfa-paper-plane {
+  --nsfa: "\f1d8";
+}
+
+.nsfa-clock-rotate-left {
+  --nsfa: "\f1da";
+}
+
+.nsfa-history {
+  --nsfa: "\f1da";
+}
+
+.nsfa-heading {
+  --nsfa: "\f1dc";
+}
+
+.nsfa-header {
+  --nsfa: "\f1dc";
+}
+
+.nsfa-paragraph {
+  --nsfa: "\f1dd";
+}
+
+.nsfa-sliders {
+  --nsfa: "\f1de";
+}
+
+.nsfa-sliders-h {
+  --nsfa: "\f1de";
+}
+
+.nsfa-share-nodes {
+  --nsfa: "\f1e0";
+}
+
+.nsfa-share-alt {
+  --nsfa: "\f1e0";
+}
+
+.nsfa-square-share-nodes {
+  --nsfa: "\f1e1";
+}
+
+.nsfa-share-alt-square {
+  --nsfa: "\f1e1";
+}
+
+.nsfa-bomb {
+  --nsfa: "\f1e2";
+}
+
+.nsfa-futbol {
+  --nsfa: "\f1e3";
+}
+
+.nsfa-futbol-ball {
+  --nsfa: "\f1e3";
+}
+
+.nsfa-soccer-ball {
+  --nsfa: "\f1e3";
+}
+
+.nsfa-tty {
+  --nsfa: "\f1e4";
+}
+
+.nsfa-teletype {
+  --nsfa: "\f1e4";
+}
+
+.nsfa-binoculars {
+  --nsfa: "\f1e5";
+}
+
+.nsfa-plug {
+  --nsfa: "\f1e6";
+}
+
+.nsfa-newspaper {
+  --nsfa: "\f1ea";
+}
+
+.nsfa-wifi {
+  --nsfa: "\f1eb";
+}
+
+.nsfa-wifi-3 {
+  --nsfa: "\f1eb";
+}
+
+.nsfa-wifi-strong {
+  --nsfa: "\f1eb";
+}
+
+.nsfa-calculator {
+  --nsfa: "\f1ec";
+}
+
+.nsfa-bell-slash {
+  --nsfa: "\f1f6";
+}
+
+.nsfa-trash {
+  --nsfa: "\f1f8";
+}
+
+.nsfa-copyright {
+  --nsfa: "\f1f9";
+}
+
+.nsfa-eye-dropper {
+  --nsfa: "\f1fb";
+}
+
+.nsfa-eye-dropper-empty {
+  --nsfa: "\f1fb";
+}
+
+.nsfa-eyedropper {
+  --nsfa: "\f1fb";
+}
+
+.nsfa-paintbrush {
+  --nsfa: "\f1fc";
+}
+
+.nsfa-paint-brush {
+  --nsfa: "\f1fc";
+}
+
+.nsfa-cake-candles {
+  --nsfa: "\f1fd";
+}
+
+.nsfa-birthday-cake {
+  --nsfa: "\f1fd";
+}
+
+.nsfa-cake {
+  --nsfa: "\f1fd";
+}
+
+.nsfa-chart-area {
+  --nsfa: "\f1fe";
+}
+
+.nsfa-area-chart {
+  --nsfa: "\f1fe";
+}
+
+.nsfa-chart-pie {
+  --nsfa: "\f200";
+}
+
+.nsfa-pie-chart {
+  --nsfa: "\f200";
+}
+
+.nsfa-chart-line {
+  --nsfa: "\f201";
+}
+
+.nsfa-line-chart {
+  --nsfa: "\f201";
+}
+
+.nsfa-toggle-off {
+  --nsfa: "\f204";
+}
+
+.nsfa-toggle-on {
+  --nsfa: "\f205";
+}
+
+.nsfa-bicycle {
+  --nsfa: "\f206";
+}
+
+.nsfa-bus {
+  --nsfa: "\f207";
+}
+
+.nsfa-closed-captioning {
+  --nsfa: "\f20a";
+}
+
+.nsfa-shekel-sign {
+  --nsfa: "\f20b";
+}
+
+.nsfa-ils {
+  --nsfa: "\f20b";
+}
+
+.nsfa-shekel {
+  --nsfa: "\f20b";
+}
+
+.nsfa-sheqel {
+  --nsfa: "\f20b";
+}
+
+.nsfa-sheqel-sign {
+  --nsfa: "\f20b";
+}
+
+.nsfa-cart-plus {
+  --nsfa: "\f217";
+}
+
+.nsfa-cart-arrow-down {
+  --nsfa: "\f218";
+}
+
+.nsfa-diamond {
+  --nsfa: "\f219";
+}
+
+.nsfa-ship {
+  --nsfa: "\f21a";
+}
+
+.nsfa-user-secret {
+  --nsfa: "\f21b";
+}
+
+.nsfa-motorcycle {
+  --nsfa: "\f21c";
+}
+
+.nsfa-street-view {
+  --nsfa: "\f21d";
+}
+
+.nsfa-heart-pulse {
+  --nsfa: "\f21e";
+}
+
+.nsfa-heartbeat {
+  --nsfa: "\f21e";
+}
+
+.nsfa-venus {
+  --nsfa: "\f221";
+}
+
+.nsfa-mars {
+  --nsfa: "\f222";
+}
+
+.nsfa-mercury {
+  --nsfa: "\f223";
+}
+
+.nsfa-mars-and-venus {
+  --nsfa: "\f224";
+}
+
+.nsfa-transgender {
+  --nsfa: "\f225";
+}
+
+.nsfa-transgender-alt {
+  --nsfa: "\f225";
+}
+
+.nsfa-venus-double {
+  --nsfa: "\f226";
+}
+
+.nsfa-mars-double {
+  --nsfa: "\f227";
+}
+
+.nsfa-venus-mars {
+  --nsfa: "\f228";
+}
+
+.nsfa-mars-stroke {
+  --nsfa: "\f229";
+}
+
+.nsfa-mars-stroke-up {
+  --nsfa: "\f22a";
+}
+
+.nsfa-mars-stroke-v {
+  --nsfa: "\f22a";
+}
+
+.nsfa-mars-stroke-right {
+  --nsfa: "\f22b";
+}
+
+.nsfa-mars-stroke-h {
+  --nsfa: "\f22b";
+}
+
+.nsfa-neuter {
+  --nsfa: "\f22c";
+}
+
+.nsfa-genderless {
+  --nsfa: "\f22d";
+}
+
+.nsfa-server {
+  --nsfa: "\f233";
+}
+
+.nsfa-user-plus {
+  --nsfa: "\f234";
+}
+
+.nsfa-user-xmark {
+  --nsfa: "\f235";
+}
+
+.nsfa-user-times {
+  --nsfa: "\f235";
+}
+
+.nsfa-bed {
+  --nsfa: "\f236";
+}
+
+.nsfa-train {
+  --nsfa: "\f238";
+}
+
+.nsfa-train-subway {
+  --nsfa: "\f239";
+}
+
+.nsfa-subway {
+  --nsfa: "\f239";
+}
+
+.nsfa-battery-full {
+  --nsfa: "\f240";
+}
+
+.nsfa-battery {
+  --nsfa: "\f240";
+}
+
+.nsfa-battery-5 {
+  --nsfa: "\f240";
+}
+
+.nsfa-battery-three-quarters {
+  --nsfa: "\f241";
+}
+
+.nsfa-battery-4 {
+  --nsfa: "\f241";
+}
+
+.nsfa-battery-half {
+  --nsfa: "\f242";
+}
+
+.nsfa-battery-3 {
+  --nsfa: "\f242";
+}
+
+.nsfa-battery-quarter {
+  --nsfa: "\f243";
+}
+
+.nsfa-battery-2 {
+  --nsfa: "\f243";
+}
+
+.nsfa-battery-empty {
+  --nsfa: "\f244";
+}
+
+.nsfa-battery-0 {
+  --nsfa: "\f244";
+}
+
+.nsfa-arrow-pointer {
+  --nsfa: "\f245";
+}
+
+.nsfa-mouse-pointer {
+  --nsfa: "\f245";
+}
+
+.nsfa-i-cursor {
+  --nsfa: "\f246";
+}
+
+.nsfa-object-group {
+  --nsfa: "\f247";
+}
+
+.nsfa-object-ungroup {
+  --nsfa: "\f248";
+}
+
+.nsfa-note-sticky {
+  --nsfa: "\f249";
+}
+
+.nsfa-sticky-note {
+  --nsfa: "\f249";
+}
+
+.nsfa-clone {
+  --nsfa: "\f24d";
+}
+
+.nsfa-scale-balanced {
+  --nsfa: "\f24e";
+}
+
+.nsfa-balance-scale {
+  --nsfa: "\f24e";
+}
+
+.nsfa-hourglass-start {
+  --nsfa: "\f251";
+}
+
+.nsfa-hourglass-1 {
+  --nsfa: "\f251";
+}
+
+.nsfa-hourglass-half {
+  --nsfa: "\f252";
+}
+
+.nsfa-hourglass-2 {
+  --nsfa: "\f252";
+}
+
+.nsfa-hourglass-end {
+  --nsfa: "\f253";
+}
+
+.nsfa-hourglass-3 {
+  --nsfa: "\f253";
+}
+
+.nsfa-hourglass {
+  --nsfa: "\f254";
+}
+
+.nsfa-hourglass-empty {
+  --nsfa: "\f254";
+}
+
+.nsfa-hand-back-fist {
+  --nsfa: "\f255";
+}
+
+.nsfa-hand-rock {
+  --nsfa: "\f255";
+}
+
+.nsfa-hand {
+  --nsfa: "\f256";
+}
+
+.nsfa-hand-paper {
+  --nsfa: "\f256";
+}
+
+.nsfa-hand-scissors {
+  --nsfa: "\f257";
+}
+
+.nsfa-hand-lizard {
+  --nsfa: "\f258";
+}
+
+.nsfa-hand-spock {
+  --nsfa: "\f259";
+}
+
+.nsfa-hand-pointer {
+  --nsfa: "\f25a";
+}
+
+.nsfa-hand-peace {
+  --nsfa: "\f25b";
+}
+
+.nsfa-trademark {
+  --nsfa: "\f25c";
+}
+
+.nsfa-registered {
+  --nsfa: "\f25d";
+}
+
+.nsfa-tv {
+  --nsfa: "\f26c";
+}
+
+.nsfa-television {
+  --nsfa: "\f26c";
+}
+
+.nsfa-tv-alt {
+  --nsfa: "\f26c";
+}
+
+.nsfa-calendar-plus {
+  --nsfa: "\f271";
+}
+
+.nsfa-calendar-minus {
+  --nsfa: "\f272";
+}
+
+.nsfa-calendar-xmark {
+  --nsfa: "\f273";
+}
+
+.nsfa-calendar-times {
+  --nsfa: "\f273";
+}
+
+.nsfa-calendar-check {
+  --nsfa: "\f274";
+}
+
+.nsfa-industry {
+  --nsfa: "\f275";
+}
+
+.nsfa-map-pin {
+  --nsfa: "\f276";
+}
+
+.nsfa-signs-post {
+  --nsfa: "\f277";
+}
+
+.nsfa-map-signs {
+  --nsfa: "\f277";
+}
+
+.nsfa-map {
+  --nsfa: "\f279";
+}
+
+.nsfa-message {
+  --nsfa: "\f27a";
+}
+
+.nsfa-comment-alt {
+  --nsfa: "\f27a";
+}
+
+.nsfa-circle-pause {
+  --nsfa: "\f28b";
+}
+
+.nsfa-pause-circle {
+  --nsfa: "\f28b";
+}
+
+.nsfa-circle-stop {
+  --nsfa: "\f28d";
+}
+
+.nsfa-stop-circle {
+  --nsfa: "\f28d";
+}
+
+.nsfa-bag-shopping {
+  --nsfa: "\f290";
+}
+
+.nsfa-shopping-bag {
+  --nsfa: "\f290";
+}
+
+.nsfa-basket-shopping {
+  --nsfa: "\f291";
+}
+
+.nsfa-shopping-basket {
+  --nsfa: "\f291";
+}
+
+.nsfa-universal-access {
+  --nsfa: "\f29a";
+}
+
+.nsfa-person-walking-with-cane {
+  --nsfa: "\f29d";
+}
+
+.nsfa-blind {
+  --nsfa: "\f29d";
+}
+
+.nsfa-audio-description {
+  --nsfa: "\f29e";
+}
+
+.nsfa-phone-volume {
+  --nsfa: "\f2a0";
+}
+
+.nsfa-volume-control-phone {
+  --nsfa: "\f2a0";
+}
+
+.nsfa-braille {
+  --nsfa: "\f2a1";
+}
+
+.nsfa-ear-listen {
+  --nsfa: "\f2a2";
+}
+
+.nsfa-assistive-listening-systems {
+  --nsfa: "\f2a2";
+}
+
+.nsfa-hands-asl-interpreting {
+  --nsfa: "\f2a3";
+}
+
+.nsfa-american-sign-language-interpreting {
+  --nsfa: "\f2a3";
+}
+
+.nsfa-asl-interpreting {
+  --nsfa: "\f2a3";
+}
+
+.nsfa-hands-american-sign-language-interpreting {
+  --nsfa: "\f2a3";
+}
+
+.nsfa-ear-deaf {
+  --nsfa: "\f2a4";
+}
+
+.nsfa-deaf {
+  --nsfa: "\f2a4";
+}
+
+.nsfa-deafness {
+  --nsfa: "\f2a4";
+}
+
+.nsfa-hard-of-hearing {
+  --nsfa: "\f2a4";
+}
+
+.nsfa-hands {
+  --nsfa: "\f2a7";
+}
+
+.nsfa-sign-language {
+  --nsfa: "\f2a7";
+}
+
+.nsfa-signing {
+  --nsfa: "\f2a7";
+}
+
+.nsfa-eye-low-vision {
+  --nsfa: "\f2a8";
+}
+
+.nsfa-low-vision {
+  --nsfa: "\f2a8";
+}
+
+.nsfa-font-awesome {
+  --nsfa: "\f2b4";
+}
+
+.nsfa-font-awesome-flag {
+  --nsfa: "\f2b4";
+}
+
+.nsfa-font-awesome-logo-full {
+  --nsfa: "\f2b4";
+}
+
+.nsfa-handshake {
+  --nsfa: "\f2b5";
+}
+
+.nsfa-handshake-alt {
+  --nsfa: "\f2b5";
+}
+
+.nsfa-handshake-simple {
+  --nsfa: "\f2b5";
+}
+
+.nsfa-envelope-open {
+  --nsfa: "\f2b6";
+}
+
+.nsfa-address-book {
+  --nsfa: "\f2b9";
+}
+
+.nsfa-contact-book {
+  --nsfa: "\f2b9";
+}
+
+.nsfa-address-card {
+  --nsfa: "\f2bb";
+}
+
+.nsfa-contact-card {
+  --nsfa: "\f2bb";
+}
+
+.nsfa-vcard {
+  --nsfa: "\f2bb";
+}
+
+.nsfa-circle-user {
+  --nsfa: "\f2bd";
+}
+
+.nsfa-user-circle {
+  --nsfa: "\f2bd";
+}
+
+.nsfa-id-badge {
+  --nsfa: "\f2c1";
+}
+
+.nsfa-id-card {
+  --nsfa: "\f2c2";
+}
+
+.nsfa-drivers-license {
+  --nsfa: "\f2c2";
+}
+
+.nsfa-temperature-full {
+  --nsfa: "\f2c7";
+}
+
+.nsfa-temperature-4 {
+  --nsfa: "\f2c7";
+}
+
+.nsfa-thermometer-4 {
+  --nsfa: "\f2c7";
+}
+
+.nsfa-thermometer-full {
+  --nsfa: "\f2c7";
+}
+
+.nsfa-temperature-three-quarters {
+  --nsfa: "\f2c8";
+}
+
+.nsfa-temperature-3 {
+  --nsfa: "\f2c8";
+}
+
+.nsfa-thermometer-3 {
+  --nsfa: "\f2c8";
+}
+
+.nsfa-thermometer-three-quarters {
+  --nsfa: "\f2c8";
+}
+
+.nsfa-temperature-half {
+  --nsfa: "\f2c9";
+}
+
+.nsfa-temperature-2 {
+  --nsfa: "\f2c9";
+}
+
+.nsfa-thermometer-2 {
+  --nsfa: "\f2c9";
+}
+
+.nsfa-thermometer-half {
+  --nsfa: "\f2c9";
+}
+
+.nsfa-temperature-quarter {
+  --nsfa: "\f2ca";
+}
+
+.nsfa-temperature-1 {
+  --nsfa: "\f2ca";
+}
+
+.nsfa-thermometer-1 {
+  --nsfa: "\f2ca";
+}
+
+.nsfa-thermometer-quarter {
+  --nsfa: "\f2ca";
+}
+
+.nsfa-temperature-empty {
+  --nsfa: "\f2cb";
+}
+
+.nsfa-temperature-0 {
+  --nsfa: "\f2cb";
+}
+
+.nsfa-thermometer-0 {
+  --nsfa: "\f2cb";
+}
+
+.nsfa-thermometer-empty {
+  --nsfa: "\f2cb";
+}
+
+.nsfa-shower {
+  --nsfa: "\f2cc";
+}
+
+.nsfa-bath {
+  --nsfa: "\f2cd";
+}
+
+.nsfa-bathtub {
+  --nsfa: "\f2cd";
+}
+
+.nsfa-podcast {
+  --nsfa: "\f2ce";
+}
+
+.nsfa-window-maximize {
+  --nsfa: "\f2d0";
+}
+
+.nsfa-window-minimize {
+  --nsfa: "\f2d1";
+}
+
+.nsfa-window-restore {
+  --nsfa: "\f2d2";
+}
+
+.nsfa-square-xmark {
+  --nsfa: "\f2d3";
+}
+
+.nsfa-times-square {
+  --nsfa: "\f2d3";
+}
+
+.nsfa-xmark-square {
+  --nsfa: "\f2d3";
+}
+
+.nsfa-microchip {
+  --nsfa: "\f2db";
+}
+
+.nsfa-snowflake {
+  --nsfa: "\f2dc";
+}
+
+.nsfa-spoon {
+  --nsfa: "\f2e5";
+}
+
+.nsfa-utensil-spoon {
+  --nsfa: "\f2e5";
+}
+
+.nsfa-utensils {
+  --nsfa: "\f2e7";
+}
+
+.nsfa-cutlery {
+  --nsfa: "\f2e7";
+}
+
+.nsfa-rotate-left {
+  --nsfa: "\f2ea";
+}
+
+.nsfa-rotate-back {
+  --nsfa: "\f2ea";
+}
+
+.nsfa-rotate-backward {
+  --nsfa: "\f2ea";
+}
+
+.nsfa-undo-alt {
+  --nsfa: "\f2ea";
+}
+
+.nsfa-trash-can {
+  --nsfa: "\f2ed";
+}
+
+.nsfa-trash-alt {
+  --nsfa: "\f2ed";
+}
+
+.nsfa-rotate {
+  --nsfa: "\f2f1";
+}
+
+.nsfa-sync-alt {
+  --nsfa: "\f2f1";
+}
+
+.nsfa-stopwatch {
+  --nsfa: "\f2f2";
+}
+
+.nsfa-right-from-bracket {
+  --nsfa: "\f2f5";
+}
+
+.nsfa-sign-out-alt {
+  --nsfa: "\f2f5";
+}
+
+.nsfa-right-to-bracket {
+  --nsfa: "\f2f6";
+}
+
+.nsfa-sign-in-alt {
+  --nsfa: "\f2f6";
+}
+
+.nsfa-rotate-right {
+  --nsfa: "\f2f9";
+}
+
+.nsfa-redo-alt {
+  --nsfa: "\f2f9";
+}
+
+.nsfa-rotate-forward {
+  --nsfa: "\f2f9";
+}
+
+.nsfa-poo {
+  --nsfa: "\f2fe";
+}
+
+.nsfa-images {
+  --nsfa: "\f302";
+}
+
+.nsfa-pencil {
+  --nsfa: "\f303";
+}
+
+.nsfa-pencil-alt {
+  --nsfa: "\f303";
+}
+
+.nsfa-pen {
+  --nsfa: "\f304";
+}
+
+.nsfa-pen-clip {
+  --nsfa: "\f305";
+}
+
+.nsfa-pen-alt {
+  --nsfa: "\f305";
+}
+
+.nsfa-octagon {
+  --nsfa: "\f306";
+}
+
+.nsfa-down-long {
+  --nsfa: "\f309";
+}
+
+.nsfa-long-arrow-alt-down {
+  --nsfa: "\f309";
+}
+
+.nsfa-left-long {
+  --nsfa: "\f30a";
+}
+
+.nsfa-long-arrow-alt-left {
+  --nsfa: "\f30a";
+}
+
+.nsfa-right-long {
+  --nsfa: "\f30b";
+}
+
+.nsfa-long-arrow-alt-right {
+  --nsfa: "\f30b";
+}
+
+.nsfa-up-long {
+  --nsfa: "\f30c";
+}
+
+.nsfa-long-arrow-alt-up {
+  --nsfa: "\f30c";
+}
+
+.nsfa-hexagon {
+  --nsfa: "\f312";
+}
+
+.nsfa-file-pen {
+  --nsfa: "\f31c";
+}
+
+.nsfa-file-edit {
+  --nsfa: "\f31c";
+}
+
+.nsfa-maximize {
+  --nsfa: "\f31e";
+}
+
+.nsfa-expand-arrows-alt {
+  --nsfa: "\f31e";
+}
+
+.nsfa-clipboard {
+  --nsfa: "\f328";
+}
+
+.nsfa-left-right {
+  --nsfa: "\f337";
+}
+
+.nsfa-arrows-alt-h {
+  --nsfa: "\f337";
+}
+
+.nsfa-up-down {
+  --nsfa: "\f338";
+}
+
+.nsfa-arrows-alt-v {
+  --nsfa: "\f338";
+}
+
+.nsfa-alarm-clock {
+  --nsfa: "\f34e";
+}
+
+.nsfa-circle-down {
+  --nsfa: "\f358";
+}
+
+.nsfa-arrow-alt-circle-down {
+  --nsfa: "\f358";
+}
+
+.nsfa-circle-left {
+  --nsfa: "\f359";
+}
+
+.nsfa-arrow-alt-circle-left {
+  --nsfa: "\f359";
+}
+
+.nsfa-circle-right {
+  --nsfa: "\f35a";
+}
+
+.nsfa-arrow-alt-circle-right {
+  --nsfa: "\f35a";
+}
+
+.nsfa-circle-up {
+  --nsfa: "\f35b";
+}
+
+.nsfa-arrow-alt-circle-up {
+  --nsfa: "\f35b";
+}
+
+.nsfa-up-right-from-square {
+  --nsfa: "\f35d";
+}
+
+.nsfa-external-link-alt {
+  --nsfa: "\f35d";
+}
+
+.nsfa-square-up-right {
+  --nsfa: "\f360";
+}
+
+.nsfa-external-link-square-alt {
+  --nsfa: "\f360";
+}
+
+.nsfa-right-left {
+  --nsfa: "\f362";
+}
+
+.nsfa-exchange-alt {
+  --nsfa: "\f362";
+}
+
+.nsfa-repeat {
+  --nsfa: "\f363";
+}
+
+.nsfa-code-commit {
+  --nsfa: "\f386";
+}
+
+.nsfa-code-merge {
+  --nsfa: "\f387";
+}
+
+.nsfa-desktop {
+  --nsfa: "\f390";
+}
+
+.nsfa-desktop-alt {
+  --nsfa: "\f390";
+}
+
+.nsfa-gem {
+  --nsfa: "\f3a5";
+}
+
+.nsfa-turn-down {
+  --nsfa: "\f3be";
+}
+
+.nsfa-level-down-alt {
+  --nsfa: "\f3be";
+}
+
+.nsfa-turn-up {
+  --nsfa: "\f3bf";
+}
+
+.nsfa-level-up-alt {
+  --nsfa: "\f3bf";
+}
+
+.nsfa-lock-open {
+  --nsfa: "\f3c1";
+}
+
+.nsfa-location-dot {
+  --nsfa: "\f3c5";
+}
+
+.nsfa-map-marker-alt {
+  --nsfa: "\f3c5";
+}
+
+.nsfa-microphone-lines {
+  --nsfa: "\f3c9";
+}
+
+.nsfa-microphone-alt {
+  --nsfa: "\f3c9";
+}
+
+.nsfa-mobile-screen-button {
+  --nsfa: "\f3cd";
+}
+
+.nsfa-mobile-alt {
+  --nsfa: "\f3cd";
+}
+
+.nsfa-mobile {
+  --nsfa: "\f3ce";
+}
+
+.nsfa-mobile-android {
+  --nsfa: "\f3ce";
+}
+
+.nsfa-mobile-phone {
+  --nsfa: "\f3ce";
+}
+
+.nsfa-mobile-screen {
+  --nsfa: "\f3cf";
+}
+
+.nsfa-mobile-android-alt {
+  --nsfa: "\f3cf";
+}
+
+.nsfa-money-bill-1 {
+  --nsfa: "\f3d1";
+}
+
+.nsfa-money-bill-alt {
+  --nsfa: "\f3d1";
+}
+
+.nsfa-phone-slash {
+  --nsfa: "\f3dd";
+}
+
+.nsfa-image-portrait {
+  --nsfa: "\f3e0";
+}
+
+.nsfa-portrait {
+  --nsfa: "\f3e0";
+}
+
+.nsfa-reply {
+  --nsfa: "\f3e5";
+}
+
+.nsfa-mail-reply {
+  --nsfa: "\f3e5";
+}
+
+.nsfa-shield-halved {
+  --nsfa: "\f3ed";
+}
+
+.nsfa-shield-alt {
+  --nsfa: "\f3ed";
+}
+
+.nsfa-tablet-screen-button {
+  --nsfa: "\f3fa";
+}
+
+.nsfa-tablet-alt {
+  --nsfa: "\f3fa";
+}
+
+.nsfa-tablet {
+  --nsfa: "\f3fb";
+}
+
+.nsfa-tablet-android {
+  --nsfa: "\f3fb";
+}
+
+.nsfa-ticket-simple {
+  --nsfa: "\f3ff";
+}
+
+.nsfa-ticket-alt {
+  --nsfa: "\f3ff";
+}
+
+.nsfa-rectangle-xmark {
+  --nsfa: "\f410";
+}
+
+.nsfa-rectangle-times {
+  --nsfa: "\f410";
+}
+
+.nsfa-times-rectangle {
+  --nsfa: "\f410";
+}
+
+.nsfa-window-close {
+  --nsfa: "\f410";
+}
+
+.nsfa-down-left-and-up-right-to-center {
+  --nsfa: "\f422";
+}
+
+.nsfa-compress-alt {
+  --nsfa: "\f422";
+}
+
+.nsfa-up-right-and-down-left-from-center {
+  --nsfa: "\f424";
+}
+
+.nsfa-expand-alt {
+  --nsfa: "\f424";
+}
+
+.nsfa-baseball-bat-ball {
+  --nsfa: "\f432";
+}
+
+.nsfa-baseball {
+  --nsfa: "\f433";
+}
+
+.nsfa-baseball-ball {
+  --nsfa: "\f433";
+}
+
+.nsfa-basketball {
+  --nsfa: "\f434";
+}
+
+.nsfa-basketball-ball {
+  --nsfa: "\f434";
+}
+
+.nsfa-bowling-ball {
+  --nsfa: "\f436";
+}
+
+.nsfa-chess {
+  --nsfa: "\f439";
+}
+
+.nsfa-chess-bishop {
+  --nsfa: "\f43a";
+}
+
+.nsfa-chess-board {
+  --nsfa: "\f43c";
+}
+
+.nsfa-chess-king {
+  --nsfa: "\f43f";
+}
+
+.nsfa-chess-knight {
+  --nsfa: "\f441";
+}
+
+.nsfa-chess-pawn {
+  --nsfa: "\f443";
+}
+
+.nsfa-chess-queen {
+  --nsfa: "\f445";
+}
+
+.nsfa-chess-rook {
+  --nsfa: "\f447";
+}
+
+.nsfa-dumbbell {
+  --nsfa: "\f44b";
+}
+
+.nsfa-football {
+  --nsfa: "\f44e";
+}
+
+.nsfa-football-ball {
+  --nsfa: "\f44e";
+}
+
+.nsfa-golf-ball-tee {
+  --nsfa: "\f450";
+}
+
+.nsfa-golf-ball {
+  --nsfa: "\f450";
+}
+
+.nsfa-hockey-puck {
+  --nsfa: "\f453";
+}
+
+.nsfa-broom-ball {
+  --nsfa: "\f458";
+}
+
+.nsfa-quidditch {
+  --nsfa: "\f458";
+}
+
+.nsfa-quidditch-broom-ball {
+  --nsfa: "\f458";
+}
+
+.nsfa-square-full {
+  --nsfa: "\f45c";
+}
+
+.nsfa-table-tennis-paddle-ball {
+  --nsfa: "\f45d";
+}
+
+.nsfa-ping-pong-paddle-ball {
+  --nsfa: "\f45d";
+}
+
+.nsfa-table-tennis {
+  --nsfa: "\f45d";
+}
+
+.nsfa-volleyball {
+  --nsfa: "\f45f";
+}
+
+.nsfa-volleyball-ball {
+  --nsfa: "\f45f";
+}
+
+.nsfa-hand-dots {
+  --nsfa: "\f461";
+}
+
+.nsfa-allergies {
+  --nsfa: "\f461";
+}
+
+.nsfa-bandage {
+  --nsfa: "\f462";
+}
+
+.nsfa-band-aid {
+  --nsfa: "\f462";
+}
+
+.nsfa-box {
+  --nsfa: "\f466";
+}
+
+.nsfa-boxes-stacked {
+  --nsfa: "\f468";
+}
+
+.nsfa-boxes {
+  --nsfa: "\f468";
+}
+
+.nsfa-boxes-alt {
+  --nsfa: "\f468";
+}
+
+.nsfa-briefcase-medical {
+  --nsfa: "\f469";
+}
+
+.nsfa-fire-flame-simple {
+  --nsfa: "\f46a";
+}
+
+.nsfa-burn {
+  --nsfa: "\f46a";
+}
+
+.nsfa-capsules {
+  --nsfa: "\f46b";
+}
+
+.nsfa-clipboard-check {
+  --nsfa: "\f46c";
+}
+
+.nsfa-clipboard-list {
+  --nsfa: "\f46d";
+}
+
+.nsfa-person-dots-from-line {
+  --nsfa: "\f470";
+}
+
+.nsfa-diagnoses {
+  --nsfa: "\f470";
+}
+
+.nsfa-dna {
+  --nsfa: "\f471";
+}
+
+.nsfa-dolly {
+  --nsfa: "\f472";
+}
+
+.nsfa-dolly-box {
+  --nsfa: "\f472";
+}
+
+.nsfa-cart-flatbed {
+  --nsfa: "\f474";
+}
+
+.nsfa-dolly-flatbed {
+  --nsfa: "\f474";
+}
+
+.nsfa-file-medical {
+  --nsfa: "\f477";
+}
+
+.nsfa-file-waveform {
+  --nsfa: "\f478";
+}
+
+.nsfa-file-medical-alt {
+  --nsfa: "\f478";
+}
+
+.nsfa-kit-medical {
+  --nsfa: "\f479";
+}
+
+.nsfa-first-aid {
+  --nsfa: "\f479";
+}
+
+.nsfa-circle-h {
+  --nsfa: "\f47e";
+}
+
+.nsfa-hospital-symbol {
+  --nsfa: "\f47e";
+}
+
+.nsfa-id-card-clip {
+  --nsfa: "\f47f";
+}
+
+.nsfa-id-card-alt {
+  --nsfa: "\f47f";
+}
+
+.nsfa-notes-medical {
+  --nsfa: "\f481";
+}
+
+.nsfa-pallet {
+  --nsfa: "\f482";
+}
+
+.nsfa-pills {
+  --nsfa: "\f484";
+}
+
+.nsfa-prescription-bottle {
+  --nsfa: "\f485";
+}
+
+.nsfa-prescription-bottle-medical {
+  --nsfa: "\f486";
+}
+
+.nsfa-prescription-bottle-alt {
+  --nsfa: "\f486";
+}
+
+.nsfa-bed-pulse {
+  --nsfa: "\f487";
+}
+
+.nsfa-procedures {
+  --nsfa: "\f487";
+}
+
+.nsfa-truck-fast {
+  --nsfa: "\f48b";
+}
+
+.nsfa-shipping-fast {
+  --nsfa: "\f48b";
+}
+
+.nsfa-smoking {
+  --nsfa: "\f48d";
+}
+
+.nsfa-syringe {
+  --nsfa: "\f48e";
+}
+
+.nsfa-tablets {
+  --nsfa: "\f490";
+}
+
+.nsfa-thermometer {
+  --nsfa: "\f491";
+}
+
+.nsfa-vial {
+  --nsfa: "\f492";
+}
+
+.nsfa-vials {
+  --nsfa: "\f493";
+}
+
+.nsfa-warehouse {
+  --nsfa: "\f494";
+}
+
+.nsfa-weight-scale {
+  --nsfa: "\f496";
+}
+
+.nsfa-weight {
+  --nsfa: "\f496";
+}
+
+.nsfa-x-ray {
+  --nsfa: "\f497";
+}
+
+.nsfa-box-open {
+  --nsfa: "\f49e";
+}
+
+.nsfa-comment-dots {
+  --nsfa: "\f4ad";
+}
+
+.nsfa-commenting {
+  --nsfa: "\f4ad";
+}
+
+.nsfa-comment-slash {
+  --nsfa: "\f4b3";
+}
+
+.nsfa-couch {
+  --nsfa: "\f4b8";
+}
+
+.nsfa-circle-dollar-to-slot {
+  --nsfa: "\f4b9";
+}
+
+.nsfa-donate {
+  --nsfa: "\f4b9";
+}
+
+.nsfa-dove {
+  --nsfa: "\f4ba";
+}
+
+.nsfa-hand-holding {
+  --nsfa: "\f4bd";
+}
+
+.nsfa-hand-holding-heart {
+  --nsfa: "\f4be";
+}
+
+.nsfa-hand-holding-dollar {
+  --nsfa: "\f4c0";
+}
+
+.nsfa-hand-holding-usd {
+  --nsfa: "\f4c0";
+}
+
+.nsfa-hand-holding-droplet {
+  --nsfa: "\f4c1";
+}
+
+.nsfa-hand-holding-water {
+  --nsfa: "\f4c1";
+}
+
+.nsfa-hands-holding {
+  --nsfa: "\f4c2";
+}
+
+.nsfa-handshake-angle {
+  --nsfa: "\f4c4";
+}
+
+.nsfa-hands-helping {
+  --nsfa: "\f4c4";
+}
+
+.nsfa-parachute-box {
+  --nsfa: "\f4cd";
+}
+
+.nsfa-people-carry-box {
+  --nsfa: "\f4ce";
+}
+
+.nsfa-people-carry {
+  --nsfa: "\f4ce";
+}
+
+.nsfa-piggy-bank {
+  --nsfa: "\f4d3";
+}
+
+.nsfa-ribbon {
+  --nsfa: "\f4d6";
+}
+
+.nsfa-route {
+  --nsfa: "\f4d7";
+}
+
+.nsfa-seedling {
+  --nsfa: "\f4d8";
+}
+
+.nsfa-sprout {
+  --nsfa: "\f4d8";
+}
+
+.nsfa-sign-hanging {
+  --nsfa: "\f4d9";
+}
+
+.nsfa-sign {
+  --nsfa: "\f4d9";
+}
+
+.nsfa-face-smile-wink {
+  --nsfa: "\f4da";
+}
+
+.nsfa-smile-wink {
+  --nsfa: "\f4da";
+}
+
+.nsfa-tape {
+  --nsfa: "\f4db";
+}
+
+.nsfa-truck-ramp-box {
+  --nsfa: "\f4de";
+}
+
+.nsfa-truck-loading {
+  --nsfa: "\f4de";
+}
+
+.nsfa-truck-moving {
+  --nsfa: "\f4df";
+}
+
+.nsfa-video-slash {
+  --nsfa: "\f4e2";
+}
+
+.nsfa-wine-glass {
+  --nsfa: "\f4e3";
+}
+
+.nsfa-user-astronaut {
+  --nsfa: "\f4fb";
+}
+
+.nsfa-user-check {
+  --nsfa: "\f4fc";
+}
+
+.nsfa-user-clock {
+  --nsfa: "\f4fd";
+}
+
+.nsfa-user-gear {
+  --nsfa: "\f4fe";
+}
+
+.nsfa-user-cog {
+  --nsfa: "\f4fe";
+}
+
+.nsfa-user-pen {
+  --nsfa: "\f4ff";
+}
+
+.nsfa-user-edit {
+  --nsfa: "\f4ff";
+}
+
+.nsfa-user-group {
+  --nsfa: "\f500";
+}
+
+.nsfa-user-friends {
+  --nsfa: "\f500";
+}
+
+.nsfa-user-graduate {
+  --nsfa: "\f501";
+}
+
+.nsfa-user-lock {
+  --nsfa: "\f502";
+}
+
+.nsfa-user-minus {
+  --nsfa: "\f503";
+}
+
+.nsfa-user-ninja {
+  --nsfa: "\f504";
+}
+
+.nsfa-user-shield {
+  --nsfa: "\f505";
+}
+
+.nsfa-user-slash {
+  --nsfa: "\f506";
+}
+
+.nsfa-user-alt-slash {
+  --nsfa: "\f506";
+}
+
+.nsfa-user-large-slash {
+  --nsfa: "\f506";
+}
+
+.nsfa-user-tag {
+  --nsfa: "\f507";
+}
+
+.nsfa-user-tie {
+  --nsfa: "\f508";
+}
+
+.nsfa-users-gear {
+  --nsfa: "\f509";
+}
+
+.nsfa-users-cog {
+  --nsfa: "\f509";
+}
+
+.nsfa-scale-unbalanced {
+  --nsfa: "\f515";
+}
+
+.nsfa-balance-scale-left {
+  --nsfa: "\f515";
+}
+
+.nsfa-scale-unbalanced-flip {
+  --nsfa: "\f516";
+}
+
+.nsfa-balance-scale-right {
+  --nsfa: "\f516";
+}
+
+.nsfa-blender {
+  --nsfa: "\f517";
+}
+
+.nsfa-book-open {
+  --nsfa: "\f518";
+}
+
+.nsfa-tower-broadcast {
+  --nsfa: "\f519";
+}
+
+.nsfa-broadcast-tower {
+  --nsfa: "\f519";
+}
+
+.nsfa-broom {
+  --nsfa: "\f51a";
+}
+
+.nsfa-chalkboard {
+  --nsfa: "\f51b";
+}
+
+.nsfa-blackboard {
+  --nsfa: "\f51b";
+}
+
+.nsfa-chalkboard-user {
+  --nsfa: "\f51c";
+}
+
+.nsfa-chalkboard-teacher {
+  --nsfa: "\f51c";
+}
+
+.nsfa-church {
+  --nsfa: "\f51d";
+}
+
+.nsfa-coins {
+  --nsfa: "\f51e";
+}
+
+.nsfa-compact-disc {
+  --nsfa: "\f51f";
+}
+
+.nsfa-crow {
+  --nsfa: "\f520";
+}
+
+.nsfa-crown {
+  --nsfa: "\f521";
+}
+
+.nsfa-dice {
+  --nsfa: "\f522";
+}
+
+.nsfa-dice-five {
+  --nsfa: "\f523";
+}
+
+.nsfa-dice-four {
+  --nsfa: "\f524";
+}
+
+.nsfa-dice-one {
+  --nsfa: "\f525";
+}
+
+.nsfa-dice-six {
+  --nsfa: "\f526";
+}
+
+.nsfa-dice-three {
+  --nsfa: "\f527";
+}
+
+.nsfa-dice-two {
+  --nsfa: "\f528";
+}
+
+.nsfa-divide {
+  --nsfa: "\f529";
+}
+
+.nsfa-door-closed {
+  --nsfa: "\f52a";
+}
+
+.nsfa-door-open {
+  --nsfa: "\f52b";
+}
+
+.nsfa-feather {
+  --nsfa: "\f52d";
+}
+
+.nsfa-frog {
+  --nsfa: "\f52e";
+}
+
+.nsfa-gas-pump {
+  --nsfa: "\f52f";
+}
+
+.nsfa-glasses {
+  --nsfa: "\f530";
+}
+
+.nsfa-greater-than-equal {
+  --nsfa: "\f532";
+}
+
+.nsfa-helicopter {
+  --nsfa: "\f533";
+}
+
+.nsfa-infinity {
+  --nsfa: "\f534";
+}
+
+.nsfa-kiwi-bird {
+  --nsfa: "\f535";
+}
+
+.nsfa-less-than-equal {
+  --nsfa: "\f537";
+}
+
+.nsfa-memory {
+  --nsfa: "\f538";
+}
+
+.nsfa-microphone-lines-slash {
+  --nsfa: "\f539";
+}
+
+.nsfa-microphone-alt-slash {
+  --nsfa: "\f539";
+}
+
+.nsfa-money-bill-wave {
+  --nsfa: "\f53a";
+}
+
+.nsfa-money-bill-1-wave {
+  --nsfa: "\f53b";
+}
+
+.nsfa-money-bill-wave-alt {
+  --nsfa: "\f53b";
+}
+
+.nsfa-money-check {
+  --nsfa: "\f53c";
+}
+
+.nsfa-money-check-dollar {
+  --nsfa: "\f53d";
+}
+
+.nsfa-money-check-alt {
+  --nsfa: "\f53d";
+}
+
+.nsfa-not-equal {
+  --nsfa: "\f53e";
+}
+
+.nsfa-palette {
+  --nsfa: "\f53f";
+}
+
+.nsfa-square-parking {
+  --nsfa: "\f540";
+}
+
+.nsfa-parking {
+  --nsfa: "\f540";
+}
+
+.nsfa-diagram-project {
+  --nsfa: "\f542";
+}
+
+.nsfa-project-diagram {
+  --nsfa: "\f542";
+}
+
+.nsfa-receipt {
+  --nsfa: "\f543";
+}
+
+.nsfa-robot {
+  --nsfa: "\f544";
+}
+
+.nsfa-ruler {
+  --nsfa: "\f545";
+}
+
+.nsfa-ruler-combined {
+  --nsfa: "\f546";
+}
+
+.nsfa-ruler-horizontal {
+  --nsfa: "\f547";
+}
+
+.nsfa-ruler-vertical {
+  --nsfa: "\f548";
+}
+
+.nsfa-school {
+  --nsfa: "\f549";
+}
+
+.nsfa-screwdriver {
+  --nsfa: "\f54a";
+}
+
+.nsfa-shoe-prints {
+  --nsfa: "\f54b";
+}
+
+.nsfa-skull {
+  --nsfa: "\f54c";
+}
+
+.nsfa-ban-smoking {
+  --nsfa: "\f54d";
+}
+
+.nsfa-smoking-ban {
+  --nsfa: "\f54d";
+}
+
+.nsfa-store {
+  --nsfa: "\f54e";
+}
+
+.nsfa-shop {
+  --nsfa: "\f54f";
+}
+
+.nsfa-store-alt {
+  --nsfa: "\f54f";
+}
+
+.nsfa-bars-staggered {
+  --nsfa: "\f550";
+}
+
+.nsfa-reorder {
+  --nsfa: "\f550";
+}
+
+.nsfa-stream {
+  --nsfa: "\f550";
+}
+
+.nsfa-stroopwafel {
+  --nsfa: "\f551";
+}
+
+.nsfa-toolbox {
+  --nsfa: "\f552";
+}
+
+.nsfa-shirt {
+  --nsfa: "\f553";
+}
+
+.nsfa-t-shirt {
+  --nsfa: "\f553";
+}
+
+.nsfa-tshirt {
+  --nsfa: "\f553";
+}
+
+.nsfa-person-walking {
+  --nsfa: "\f554";
+}
+
+.nsfa-walking {
+  --nsfa: "\f554";
+}
+
+.nsfa-wallet {
+  --nsfa: "\f555";
+}
+
+.nsfa-face-angry {
+  --nsfa: "\f556";
+}
+
+.nsfa-angry {
+  --nsfa: "\f556";
+}
+
+.nsfa-archway {
+  --nsfa: "\f557";
+}
+
+.nsfa-book-atlas {
+  --nsfa: "\f558";
+}
+
+.nsfa-atlas {
+  --nsfa: "\f558";
+}
+
+.nsfa-award {
+  --nsfa: "\f559";
+}
+
+.nsfa-delete-left {
+  --nsfa: "\f55a";
+}
+
+.nsfa-backspace {
+  --nsfa: "\f55a";
+}
+
+.nsfa-bezier-curve {
+  --nsfa: "\f55b";
+}
+
+.nsfa-bong {
+  --nsfa: "\f55c";
+}
+
+.nsfa-brush {
+  --nsfa: "\f55d";
+}
+
+.nsfa-bus-simple {
+  --nsfa: "\f55e";
+}
+
+.nsfa-bus-alt {
+  --nsfa: "\f55e";
+}
+
+.nsfa-cannabis {
+  --nsfa: "\f55f";
+}
+
+.nsfa-check-double {
+  --nsfa: "\f560";
+}
+
+.nsfa-martini-glass-citrus {
+  --nsfa: "\f561";
+}
+
+.nsfa-cocktail {
+  --nsfa: "\f561";
+}
+
+.nsfa-bell-concierge {
+  --nsfa: "\f562";
+}
+
+.nsfa-concierge-bell {
+  --nsfa: "\f562";
+}
+
+.nsfa-cookie {
+  --nsfa: "\f563";
+}
+
+.nsfa-cookie-bite {
+  --nsfa: "\f564";
+}
+
+.nsfa-crop-simple {
+  --nsfa: "\f565";
+}
+
+.nsfa-crop-alt {
+  --nsfa: "\f565";
+}
+
+.nsfa-tachograph-digital {
+  --nsfa: "\f566";
+}
+
+.nsfa-digital-tachograph {
+  --nsfa: "\f566";
+}
+
+.nsfa-face-dizzy {
+  --nsfa: "\f567";
+}
+
+.nsfa-dizzy {
+  --nsfa: "\f567";
+}
+
+.nsfa-compass-drafting {
+  --nsfa: "\f568";
+}
+
+.nsfa-drafting-compass {
+  --nsfa: "\f568";
+}
+
+.nsfa-drum {
+  --nsfa: "\f569";
+}
+
+.nsfa-drum-steelpan {
+  --nsfa: "\f56a";
+}
+
+.nsfa-feather-pointed {
+  --nsfa: "\f56b";
+}
+
+.nsfa-feather-alt {
+  --nsfa: "\f56b";
+}
+
+.nsfa-file-contract {
+  --nsfa: "\f56c";
+}
+
+.nsfa-file-arrow-down {
+  --nsfa: "\f56d";
+}
+
+.nsfa-file-download {
+  --nsfa: "\f56d";
+}
+
+.nsfa-file-export {
+  --nsfa: "\f56e";
+}
+
+.nsfa-arrow-right-from-file {
+  --nsfa: "\f56e";
+}
+
+.nsfa-file-import {
+  --nsfa: "\f56f";
+}
+
+.nsfa-arrow-right-to-file {
+  --nsfa: "\f56f";
+}
+
+.nsfa-file-invoice {
+  --nsfa: "\f570";
+}
+
+.nsfa-file-invoice-dollar {
+  --nsfa: "\f571";
+}
+
+.nsfa-file-prescription {
+  --nsfa: "\f572";
+}
+
+.nsfa-file-signature {
+  --nsfa: "\f573";
+}
+
+.nsfa-file-arrow-up {
+  --nsfa: "\f574";
+}
+
+.nsfa-file-upload {
+  --nsfa: "\f574";
+}
+
+.nsfa-fill {
+  --nsfa: "\f575";
+}
+
+.nsfa-fill-drip {
+  --nsfa: "\f576";
+}
+
+.nsfa-fingerprint {
+  --nsfa: "\f577";
+}
+
+.nsfa-fish {
+  --nsfa: "\f578";
+}
+
+.nsfa-face-flushed {
+  --nsfa: "\f579";
+}
+
+.nsfa-flushed {
+  --nsfa: "\f579";
+}
+
+.nsfa-face-frown-open {
+  --nsfa: "\f57a";
+}
+
+.nsfa-frown-open {
+  --nsfa: "\f57a";
+}
+
+.nsfa-martini-glass {
+  --nsfa: "\f57b";
+}
+
+.nsfa-glass-martini-alt {
+  --nsfa: "\f57b";
+}
+
+.nsfa-earth-africa {
+  --nsfa: "\f57c";
+}
+
+.nsfa-globe-africa {
+  --nsfa: "\f57c";
+}
+
+.nsfa-earth-americas {
+  --nsfa: "\f57d";
+}
+
+.nsfa-earth {
+  --nsfa: "\f57d";
+}
+
+.nsfa-earth-america {
+  --nsfa: "\f57d";
+}
+
+.nsfa-globe-americas {
+  --nsfa: "\f57d";
+}
+
+.nsfa-earth-asia {
+  --nsfa: "\f57e";
+}
+
+.nsfa-globe-asia {
+  --nsfa: "\f57e";
+}
+
+.nsfa-face-grimace {
+  --nsfa: "\f57f";
+}
+
+.nsfa-grimace {
+  --nsfa: "\f57f";
+}
+
+.nsfa-face-grin {
+  --nsfa: "\f580";
+}
+
+.nsfa-grin {
+  --nsfa: "\f580";
+}
+
+.nsfa-face-grin-wide {
+  --nsfa: "\f581";
+}
+
+.nsfa-grin-alt {
+  --nsfa: "\f581";
+}
+
+.nsfa-face-grin-beam {
+  --nsfa: "\f582";
+}
+
+.nsfa-grin-beam {
+  --nsfa: "\f582";
+}
+
+.nsfa-face-grin-beam-sweat {
+  --nsfa: "\f583";
+}
+
+.nsfa-grin-beam-sweat {
+  --nsfa: "\f583";
+}
+
+.nsfa-face-grin-hearts {
+  --nsfa: "\f584";
+}
+
+.nsfa-grin-hearts {
+  --nsfa: "\f584";
+}
+
+.nsfa-face-grin-squint {
+  --nsfa: "\f585";
+}
+
+.nsfa-grin-squint {
+  --nsfa: "\f585";
+}
+
+.nsfa-face-grin-squint-tears {
+  --nsfa: "\f586";
+}
+
+.nsfa-grin-squint-tears {
+  --nsfa: "\f586";
+}
+
+.nsfa-face-grin-stars {
+  --nsfa: "\f587";
+}
+
+.nsfa-grin-stars {
+  --nsfa: "\f587";
+}
+
+.nsfa-face-grin-tears {
+  --nsfa: "\f588";
+}
+
+.nsfa-grin-tears {
+  --nsfa: "\f588";
+}
+
+.nsfa-face-grin-tongue {
+  --nsfa: "\f589";
+}
+
+.nsfa-grin-tongue {
+  --nsfa: "\f589";
+}
+
+.nsfa-face-grin-tongue-squint {
+  --nsfa: "\f58a";
+}
+
+.nsfa-grin-tongue-squint {
+  --nsfa: "\f58a";
+}
+
+.nsfa-face-grin-tongue-wink {
+  --nsfa: "\f58b";
+}
+
+.nsfa-grin-tongue-wink {
+  --nsfa: "\f58b";
+}
+
+.nsfa-face-grin-wink {
+  --nsfa: "\f58c";
+}
+
+.nsfa-grin-wink {
+  --nsfa: "\f58c";
+}
+
+.nsfa-grip {
+  --nsfa: "\f58d";
+}
+
+.nsfa-grid-horizontal {
+  --nsfa: "\f58d";
+}
+
+.nsfa-grip-horizontal {
+  --nsfa: "\f58d";
+}
+
+.nsfa-grip-vertical {
+  --nsfa: "\f58e";
+}
+
+.nsfa-grid-vertical {
+  --nsfa: "\f58e";
+}
+
+.nsfa-headset {
+  --nsfa: "\f590";
+}
+
+.nsfa-highlighter {
+  --nsfa: "\f591";
+}
+
+.nsfa-hot-tub-person {
+  --nsfa: "\f593";
+}
+
+.nsfa-hot-tub {
+  --nsfa: "\f593";
+}
+
+.nsfa-hotel {
+  --nsfa: "\f594";
+}
+
+.nsfa-joint {
+  --nsfa: "\f595";
+}
+
+.nsfa-face-kiss {
+  --nsfa: "\f596";
+}
+
+.nsfa-kiss {
+  --nsfa: "\f596";
+}
+
+.nsfa-face-kiss-beam {
+  --nsfa: "\f597";
+}
+
+.nsfa-kiss-beam {
+  --nsfa: "\f597";
+}
+
+.nsfa-face-kiss-wink-heart {
+  --nsfa: "\f598";
+}
+
+.nsfa-kiss-wink-heart {
+  --nsfa: "\f598";
+}
+
+.nsfa-face-laugh {
+  --nsfa: "\f599";
+}
+
+.nsfa-laugh {
+  --nsfa: "\f599";
+}
+
+.nsfa-face-laugh-beam {
+  --nsfa: "\f59a";
+}
+
+.nsfa-laugh-beam {
+  --nsfa: "\f59a";
+}
+
+.nsfa-face-laugh-squint {
+  --nsfa: "\f59b";
+}
+
+.nsfa-laugh-squint {
+  --nsfa: "\f59b";
+}
+
+.nsfa-face-laugh-wink {
+  --nsfa: "\f59c";
+}
+
+.nsfa-laugh-wink {
+  --nsfa: "\f59c";
+}
+
+.nsfa-cart-flatbed-suitcase {
+  --nsfa: "\f59d";
+}
+
+.nsfa-luggage-cart {
+  --nsfa: "\f59d";
+}
+
+.nsfa-map-location {
+  --nsfa: "\f59f";
+}
+
+.nsfa-map-marked {
+  --nsfa: "\f59f";
+}
+
+.nsfa-map-location-dot {
+  --nsfa: "\f5a0";
+}
+
+.nsfa-map-marked-alt {
+  --nsfa: "\f5a0";
+}
+
+.nsfa-marker {
+  --nsfa: "\f5a1";
+}
+
+.nsfa-medal {
+  --nsfa: "\f5a2";
+}
+
+.nsfa-face-meh-blank {
+  --nsfa: "\f5a4";
+}
+
+.nsfa-meh-blank {
+  --nsfa: "\f5a4";
+}
+
+.nsfa-face-rolling-eyes {
+  --nsfa: "\f5a5";
+}
+
+.nsfa-meh-rolling-eyes {
+  --nsfa: "\f5a5";
+}
+
+.nsfa-monument {
+  --nsfa: "\f5a6";
+}
+
+.nsfa-mortar-pestle {
+  --nsfa: "\f5a7";
+}
+
+.nsfa-paint-roller {
+  --nsfa: "\f5aa";
+}
+
+.nsfa-passport {
+  --nsfa: "\f5ab";
+}
+
+.nsfa-pen-fancy {
+  --nsfa: "\f5ac";
+}
+
+.nsfa-pen-nib {
+  --nsfa: "\f5ad";
+}
+
+.nsfa-pen-ruler {
+  --nsfa: "\f5ae";
+}
+
+.nsfa-pencil-ruler {
+  --nsfa: "\f5ae";
+}
+
+.nsfa-plane-arrival {
+  --nsfa: "\f5af";
+}
+
+.nsfa-plane-departure {
+  --nsfa: "\f5b0";
+}
+
+.nsfa-prescription {
+  --nsfa: "\f5b1";
+}
+
+.nsfa-face-sad-cry {
+  --nsfa: "\f5b3";
+}
+
+.nsfa-sad-cry {
+  --nsfa: "\f5b3";
+}
+
+.nsfa-face-sad-tear {
+  --nsfa: "\f5b4";
+}
+
+.nsfa-sad-tear {
+  --nsfa: "\f5b4";
+}
+
+.nsfa-van-shuttle {
+  --nsfa: "\f5b6";
+}
+
+.nsfa-shuttle-van {
+  --nsfa: "\f5b6";
+}
+
+.nsfa-signature {
+  --nsfa: "\f5b7";
+}
+
+.nsfa-face-smile-beam {
+  --nsfa: "\f5b8";
+}
+
+.nsfa-smile-beam {
+  --nsfa: "\f5b8";
+}
+
+.nsfa-solar-panel {
+  --nsfa: "\f5ba";
+}
+
+.nsfa-spa {
+  --nsfa: "\f5bb";
+}
+
+.nsfa-lotus {
+  --nsfa: "\f5bb";
+}
+
+.nsfa-splotch {
+  --nsfa: "\f5bc";
+}
+
+.nsfa-spray-can {
+  --nsfa: "\f5bd";
+}
+
+.nsfa-stamp {
+  --nsfa: "\f5bf";
+}
+
+.nsfa-star-half-stroke {
+  --nsfa: "\f5c0";
+}
+
+.nsfa-star-half-alt {
+  --nsfa: "\f5c0";
+}
+
+.nsfa-suitcase-rolling {
+  --nsfa: "\f5c1";
+}
+
+.nsfa-face-surprise {
+  --nsfa: "\f5c2";
+}
+
+.nsfa-surprise {
+  --nsfa: "\f5c2";
+}
+
+.nsfa-swatchbook {
+  --nsfa: "\f5c3";
+}
+
+.nsfa-person-swimming {
+  --nsfa: "\f5c4";
+}
+
+.nsfa-swimmer {
+  --nsfa: "\f5c4";
+}
+
+.nsfa-water-ladder {
+  --nsfa: "\f5c5";
+}
+
+.nsfa-ladder-water {
+  --nsfa: "\f5c5";
+}
+
+.nsfa-swimming-pool {
+  --nsfa: "\f5c5";
+}
+
+.nsfa-droplet-slash {
+  --nsfa: "\f5c7";
+}
+
+.nsfa-tint-slash {
+  --nsfa: "\f5c7";
+}
+
+.nsfa-face-tired {
+  --nsfa: "\f5c8";
+}
+
+.nsfa-tired {
+  --nsfa: "\f5c8";
+}
+
+.nsfa-tooth {
+  --nsfa: "\f5c9";
+}
+
+.nsfa-umbrella-beach {
+  --nsfa: "\f5ca";
+}
+
+.nsfa-weight-hanging {
+  --nsfa: "\f5cd";
+}
+
+.nsfa-wine-glass-empty {
+  --nsfa: "\f5ce";
+}
+
+.nsfa-wine-glass-alt {
+  --nsfa: "\f5ce";
+}
+
+.nsfa-spray-can-sparkles {
+  --nsfa: "\f5d0";
+}
+
+.nsfa-air-freshener {
+  --nsfa: "\f5d0";
+}
+
+.nsfa-apple-whole {
+  --nsfa: "\f5d1";
+}
+
+.nsfa-apple-alt {
+  --nsfa: "\f5d1";
+}
+
+.nsfa-atom {
+  --nsfa: "\f5d2";
+}
+
+.nsfa-bone {
+  --nsfa: "\f5d7";
+}
+
+.nsfa-book-open-reader {
+  --nsfa: "\f5da";
+}
+
+.nsfa-book-reader {
+  --nsfa: "\f5da";
+}
+
+.nsfa-brain {
+  --nsfa: "\f5dc";
+}
+
+.nsfa-car-rear {
+  --nsfa: "\f5de";
+}
+
+.nsfa-car-alt {
+  --nsfa: "\f5de";
+}
+
+.nsfa-car-battery {
+  --nsfa: "\f5df";
+}
+
+.nsfa-battery-car {
+  --nsfa: "\f5df";
+}
+
+.nsfa-car-burst {
+  --nsfa: "\f5e1";
+}
+
+.nsfa-car-crash {
+  --nsfa: "\f5e1";
+}
+
+.nsfa-car-side {
+  --nsfa: "\f5e4";
+}
+
+.nsfa-charging-station {
+  --nsfa: "\f5e7";
+}
+
+.nsfa-diamond-turn-right {
+  --nsfa: "\f5eb";
+}
+
+.nsfa-directions {
+  --nsfa: "\f5eb";
+}
+
+.nsfa-draw-polygon {
+  --nsfa: "\f5ee";
+}
+
+.nsfa-vector-polygon {
+  --nsfa: "\f5ee";
+}
+
+.nsfa-laptop-code {
+  --nsfa: "\f5fc";
+}
+
+.nsfa-layer-group {
+  --nsfa: "\f5fd";
+}
+
+.nsfa-location-crosshairs {
+  --nsfa: "\f601";
+}
+
+.nsfa-location {
+  --nsfa: "\f601";
+}
+
+.nsfa-lungs {
+  --nsfa: "\f604";
+}
+
+.nsfa-microscope {
+  --nsfa: "\f610";
+}
+
+.nsfa-oil-can {
+  --nsfa: "\f613";
+}
+
+.nsfa-poop {
+  --nsfa: "\f619";
+}
+
+.nsfa-shapes {
+  --nsfa: "\f61f";
+}
+
+.nsfa-triangle-circle-square {
+  --nsfa: "\f61f";
+}
+
+.nsfa-star-of-life {
+  --nsfa: "\f621";
+}
+
+.nsfa-gauge {
+  --nsfa: "\f624";
+}
+
+.nsfa-dashboard {
+  --nsfa: "\f624";
+}
+
+.nsfa-gauge-med {
+  --nsfa: "\f624";
+}
+
+.nsfa-tachometer-alt-average {
+  --nsfa: "\f624";
+}
+
+.nsfa-gauge-high {
+  --nsfa: "\f625";
+}
+
+.nsfa-tachometer-alt {
+  --nsfa: "\f625";
+}
+
+.nsfa-tachometer-alt-fast {
+  --nsfa: "\f625";
+}
+
+.nsfa-gauge-simple {
+  --nsfa: "\f629";
+}
+
+.nsfa-gauge-simple-med {
+  --nsfa: "\f629";
+}
+
+.nsfa-tachometer-average {
+  --nsfa: "\f629";
+}
+
+.nsfa-gauge-simple-high {
+  --nsfa: "\f62a";
+}
+
+.nsfa-tachometer {
+  --nsfa: "\f62a";
+}
+
+.nsfa-tachometer-fast {
+  --nsfa: "\f62a";
+}
+
+.nsfa-teeth {
+  --nsfa: "\f62e";
+}
+
+.nsfa-teeth-open {
+  --nsfa: "\f62f";
+}
+
+.nsfa-masks-theater {
+  --nsfa: "\f630";
+}
+
+.nsfa-theater-masks {
+  --nsfa: "\f630";
+}
+
+.nsfa-traffic-light {
+  --nsfa: "\f637";
+}
+
+.nsfa-truck-monster {
+  --nsfa: "\f63b";
+}
+
+.nsfa-truck-pickup {
+  --nsfa: "\f63c";
+}
+
+.nsfa-rectangle-ad {
+  --nsfa: "\f641";
+}
+
+.nsfa-ad {
+  --nsfa: "\f641";
+}
+
+.nsfa-ankh {
+  --nsfa: "\f644";
+}
+
+.nsfa-book-bible {
+  --nsfa: "\f647";
+}
+
+.nsfa-bible {
+  --nsfa: "\f647";
+}
+
+.nsfa-business-time {
+  --nsfa: "\f64a";
+}
+
+.nsfa-briefcase-clock {
+  --nsfa: "\f64a";
+}
+
+.nsfa-city {
+  --nsfa: "\f64f";
+}
+
+.nsfa-comment-dollar {
+  --nsfa: "\f651";
+}
+
+.nsfa-comments-dollar {
+  --nsfa: "\f653";
+}
+
+.nsfa-cross {
+  --nsfa: "\f654";
+}
+
+.nsfa-dharmachakra {
+  --nsfa: "\f655";
+}
+
+.nsfa-envelope-open-text {
+  --nsfa: "\f658";
+}
+
+.nsfa-folder-minus {
+  --nsfa: "\f65d";
+}
+
+.nsfa-folder-plus {
+  --nsfa: "\f65e";
+}
+
+.nsfa-filter-circle-dollar {
+  --nsfa: "\f662";
+}
+
+.nsfa-funnel-dollar {
+  --nsfa: "\f662";
+}
+
+.nsfa-gopuram {
+  --nsfa: "\f664";
+}
+
+.nsfa-hamsa {
+  --nsfa: "\f665";
+}
+
+.nsfa-bahai {
+  --nsfa: "\f666";
+}
+
+.nsfa-haykal {
+  --nsfa: "\f666";
+}
+
+.nsfa-jedi {
+  --nsfa: "\f669";
+}
+
+.nsfa-book-journal-whills {
+  --nsfa: "\f66a";
+}
+
+.nsfa-journal-whills {
+  --nsfa: "\f66a";
+}
+
+.nsfa-kaaba {
+  --nsfa: "\f66b";
+}
+
+.nsfa-khanda {
+  --nsfa: "\f66d";
+}
+
+.nsfa-landmark {
+  --nsfa: "\f66f";
+}
+
+.nsfa-envelopes-bulk {
+  --nsfa: "\f674";
+}
+
+.nsfa-mail-bulk {
+  --nsfa: "\f674";
+}
+
+.nsfa-menorah {
+  --nsfa: "\f676";
+}
+
+.nsfa-mosque {
+  --nsfa: "\f678";
+}
+
+.nsfa-om {
+  --nsfa: "\f679";
+}
+
+.nsfa-spaghetti-monster-flying {
+  --nsfa: "\f67b";
+}
+
+.nsfa-pastafarianism {
+  --nsfa: "\f67b";
+}
+
+.nsfa-peace {
+  --nsfa: "\f67c";
+}
+
+.nsfa-place-of-worship {
+  --nsfa: "\f67f";
+}
+
+.nsfa-square-poll-vertical {
+  --nsfa: "\f681";
+}
+
+.nsfa-poll {
+  --nsfa: "\f681";
+}
+
+.nsfa-square-poll-horizontal {
+  --nsfa: "\f682";
+}
+
+.nsfa-poll-h {
+  --nsfa: "\f682";
+}
+
+.nsfa-person-praying {
+  --nsfa: "\f683";
+}
+
+.nsfa-pray {
+  --nsfa: "\f683";
+}
+
+.nsfa-hands-praying {
+  --nsfa: "\f684";
+}
+
+.nsfa-praying-hands {
+  --nsfa: "\f684";
+}
+
+.nsfa-book-quran {
+  --nsfa: "\f687";
+}
+
+.nsfa-quran {
+  --nsfa: "\f687";
+}
+
+.nsfa-magnifying-glass-dollar {
+  --nsfa: "\f688";
+}
+
+.nsfa-search-dollar {
+  --nsfa: "\f688";
+}
+
+.nsfa-magnifying-glass-location {
+  --nsfa: "\f689";
+}
+
+.nsfa-search-location {
+  --nsfa: "\f689";
+}
+
+.nsfa-socks {
+  --nsfa: "\f696";
+}
+
+.nsfa-square-root-variable {
+  --nsfa: "\f698";
+}
+
+.nsfa-square-root-alt {
+  --nsfa: "\f698";
+}
+
+.nsfa-star-and-crescent {
+  --nsfa: "\f699";
+}
+
+.nsfa-star-of-david {
+  --nsfa: "\f69a";
+}
+
+.nsfa-synagogue {
+  --nsfa: "\f69b";
+}
+
+.nsfa-scroll-torah {
+  --nsfa: "\f6a0";
+}
+
+.nsfa-torah {
+  --nsfa: "\f6a0";
+}
+
+.nsfa-torii-gate {
+  --nsfa: "\f6a1";
+}
+
+.nsfa-vihara {
+  --nsfa: "\f6a7";
+}
+
+.nsfa-volume {
+  --nsfa: "\f6a8";
+}
+
+.nsfa-volume-medium {
+  --nsfa: "\f6a8";
+}
+
+.nsfa-volume-xmark {
+  --nsfa: "\f6a9";
+}
+
+.nsfa-volume-mute {
+  --nsfa: "\f6a9";
+}
+
+.nsfa-volume-times {
+  --nsfa: "\f6a9";
+}
+
+.nsfa-yin-yang {
+  --nsfa: "\f6ad";
+}
+
+.nsfa-blender-phone {
+  --nsfa: "\f6b6";
+}
+
+.nsfa-book-skull {
+  --nsfa: "\f6b7";
+}
+
+.nsfa-book-dead {
+  --nsfa: "\f6b7";
+}
+
+.nsfa-campground {
+  --nsfa: "\f6bb";
+}
+
+.nsfa-cat {
+  --nsfa: "\f6be";
+}
+
+.nsfa-chair {
+  --nsfa: "\f6c0";
+}
+
+.nsfa-cloud-moon {
+  --nsfa: "\f6c3";
+}
+
+.nsfa-cloud-sun {
+  --nsfa: "\f6c4";
+}
+
+.nsfa-cow {
+  --nsfa: "\f6c8";
+}
+
+.nsfa-dice-d20 {
+  --nsfa: "\f6cf";
+}
+
+.nsfa-dice-d6 {
+  --nsfa: "\f6d1";
+}
+
+.nsfa-dog {
+  --nsfa: "\f6d3";
+}
+
+.nsfa-dragon {
+  --nsfa: "\f6d5";
+}
+
+.nsfa-drumstick-bite {
+  --nsfa: "\f6d7";
+}
+
+.nsfa-dungeon {
+  --nsfa: "\f6d9";
+}
+
+.nsfa-file-csv {
+  --nsfa: "\f6dd";
+}
+
+.nsfa-hand-fist {
+  --nsfa: "\f6de";
+}
+
+.nsfa-fist-raised {
+  --nsfa: "\f6de";
+}
+
+.nsfa-ghost {
+  --nsfa: "\f6e2";
+}
+
+.nsfa-hammer {
+  --nsfa: "\f6e3";
+}
+
+.nsfa-hanukiah {
+  --nsfa: "\f6e6";
+}
+
+.nsfa-hat-wizard {
+  --nsfa: "\f6e8";
+}
+
+.nsfa-person-hiking {
+  --nsfa: "\f6ec";
+}
+
+.nsfa-hiking {
+  --nsfa: "\f6ec";
+}
+
+.nsfa-hippo {
+  --nsfa: "\f6ed";
+}
+
+.nsfa-horse {
+  --nsfa: "\f6f0";
+}
+
+.nsfa-house-chimney-crack {
+  --nsfa: "\f6f1";
+}
+
+.nsfa-house-damage {
+  --nsfa: "\f6f1";
+}
+
+.nsfa-hryvnia-sign {
+  --nsfa: "\f6f2";
+}
+
+.nsfa-hryvnia {
+  --nsfa: "\f6f2";
+}
+
+.nsfa-mask {
+  --nsfa: "\f6fa";
+}
+
+.nsfa-mountain {
+  --nsfa: "\f6fc";
+}
+
+.nsfa-network-wired {
+  --nsfa: "\f6ff";
+}
+
+.nsfa-otter {
+  --nsfa: "\f700";
+}
+
+.nsfa-ring {
+  --nsfa: "\f70b";
+}
+
+.nsfa-person-running {
+  --nsfa: "\f70c";
+}
+
+.nsfa-running {
+  --nsfa: "\f70c";
+}
+
+.nsfa-scroll {
+  --nsfa: "\f70e";
+}
+
+.nsfa-skull-crossbones {
+  --nsfa: "\f714";
+}
+
+.nsfa-slash {
+  --nsfa: "\f715";
+}
+
+.nsfa-spider {
+  --nsfa: "\f717";
+}
+
+.nsfa-toilet-paper {
+  --nsfa: "\f71e";
+}
+
+.nsfa-toilet-paper-alt {
+  --nsfa: "\f71e";
+}
+
+.nsfa-toilet-paper-blank {
+  --nsfa: "\f71e";
+}
+
+.nsfa-tractor {
+  --nsfa: "\f722";
+}
+
+.nsfa-user-injured {
+  --nsfa: "\f728";
+}
+
+.nsfa-vr-cardboard {
+  --nsfa: "\f729";
+}
+
+.nsfa-wand-sparkles {
+  --nsfa: "\f72b";
+}
+
+.nsfa-wind {
+  --nsfa: "\f72e";
+}
+
+.nsfa-wine-bottle {
+  --nsfa: "\f72f";
+}
+
+.nsfa-cloud-meatball {
+  --nsfa: "\f73b";
+}
+
+.nsfa-cloud-moon-rain {
+  --nsfa: "\f73c";
+}
+
+.nsfa-cloud-rain {
+  --nsfa: "\f73d";
+}
+
+.nsfa-cloud-showers-heavy {
+  --nsfa: "\f740";
+}
+
+.nsfa-cloud-sun-rain {
+  --nsfa: "\f743";
+}
+
+.nsfa-democrat {
+  --nsfa: "\f747";
+}
+
+.nsfa-flag-usa {
+  --nsfa: "\f74d";
+}
+
+.nsfa-hurricane {
+  --nsfa: "\f751";
+}
+
+.nsfa-landmark-dome {
+  --nsfa: "\f752";
+}
+
+.nsfa-landmark-alt {
+  --nsfa: "\f752";
+}
+
+.nsfa-meteor {
+  --nsfa: "\f753";
+}
+
+.nsfa-person-booth {
+  --nsfa: "\f756";
+}
+
+.nsfa-poo-storm {
+  --nsfa: "\f75a";
+}
+
+.nsfa-poo-bolt {
+  --nsfa: "\f75a";
+}
+
+.nsfa-rainbow {
+  --nsfa: "\f75b";
+}
+
+.nsfa-republican {
+  --nsfa: "\f75e";
+}
+
+.nsfa-smog {
+  --nsfa: "\f75f";
+}
+
+.nsfa-temperature-high {
+  --nsfa: "\f769";
+}
+
+.nsfa-temperature-low {
+  --nsfa: "\f76b";
+}
+
+.nsfa-cloud-bolt {
+  --nsfa: "\f76c";
+}
+
+.nsfa-thunderstorm {
+  --nsfa: "\f76c";
+}
+
+.nsfa-tornado {
+  --nsfa: "\f76f";
+}
+
+.nsfa-volcano {
+  --nsfa: "\f770";
+}
+
+.nsfa-check-to-slot {
+  --nsfa: "\f772";
+}
+
+.nsfa-vote-yea {
+  --nsfa: "\f772";
+}
+
+.nsfa-water {
+  --nsfa: "\f773";
+}
+
+.nsfa-baby {
+  --nsfa: "\f77c";
+}
+
+.nsfa-baby-carriage {
+  --nsfa: "\f77d";
+}
+
+.nsfa-carriage-baby {
+  --nsfa: "\f77d";
+}
+
+.nsfa-biohazard {
+  --nsfa: "\f780";
+}
+
+.nsfa-blog {
+  --nsfa: "\f781";
+}
+
+.nsfa-calendar-day {
+  --nsfa: "\f783";
+}
+
+.nsfa-calendar-week {
+  --nsfa: "\f784";
+}
+
+.nsfa-candy-cane {
+  --nsfa: "\f786";
+}
+
+.nsfa-carrot {
+  --nsfa: "\f787";
+}
+
+.nsfa-cash-register {
+  --nsfa: "\f788";
+}
+
+.nsfa-minimize {
+  --nsfa: "\f78c";
+}
+
+.nsfa-compress-arrows-alt {
+  --nsfa: "\f78c";
+}
+
+.nsfa-dumpster {
+  --nsfa: "\f793";
+}
+
+.nsfa-dumpster-fire {
+  --nsfa: "\f794";
+}
+
+.nsfa-ethernet {
+  --nsfa: "\f796";
+}
+
+.nsfa-gifts {
+  --nsfa: "\f79c";
+}
+
+.nsfa-champagne-glasses {
+  --nsfa: "\f79f";
+}
+
+.nsfa-glass-cheers {
+  --nsfa: "\f79f";
+}
+
+.nsfa-whiskey-glass {
+  --nsfa: "\f7a0";
+}
+
+.nsfa-glass-whiskey {
+  --nsfa: "\f7a0";
+}
+
+.nsfa-earth-europe {
+  --nsfa: "\f7a2";
+}
+
+.nsfa-globe-europe {
+  --nsfa: "\f7a2";
+}
+
+.nsfa-grip-lines {
+  --nsfa: "\f7a4";
+}
+
+.nsfa-grip-lines-vertical {
+  --nsfa: "\f7a5";
+}
+
+.nsfa-guitar {
+  --nsfa: "\f7a6";
+}
+
+.nsfa-heart-crack {
+  --nsfa: "\f7a9";
+}
+
+.nsfa-heart-broken {
+  --nsfa: "\f7a9";
+}
+
+.nsfa-holly-berry {
+  --nsfa: "\f7aa";
+}
+
+.nsfa-horse-head {
+  --nsfa: "\f7ab";
+}
+
+.nsfa-icicles {
+  --nsfa: "\f7ad";
+}
+
+.nsfa-igloo {
+  --nsfa: "\f7ae";
+}
+
+.nsfa-mitten {
+  --nsfa: "\f7b5";
+}
+
+.nsfa-mug-hot {
+  --nsfa: "\f7b6";
+}
+
+.nsfa-radiation {
+  --nsfa: "\f7b9";
+}
+
+.nsfa-circle-radiation {
+  --nsfa: "\f7ba";
+}
+
+.nsfa-radiation-alt {
+  --nsfa: "\f7ba";
+}
+
+.nsfa-restroom {
+  --nsfa: "\f7bd";
+}
+
+.nsfa-satellite {
+  --nsfa: "\f7bf";
+}
+
+.nsfa-satellite-dish {
+  --nsfa: "\f7c0";
+}
+
+.nsfa-sd-card {
+  --nsfa: "\f7c2";
+}
+
+.nsfa-sim-card {
+  --nsfa: "\f7c4";
+}
+
+.nsfa-person-skating {
+  --nsfa: "\f7c5";
+}
+
+.nsfa-skating {
+  --nsfa: "\f7c5";
+}
+
+.nsfa-person-skiing {
+  --nsfa: "\f7c9";
+}
+
+.nsfa-skiing {
+  --nsfa: "\f7c9";
+}
+
+.nsfa-person-skiing-nordic {
+  --nsfa: "\f7ca";
+}
+
+.nsfa-skiing-nordic {
+  --nsfa: "\f7ca";
+}
+
+.nsfa-sleigh {
+  --nsfa: "\f7cc";
+}
+
+.nsfa-comment-sms {
+  --nsfa: "\f7cd";
+}
+
+.nsfa-sms {
+  --nsfa: "\f7cd";
+}
+
+.nsfa-person-snowboarding {
+  --nsfa: "\f7ce";
+}
+
+.nsfa-snowboarding {
+  --nsfa: "\f7ce";
+}
+
+.nsfa-snowman {
+  --nsfa: "\f7d0";
+}
+
+.nsfa-snowplow {
+  --nsfa: "\f7d2";
+}
+
+.nsfa-tenge-sign {
+  --nsfa: "\f7d7";
+}
+
+.nsfa-tenge {
+  --nsfa: "\f7d7";
+}
+
+.nsfa-toilet {
+  --nsfa: "\f7d8";
+}
+
+.nsfa-screwdriver-wrench {
+  --nsfa: "\f7d9";
+}
+
+.nsfa-tools {
+  --nsfa: "\f7d9";
+}
+
+.nsfa-cable-car {
+  --nsfa: "\f7da";
+}
+
+.nsfa-tram {
+  --nsfa: "\f7da";
+}
+
+.nsfa-fire-flame-curved {
+  --nsfa: "\f7e4";
+}
+
+.nsfa-fire-alt {
+  --nsfa: "\f7e4";
+}
+
+.nsfa-bacon {
+  --nsfa: "\f7e5";
+}
+
+.nsfa-book-medical {
+  --nsfa: "\f7e6";
+}
+
+.nsfa-bread-slice {
+  --nsfa: "\f7ec";
+}
+
+.nsfa-cheese {
+  --nsfa: "\f7ef";
+}
+
+.nsfa-house-chimney-medical {
+  --nsfa: "\f7f2";
+}
+
+.nsfa-clinic-medical {
+  --nsfa: "\f7f2";
+}
+
+.nsfa-clipboard-user {
+  --nsfa: "\f7f3";
+}
+
+.nsfa-comment-medical {
+  --nsfa: "\f7f5";
+}
+
+.nsfa-crutch {
+  --nsfa: "\f7f7";
+}
+
+.nsfa-disease {
+  --nsfa: "\f7fa";
+}
+
+.nsfa-egg {
+  --nsfa: "\f7fb";
+}
+
+.nsfa-folder-tree {
+  --nsfa: "\f802";
+}
+
+.nsfa-burger {
+  --nsfa: "\f805";
+}
+
+.nsfa-hamburger {
+  --nsfa: "\f805";
+}
+
+.nsfa-hand-middle-finger {
+  --nsfa: "\f806";
+}
+
+.nsfa-helmet-safety {
+  --nsfa: "\f807";
+}
+
+.nsfa-hard-hat {
+  --nsfa: "\f807";
+}
+
+.nsfa-hat-hard {
+  --nsfa: "\f807";
+}
+
+.nsfa-hospital-user {
+  --nsfa: "\f80d";
+}
+
+.nsfa-hotdog {
+  --nsfa: "\f80f";
+}
+
+.nsfa-ice-cream {
+  --nsfa: "\f810";
+}
+
+.nsfa-laptop-medical {
+  --nsfa: "\f812";
+}
+
+.nsfa-pager {
+  --nsfa: "\f815";
+}
+
+.nsfa-pepper-hot {
+  --nsfa: "\f816";
+}
+
+.nsfa-pizza-slice {
+  --nsfa: "\f818";
+}
+
+.nsfa-sack-dollar {
+  --nsfa: "\f81d";
+}
+
+.nsfa-book-tanakh {
+  --nsfa: "\f827";
+}
+
+.nsfa-tanakh {
+  --nsfa: "\f827";
+}
+
+.nsfa-bars-progress {
+  --nsfa: "\f828";
+}
+
+.nsfa-tasks-alt {
+  --nsfa: "\f828";
+}
+
+.nsfa-trash-arrow-up {
+  --nsfa: "\f829";
+}
+
+.nsfa-trash-restore {
+  --nsfa: "\f829";
+}
+
+.nsfa-trash-can-arrow-up {
+  --nsfa: "\f82a";
+}
+
+.nsfa-trash-restore-alt {
+  --nsfa: "\f82a";
+}
+
+.nsfa-user-nurse {
+  --nsfa: "\f82f";
+}
+
+.nsfa-wave-square {
+  --nsfa: "\f83e";
+}
+
+.nsfa-person-biking {
+  --nsfa: "\f84a";
+}
+
+.nsfa-biking {
+  --nsfa: "\f84a";
+}
+
+.nsfa-border-all {
+  --nsfa: "\f84c";
+}
+
+.nsfa-border-none {
+  --nsfa: "\f850";
+}
+
+.nsfa-border-top-left {
+  --nsfa: "\f853";
+}
+
+.nsfa-border-style {
+  --nsfa: "\f853";
+}
+
+.nsfa-person-digging {
+  --nsfa: "\f85e";
+}
+
+.nsfa-digging {
+  --nsfa: "\f85e";
+}
+
+.nsfa-fan {
+  --nsfa: "\f863";
+}
+
+.nsfa-icons {
+  --nsfa: "\f86d";
+}
+
+.nsfa-heart-music-camera-bolt {
+  --nsfa: "\f86d";
+}
+
+.nsfa-phone-flip {
+  --nsfa: "\f879";
+}
+
+.nsfa-phone-alt {
+  --nsfa: "\f879";
+}
+
+.nsfa-square-phone-flip {
+  --nsfa: "\f87b";
+}
+
+.nsfa-phone-square-alt {
+  --nsfa: "\f87b";
+}
+
+.nsfa-photo-film {
+  --nsfa: "\f87c";
+}
+
+.nsfa-photo-video {
+  --nsfa: "\f87c";
+}
+
+.nsfa-text-slash {
+  --nsfa: "\f87d";
+}
+
+.nsfa-remove-format {
+  --nsfa: "\f87d";
+}
+
+.nsfa-arrow-down-z-a {
+  --nsfa: "\f881";
+}
+
+.nsfa-sort-alpha-desc {
+  --nsfa: "\f881";
+}
+
+.nsfa-sort-alpha-down-alt {
+  --nsfa: "\f881";
+}
+
+.nsfa-arrow-up-z-a {
+  --nsfa: "\f882";
+}
+
+.nsfa-sort-alpha-up-alt {
+  --nsfa: "\f882";
+}
+
+.nsfa-arrow-down-short-wide {
+  --nsfa: "\f884";
+}
+
+.nsfa-sort-amount-desc {
+  --nsfa: "\f884";
+}
+
+.nsfa-sort-amount-down-alt {
+  --nsfa: "\f884";
+}
+
+.nsfa-arrow-up-short-wide {
+  --nsfa: "\f885";
+}
+
+.nsfa-sort-amount-up-alt {
+  --nsfa: "\f885";
+}
+
+.nsfa-arrow-down-9-1 {
+  --nsfa: "\f886";
+}
+
+.nsfa-sort-numeric-desc {
+  --nsfa: "\f886";
+}
+
+.nsfa-sort-numeric-down-alt {
+  --nsfa: "\f886";
+}
+
+.nsfa-arrow-up-9-1 {
+  --nsfa: "\f887";
+}
+
+.nsfa-sort-numeric-up-alt {
+  --nsfa: "\f887";
+}
+
+.nsfa-spell-check {
+  --nsfa: "\f891";
+}
+
+.nsfa-voicemail {
+  --nsfa: "\f897";
+}
+
+.nsfa-hat-cowboy {
+  --nsfa: "\f8c0";
+}
+
+.nsfa-hat-cowboy-side {
+  --nsfa: "\f8c1";
+}
+
+.nsfa-computer-mouse {
+  --nsfa: "\f8cc";
+}
+
+.nsfa-mouse {
+  --nsfa: "\f8cc";
+}
+
+.nsfa-radio {
+  --nsfa: "\f8d7";
+}
+
+.nsfa-record-vinyl {
+  --nsfa: "\f8d9";
+}
+
+.nsfa-walkie-talkie {
+  --nsfa: "\f8ef";
+}
+
+.nsfa-caravan {
+  --nsfa: "\f8ff";
+}
+:root, :host {
+  --nsfa-family-brands: 'NS Font Awesome 7 Brands';
+  --nsfa-font-brands: normal 400 1em/1 var(--nsfa-family-brands);
+}
+
+@font-face {
+  font-family: "NS Font Awesome 7 Brands";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("../webfonts/fa-brands-400.woff2");
+}
+.nsfab,
+.nsfa-brands,
+.nsfa-classic.nsfa-brands {
+  --nsfa-family: var(--nsfa-family-brands);
+  --nsfa-style: 400;
+}
+
+.nsfa-firefox-browser {
+  --nsfa: "\e007";
+}
+
+.nsfa-ideal {
+  --nsfa: "\e013";
+}
+
+.nsfa-microblog {
+  --nsfa: "\e01a";
+}
+
+.nsfa-square-pied-piper {
+  --nsfa: "\e01e";
+}
+
+.nsfa-pied-piper-square {
+  --nsfa: "\e01e";
+}
+
+.nsfa-unity {
+  --nsfa: "\e049";
+}
+
+.nsfa-dailymotion {
+  --nsfa: "\e052";
+}
+
+.nsfa-square-instagram {
+  --nsfa: "\e055";
+}
+
+.nsfa-instagram-square {
+  --nsfa: "\e055";
+}
+
+.nsfa-mixer {
+  --nsfa: "\e056";
+}
+
+.nsfa-shopify {
+  --nsfa: "\e057";
+}
+
+.nsfa-deezer {
+  --nsfa: "\e077";
+}
+
+.nsfa-edge-legacy {
+  --nsfa: "\e078";
+}
+
+.nsfa-google-pay {
+  --nsfa: "\e079";
+}
+
+.nsfa-rust {
+  --nsfa: "\e07a";
+}
+
+.nsfa-tiktok {
+  --nsfa: "\e07b";
+}
+
+.nsfa-unsplash {
+  --nsfa: "\e07c";
+}
+
+.nsfa-cloudflare {
+  --nsfa: "\e07d";
+}
+
+.nsfa-guilded {
+  --nsfa: "\e07e";
+}
+
+.nsfa-hive {
+  --nsfa: "\e07f";
+}
+
+.nsfa-42-group {
+  --nsfa: "\e080";
+}
+
+.nsfa-innosoft {
+  --nsfa: "\e080";
+}
+
+.nsfa-instalod {
+  --nsfa: "\e081";
+}
+
+.nsfa-octopus-deploy {
+  --nsfa: "\e082";
+}
+
+.nsfa-perbyte {
+  --nsfa: "\e083";
+}
+
+.nsfa-uncharted {
+  --nsfa: "\e084";
+}
+
+.nsfa-watchman-monitoring {
+  --nsfa: "\e087";
+}
+
+.nsfa-wodu {
+  --nsfa: "\e088";
+}
+
+.nsfa-wirsindhandwerk {
+  --nsfa: "\e2d0";
+}
+
+.nsfa-wsh {
+  --nsfa: "\e2d0";
+}
+
+.nsfa-bots {
+  --nsfa: "\e340";
+}
+
+.nsfa-cmplid {
+  --nsfa: "\e360";
+}
+
+.nsfa-bilibili {
+  --nsfa: "\e3d9";
+}
+
+.nsfa-golang {
+  --nsfa: "\e40f";
+}
+
+.nsfa-pix {
+  --nsfa: "\e43a";
+}
+
+.nsfa-sitrox {
+  --nsfa: "\e44a";
+}
+
+.nsfa-hashnode {
+  --nsfa: "\e499";
+}
+
+.nsfa-meta {
+  --nsfa: "\e49b";
+}
+
+.nsfa-padlet {
+  --nsfa: "\e4a0";
+}
+
+.nsfa-nfc-directional {
+  --nsfa: "\e530";
+}
+
+.nsfa-nfc-symbol {
+  --nsfa: "\e531";
+}
+
+.nsfa-screenpal {
+  --nsfa: "\e570";
+}
+
+.nsfa-space-awesome {
+  --nsfa: "\e5ac";
+}
+
+.nsfa-square-font-awesome {
+  --nsfa: "\e5ad";
+}
+
+.nsfa-square-gitlab {
+  --nsfa: "\e5ae";
+}
+
+.nsfa-gitlab-square {
+  --nsfa: "\e5ae";
+}
+
+.nsfa-odysee {
+  --nsfa: "\e5c6";
+}
+
+.nsfa-stubber {
+  --nsfa: "\e5c7";
+}
+
+.nsfa-debian {
+  --nsfa: "\e60b";
+}
+
+.nsfa-shoelace {
+  --nsfa: "\e60c";
+}
+
+.nsfa-threads {
+  --nsfa: "\e618";
+}
+
+.nsfa-square-threads {
+  --nsfa: "\e619";
+}
+
+.nsfa-square-x-twitter {
+  --nsfa: "\e61a";
+}
+
+.nsfa-x-twitter {
+  --nsfa: "\e61b";
+}
+
+.nsfa-opensuse {
+  --nsfa: "\e62b";
+}
+
+.nsfa-letterboxd {
+  --nsfa: "\e62d";
+}
+
+.nsfa-square-letterboxd {
+  --nsfa: "\e62e";
+}
+
+.nsfa-mintbit {
+  --nsfa: "\e62f";
+}
+
+.nsfa-google-scholar {
+  --nsfa: "\e63b";
+}
+
+.nsfa-brave {
+  --nsfa: "\e63c";
+}
+
+.nsfa-brave-reverse {
+  --nsfa: "\e63d";
+}
+
+.nsfa-pixiv {
+  --nsfa: "\e640";
+}
+
+.nsfa-upwork {
+  --nsfa: "\e641";
+}
+
+.nsfa-webflow {
+  --nsfa: "\e65c";
+}
+
+.nsfa-signal-messenger {
+  --nsfa: "\e663";
+}
+
+.nsfa-bluesky {
+  --nsfa: "\e671";
+}
+
+.nsfa-jxl {
+  --nsfa: "\e67b";
+}
+
+.nsfa-square-upwork {
+  --nsfa: "\e67c";
+}
+
+.nsfa-web-awesome {
+  --nsfa: "\e682";
+}
+
+.nsfa-square-web-awesome {
+  --nsfa: "\e683";
+}
+
+.nsfa-square-web-awesome-stroke {
+  --nsfa: "\e684";
+}
+
+.nsfa-dart-lang {
+  --nsfa: "\e693";
+}
+
+.nsfa-flutter {
+  --nsfa: "\e694";
+}
+
+.nsfa-files-pinwheel {
+  --nsfa: "\e69f";
+}
+
+.nsfa-css {
+  --nsfa: "\e6a2";
+}
+
+.nsfa-square-bluesky {
+  --nsfa: "\e6a3";
+}
+
+.nsfa-openai {
+  --nsfa: "\e7cf";
+}
+
+.nsfa-square-linkedin {
+  --nsfa: "\e7d0";
+}
+
+.nsfa-cash-app {
+  --nsfa: "\e7d4";
+}
+
+.nsfa-disqus {
+  --nsfa: "\e7d5";
+}
+
+.nsfa-eleventy {
+  --nsfa: "\e7d6";
+}
+
+.nsfa-11ty {
+  --nsfa: "\e7d6";
+}
+
+.nsfa-kakao-talk {
+  --nsfa: "\e7d7";
+}
+
+.nsfa-linktree {
+  --nsfa: "\e7d8";
+}
+
+.nsfa-notion {
+  --nsfa: "\e7d9";
+}
+
+.nsfa-pandora {
+  --nsfa: "\e7da";
+}
+
+.nsfa-pixelfed {
+  --nsfa: "\e7db";
+}
+
+.nsfa-tidal {
+  --nsfa: "\e7dc";
+}
+
+.nsfa-vsco {
+  --nsfa: "\e7dd";
+}
+
+.nsfa-w3c {
+  --nsfa: "\e7de";
+}
+
+.nsfa-lumon {
+  --nsfa: "\e7e2";
+}
+
+.nsfa-lumon-drop {
+  --nsfa: "\e7e3";
+}
+
+.nsfa-square-figma {
+  --nsfa: "\e7e4";
+}
+
+.nsfa-tex {
+  --nsfa: "\e7ff";
+}
+
+.nsfa-duolingo {
+  --nsfa: "\e812";
+}
+
+.nsfa-supportnow {
+  --nsfa: "\e833";
+}
+
+.nsfa-tor-browser {
+  --nsfa: "\e838";
+}
+
+.nsfa-typescript {
+  --nsfa: "\e840";
+}
+
+.nsfa-square-deskpro {
+  --nsfa: "\e844";
+}
+
+.nsfa-circle-zulip {
+  --nsfa: "\e851";
+}
+
+.nsfa-julia {
+  --nsfa: "\e852";
+}
+
+.nsfa-zulip {
+  --nsfa: "\e853";
+}
+
+.nsfa-unison {
+  --nsfa: "\e854";
+}
+
+.nsfa-board-game-geek {
+  --nsfa: "\e855";
+}
+
+.nsfa-bgg {
+  --nsfa: "\e855";
+}
+
+.nsfa-ko-fi {
+  --nsfa: "\e856";
+}
+
+.nsfa-kubernetes {
+  --nsfa: "\e857";
+}
+
+.nsfa-postgresql {
+  --nsfa: "\e858";
+}
+
+.nsfa-scaleway {
+  --nsfa: "\e859";
+}
+
+.nsfa-venmo {
+  --nsfa: "\e85a";
+}
+
+.nsfa-venmo-v {
+  --nsfa: "\e85b";
+}
+
+.nsfa-unreal-engine {
+  --nsfa: "\e85c";
+}
+
+.nsfa-globaleaks {
+  --nsfa: "\e85d";
+}
+
+.nsfa-solana {
+  --nsfa: "\e85e";
+}
+
+.nsfa-threema {
+  --nsfa: "\e85f";
+}
+
+.nsfa-forgejo {
+  --nsfa: "\e860";
+}
+
+.nsfa-claude {
+  --nsfa: "\e861";
+}
+
+.nsfa-gitee {
+  --nsfa: "\e863";
+}
+
+.nsfa-xmpp {
+  --nsfa: "\e864";
+}
+
+.nsfa-fediverse {
+  --nsfa: "\e865";
+}
+
+.nsfa-tailwind-css {
+  --nsfa: "\e866";
+}
+
+.nsfa-arch-linux {
+  --nsfa: "\e867";
+}
+
+.nsfa-svelte {
+  --nsfa: "\e868";
+}
+
+.nsfa-hugging-face {
+  --nsfa: "\e869";
+}
+
+.nsfa-leetcode {
+  --nsfa: "\e86a";
+}
+
+.nsfa-openstreetmap {
+  --nsfa: "\e86b";
+}
+
+.nsfa-ultralytics {
+  --nsfa: "\e86d";
+}
+
+.nsfa-ultralytics-hub {
+  --nsfa: "\e86e";
+}
+
+.nsfa-ultralytics-yolo {
+  --nsfa: "\e86f";
+}
+
+.nsfa-obsidian {
+  --nsfa: "\e879";
+}
+
+.nsfa-zoom {
+  --nsfa: "\e87b";
+}
+
+.nsfa-vim {
+  --nsfa: "\e88a";
+}
+
+.nsfa-symfonycasts {
+  --nsfa: "\e8ab";
+}
+
+.nsfa-build-awesome {
+  --nsfa: "\e8ac";
+}
+
+.nsfa-codeberg {
+  --nsfa: "\e8ad";
+}
+
+.nsfa-devpost {
+  --nsfa: "\e8ae";
+}
+
+.nsfa-internet-archive {
+  --nsfa: "\e8b1";
+}
+
+.nsfa-lets-encrypt {
+  --nsfa: "\e8b2";
+}
+
+.nsfa-matrix {
+  --nsfa: "\e8b3";
+}
+
+.nsfa-mattermost {
+  --nsfa: "\e8b4";
+}
+
+.nsfa-nextcloud {
+  --nsfa: "\e8b5";
+}
+
+.nsfa-roblox-creator-studio {
+  --nsfa: "\e8b6";
+}
+
+.nsfa-square-build-awesome-stroke {
+  --nsfa: "\e8b7";
+}
+
+.nsfa-substack {
+  --nsfa: "\e8b8";
+}
+
+.nsfa-tesla {
+  --nsfa: "\e8b9";
+}
+
+.nsfa-xrp {
+  --nsfa: "\e8ba";
+}
+
+.nsfa-xrpl {
+  --nsfa: "\e8bb";
+}
+
+.nsfa-youtube-shorts {
+  --nsfa: "\e8bc";
+}
+
+.nsfa-ror {
+  --nsfa: "\e8bd";
+}
+
+.nsfa-visual-studio {
+  --nsfa: "\e8be";
+}
+
+.nsfa-dolibarr {
+  --nsfa: "\e8bf";
+}
+
+.nsfa-obs-studio {
+  --nsfa: "\e8c0";
+}
+
+.nsfa-storybook {
+  --nsfa: "\e8c1";
+}
+
+.nsfa-a11y-project {
+  --nsfa: "\e8c2";
+}
+
+.nsfa-copilot {
+  --nsfa: "\e8c7";
+}
+
+.nsfa-square-twitter {
+  --nsfa: "\f081";
+}
+
+.nsfa-twitter-square {
+  --nsfa: "\f081";
+}
+
+.nsfa-square-facebook {
+  --nsfa: "\f082";
+}
+
+.nsfa-facebook-square {
+  --nsfa: "\f082";
+}
+
+.nsfa-linkedin {
+  --nsfa: "\f08c";
+}
+
+.nsfa-square-github {
+  --nsfa: "\f092";
+}
+
+.nsfa-github-square {
+  --nsfa: "\f092";
+}
+
+.nsfa-twitter {
+  --nsfa: "\f099";
+}
+
+.nsfa-facebook {
+  --nsfa: "\f09a";
+}
+
+.nsfa-github {
+  --nsfa: "\f09b";
+}
+
+.nsfa-pinterest {
+  --nsfa: "\f0d2";
+}
+
+.nsfa-square-pinterest {
+  --nsfa: "\f0d3";
+}
+
+.nsfa-pinterest-square {
+  --nsfa: "\f0d3";
+}
+
+.nsfa-square-google-plus {
+  --nsfa: "\f0d4";
+}
+
+.nsfa-google-plus-square {
+  --nsfa: "\f0d4";
+}
+
+.nsfa-google-plus-g {
+  --nsfa: "\f0d5";
+}
+
+.nsfa-linkedin-in {
+  --nsfa: "\f0e1";
+}
+
+.nsfa-github-alt {
+  --nsfa: "\f113";
+}
+
+.nsfa-maxcdn {
+  --nsfa: "\f136";
+}
+
+.nsfa-html5 {
+  --nsfa: "\f13b";
+}
+
+.nsfa-css3 {
+  --nsfa: "\f13c";
+}
+
+.nsfa-btc {
+  --nsfa: "\f15a";
+}
+
+.nsfa-youtube {
+  --nsfa: "\f167";
+}
+
+.nsfa-xing {
+  --nsfa: "\f168";
+}
+
+.nsfa-square-xing {
+  --nsfa: "\f169";
+}
+
+.nsfa-xing-square {
+  --nsfa: "\f169";
+}
+
+.nsfa-dropbox {
+  --nsfa: "\f16b";
+}
+
+.nsfa-stack-overflow {
+  --nsfa: "\f16c";
+}
+
+.nsfa-instagram {
+  --nsfa: "\f16d";
+}
+
+.nsfa-flickr {
+  --nsfa: "\f16e";
+}
+
+.nsfa-adn {
+  --nsfa: "\f170";
+}
+
+.nsfa-bitbucket {
+  --nsfa: "\f171";
+}
+
+.nsfa-tumblr {
+  --nsfa: "\f173";
+}
+
+.nsfa-square-tumblr {
+  --nsfa: "\f174";
+}
+
+.nsfa-tumblr-square {
+  --nsfa: "\f174";
+}
+
+.nsfa-apple {
+  --nsfa: "\f179";
+}
+
+.nsfa-windows {
+  --nsfa: "\f17a";
+}
+
+.nsfa-android {
+  --nsfa: "\f17b";
+}
+
+.nsfa-linux {
+  --nsfa: "\f17c";
+}
+
+.nsfa-dribbble {
+  --nsfa: "\f17d";
+}
+
+.nsfa-skype {
+  --nsfa: "\f17e";
+}
+
+.nsfa-foursquare {
+  --nsfa: "\f180";
+}
+
+.nsfa-trello {
+  --nsfa: "\f181";
+}
+
+.nsfa-gratipay {
+  --nsfa: "\f184";
+}
+
+.nsfa-vk {
+  --nsfa: "\f189";
+}
+
+.nsfa-weibo {
+  --nsfa: "\f18a";
+}
+
+.nsfa-renren {
+  --nsfa: "\f18b";
+}
+
+.nsfa-pagelines {
+  --nsfa: "\f18c";
+}
+
+.nsfa-stack-exchange {
+  --nsfa: "\f18d";
+}
+
+.nsfa-square-vimeo {
+  --nsfa: "\f194";
+}
+
+.nsfa-vimeo-square {
+  --nsfa: "\f194";
+}
+
+.nsfa-slack {
+  --nsfa: "\f198";
+}
+
+.nsfa-slack-hash {
+  --nsfa: "\f198";
+}
+
+.nsfa-wordpress {
+  --nsfa: "\f19a";
+}
+
+.nsfa-openid {
+  --nsfa: "\f19b";
+}
+
+.nsfa-yahoo {
+  --nsfa: "\f19e";
+}
+
+.nsfa-google {
+  --nsfa: "\f1a0";
+}
+
+.nsfa-reddit {
+  --nsfa: "\f1a1";
+}
+
+.nsfa-square-reddit {
+  --nsfa: "\f1a2";
+}
+
+.nsfa-reddit-square {
+  --nsfa: "\f1a2";
+}
+
+.nsfa-stumbleupon-circle {
+  --nsfa: "\f1a3";
+}
+
+.nsfa-stumbleupon {
+  --nsfa: "\f1a4";
+}
+
+.nsfa-delicious {
+  --nsfa: "\f1a5";
+}
+
+.nsfa-digg {
+  --nsfa: "\f1a6";
+}
+
+.nsfa-pied-piper-pp {
+  --nsfa: "\f1a7";
+}
+
+.nsfa-pied-piper-alt {
+  --nsfa: "\f1a8";
+}
+
+.nsfa-drupal {
+  --nsfa: "\f1a9";
+}
+
+.nsfa-joomla {
+  --nsfa: "\f1aa";
+}
+
+.nsfa-behance {
+  --nsfa: "\f1b4";
+}
+
+.nsfa-square-behance {
+  --nsfa: "\f1b5";
+}
+
+.nsfa-behance-square {
+  --nsfa: "\f1b5";
+}
+
+.nsfa-steam {
+  --nsfa: "\f1b6";
+}
+
+.nsfa-square-steam {
+  --nsfa: "\f1b7";
+}
+
+.nsfa-steam-square {
+  --nsfa: "\f1b7";
+}
+
+.nsfa-spotify {
+  --nsfa: "\f1bc";
+}
+
+.nsfa-deviantart {
+  --nsfa: "\f1bd";
+}
+
+.nsfa-soundcloud {
+  --nsfa: "\f1be";
+}
+
+.nsfa-vine {
+  --nsfa: "\f1ca";
+}
+
+.nsfa-codepen {
+  --nsfa: "\f1cb";
+}
+
+.nsfa-jsfiddle {
+  --nsfa: "\f1cc";
+}
+
+.nsfa-rebel {
+  --nsfa: "\f1d0";
+}
+
+.nsfa-empire {
+  --nsfa: "\f1d1";
+}
+
+.nsfa-square-git {
+  --nsfa: "\f1d2";
+}
+
+.nsfa-git-square {
+  --nsfa: "\f1d2";
+}
+
+.nsfa-git {
+  --nsfa: "\f1d3";
+}
+
+.nsfa-hacker-news {
+  --nsfa: "\f1d4";
+}
+
+.nsfa-tencent-weibo {
+  --nsfa: "\f1d5";
+}
+
+.nsfa-qq {
+  --nsfa: "\f1d6";
+}
+
+.nsfa-weixin {
+  --nsfa: "\f1d7";
+}
+
+.nsfa-slideshare {
+  --nsfa: "\f1e7";
+}
+
+.nsfa-twitch {
+  --nsfa: "\f1e8";
+}
+
+.nsfa-yelp {
+  --nsfa: "\f1e9";
+}
+
+.nsfa-paypal {
+  --nsfa: "\f1ed";
+}
+
+.nsfa-google-wallet {
+  --nsfa: "\f1ee";
+}
+
+.nsfa-cc-visa {
+  --nsfa: "\f1f0";
+}
+
+.nsfa-cc-mastercard {
+  --nsfa: "\f1f1";
+}
+
+.nsfa-cc-discover {
+  --nsfa: "\f1f2";
+}
+
+.nsfa-cc-amex {
+  --nsfa: "\f1f3";
+}
+
+.nsfa-cc-paypal {
+  --nsfa: "\f1f4";
+}
+
+.nsfa-cc-stripe {
+  --nsfa: "\f1f5";
+}
+
+.nsfa-lastfm {
+  --nsfa: "\f202";
+}
+
+.nsfa-square-lastfm {
+  --nsfa: "\f203";
+}
+
+.nsfa-lastfm-square {
+  --nsfa: "\f203";
+}
+
+.nsfa-ioxhost {
+  --nsfa: "\f208";
+}
+
+.nsfa-angellist {
+  --nsfa: "\f209";
+}
+
+.nsfa-buysellads {
+  --nsfa: "\f20d";
+}
+
+.nsfa-connectdevelop {
+  --nsfa: "\f20e";
+}
+
+.nsfa-dashcube {
+  --nsfa: "\f210";
+}
+
+.nsfa-forumbee {
+  --nsfa: "\f211";
+}
+
+.nsfa-leanpub {
+  --nsfa: "\f212";
+}
+
+.nsfa-sellsy {
+  --nsfa: "\f213";
+}
+
+.nsfa-shirtsinbulk {
+  --nsfa: "\f214";
+}
+
+.nsfa-simplybuilt {
+  --nsfa: "\f215";
+}
+
+.nsfa-skyatlas {
+  --nsfa: "\f216";
+}
+
+.nsfa-pinterest-p {
+  --nsfa: "\f231";
+}
+
+.nsfa-whatsapp {
+  --nsfa: "\f232";
+}
+
+.nsfa-viacoin {
+  --nsfa: "\f237";
+}
+
+.nsfa-medium {
+  --nsfa: "\f23a";
+}
+
+.nsfa-medium-m {
+  --nsfa: "\f23a";
+}
+
+.nsfa-y-combinator {
+  --nsfa: "\f23b";
+}
+
+.nsfa-optin-monster {
+  --nsfa: "\f23c";
+}
+
+.nsfa-opencart {
+  --nsfa: "\f23d";
+}
+
+.nsfa-expeditedssl {
+  --nsfa: "\f23e";
+}
+
+.nsfa-cc-jcb {
+  --nsfa: "\f24b";
+}
+
+.nsfa-cc-diners-club {
+  --nsfa: "\f24c";
+}
+
+.nsfa-creative-commons {
+  --nsfa: "\f25e";
+}
+
+.nsfa-gg {
+  --nsfa: "\f260";
+}
+
+.nsfa-gg-circle {
+  --nsfa: "\f261";
+}
+
+.nsfa-odnoklassniki {
+  --nsfa: "\f263";
+}
+
+.nsfa-square-odnoklassniki {
+  --nsfa: "\f264";
+}
+
+.nsfa-odnoklassniki-square {
+  --nsfa: "\f264";
+}
+
+.nsfa-get-pocket {
+  --nsfa: "\f265";
+}
+
+.nsfa-wikipedia-w {
+  --nsfa: "\f266";
+}
+
+.nsfa-safari {
+  --nsfa: "\f267";
+}
+
+.nsfa-chrome {
+  --nsfa: "\f268";
+}
+
+.nsfa-firefox {
+  --nsfa: "\f269";
+}
+
+.nsfa-opera {
+  --nsfa: "\f26a";
+}
+
+.nsfa-internet-explorer {
+  --nsfa: "\f26b";
+}
+
+.nsfa-contao {
+  --nsfa: "\f26d";
+}
+
+.nsfa-500px {
+  --nsfa: "\f26e";
+}
+
+.nsfa-amazon {
+  --nsfa: "\f270";
+}
+
+.nsfa-houzz {
+  --nsfa: "\f27c";
+}
+
+.nsfa-vimeo-v {
+  --nsfa: "\f27d";
+}
+
+.nsfa-black-tie {
+  --nsfa: "\f27e";
+}
+
+.nsfa-fonticons {
+  --nsfa: "\f280";
+}
+
+.nsfa-reddit-alien {
+  --nsfa: "\f281";
+}
+
+.nsfa-edge {
+  --nsfa: "\f282";
+}
+
+.nsfa-codiepie {
+  --nsfa: "\f284";
+}
+
+.nsfa-modx {
+  --nsfa: "\f285";
+}
+
+.nsfa-fort-awesome {
+  --nsfa: "\f286";
+}
+
+.nsfa-usb {
+  --nsfa: "\f287";
+}
+
+.nsfa-product-hunt {
+  --nsfa: "\f288";
+}
+
+.nsfa-mixcloud {
+  --nsfa: "\f289";
+}
+
+.nsfa-scribd {
+  --nsfa: "\f28a";
+}
+
+.nsfa-bluetooth {
+  --nsfa: "\f293";
+}
+
+.nsfa-bluetooth-b {
+  --nsfa: "\f294";
+}
+
+.nsfa-gitlab {
+  --nsfa: "\f296";
+}
+
+.nsfa-wpbeginner {
+  --nsfa: "\f297";
+}
+
+.nsfa-wpforms {
+  --nsfa: "\f298";
+}
+
+.nsfa-envira {
+  --nsfa: "\f299";
+}
+
+.nsfa-glide {
+  --nsfa: "\f2a5";
+}
+
+.nsfa-glide-g {
+  --nsfa: "\f2a6";
+}
+
+.nsfa-viadeo {
+  --nsfa: "\f2a9";
+}
+
+.nsfa-square-viadeo {
+  --nsfa: "\f2aa";
+}
+
+.nsfa-viadeo-square {
+  --nsfa: "\f2aa";
+}
+
+.nsfa-snapchat {
+  --nsfa: "\f2ab";
+}
+
+.nsfa-snapchat-ghost {
+  --nsfa: "\f2ab";
+}
+
+.nsfa-square-snapchat {
+  --nsfa: "\f2ad";
+}
+
+.nsfa-snapchat-square {
+  --nsfa: "\f2ad";
+}
+
+.nsfa-pied-piper {
+  --nsfa: "\f2ae";
+}
+
+.nsfa-first-order {
+  --nsfa: "\f2b0";
+}
+
+.nsfa-yoast {
+  --nsfa: "\f2b1";
+}
+
+.nsfa-themeisle {
+  --nsfa: "\f2b2";
+}
+
+.nsfa-google-plus {
+  --nsfa: "\f2b3";
+}
+
+.nsfa-font-awesome {
+  --nsfa: "\f2b4";
+}
+
+.nsfa-font-awesome-flag {
+  --nsfa: "\f2b4";
+}
+
+.nsfa-font-awesome-logo-full {
+  --nsfa: "\f2b4";
+}
+
+.nsfa-linode {
+  --nsfa: "\f2b8";
+}
+
+.nsfa-quora {
+  --nsfa: "\f2c4";
+}
+
+.nsfa-free-code-camp {
+  --nsfa: "\f2c5";
+}
+
+.nsfa-telegram {
+  --nsfa: "\f2c6";
+}
+
+.nsfa-telegram-plane {
+  --nsfa: "\f2c6";
+}
+
+.nsfa-bandcamp {
+  --nsfa: "\f2d5";
+}
+
+.nsfa-grav {
+  --nsfa: "\f2d6";
+}
+
+.nsfa-etsy {
+  --nsfa: "\f2d7";
+}
+
+.nsfa-imdb {
+  --nsfa: "\f2d8";
+}
+
+.nsfa-ravelry {
+  --nsfa: "\f2d9";
+}
+
+.nsfa-sellcast {
+  --nsfa: "\f2da";
+}
+
+.nsfa-superpowers {
+  --nsfa: "\f2dd";
+}
+
+.nsfa-wpexplorer {
+  --nsfa: "\f2de";
+}
+
+.nsfa-meetup {
+  --nsfa: "\f2e0";
+}
+
+.nsfa-square-font-awesome-stroke {
+  --nsfa: "\f35c";
+}
+
+.nsfa-font-awesome-alt {
+  --nsfa: "\f35c";
+}
+
+.nsfa-accessible-icon {
+  --nsfa: "\f368";
+}
+
+.nsfa-accusoft {
+  --nsfa: "\f369";
+}
+
+.nsfa-adversal {
+  --nsfa: "\f36a";
+}
+
+.nsfa-affiliatetheme {
+  --nsfa: "\f36b";
+}
+
+.nsfa-algolia {
+  --nsfa: "\f36c";
+}
+
+.nsfa-amilia {
+  --nsfa: "\f36d";
+}
+
+.nsfa-angrycreative {
+  --nsfa: "\f36e";
+}
+
+.nsfa-app-store {
+  --nsfa: "\f36f";
+}
+
+.nsfa-app-store-ios {
+  --nsfa: "\f370";
+}
+
+.nsfa-apper {
+  --nsfa: "\f371";
+}
+
+.nsfa-asymmetrik {
+  --nsfa: "\f372";
+}
+
+.nsfa-audible {
+  --nsfa: "\f373";
+}
+
+.nsfa-avianex {
+  --nsfa: "\f374";
+}
+
+.nsfa-aws {
+  --nsfa: "\f375";
+}
+
+.nsfa-bimobject {
+  --nsfa: "\f378";
+}
+
+.nsfa-bitcoin {
+  --nsfa: "\f379";
+}
+
+.nsfa-bity {
+  --nsfa: "\f37a";
+}
+
+.nsfa-blackberry {
+  --nsfa: "\f37b";
+}
+
+.nsfa-blogger {
+  --nsfa: "\f37c";
+}
+
+.nsfa-blogger-b {
+  --nsfa: "\f37d";
+}
+
+.nsfa-buromobelexperte {
+  --nsfa: "\f37f";
+}
+
+.nsfa-centercode {
+  --nsfa: "\f380";
+}
+
+.nsfa-cloudscale {
+  --nsfa: "\f383";
+}
+
+.nsfa-cloudsmith {
+  --nsfa: "\f384";
+}
+
+.nsfa-cloudversify {
+  --nsfa: "\f385";
+}
+
+.nsfa-cpanel {
+  --nsfa: "\f388";
+}
+
+.nsfa-css3-alt {
+  --nsfa: "\f38b";
+}
+
+.nsfa-cuttlefish {
+  --nsfa: "\f38c";
+}
+
+.nsfa-d-and-d {
+  --nsfa: "\f38d";
+}
+
+.nsfa-deploydog {
+  --nsfa: "\f38e";
+}
+
+.nsfa-deskpro {
+  --nsfa: "\f38f";
+}
+
+.nsfa-digital-ocean {
+  --nsfa: "\f391";
+}
+
+.nsfa-discord {
+  --nsfa: "\f392";
+}
+
+.nsfa-discourse {
+  --nsfa: "\f393";
+}
+
+.nsfa-dochub {
+  --nsfa: "\f394";
+}
+
+.nsfa-docker {
+  --nsfa: "\f395";
+}
+
+.nsfa-draft2digital {
+  --nsfa: "\f396";
+}
+
+.nsfa-square-dribbble {
+  --nsfa: "\f397";
+}
+
+.nsfa-dribbble-square {
+  --nsfa: "\f397";
+}
+
+.nsfa-dyalog {
+  --nsfa: "\f399";
+}
+
+.nsfa-earlybirds {
+  --nsfa: "\f39a";
+}
+
+.nsfa-erlang {
+  --nsfa: "\f39d";
+}
+
+.nsfa-facebook-f {
+  --nsfa: "\f39e";
+}
+
+.nsfa-facebook-messenger {
+  --nsfa: "\f39f";
+}
+
+.nsfa-firstdraft {
+  --nsfa: "\f3a1";
+}
+
+.nsfa-fonticons-fi {
+  --nsfa: "\f3a2";
+}
+
+.nsfa-fort-awesome-alt {
+  --nsfa: "\f3a3";
+}
+
+.nsfa-freebsd {
+  --nsfa: "\f3a4";
+}
+
+.nsfa-gitkraken {
+  --nsfa: "\f3a6";
+}
+
+.nsfa-gofore {
+  --nsfa: "\f3a7";
+}
+
+.nsfa-goodreads {
+  --nsfa: "\f3a8";
+}
+
+.nsfa-goodreads-g {
+  --nsfa: "\f3a9";
+}
+
+.nsfa-google-drive {
+  --nsfa: "\f3aa";
+}
+
+.nsfa-google-play {
+  --nsfa: "\f3ab";
+}
+
+.nsfa-gripfire {
+  --nsfa: "\f3ac";
+}
+
+.nsfa-grunt {
+  --nsfa: "\f3ad";
+}
+
+.nsfa-gulp {
+  --nsfa: "\f3ae";
+}
+
+.nsfa-square-hacker-news {
+  --nsfa: "\f3af";
+}
+
+.nsfa-hacker-news-square {
+  --nsfa: "\f3af";
+}
+
+.nsfa-hire-a-helper {
+  --nsfa: "\f3b0";
+}
+
+.nsfa-hotjar {
+  --nsfa: "\f3b1";
+}
+
+.nsfa-hubspot {
+  --nsfa: "\f3b2";
+}
+
+.nsfa-itunes {
+  --nsfa: "\f3b4";
+}
+
+.nsfa-itunes-note {
+  --nsfa: "\f3b5";
+}
+
+.nsfa-jenkins {
+  --nsfa: "\f3b6";
+}
+
+.nsfa-joget {
+  --nsfa: "\f3b7";
+}
+
+.nsfa-js {
+  --nsfa: "\f3b8";
+}
+
+.nsfa-square-js {
+  --nsfa: "\f3b9";
+}
+
+.nsfa-js-square {
+  --nsfa: "\f3b9";
+}
+
+.nsfa-keycdn {
+  --nsfa: "\f3ba";
+}
+
+.nsfa-kickstarter {
+  --nsfa: "\f3bb";
+}
+
+.nsfa-square-kickstarter {
+  --nsfa: "\f3bb";
+}
+
+.nsfa-kickstarter-k {
+  --nsfa: "\f3bc";
+}
+
+.nsfa-laravel {
+  --nsfa: "\f3bd";
+}
+
+.nsfa-line {
+  --nsfa: "\f3c0";
+}
+
+.nsfa-lyft {
+  --nsfa: "\f3c3";
+}
+
+.nsfa-magento {
+  --nsfa: "\f3c4";
+}
+
+.nsfa-medapps {
+  --nsfa: "\f3c6";
+}
+
+.nsfa-medrt {
+  --nsfa: "\f3c8";
+}
+
+.nsfa-microsoft {
+  --nsfa: "\f3ca";
+}
+
+.nsfa-mix {
+  --nsfa: "\f3cb";
+}
+
+.nsfa-mizuni {
+  --nsfa: "\f3cc";
+}
+
+.nsfa-monero {
+  --nsfa: "\f3d0";
+}
+
+.nsfa-napster {
+  --nsfa: "\f3d2";
+}
+
+.nsfa-node-js {
+  --nsfa: "\f3d3";
+}
+
+.nsfa-npm {
+  --nsfa: "\f3d4";
+}
+
+.nsfa-ns8 {
+  --nsfa: "\f3d5";
+}
+
+.nsfa-nutritionix {
+  --nsfa: "\f3d6";
+}
+
+.nsfa-page4 {
+  --nsfa: "\f3d7";
+}
+
+.nsfa-palfed {
+  --nsfa: "\f3d8";
+}
+
+.nsfa-patreon {
+  --nsfa: "\f3d9";
+}
+
+.nsfa-periscope {
+  --nsfa: "\f3da";
+}
+
+.nsfa-phabricator {
+  --nsfa: "\f3db";
+}
+
+.nsfa-phoenix-framework {
+  --nsfa: "\f3dc";
+}
+
+.nsfa-playstation {
+  --nsfa: "\f3df";
+}
+
+.nsfa-pushed {
+  --nsfa: "\f3e1";
+}
+
+.nsfa-python {
+  --nsfa: "\f3e2";
+}
+
+.nsfa-red-river {
+  --nsfa: "\f3e3";
+}
+
+.nsfa-wpressr {
+  --nsfa: "\f3e4";
+}
+
+.nsfa-rendact {
+  --nsfa: "\f3e4";
+}
+
+.nsfa-replyd {
+  --nsfa: "\f3e6";
+}
+
+.nsfa-resolving {
+  --nsfa: "\f3e7";
+}
+
+.nsfa-rocketchat {
+  --nsfa: "\f3e8";
+}
+
+.nsfa-rockrms {
+  --nsfa: "\f3e9";
+}
+
+.nsfa-schlix {
+  --nsfa: "\f3ea";
+}
+
+.nsfa-searchengin {
+  --nsfa: "\f3eb";
+}
+
+.nsfa-servicestack {
+  --nsfa: "\f3ec";
+}
+
+.nsfa-sistrix {
+  --nsfa: "\f3ee";
+}
+
+.nsfa-speakap {
+  --nsfa: "\f3f3";
+}
+
+.nsfa-staylinked {
+  --nsfa: "\f3f5";
+}
+
+.nsfa-steam-symbol {
+  --nsfa: "\f3f6";
+}
+
+.nsfa-sticker-mule {
+  --nsfa: "\f3f7";
+}
+
+.nsfa-studiovinari {
+  --nsfa: "\f3f8";
+}
+
+.nsfa-supple {
+  --nsfa: "\f3f9";
+}
+
+.nsfa-uber {
+  --nsfa: "\f402";
+}
+
+.nsfa-uikit {
+  --nsfa: "\f403";
+}
+
+.nsfa-uniregistry {
+  --nsfa: "\f404";
+}
+
+.nsfa-untappd {
+  --nsfa: "\f405";
+}
+
+.nsfa-ussunnah {
+  --nsfa: "\f407";
+}
+
+.nsfa-vaadin {
+  --nsfa: "\f408";
+}
+
+.nsfa-viber {
+  --nsfa: "\f409";
+}
+
+.nsfa-vimeo {
+  --nsfa: "\f40a";
+}
+
+.nsfa-vnv {
+  --nsfa: "\f40b";
+}
+
+.nsfa-square-whatsapp {
+  --nsfa: "\f40c";
+}
+
+.nsfa-whatsapp-square {
+  --nsfa: "\f40c";
+}
+
+.nsfa-whmcs {
+  --nsfa: "\f40d";
+}
+
+.nsfa-wordpress-simple {
+  --nsfa: "\f411";
+}
+
+.nsfa-xbox {
+  --nsfa: "\f412";
+}
+
+.nsfa-yandex {
+  --nsfa: "\f413";
+}
+
+.nsfa-yandex-international {
+  --nsfa: "\f414";
+}
+
+.nsfa-apple-pay {
+  --nsfa: "\f415";
+}
+
+.nsfa-cc-apple-pay {
+  --nsfa: "\f416";
+}
+
+.nsfa-fly {
+  --nsfa: "\f417";
+}
+
+.nsfa-node {
+  --nsfa: "\f419";
+}
+
+.nsfa-osi {
+  --nsfa: "\f41a";
+}
+
+.nsfa-react {
+  --nsfa: "\f41b";
+}
+
+.nsfa-autoprefixer {
+  --nsfa: "\f41c";
+}
+
+.nsfa-less {
+  --nsfa: "\f41d";
+}
+
+.nsfa-sass {
+  --nsfa: "\f41e";
+}
+
+.nsfa-vuejs {
+  --nsfa: "\f41f";
+}
+
+.nsfa-angular {
+  --nsfa: "\f420";
+}
+
+.nsfa-aviato {
+  --nsfa: "\f421";
+}
+
+.nsfa-ember {
+  --nsfa: "\f423";
+}
+
+.nsfa-gitter {
+  --nsfa: "\f426";
+}
+
+.nsfa-hooli {
+  --nsfa: "\f427";
+}
+
+.nsfa-strava {
+  --nsfa: "\f428";
+}
+
+.nsfa-stripe {
+  --nsfa: "\f429";
+}
+
+.nsfa-stripe-s {
+  --nsfa: "\f42a";
+}
+
+.nsfa-typo3 {
+  --nsfa: "\f42b";
+}
+
+.nsfa-amazon-pay {
+  --nsfa: "\f42c";
+}
+
+.nsfa-cc-amazon-pay {
+  --nsfa: "\f42d";
+}
+
+.nsfa-ethereum {
+  --nsfa: "\f42e";
+}
+
+.nsfa-korvue {
+  --nsfa: "\f42f";
+}
+
+.nsfa-elementor {
+  --nsfa: "\f430";
+}
+
+.nsfa-square-youtube {
+  --nsfa: "\f431";
+}
+
+.nsfa-youtube-square {
+  --nsfa: "\f431";
+}
+
+.nsfa-flipboard {
+  --nsfa: "\f44d";
+}
+
+.nsfa-hips {
+  --nsfa: "\f452";
+}
+
+.nsfa-php {
+  --nsfa: "\f457";
+}
+
+.nsfa-quinscape {
+  --nsfa: "\f459";
+}
+
+.nsfa-readme {
+  --nsfa: "\f4d5";
+}
+
+.nsfa-java {
+  --nsfa: "\f4e4";
+}
+
+.nsfa-pied-piper-hat {
+  --nsfa: "\f4e5";
+}
+
+.nsfa-creative-commons-by {
+  --nsfa: "\f4e7";
+}
+
+.nsfa-creative-commons-nc {
+  --nsfa: "\f4e8";
+}
+
+.nsfa-creative-commons-nc-eu {
+  --nsfa: "\f4e9";
+}
+
+.nsfa-creative-commons-nc-jp {
+  --nsfa: "\f4ea";
+}
+
+.nsfa-creative-commons-nd {
+  --nsfa: "\f4eb";
+}
+
+.nsfa-creative-commons-pd {
+  --nsfa: "\f4ec";
+}
+
+.nsfa-creative-commons-pd-alt {
+  --nsfa: "\f4ed";
+}
+
+.nsfa-creative-commons-remix {
+  --nsfa: "\f4ee";
+}
+
+.nsfa-creative-commons-sa {
+  --nsfa: "\f4ef";
+}
+
+.nsfa-creative-commons-sampling {
+  --nsfa: "\f4f0";
+}
+
+.nsfa-creative-commons-sampling-plus {
+  --nsfa: "\f4f1";
+}
+
+.nsfa-creative-commons-share {
+  --nsfa: "\f4f2";
+}
+
+.nsfa-creative-commons-zero {
+  --nsfa: "\f4f3";
+}
+
+.nsfa-ebay {
+  --nsfa: "\f4f4";
+}
+
+.nsfa-keybase {
+  --nsfa: "\f4f5";
+}
+
+.nsfa-mastodon {
+  --nsfa: "\f4f6";
+}
+
+.nsfa-r-project {
+  --nsfa: "\f4f7";
+}
+
+.nsfa-researchgate {
+  --nsfa: "\f4f8";
+}
+
+.nsfa-teamspeak {
+  --nsfa: "\f4f9";
+}
+
+.nsfa-first-order-alt {
+  --nsfa: "\f50a";
+}
+
+.nsfa-fulcrum {
+  --nsfa: "\f50b";
+}
+
+.nsfa-galactic-republic {
+  --nsfa: "\f50c";
+}
+
+.nsfa-galactic-senate {
+  --nsfa: "\f50d";
+}
+
+.nsfa-jedi-order {
+  --nsfa: "\f50e";
+}
+
+.nsfa-mandalorian {
+  --nsfa: "\f50f";
+}
+
+.nsfa-old-republic {
+  --nsfa: "\f510";
+}
+
+.nsfa-phoenix-squadron {
+  --nsfa: "\f511";
+}
+
+.nsfa-sith {
+  --nsfa: "\f512";
+}
+
+.nsfa-trade-federation {
+  --nsfa: "\f513";
+}
+
+.nsfa-wolf-pack-battalion {
+  --nsfa: "\f514";
+}
+
+.nsfa-hornbill {
+  --nsfa: "\f592";
+}
+
+.nsfa-mailchimp {
+  --nsfa: "\f59e";
+}
+
+.nsfa-megaport {
+  --nsfa: "\f5a3";
+}
+
+.nsfa-nimblr {
+  --nsfa: "\f5a8";
+}
+
+.nsfa-rev {
+  --nsfa: "\f5b2";
+}
+
+.nsfa-shopware {
+  --nsfa: "\f5b5";
+}
+
+.nsfa-squarespace {
+  --nsfa: "\f5be";
+}
+
+.nsfa-themeco {
+  --nsfa: "\f5c6";
+}
+
+.nsfa-weebly {
+  --nsfa: "\f5cc";
+}
+
+.nsfa-wix {
+  --nsfa: "\f5cf";
+}
+
+.nsfa-ello {
+  --nsfa: "\f5f1";
+}
+
+.nsfa-hackerrank {
+  --nsfa: "\f5f7";
+}
+
+.nsfa-kaggle {
+  --nsfa: "\f5fa";
+}
+
+.nsfa-markdown {
+  --nsfa: "\f60f";
+}
+
+.nsfa-neos {
+  --nsfa: "\f612";
+}
+
+.nsfa-zhihu {
+  --nsfa: "\f63f";
+}
+
+.nsfa-alipay {
+  --nsfa: "\f642";
+}
+
+.nsfa-the-red-yeti {
+  --nsfa: "\f69d";
+}
+
+.nsfa-critical-role {
+  --nsfa: "\f6c9";
+}
+
+.nsfa-d-and-d-beyond {
+  --nsfa: "\f6ca";
+}
+
+.nsfa-dev {
+  --nsfa: "\f6cc";
+}
+
+.nsfa-fantasy-flight-games {
+  --nsfa: "\f6dc";
+}
+
+.nsfa-wizards-of-the-coast {
+  --nsfa: "\f730";
+}
+
+.nsfa-think-peaks {
+  --nsfa: "\f731";
+}
+
+.nsfa-reacteurope {
+  --nsfa: "\f75d";
+}
+
+.nsfa-artstation {
+  --nsfa: "\f77a";
+}
+
+.nsfa-atlassian {
+  --nsfa: "\f77b";
+}
+
+.nsfa-canadian-maple-leaf {
+  --nsfa: "\f785";
+}
+
+.nsfa-centos {
+  --nsfa: "\f789";
+}
+
+.nsfa-confluence {
+  --nsfa: "\f78d";
+}
+
+.nsfa-dhl {
+  --nsfa: "\f790";
+}
+
+.nsfa-diaspora {
+  --nsfa: "\f791";
+}
+
+.nsfa-fedex {
+  --nsfa: "\f797";
+}
+
+.nsfa-fedora {
+  --nsfa: "\f798";
+}
+
+.nsfa-figma {
+  --nsfa: "\f799";
+}
+
+.nsfa-intercom {
+  --nsfa: "\f7af";
+}
+
+.nsfa-invision {
+  --nsfa: "\f7b0";
+}
+
+.nsfa-jira {
+  --nsfa: "\f7b1";
+}
+
+.nsfa-mendeley {
+  --nsfa: "\f7b3";
+}
+
+.nsfa-raspberry-pi {
+  --nsfa: "\f7bb";
+}
+
+.nsfa-redhat {
+  --nsfa: "\f7bc";
+}
+
+.nsfa-sketch {
+  --nsfa: "\f7c6";
+}
+
+.nsfa-sourcetree {
+  --nsfa: "\f7d3";
+}
+
+.nsfa-suse {
+  --nsfa: "\f7d6";
+}
+
+.nsfa-ubuntu {
+  --nsfa: "\f7df";
+}
+
+.nsfa-ups {
+  --nsfa: "\f7e0";
+}
+
+.nsfa-usps {
+  --nsfa: "\f7e1";
+}
+
+.nsfa-yarn {
+  --nsfa: "\f7e3";
+}
+
+.nsfa-airbnb {
+  --nsfa: "\f834";
+}
+
+.nsfa-battle-net {
+  --nsfa: "\f835";
+}
+
+.nsfa-bootstrap {
+  --nsfa: "\f836";
+}
+
+.nsfa-buffer {
+  --nsfa: "\f837";
+}
+
+.nsfa-chromecast {
+  --nsfa: "\f838";
+}
+
+.nsfa-evernote {
+  --nsfa: "\f839";
+}
+
+.nsfa-itch-io {
+  --nsfa: "\f83a";
+}
+
+.nsfa-salesforce {
+  --nsfa: "\f83b";
+}
+
+.nsfa-speaker-deck {
+  --nsfa: "\f83c";
+}
+
+.nsfa-symfony {
+  --nsfa: "\f83d";
+}
+
+.nsfa-waze {
+  --nsfa: "\f83f";
+}
+
+.nsfa-yammer {
+  --nsfa: "\f840";
+}
+
+.nsfa-git-alt {
+  --nsfa: "\f841";
+}
+
+.nsfa-stackpath {
+  --nsfa: "\f842";
+}
+
+.nsfa-cotton-bureau {
+  --nsfa: "\f89e";
+}
+
+.nsfa-buy-n-large {
+  --nsfa: "\f8a6";
+}
+
+.nsfa-mdb {
+  --nsfa: "\f8ca";
+}
+
+.nsfa-orcid {
+  --nsfa: "\f8d2";
+}
+
+.nsfa-swift {
+  --nsfa: "\f8e1";
+}
+
+.nsfa-umbraco {
+  --nsfa: "\f8e8";
+}:root, :host {
+  --nsfa-family-classic: 'NS Font Awesome 7 Free';
+  --nsfa-font-regular: normal 400 1em/1 var(--nsfa-family-classic);
+  /* deprecated: this older custom property will be removed next major release */
+  --nsfa-style-family-classic: var(--nsfa-family-classic);
+}
+
+@font-face {
+  font-family: "NS Font Awesome 7 Free";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("../webfonts/fa-regular-400.woff2");
+}
+.nsfar {
+  --nsfa-family: var(--nsfa-family-classic);
+  --nsfa-style: 400;
+}
+
+.nsfa-classic {
+  --nsfa-family: var(--nsfa-family-classic);
+}
+
+.nsfa-regular {
+  --nsfa-style: 400;
+}:root, :host {
+  --nsfa-family-classic: 'NS Font Awesome 7 Free';
+  --nsfa-font-solid: normal 900 1em/1 var(--nsfa-family-classic);
+  /* deprecated: this older custom property will be removed next major release */
+  --nsfa-style-family-classic: var(--nsfa-family-classic);
+}
+
+@font-face {
+  font-family: "NS Font Awesome 7 Free";
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url("../webfonts/fa-solid-900.woff2");
+}
+.nsfas {
+  --nsfa-family: var(--nsfa-family-classic);
+  --nsfa-style: 900;
+}
+
+.nsfa-classic {
+  --nsfa-family: var(--nsfa-family-classic);
+}
+
+.nsfa-solid {
+  --nsfa-style: 900;
+}

@@ -24,7 +24,7 @@ ModuleNsinfoDesc = Framework de fonctions liées aux modules et développement N
 NsinfoArea = Espace NS INFO
 
 NSINFOAboutDesc1=Ce module a été développé par <b><a href ="https://www.ns-info.fr/" target="_blank">NSINFO SARL</a></b>
-NSINFOAboutDesc2=<br>Documentation des modules <b><a href="https://www.ns-info.fr/documentation/" target="_blank">Wiki</a></b>
+NSINFOAboutDesc2=<br>Documentation des modules <b><a href="https://www.ns-info.fr/documentation/" target="_blank">Wiki</a></b><br>Boutique <b><a href="https://store.ns-info.fr" target="_blank" style="color: #5A2D82;">store.ns-info.fr</a></b>
 NSINFOAboutDesc3=<br>Pour toute question commerciale ou technique ou un retour,
 NSINFOAboutDesc4=<br>Contactez-nous sur <b><a href="mailto:contact@ns-info.fr">contact@ns-info.fr</a></b> ou
 NSINFOAboutDesc45=<b>notre support</b>

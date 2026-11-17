@@ -336,3 +336,57 @@ function nsinfoGiveRights($targetuser, $rights)
 
 	return $res;
 }
+
+
+/**
+ * Version (first number) of the Font Awesome shipped with Dolibarr (folder htdocs/theme/common/fontawesome-<N>)
+ *
+ * @return int	5 for Dolibarr 20 to 23 ; 0 if not found
+ */
+function nsinfoDolibarrFontAwesomeVersion()
+{
+	$found = 0;
+	foreach (glob(DOL_DOCUMENT_ROOT.'/theme/common/fontawesome-*', GLOB_ONLYDIR) ?: array() as $dir) {
+		if (preg_match('/fontawesome-(\d+)$/', $dir, $m)) {
+			$found = max($found, (int) $m[1]);
+		}
+	}
+
+	return $found;
+}
+
+/**
+ * Tells if the Font Awesome Free 7 of the framework NSINFO (classes nsfa-*, folder nsinfo/fontawesome) is loaded :
+ * only when the Font Awesome of Dolibarr is older than the 7 (5 for Dolibarr 20 to 23), so that Dolibarr keeps its own
+ * icons. The two versions do not clash : classes and font names of the NSINFO copy are prefixed.
+ *
+ * @return bool
+ */
+function nsinfoFontAwesomeLoaded()
+{
+	return nsinfoDolibarrFontAwesomeVersion() < 7;
+}
+
+/**
+ * Icon of Font Awesome Free 7 : the classes nsfa-* when the copy of the framework NSINFO is loaded, else the classes fa-* of Dolibarr
+ * (Dolibarr 7 or more)
+ *
+ * @param	string	$name		Name of the icon without prefix (ex : table-list)
+ * @param	string	$color		Color (ex : #16a085), optional
+ * @param	string	$style		Style : solid, regular or brands
+ * @param	string	$moreclass	More classes (ex : paddingright pictofixedwidth)
+ * @return	string				HTML
+ */
+function nsinfoFaIcon($name, $color = '', $style = 'solid', $moreclass = '')
+{
+	$name = preg_replace('/[^a-z0-9-]/', '', strtolower($name));
+	$style = in_array($style, array('regular', 'brands'), true) ? $style : 'solid';
+	if (nsinfoFontAwesomeLoaded()) {
+		$class = 'nsfa nsfa-'.$style.' nsfa-'.$name;
+	} else {
+		$class = 'fa-'.$style.' fa-'.$name;
+	}
+	$class .= ($moreclass ? ' '.dol_escape_htmltag($moreclass) : '');
+
+	return '<i class="'.$class.'"'.($color ? ' style="color: '.dol_escape_htmltag($color).';"' : '').'></i>';
+}

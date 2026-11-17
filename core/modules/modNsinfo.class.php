@@ -59,6 +59,7 @@ class modNsinfo extends DolibarrModules
 		$this->module_parts = array(
 			'css' => array(
                 '/nsinfo/css/nsinfo.css.php',
+                '/nsinfo/css/nsfa.css.php',
                 getDolGlobalInt('NSINFO_CSSSTATUS')?'/nsinfo/css/nsinfostatus.css.php':'',
                 ),
 			// Set this to relative path of js file if module must load a js on all pages
