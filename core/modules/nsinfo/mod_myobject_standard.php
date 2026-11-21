@@ -20,18 +20,18 @@
 /**
  *  \file       htdocs/core/modules/nsinfo/mod_myobject_standard.php
  *  \ingroup    nsinfo
- *  \brief      File of class to manage MyObject numbering rules standard
+ *  \brief      Fichier de classe de gestion des règles de numérotation standard de MyObject
  */
 dol_include_once('/nsinfo/core/modules/nsinfo/modules_myobject.php');
 
 
 /**
- *	Class to manage customer order numbering rules standard
+ *	Classe de gestion des règles de numérotation standard de MyObject
  */
 class mod_myobject_standard extends ModeleNumRefMyObject
 {
 	/**
-	 * Dolibarr version of the loaded document
+	 * Version de Dolibarr du document chargé
 	 * @var string
 	 */
 	public $version = 'dolibarr'; // 'development', 'experimental', 'dolibarr'
@@ -39,20 +39,20 @@ class mod_myobject_standard extends ModeleNumRefMyObject
 	public $prefix = 'MYOBJECT';
 
 	/**
-	 * @var string Error code (or message)
+	 * @var string Code d'erreur (ou message)
 	 */
 	public $error = '';
 
 	/**
-	 * @var string name
+	 * @var string nom
 	 */
 	public $name = 'standard';
 
 
 	/**
-	 *  Return description of numbering module
+	 *  Renvoie la description du module de numérotation
 	 *
-	 *  @return     string      Text with description
+	 *  @return     string      Texte descriptif
 	 */
 	public function info()
 	{
@@ -62,9 +62,9 @@ class mod_myobject_standard extends ModeleNumRefMyObject
 
 
 	/**
-	 *  Return an example of numbering
+	 *  Renvoie un exemple de numérotation
 	 *
-	 *  @return     string      Example
+	 *  @return     string      Exemple
 	 */
 	public function getExample()
 	{
@@ -73,11 +73,11 @@ class mod_myobject_standard extends ModeleNumRefMyObject
 
 
 	/**
-	 *  Checks if the numbers already in the database do not
-	 *  cause conflicts that would prevent this numbering working.
+	 *  Vérifie que les numéros déjà présents en base ne
+	 *  provoquent pas de conflits qui empêcheraient cette numérotation de fonctionner.
 	 *
-	 *  @param  Object		$object		Object we need next value for
-	 *  @return boolean     			false if conflict, true if ok
+	 *  @param  Object		$object		Objet pour lequel on a besoin de la valeur suivante
+	 *  @return boolean     			false en cas de conflit, true si OK
 	 */
 	public function canBeActivated($object)
 	{
@@ -113,16 +113,16 @@ class mod_myobject_standard extends ModeleNumRefMyObject
 	}
 
 	/**
-	 * 	Return next free value
+	 * 	Renvoie la prochaine valeur libre
 	 *
-	 *  @param  Object		$object		Object we need next value for
-	 *  @return string      			Value if KO, <0 if KO
+	 *  @param  Object		$object		Objet pour lequel on a besoin de la valeur suivante
+	 *  @return string      			Valeur si OK, <0 si KO
 	 */
 	public function getNextValue($object)
 	{
 		global $db, $conf;
 
-		// first we get the max value
+		// on récupère d'abord la valeur maximale
 		$posindice = strlen($this->prefix) + 6;
 		$sql = "SELECT MAX(CAST(SUBSTRING(ref FROM ".$posindice.") AS SIGNED)) as max";
 		$sql .= " FROM ".MAIN_DB_PREFIX."nsinfo_myobject";
@@ -151,7 +151,7 @@ class mod_myobject_standard extends ModeleNumRefMyObject
 		$date = $object->date_creation;
 		$yymm = strftime("%y%m", $date);
 
-		if ($max >= (pow(10, 4) - 1)) $num = $max + 1; // If counter > 9999, we do not format on 4 chars, we take number as it is
+		if ($max >= (pow(10, 4) - 1)) $num = $max + 1; // Si le compteur dépasse 9999, on ne formate pas sur 4 caractères, on prend le nombre tel quel
 		else $num = sprintf("%04s", $max + 1);
 
 		dol_syslog("mod_myobject_standard::getNextValue return ".$this->prefix.$yymm."-".$num);

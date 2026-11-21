@@ -18,23 +18,23 @@
 /**
  * \file    nsinfo/css/nsinfo.css.php
  * \ingroup nsinfo
- * \brief   CSS file for module Nsinfo.
+ * \brief   Fichier CSS du module Nsinfo.
  */
 
-//if (!defined('NOREQUIREUSER')) define('NOREQUIREUSER','1');	// Not disabled because need to load personalized language
-//if (!defined('NOREQUIREDB'))   define('NOREQUIREDB','1');	// Not disabled. Language code is found on url.
+//if (!defined('NOREQUIREUSER')) define('NOREQUIREUSER','1');	// Non désactivé car il faut charger la langue personnalisée
+//if (!defined('NOREQUIREDB'))   define('NOREQUIREDB','1');	// Non désactivé. Le code langue est trouvé dans l'URL.
 if (!defined('NOREQUIRESOC')) {
 	define('NOREQUIRESOC', '1');
 }
-//if (!defined('NOREQUIRETRAN')) define('NOREQUIRETRAN','1');	// Not disabled because need to do translations
-//if (!defined('NOCSRFCHECK'))   define('NOCSRFCHECK', 1);		// Should be disable only for special situation
+//if (!defined('NOREQUIRETRAN')) define('NOREQUIRETRAN','1');	// Non désactivé car il faut faire les traductions
+//if (!defined('NOCSRFCHECK'))   define('NOCSRFCHECK', 1);		// À désactiver uniquement dans une situation particulière
 if (!defined('NOTOKENRENEWAL')) {
 	define('NOTOKENRENEWAL', 1);
 }
 if (!defined('NOLOGIN')) {
-	define('NOLOGIN', 1); // File must be accessed by logon page so without login
+	define('NOLOGIN', 1); // Le fichier doit être accessible depuis la page de connexion, donc sans authentification
 }
-//if (! defined('NOREQUIREMENU'))   define('NOREQUIREMENU',1);  // We need top menu content
+//if (! defined('NOREQUIREMENU'))   define('NOREQUIREMENU',1);  // Nous avons besoin du contenu du menu supérieur
 if (!defined('NOREQUIREHTML')) {
 	define('NOREQUIREHTML', 1);
 }
@@ -43,17 +43,17 @@ if (!defined('NOREQUIREAJAX')) {
 }
 
 session_cache_limiter('public');
-// false or '' = keep cache instruction added by server
-// 'public'  = remove cache instruction added by server
-// and if no cache-control added later, a default cache delay (10800) will be added by PHP.
+// false ou '' = conserver l'instruction de cache ajoutée par le serveur
+// 'public' = supprimer l'instruction de cache ajoutée par le serveur
+// et si aucun cache-control n'est ajouté ensuite, un délai de cache par défaut (10800) sera ajouté par PHP.
 
-// Load Dolibarr environment
+// Charge l'environnement Dolibarr
 $res = 0;
-// Try main.inc.php into web root known defined into CONTEXT_DOCUMENT_ROOT (not always defined)
+// Essaie main.inc.php dans la racine web connue, définie dans CONTEXT_DOCUMENT_ROOT (pas toujours définie)
 if (!$res && !empty($_SERVER["CONTEXT_DOCUMENT_ROOT"])) {
 	$res = @include $_SERVER["CONTEXT_DOCUMENT_ROOT"]."/main.inc.php";
 }
-// Try main.inc.php into web root detected using web root calculated from SCRIPT_FILENAME
+// Essaie main.inc.php dans la racine web détectée à partir de SCRIPT_FILENAME
 $tmp = empty($_SERVER['SCRIPT_FILENAME']) ? '' : $_SERVER['SCRIPT_FILENAME']; $tmp2 = realpath(__FILE__); $i = strlen($tmp) - 1; $j = strlen($tmp2) - 1;
 while ($i > 0 && $j > 0 && isset($tmp[$i]) && isset($tmp2[$j]) && $tmp[$i] == $tmp2[$j]) {
 	$i--; $j--;
@@ -64,7 +64,7 @@ if (!$res && $i > 0 && file_exists(substr($tmp, 0, ($i + 1))."/main.inc.php")) {
 if (!$res && $i > 0 && file_exists(substr($tmp, 0, ($i + 1))."/../main.inc.php")) {
 	$res = @include substr($tmp, 0, ($i + 1))."/../main.inc.php";
 }
-// Try main.inc.php using relative path
+// Essaie main.inc.php avec un chemin relatif
 if (!$res && file_exists("../../main.inc.php")) {
 	$res = @include "../../main.inc.php";
 }
@@ -77,17 +77,17 @@ if (!$res) {
 
 require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
 
-// Load user to have $user->conf loaded (not done by default here because of NOLOGIN constant defined) and load permission if we need to use them in CSS
+// Charge l'utilisateur pour avoir $user->conf chargé (non fait par défaut ici à cause de la constante NOLOGIN) et charge les droits si on en a besoin dans le CSS
 /*if (empty($user->id) && !empty($_SESSION['dol_login'])) {
 	$user->fetch('',$_SESSION['dol_login']);
 	$user->getrights();
 }*/
 
 
-// Define css type
+// Définit le type CSS
 header('Content-type: text/css');
-// Important: Following code is to cache this file to avoid page request by browser at each Dolibarr page access.
-// You can use CTRL+F5 to refresh your browser cache.
+// Important : le code suivant sert à mettre ce fichier en cache pour éviter une requête du navigateur à chaque accès à une page Dolibarr.
+// Vous pouvez utiliser CTRL+F5 pour rafraîchir le cache du navigateur.
 if (empty($dolibarr_nocache)) {
 	header('Cache-Control: max-age=10800, public, must-revalidate');
 } else {
@@ -118,11 +118,11 @@ div.mainmenu.nsinfo {
 	height: 28px;
 	background: var(--colorbacktitle1) !important;
 }
-/* Column titles (Parameter / Value) : bold, the td rules of the theme win over the tr */
+/* Titres de colonnes (Paramètre / Valeur) : gras, les règles td du thème priment sur tr */
 .nstabletitle td {
 	font-weight: bold;
 }
-/* Separator (type sep with 'class' => 'nssep') : purple line above, light background, purple bold text */
+/* Séparateur (type sep avec 'class' => 'nssep') : ligne violette au-dessus, fond clair, texte violet en gras */
 .nstabletitle td.nssep {
 	border-top: 2px solid #523280;
 	background: rgba(82, 50, 128, 0.08);
@@ -137,9 +137,9 @@ tr.nstabletitle:has(td.nssep) {
 
 /* ------------------------------------------------------------------
  * NSINFO media gallery + confirmation popup
- * Without these rules, .modal-active / inline display toggles set by
- * js/modules/{modal,mediaGallery}.js have nothing to switch "into":
- * the elements stay in the normal page flow instead of overlaying it.
+ * Sans ces règles, la classe .modal-active et les bascules d'affichage en ligne définies par
+ * js/modules/{modal,mediaGallery}.js n'ont rien vers quoi basculer « dedans » :
+ * les éléments restent dans le flux normal de la page au lieu de la recouvrir.
  * ------------------------------------------------------------------ */
 /*.hidden {*/
 /*	display: none !important;*/
@@ -478,7 +478,7 @@ div.nsinfo-menugroup-sub div.nsinfo-menugroup-child-block {
 	margin-right: 0 !important;
 }
 <?php } ?>
-/* Calendar of a period between two dates (js/modules/rangePicker.js) */
+/* Calendrier d'une période entre deux dates (js/modules/rangePicker.js) */
 .nsinfo-cal { position: absolute; z-index: 2000; background: #fff; color: #1f2937; border: 1px solid #d5dbe3; border-radius: 12px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18); padding: 12px 14px; font-size: 0.95em; }
 .nsinfo-cal-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
 .nsinfo-cal-nav button, .nsinfo-cal-foot button { border: 0; background: transparent; cursor: pointer; border-radius: 8px; padding: 4px 10px; color: #3879B2; font-size: 1.1em; }
@@ -506,7 +506,7 @@ div.nsinfo-menugroup-sub div.nsinfo-menugroup-child-block {
 .nsinfo-period-chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; background: #eef3f9; color: #1f2937; cursor: pointer; border: 1px solid transparent; }
 .nsinfo-period-chip:hover { border-color: #3879B2; }
 .nsinfo-period-chip .fa { color: #3879B2; }
-/* Clock to choose a time (js/modules/timePicker.js) */
+/* Horloge pour choisir une heure (js/modules/timePicker.js) */
 .nsinfo-clock { position: absolute; z-index: 2000; background: #fff; color: #1f2937; border: 1px solid #d5dbe3; border-radius: 16px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18); padding: 14px 16px; user-select: none; -webkit-user-select: none; text-align: center; }
 .nsinfo-clock-head { display: flex; align-items: center; justify-content: center; gap: 4px; font-size: 2.4em; line-height: 1.1; margin-bottom: 10px; }
 .nsinfo-clock-seg { border: 0; background: #eef0f3; border-radius: 10px; padding: 4px 14px; font: inherit; color: inherit; cursor: pointer; }
@@ -525,7 +525,7 @@ div.nsinfo-menugroup-sub div.nsinfo-menugroup-child-block {
 .nsinfo-clock-foot button { border: 0; background: transparent; cursor: pointer; border-radius: 8px; padding: 6px 10px; color: #3879B2; font: inherit; }
 .nsinfo-clock-foot button:hover { background: #eef3f9; }
 .nsinfo-clock-foot .nsinfo-clock-ok { font-weight: 600; }
-/* Main tabs and the tab bar nested under them (e.g. one sub-tab per object) of the NS INFO modules (bar holding the ChangeLog tab of nsinfo): same look as the sub-tabs, rounded top, soft background and grey outline on the active tab (the theme puts the active state on div.tab.tabactive) */
+/* Onglets principaux et barre d'onglets imbriquée sous eux (ex. un sous-onglet par objet) des modules NS INFO (barre contenant l'onglet ChangeLog de nsinfo) : même aspect que les sous-onglets, haut arrondi, fond doux et contour gris sur l'onglet actif (le thème met l'état actif sur div.tab.tabactive) */
 div.tabs:has(a[href*="changelog_module.php"]),
 div.tabs:has(a[href*="changelog_module.php"]) + div.tabBar div.tabs { display: flex; flex-wrap: wrap; gap: 4px; padding-left: 0; border-bottom: 1px solid var(--colortopbordertitle1, #d5dbe3); margin-bottom: 14px; }
 div.tabs:has(a[href*="changelog_module.php"]) > div.tabsElem,
@@ -540,23 +540,23 @@ div.tabs:has(a[href*="changelog_module.php"]) div.tab:hover,
 div.tabs:has(a[href*="changelog_module.php"]) + div.tabBar div.tabs div.tab:hover { background: rgba(127, 127, 127, 0.12); box-shadow: 0 0 0 1px rgba(127, 127, 127, 0.35) inset; }
 div.tabs:has(a[href*="changelog_module.php"]) div.tab.tabactive,
 div.tabs:has(a[href*="changelog_module.php"]) + div.tabBar div.tabs div.tab.tabactive { font-weight: 600; background: rgba(127, 127, 127, 0.12); box-shadow: 0 0 0 1px rgba(127, 127, 127, 0.35) inset; border-bottom-color: var(--colortextlink, #3879B2) !important; }
-/* No second line under the tabs : the tabs already have their own bottom border, the frame that follows (main tabs and sub tabs) loses its top border */
+/* Pas de seconde ligne sous les onglets : les onglets ont déjà leur propre bordure basse, le cadre qui suit (onglets principaux et sous-onglets) perd sa bordure haute */
 div.tabs:has(a[href*="changelog_module.php"]) + div.tabBar,
 div.tabs:has(a[href*="changelog_module.php"]) + div.tabBar div.tabs + div.tabBar { border-top: 0 !important; }
-/* Sub-tabs of the NS INFO modules (<div class="nsinfo-subtabs"><a class="nsinfo-subtab [active]">) */
+/* Sous-onglets des modules NS INFO (<div class="nsinfo-subtabs"><a class="nsinfo-subtab [active]">) */
 .nsinfo-subtabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--colortopbordertitle1, #d5dbe3); margin: 0 0 14px; }
 .nsinfo-subtab { padding: 8px 16px; border-radius: 10px 10px 0 0; color: inherit; text-decoration: none; border-bottom: 3px solid transparent; }
 .nsinfo-subtab:hover { background: rgba(127, 127, 127, 0.12); box-shadow: 0 0 0 1px rgba(127, 127, 127, 0.35) inset; }
 .nsinfo-subtab.active { font-weight: 600; background: rgba(127, 127, 127, 0.12); box-shadow: 0 0 0 1px rgba(127, 127, 127, 0.35) inset; border-bottom-color: var(--colortextlink, #3879B2); }
 @media (max-width: 640px) {
-	/* Mobile : the calendar is a sheet at the bottom of the screen, one month, large touch targets */
+	/* Mobile : le calendrier est une feuille en bas de l'écran, un mois, grandes zones tactiles */
 	.nsinfo-cal { position: fixed; top: auto !important; left: 0 !important; right: 0; bottom: 0; width: auto; border-radius: 16px 16px 0 0; padding: 14px 12px 18px; max-height: 90vh; overflow-y: auto; }
 	.nsinfo-cal-months { display: block; }
 	.nsinfo-cal-months .nsinfo-cal-month + .nsinfo-cal-month { display: none; }
 	.nsinfo-cal-grid { grid-template-columns: repeat(7, 1fr); row-gap: 4px; }
 	.nsinfo-cal-day { height: 2.9em; font-size: 1.05em; }
 	.nsinfo-cal-nav button, .nsinfo-cal-foot button { padding: 10px 16px; }
-	/* The clock too is a sheet at the bottom of the screen */
+	/* L'horloge est aussi une feuille en bas de l'écran */
 	.nsinfo-clock { position: fixed; top: auto !important; left: 0 !important; right: 0; bottom: 0; width: auto; border-radius: 16px 16px 0 0; padding: 14px 12px 18px; }
 	.nsinfo-clock-foot button { padding: 10px 16px; }
 }

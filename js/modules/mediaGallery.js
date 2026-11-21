@@ -17,10 +17,10 @@
 /**
  * \file    js/modules/mediaGallery.js
  * \ingroup nsinfo
- * \brief   JavaScript media gallery for module NSINFO.
+ * \brief   Galerie de médias JavaScript du module NSINFO.
  *
- * Talks to core/tpl/medias/medias_gallery_modal.tpl.php (included by the calling
- * page) via subaction=... POST requests sent back to the current page URL.
+ * Dialogue avec core/tpl/medias/medias_gallery_modal.tpl.php (inclus par la
+ * page) via des requêtes POST subaction=... renvoyées à l'URL de la page courante.
  */
 
 window.nsinfo.mediaGallery = {};
@@ -45,7 +45,7 @@ window.nsinfo.mediaGallery.event = function() {
 };
 
 /**
- * Select/deselect a photo in the gallery grid (multi-select for link/delete).
+ * Sélectionne/désélectionne une photo dans la grille de la galerie (sélection multiple pour lier/supprimer).
  *
  * @return {void}
  */
@@ -68,7 +68,7 @@ window.nsinfo.mediaGallery.selectPhoto = function() {
 };
 
 /**
- * Link the selected gallery photo(s) to the current object.
+ * Lie la ou les photos sélectionnées à l'objet courant.
  *
  * @return {void}
  */
@@ -126,7 +126,7 @@ window.nsinfo.mediaGallery.savePhoto = function() {
 };
 
 /**
- * Delete the selected photo(s) from the shared gallery, after confirmation.
+ * Supprime la ou les photos sélectionnées de la galerie partagée, après confirmation.
  *
  * @return {void}
  */
@@ -151,7 +151,7 @@ window.nsinfo.mediaGallery.deletePhoto = function() {
 };
 
 /**
- * Hide the confirmation box without deleting anything.
+ * Masque la boîte de confirmation sans rien supprimer.
  *
  * @param  {jQuery} filesLinked       Selected photo elements
  * @param  {jQuery} mediaGalleryModal Media gallery modal element
@@ -170,9 +170,9 @@ window.nsinfo.mediaGallery.closeConfirmation = function(filesLinked, mediaGaller
 };
 
 /**
- * Send the delete_files request for the confirmed file names.
+ * Envoie la requête delete_files pour les noms de fichiers confirmés.
  *
- * @param  {string} fileNames 'vVv'-separated file names
+ * @param  {string} fileNames noms de fichiers séparés par 'vVv'
  * @return {void}
  */
 window.nsinfo.mediaGallery.deleteFilesRequest = function(fileNames) {
@@ -195,7 +195,7 @@ window.nsinfo.mediaGallery.deleteFilesRequest = function(fileNames) {
 };
 
 /**
- * Client-side filter of the gallery grid by filename (no server round-trip).
+ * Filtre côté client de la grille de la galerie par nom de fichier (sans aller-retour serveur).
  *
  * @return {void}
  */
@@ -209,7 +209,7 @@ window.nsinfo.mediaGallery.handleSearch = function() {
 };
 
 /**
- * Upload photo(s) selected from the modal's "Add file" input into the shared gallery.
+ * Envoie les photos sélectionnées dans le champ « Ajouter un fichier » de la fenêtre modale vers la galerie partagée.
  *
  * @return {void}
  */
@@ -290,7 +290,7 @@ window.nsinfo.mediaGallery.sendPhoto = function(event) {
 };
 
 /**
- * Mark the Dolibarr lightbox opened from a photo preview link so it can be CSS-styled.
+ * Marque la lightbox Dolibarr ouverte depuis un lien d'aperçu de photo pour pouvoir la styler en CSS.
  *
  * @return {void}
  */
@@ -304,7 +304,7 @@ window.nsinfo.mediaGallery.previewPhoto = function() {
 };
 
 /**
- * Unlink a photo from the current object (does not delete it from the shared gallery).
+ * Délie une photo de l'objet courant (ne la supprime pas de la galerie partagée).
  *
  * @return {void}
  */
@@ -352,7 +352,7 @@ window.nsinfo.mediaGallery.unlinkFile = function(event) {
 			processData: false,
 			contentType: 'application/json',
 			success: function() {
-				// Reload so the object's linked-photo section (rendered server-side) picks up the removal.
+				// Recharge la page pour que la section des photos liées de l'objet (rendue côté serveur) prenne en compte la suppression.
 				window.location.reload();
 			}
 		});
@@ -360,7 +360,7 @@ window.nsinfo.mediaGallery.unlinkFile = function(event) {
 };
 
 /**
- * Mark a photo already linked to the object as its favorite (main) photo.
+ * Marque une photo déjà liée à l'objet comme photo favorite (principale).
  *
  * @return {void}
  */
@@ -415,7 +415,7 @@ window.nsinfo.mediaGallery.addToFavorite = function(event) {
 };
 
 /**
- * Upload photo(s) selected from the direct camera/computer button, then link them to the object.
+ * Envoie les photos sélectionnées depuis le bouton direct appareil photo/ordinateur, puis les lie à l'objet.
  *
  * @return {void}
  */
@@ -464,7 +464,7 @@ window.nsinfo.mediaGallery.fastUpload = function() {
 						processData: false,
 						contentType: false,
 						success: function() {
-							// Reload so the object's linked-photo section (rendered server-side) picks up the new file.
+							// Recharge la page pour que la section des photos liées de l'objet (rendue côté serveur) prenne en compte le nouveau fichier.
 							window.location.reload();
 						}
 					});
@@ -477,7 +477,7 @@ window.nsinfo.mediaGallery.fastUpload = function() {
 };
 
 /**
- * Load a gallery page.
+ * Charge une page de la galerie.
  *
  * @return {void}
  */
@@ -521,7 +521,7 @@ window.nsinfo.mediaGallery.selectPage = function() {
 };
 
 /**
- * Toggle the "today's medias only" filter.
+ * Active ou désactive le filtre « médias du jour uniquement ».
  *
  * @return {void}
  */
@@ -549,7 +549,7 @@ window.nsinfo.mediaGallery.toggleTodayMedias = function() {
 };
 
 /**
- * Force-regenerate a missing thumb for a gallery grid item.
+ * Force la régénération d'une vignette manquante pour un élément de la grille.
  *
  * @return {void}
  */

@@ -29,10 +29,10 @@ namespace test\functional;
 use PHPUnit_Extensions_Selenium2TestCase_WebDriverException;
 
 /**
- * Class NsinfoFunctionalTest
+ * Classe NsinfoFunctionalTest
  *
- * Requires chromedriver for Google Chrome
- * Requires geckodriver for Mozilla Firefox
+ * Nécessite chromedriver pour Google Chrome
+ * Nécessite geckodriver pour Mozilla Firefox
  *
  * @fixme Firefox (Geckodriver/Marionette) support
  * @todo Opera linux support
@@ -43,23 +43,23 @@ use PHPUnit_Extensions_Selenium2TestCase_WebDriverException;
  */
 class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
-	// TODO: move to a global configuration file?
-	/** @var string Base URL of the webserver under test */
+	// TODO : déplacer vers un fichier de configuration global ?
+	/** @var string URL de base du serveur web testé */
 	protected static $base_url = 'http://dev.zenfusion.fr';
 	/**
-	 * @var string Dolibarr admin username
+	 * @var string Nom d'utilisateur administrateur Dolibarr
 	 * @see authenticate
 	 */
 	protected static $dol_admin_user = 'admin';
 	/**
-	 * @var string Dolibarr admin password
+	 * @var string Mot de passe administrateur Dolibarr
 	 * @see authenticate
 	 */
 	protected static $dol_admin_pass = 'admin';
 	/** @var int Dolibarr module ID */
 	private static $module_id = 500000; // TODO: autodetect?
 
-	/** @var array Browsers to test with */
+	/** @var array Navigateurs à tester */
 	public static $browsers = array(
 		array(
 			'browser' => 'Google Chrome on Linux',
@@ -67,8 +67,8 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 			'sessionStrategy' => 'shared',
 			'desiredCapabilities' => array()
 		),
-		// Geckodriver does not keep the session at the moment?!
-		// XPath selectors also don't seem to work
+		// Geckodriver ne conserve pas la session pour le moment ?!
+		// Les sélecteurs XPath ne semblent pas non plus fonctionner
 		//array(
 		//    'browser' => 'Mozilla Firefox on Linux',
 		//    'browserName' => 'firefox',
@@ -80,10 +80,10 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 	);
 
 	/**
-	 * Helper function to select links by href
+	 * Fonction utilitaire pour sélectionner les liens par href
 	 *
 	 * @param  string  $value      Href
-	 * @return mixed               Helper string
+	 * @return mixed               Chaîne utilitaire
 	 */
 	protected function byHref($value)
 	{
@@ -140,7 +140,7 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 				$this->byId('login')->submit();
 			}
 		} catch (PHPUnit_Extensions_Selenium2TestCase_WebDriverException $e) {
-			// Login does not exist. Assume we are already authenticated
+			// Le login n'existe pas. On suppose que nous sommes déjà authentifiés
 		}
 	}
 
@@ -157,13 +157,13 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 		$main_features_level->clear();
 		$main_features_level->value('2');
 		$this->byName('update')->click();
-		// Page reloaded, we need a new XPath
+		// Page rechargée, il faut un nouveau XPath
 		$main_features_level = $this->byXPath($main_features_level_path);
 		return $this->assertEquals('2', $main_features_level->value(), "MAIN_FEATURES_LEVEL value is 2");
 	}
 
 	/**
-	 * Test enabling the module
+	 * Teste l'activation du module
 	 *
 	 * @depends testEnableDeveloperMode
 	 * @return bool
@@ -175,21 +175,21 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 		$module_status_image_path = '//a[contains(@href, "'.self::$module_id.'")]/img';
 		$module_status_image = $this->byXPath($module_status_image_path);
 		if (strstr($module_status_image->attribute('src'), 'switch_off.png')) {
-			// Enable the module
+			// Active le module
 			$this->byHref('modNsinfo')->click();
 		} else {
-			// Disable the module
+			// Désactive le module
 			$this->byHref('modNsinfo')->click();
-			// Reenable the module
+			// Réactive le module
 			$this->byHref('modNsinfo')->click();
 		}
-		// Page reloaded, we need a new Xpath
+		// Page rechargée, il faut un nouveau XPath
 		$module_status_image = $this->byXPath($module_status_image_path);
 		return $this->assertContains('switch_on.png', $module_status_image->attribute('src'), "Module enabled");
 	}
 
 	/**
-	 * Test access to the configuration page
+	 * Teste l'accès à la page de configuration
 	 *
 	 * @depends testModuleEnabled
 	 * @return bool
@@ -202,7 +202,7 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 	}
 
 	/**
-	 * Test access to the about page
+	 * Teste l'accès à la page À propos
 	 *
 	 * @depends testConfigurationPage
 	 * @return bool
@@ -215,7 +215,7 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 	}
 
 	/**
-	 * Test about page is rendering Markdown
+	 * Teste que la page À propos affiche le Markdown
 	 *
 	 * @depends testAboutPage
 	 * @return bool
@@ -232,7 +232,7 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 	}
 
 	/**
-	 * Test box is properly declared
+	 * Teste que la boîte est correctement déclarée
 	 *
 	 * @depends testModuleEnabled
 	 * @return bool
@@ -245,7 +245,7 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 	}
 
 	/**
-	 * Test trigger is properly enabled
+	 * Teste que le trigger est correctement activé
 	 *
 	 * @depends testModuleEnabled
 	 * @return bool
@@ -262,7 +262,7 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 	}
 
 	/**
-	 * Test trigger is properly declared
+	 * Teste que le trigger est correctement déclaré
 	 *
 	 * @depends testTriggerDeclared
 	 * @return bool

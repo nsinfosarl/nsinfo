@@ -17,7 +17,7 @@
 /**
  * \file    js/nsinfo.js
  * \ingroup nsinfo
- * \brief   JavaScript bootstrap for module NSINFO.
+ * \brief   Initialisation JavaScript du module NSINFO.
  */
 
 if (!window.nsinfo) {

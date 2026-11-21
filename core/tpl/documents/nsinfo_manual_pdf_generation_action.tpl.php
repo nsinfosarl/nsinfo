@@ -10,14 +10,14 @@ if ($action == 'pdfGeneration') {
 
     $file = $upload_dir . '/' . $filename;
 
-    // Open and load template
+    // Ouvre et charge le modèle
     require_once ODTPHP_PATH . 'odf.php';
     try {
         $odfHandler = new odf(
             $file,
             array(
                 'PATH_TO_TMP'     => $conf->$moduleNameLowerCase->dir_temp,
-                'ZIP_PROXY'       => 'PclZipProxy', // PhpZipProxy or PclZipProxy. Got "bad compression method" error when using PhpZipProxy.
+                'ZIP_PROXY'       => 'PclZipProxy', // PhpZipProxy ou PclZipProxy. Erreur « bad compression method » avec PhpZipProxy.
                 'DELIMITER_LEFT'  => '{',
                 'DELIMITER_RIGHT' => '}'
             )
@@ -35,7 +35,7 @@ if ($action == 'pdfGeneration') {
 
     $manualPdfGenerationConf = $moduleNameUpperCase . '_MANUAL_PDF_GENERATION';
 
-    // Write new file
+    // Écrit le nouveau fichier
     if (! empty($conf->global->MAIN_ODT_AS_PDF) && $conf->global->$manualPdfGenerationConf > 0) {
         try {
             $odfHandler->exportAsAttachedPDF($file);

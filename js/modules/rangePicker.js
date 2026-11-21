@@ -15,15 +15,15 @@
  */
 
 /**
- * Calendar of a period between two dates (NS INFO) : two months side by side, one click for the first day, one click for
- * the last day, the days of the period are highlighted (and previewed under the pointer), the days that are not worked
- * are greyed, shortcuts and number of days. No library.
+ * Calendrier d'une période entre deux dates (NS INFO) : deux mois côte à côte, un clic pour le premier jour, un clic pour
+ * le dernier jour, les jours de la période sont surlignés (et prévisualisés sous le curseur), les jours non travaillés
+ * sont grisés, raccourcis et nombre de jours. Aucune bibliothèque.
  *
  *   nsinfoRangePicker(anchor, {start: 'YYYY-MM-DD', end: 'YYYY-MM-DD', workdays: [1,2,3,4,5], lang: 'fr-FR',
  *                               labels: {today:'', clear:'', days:'', from:'', to:''}, onChange: function(start, end) {}})
  *
- * Option single: true = one day only (one month, one click chooses the day, start = end), for the fields of one date.
- * Option exclusive: true = the last day is the day of the return (loan : 4 to 6 = 2 days, minimum 1), the number of days shown is the difference.
+ * Option single : true = un seul jour (un mois, un clic choisit le jour, début = fin), pour les champs d'une seule date.
+ * Option exclusive : true = le dernier jour est le jour du retour (prêt : 4 au 6 = 2 jours, minimum 1), le nombre de jours affiché est la différence.
  */
 (function (window, $) {
 	'use strict';
@@ -39,8 +39,8 @@
 	function sameDay(a, b) { return a && b && toIso(a) === toIso(b); }
 	function days(a, b) { return Math.round((b - a) / 86400000) + 1; }
 
-	/* Typed dates : order of the day, month and year of the language (Intl), reading of what is typed (28/02/2026, 28.2.26, 280226,
-	 * 28/02 for the current year), writing in the usual form */
+	/* Dates saisies : ordre du jour, du mois et de l'année de la langue (Intl), lecture de ce qui est saisi (28/02/2026, 28.2.26, 280226,
+	 * 28/02 pour l'année courante), écriture au format usuel */
 	var HINTS = {fr: ['jj', 'mm', 'aaaa'], es: ['dd', 'mm', 'aaaa'], it: ['gg', 'mm', 'aaaa'], de: ['TT', 'MM', 'JJJJ']};
 	function order(lang) {
 		var res = [];
@@ -74,7 +74,7 @@
 			v[dm[0]] = +parts[0]; v[dm[1]] = +parts[1]; v.year = new Date().getFullYear();
 		} else {
 			$.each(ord, function (i, k) { v[k] = +parts[i]; });
-			/* Year on two digits : the 20 coming years are 20xx, the others 19xx (10/05/75 is 1975, 10/05/35 is 2035) */
+			/* Année sur deux chiffres : les 20 années à venir sont 20xx, les autres 19xx (10/05/75 vaut 1975, 10/05/35 vaut 2035) */
 			if (v.year < 100) { v.year += 2000; if (v.year > new Date().getFullYear() + 20) { v.year -= 100; } }
 		}
 		var d = new Date(v.year, v.month - 1, v.day);
@@ -127,7 +127,7 @@
 			return html + '</div></div>';
 		}
 
-		/* The dates can also be typed : one field for the day (single) or two fields (period) */
+		/* Les dates peuvent aussi être saisies : un champ pour le jour (single) ou deux champs (période) */
 		function field(which, d) {
 			return '<input type="text" class="nsinfo-cal-in nsinfo-cal-in-' + which + '" data-which="' + which + '" inputmode="numeric" autocomplete="off" size="10" value="' + fmt(d, o.lang) + '" placeholder="' + hint(o.lang) + '" aria-label="' + (which === 'start' ? labels.from : labels.to) + '">';
 		}
@@ -153,14 +153,14 @@
 
 		render();
 		place();
-		/* Keyboard : the first field is ready to type (not on a phone, where the keyboard would hide the calendar) */
+		/* Clavier : le premier champ est prêt à la saisie (pas sur téléphone, où le clavier masquerait le calendrier) */
 		if ($(window).width() > 640) { el.find('.nsinfo-cal-in-start').trigger('focus').trigger('select'); }
 
 		el.on('click', '.nsinfo-cal-prev', function () { view = new Date(view.getFullYear(), view.getMonth() - 1, 1); render(); });
 		el.on('click', '.nsinfo-cal-next', function () { view = new Date(view.getFullYear(), view.getMonth() + 1, 1); render(); });
 		el.on('click', '.nsinfo-cal-today', function () { view = new Date(today.getFullYear(), today.getMonth(), 1); render(); });
 		el.on('click', '.nsinfo-cal-clear', function () { start = end = hover = null; render(); o.onChange('', ''); close(); });
-		/* Typed dates : Enter or leaving the field reads the date ; Enter on a complete period applies it */
+		/* Dates saisies : Entrée ou la sortie du champ lit la date ; Entrée sur une période complète l'applique */
 		function commit(input, enter) {
 			var which = $(input).data('which'), d = parseTyped($(input).val(), o.lang);
 			if (d === false) { $(input).addClass('nsinfo-cal-bad'); return; }
@@ -179,8 +179,8 @@
 		}
 		el.on('keydown', '.nsinfo-cal-in', function (ev) { if (ev.key === 'Enter') { ev.preventDefault(); commit(this, true); } });
 		el.on('change', '.nsinfo-cal-in', function () { commit(this, false); });
-		/* Selection with the mouse or the finger : press on a day and drag to another day (the range is the bounds), or click
-		 * the first day then the last day */
+		/* Sélection à la souris ou au doigt : appui sur un jour puis glisser vers un autre jour (la plage est délimitée par les deux), ou clic
+		 * sur le premier jour puis sur le dernier jour */
 		var dragging = false, anchorDay = null;
 		function finish(a, b) {
 			start = a < b ? a : b;

@@ -19,11 +19,11 @@
 /**
  * \file    core/tpl/utils/confirmation_view.tpl.php
  * \ingroup nsinfo
- * \brief   Template page for confirmation view
+ * \brief   Page modèle de la vue de confirmation
  */
 
 /**
- * The following vars must be defined :
+ * Les variables suivantes doivent être définies :
  * Global     : $langs
  * Parameters : $confirmationParams
  * options    : $confirmationParams[picto, moreCSS, confirmationTitle, buttonLabels]

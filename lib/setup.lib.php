@@ -45,8 +45,8 @@ function listCat($typecat)
 }
 
 /**
- *  Execute an sql and send an array of objects
- *  for mode = 1, sql is id => label
+ *  Exécute une requête SQL et renvoie un tableau d’objets
+ *  pour mode = 1, sql est id => libellé
  *  mode= 2 renvoie une liste unique d'id sql select xxx as id
  *  mode = 3 une liste d'objets indexé sur une colonne id
  * @param $sql
@@ -118,7 +118,7 @@ function Listmodelmail($user, $typecmde, $outputlangs)
                 $labeltouse = $line->label;
             }
 
-            // We escape the $labeltouse to store it into $modelmail_array.
+            // On échappe $labeltouse pour le stocker dans $modelmail_array.
             $modelmail_array[$line->id] = dol_escape_htmltag($labeltouse);
             if ($line->lang) {
                 $modelmail_array[$line->id] .= ' ' . picto_from_langcode($line->lang);
@@ -152,8 +152,8 @@ function nsinfoVerticalTabsStart($head, $active)
 .nsinfo-vtabs-content { flex: 1 1 auto; min-width: 0; }
 @media (max-width: 800px) { .nsinfo-vtabs { flex-direction: column; } .nsinfo-vtabs-nav { flex: none; width: 100%; } }
 </style>';
-        // Picto ↺ of a flagged sub-tab (nsinfoSectionResetFlag): click = the settings of the section go back to their defaults
-        // (capture phase: runs before the click that switches the sub-tab)
+        // Picto ↺ d’un sous-onglet signalé (nsinfoSectionResetFlag) : clic = les réglages de la section reviennent à leurs valeurs par défaut
+        // (phase de capture : s’exécute avant le clic qui change de sous-onglet)
         print '<script>document.addEventListener("click", function (ev) {
 	var r = ev.target.closest ? ev.target.closest(".nsinfo-reset") : null;
 	if (r) { ev.preventDefault(); ev.stopPropagation(); window.location.href = r.getAttribute("data-url"); }
@@ -185,7 +185,7 @@ function nsinfoSectionResetFlag($changed, $section)
     $query = array();
     parse_str((string) ($_SERVER['QUERY_STRING'] ?? ''), $query);
     unset($query['action'], $query['section'], $query['keys'], $query['token']);
-    // The keys are sent too (a section may be built from a list of settings, not only from a 'titletab' block) ; validated by nsinfoAction()
+    // Les clés sont aussi envoyées (une section peut être construite à partir d’une liste de réglages, pas seulement d’un bloc 'titletab') ; validées par nsinfoAction()
     $query = array_merge($query, array('action' => 'nsinforesetsection', 'section' => (int) $section, 'keys' => implode(',', $changed), 'token' => newToken()));
     $url = $_SERVER['PHP_SELF'] . '?' . http_build_query($query);
     return ' <span class="fas fa-undo-alt nsinfo-reset" style="color: #553885; cursor: pointer" data-url="' . dol_escape_htmltag($url)
@@ -222,7 +222,7 @@ function nsinfoIsDefault($key, $desc)
 		$current = ($current === '' ? '0' : $current);
 		$default = ($default === '' ? '0' : $default);
 	} elseif (!isset($conf->global->$key)) {
-		// Text, number, colour, list : nothing saved, the default value is the one shown and used
+		// Texte, nombre, couleur, liste : rien n’est enregistré, la valeur par défaut est celle affichée et utilisée
 		return true;
 	}
 	return ($current === $default || ($current === '' && $default === '0'));
@@ -367,8 +367,8 @@ function nsinfoSetup($arrayofparameters)
                     break;
 
                 case 'warehouse' :
-                    // One warehouse, or several with 'multiple' => 1 (ids saved comma separated, like the categories of 'seltags') ; saved at each change
-                    // (script at the end of the page, no button) ; 'urlnew' : button + to create a warehouse, which comes back selected (or added)
+                    // Un entrepôt, ou plusieurs avec 'multiple' => 1 (ids enregistrés séparés par des virgules, comme les catégories de 'seltags') ; enregistré à chaque modification
+                    // (script en fin de page, sans bouton) ; 'urlnew' : bouton + pour créer un entrepôt, qui revient sélectionné (ou ajouté)
                     require_once DOL_DOCUMENT_ROOT . '/product/class/html.formproduct.class.php';
                     $formproduct = new FormProduct($db);
                     $css = !empty($desc['css']) ? $desc['css'] : 'minwidth200';
@@ -381,7 +381,7 @@ function nsinfoSetup($arrayofparameters)
                     print !empty($desc['Tooltip']) ? $form->textwithpicto($langs->trans($key), $langs->trans($key . '_Tooltip')) : $langs->transnoentitiesnoconv($key);
                     print '</td>';
                     print '<td>';
-                    // Drop-down list without the arrow on the right, like the multiple selection (one style for the page)
+                    // Liste déroulante sans la flèche à droite, comme la sélection multiple (un seul style pour la page)
                     static $noarrowstyle = false;
                     if (!$noarrowstyle) {
                         $noarrowstyle = true;
@@ -398,7 +398,7 @@ function nsinfoSetup($arrayofparameters)
                     print '<input type="hidden" name="token" value="' . $_SESSION['newtoken'] . '">';
                     print '<input type="hidden" name="action" value="' . ($multiple ? 'multilistsel' : 'listsel') . '" />';
                     print '<input type="hidden" name="varlst" value="' . $key . '" />';
-                    // The class is on a container, not on the form : the form of the first row is nested in the one of the table and ignored by the browser
+                    // La classe est sur un conteneur, pas sur le formulaire : le formulaire de la première ligne est imbriqué dans celui du tableau et ignoré par le navigateur
                     print '<span class="nsinfo-noarrow">';
                     if ($multiple) {
                         $formproduct->loadWarehouses('', '', '', false);
@@ -414,7 +414,7 @@ function nsinfoSetup($arrayofparameters)
                     }
                     print '</span>';
                     print '&emsp;';
-                    // The warehouse created by the button + comes back selected (or added to the list) and saved (__ID__ is replaced by Dolibarr, actions listsel / multiadd of nsinfoAction)
+                    // L’entrepôt créé par le bouton + revient sélectionné (ou ajouté à la liste) et enregistré (__ID__ est remplacé par Dolibarr, actions listsel / multiadd de nsinfoAction)
                     if (!empty($urlnew)) print '<a href="' . DOL_URL_ROOT . $urlnew . '&backtopage=' . urlencode($_SERVER["PHP_SELF"] . '?action=' . ($multiple ? 'multiadd' : 'listsel') . '&varlst=' . $key . '&' . $key . '=__ID__') . '"><span class="fa fa-plus-circle valignmiddle" title="' . $langs->trans("AddProject") . '"></span></a>';
 
                     print '</form>';
@@ -548,8 +548,8 @@ function nsinfoSetup($arrayofparameters)
                     break;
 
                 case 'boolall' :
-                    // One switch to enable / disable all the boolean constants listed in $desc['keys']
-                    // (switch on when all are enabled ; the list is read from $arrayofparameters in nsinfoAction, not from the url)
+                    // Un interrupteur pour activer / désactiver toutes les constantes booléennes listées dans $desc['keys']
+                    // (interrupteur activé quand toutes sont actives ; la liste est lue dans $arrayofparameters dans nsinfoAction, pas dans l’url)
                     $allon = !empty($desc['keys']);
                     foreach ((array) $desc['keys'] as $boolkey) {
                         if (!getDolGlobalInt($boolkey)) {
@@ -570,8 +570,8 @@ function nsinfoSetup($arrayofparameters)
                     break;	// La ligne est fermée après le switch, comme pour les autres types
 
                 case 'resetdefault' :
-                    // One button that puts back the default value of the constants listed in $desc['keys'] (they are deleted : the code of the
-                    // module then uses its default) ; the list is read from $arrayofparameters in nsinfoAction, not from the url
+                    // Un bouton qui remet la valeur par défaut des constantes listées dans $desc['keys'] (elles sont supprimées : le code du
+                    // module utilise alors sa valeur par défaut) ; la liste est lue dans $arrayofparameters dans nsinfoAction, pas dans l’url
                     print '<tr class="oddeven">';
                     print '<td>';
                     if (!empty($desc['picto'])) print img_picto('', $desc['picto'], 'class="pictofixedwidth valignmiddle"');
@@ -836,7 +836,7 @@ function nsinfoSetup($arrayofparameters)
                     $rootfile = !empty($desc['rootfile']) ? $desc['rootfile'] : '';
 
                     if (!empty($desc['row'])) {
-                        // Line of the table : label (with tooltip) then link ('linklabel' : text of the link, 'picto' : picto before it)
+                        // Ligne du tableau : libellé (avec info-bulle) puis lien ('linklabel' : texte du lien, 'picto' : picto placé devant)
                         $linklabel = !empty($desc['linklabel']) ? $langs->trans($desc['linklabel']) : $rootfile;
                         $nbcol = !empty($desc['col']) ? $desc['col'] - 1 : 2;
                         print '<tr class="oddeven"><td>';
@@ -870,7 +870,7 @@ function nsinfoSetup($arrayofparameters)
                     print '<input type="hidden" name="varlst" value="' . $key . '" />';
                     print $form->selectarray($key, $arrayval, getDolGlobalInt($key), $show_empty, 0, 0, '', 0, 0, 0, '', $css);
                     if (!empty($desc['addurl'])) {
-                        // Button + at the end of the list : creation of a new element of the list
+                        // Bouton + en fin de liste : création d’un nouvel élément de la liste
                         print ' <a class="editfielda marginleftonly" href="' . $desc['addurl'] . '" title="' . dol_escape_htmltag(!empty($desc['addtitle']) ? $desc['addtitle'] : $langs->trans('Add')) . '"><span class="fa fa-plus-circle valignmiddle"></span></a>';
                     }
                     print '&emsp;';
@@ -1038,7 +1038,7 @@ function nsinfoSetup($arrayofparameters)
                     break;
 
                 case "seltags":
-                    // Category (tag) : 'typtag' => type of category (Categorie::TYPE_xxx), 'multiple' => 1 for several categories (saved comma separated)
+                    // Catégorie (tag) : 'typtag' => type de catégorie (Categorie::TYPE_xxx), 'multiple' => 1 pour plusieurs catégories (enregistrées séparées par des virgules)
                     $typtag = !empty($desc['typtag']) ? $desc['typtag'] : 'propal';
                     $multiple = !empty($desc['multiple']);
                     $css = !empty($desc['css']) ? $desc['css'] : 'minwidth300';
@@ -1063,7 +1063,7 @@ function nsinfoSetup($arrayofparameters)
                         print ajax_combobox($key);
                     }
                     if ($user->hasRight('categorie', 'creer')) {
-                        // Button + : creation of a category of this type, then back to the setup page
+                        // Bouton + : création d’une catégorie de ce type, puis retour à la page de réglage
                         $urlnew = DOL_URL_ROOT . '/categories/card.php?action=create&type=' . urlencode($typtag) . '&backtopage=' . urlencode($_SERVER['PHP_SELF']);
                         print ' <a class="editfielda marginleftonly" href="' . $urlnew . '" title="' . dol_escape_htmltag($langs->trans('CreateCat')) . '"><span class="fa fa-plus-circle valignmiddle"></span></a>';
                     }
@@ -1287,8 +1287,8 @@ jQuery(function($) {
 	function isAuto($form) {
 		return actions.indexOf($form.find("input[type=hidden][name=action]").first().val()) >= 0;
 	}
-	// Calendar of Dolibarr (type selDate) : choosing a day calls dpChangeDay() but jQuery UI sends no "change" event when the calendar has an
-	// onSelect function : the setting is saved from here (typing a date still goes through the event "change" of the field)
+	// Calendrier de Dolibarr (type selDate) : choisir un jour appelle dpChangeDay(), mais jQuery UI n’envoie pas d’événement « change » quand le calendrier a une
+	// fonction onSelect : le réglage est enregistré ici (saisir une date passe toujours par l’événement « change » du champ)
 	if (typeof window.dpChangeDay === "function" && !window.dpChangeDay.nsinfo) {
 		var dpOriginal = window.dpChangeDay;
 		window.dpChangeDay = function (prefix) {
@@ -1302,7 +1302,7 @@ jQuery(function($) {
 		};
 		window.dpChangeDay.nsinfo = true;
 	}
-	// Link "Now" of the calendar of Dolibarr (button of the field of date) : it fills the date without any event, the setting is saved after it
+	// Lien « Now » du calendrier de Dolibarr (bouton du champ de date) : il remplit la date sans événement, le réglage est enregistré ensuite
 	$(document).on("click", "button.datenowlink", function() {
 		var $f = $(this).closest("form");
 		if ($f.length && isAuto($f)) {
@@ -1360,12 +1360,12 @@ function nsinfoAction($action, $var, $value, $vartxt, $varround, $valuetxt, $def
         });
     }
 
-    // GET requests are not protected by the core CSRF check (POST forms are): require the token for every action
-    // that writes a constant ('listsel' is also reached from the return link of a creation card, without token)
+    // Les requêtes GET ne sont pas protégées par le contrôle CSRF du noyau (les formulaires POST le sont) : exiger le jeton pour chaque action
+    // qui écrit une constante ('listsel' est aussi appelé depuis le lien de retour d’une fiche de création, sans jeton)
     if (!empty($action) && $_SERVER['REQUEST_METHOD'] != 'POST' && $action != 'listsel' && $action != 'multiadd'
         && ($action == 'activate' || $action == 'disable' || $action == 'set' || $action == 'reset' || $action == 'datesel' || $action == 'selectfont'
             || preg_match('/^(set_|del_|set|multilistsel|listselstrg)/', $action))) {
-        // Modules built on nsinfo whose links carry no token yet: accepted only when the request comes from a page of the same host
+        // Modules construits sur nsinfo dont les liens ne portent pas encore de jeton : acceptés seulement si la requête vient d’une page du même hôte
         $sametoken = (GETPOST('token', 'alpha') == currentToken());
         $referer = isset($_SERVER['HTTP_REFERER']) ? parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST) : '';
         $samehost = (GETPOST('token', 'alpha') === '' && !empty($referer) && isset($_SERVER['HTTP_HOST'])
@@ -1404,7 +1404,7 @@ function nsinfoAction($action, $var, $value, $vartxt, $varround, $valuetxt, $def
         $bysection = nsinfoDefaultsBySection($arrayofparameters);
         $resetkeys = (array) ($bysection[$section] ?? array());
         if (GETPOST('keys', 'alphanohtml') !== '') {
-            // Explicit list (sections not built from 'titletab' blocks) : only declared settings that are not at their default
+            // Liste explicite (sections non construites à partir de blocs 'titletab') : seulement les réglages déclarés qui ne sont pas à leur valeur par défaut
             $resetkeys = array();
             foreach (explode(',', GETPOST('keys', 'alphanohtml')) as $k) {
                 if (isset($arrayofparameters[$k]) && !nsinfoIsDefault($k, $arrayofparameters[$k])) {
@@ -1443,7 +1443,7 @@ function nsinfoAction($action, $var, $value, $vartxt, $varround, $valuetxt, $def
         return 1;
     }
 
-    // Type 'boolall' : enable / disable all the boolean constants of the parameter (list read from $arrayofparameters)
+    // Type 'boolall' : active / désactive toutes les constantes booléennes du paramètre (liste lue dans $arrayofparameters)
     if (($action == 'boolall_on' || $action == 'boolall_off') && !empty($arrayofparameters[$var]['keys']) && $arrayofparameters[$var]['type'] == 'boolall') {
         if (GETPOST('token', 'alpha') != currentToken()) {
             return 0;
@@ -1458,7 +1458,7 @@ function nsinfoAction($action, $var, $value, $vartxt, $varround, $valuetxt, $def
         return 1;
     }
 
-    // Type 'resetdefault' : delete the constants of the parameter, so that the module goes back to its default values (list read from $arrayofparameters)
+    // Type 'resetdefault' : supprime les constantes du paramètre, pour que le module revienne à ses valeurs par défaut (liste lue dans $arrayofparameters)
     if ($action == 'resetdefault' && !empty($arrayofparameters[$var]['keys']) && $arrayofparameters[$var]['type'] == 'resetdefault') {
         if (GETPOST('token', 'alpha') != currentToken()) {
             return 0;
@@ -1503,7 +1503,7 @@ function nsinfoAction($action, $var, $value, $vartxt, $varround, $valuetxt, $def
         $const = implode(', ', colorStringToArray(GETPOST($varcolor, 'alpha')));
         dolibarr_set_const($db, $varcolor, $const, 'chaine', 0, '', $conf->entity);
     } elseif ($action == 'multiadd' && !empty($varlist)) {
-        // A warehouse (or other element) just created is added to the selection of a multiple list ; the id must be a warehouse of the entity
+        // Un entrepôt (ou autre élément) qui vient d’être créé est ajouté à la sélection d’une liste multiple ; l’id doit être un entrepôt de l’entité
         $newid = GETPOSTINT($varlist);
         if ($newid > 0) {
             $resw = $db->query("SELECT rowid FROM " . MAIN_DB_PREFIX . "entrepot WHERE rowid = " . ((int) $newid) . " AND entity IN (" . getEntity('stock') . ")");
@@ -1565,11 +1565,11 @@ function getDictionaryCode($table, $id)
 
 
 /**
- * Check user access on current page
+ * Vérifie l’accès de l’utilisateur à la page courante
  *
- * @param object|bool $permission Permission to access to current page
- * @param object|null $object Object in current page
- * @param bool $allowExternalUser Allow external user to have access at current page
+ * @param object|bool $permission Droit d’accès à la page courante
+ * @param object|null $object Objet de la page courante
+ * @param bool $allowExternalUser Autorise un utilisateur externe à accéder à la page courante
  */
 function nsinfo_check_access($permission, object $object = null, bool $allowExternalUser = false)
 {

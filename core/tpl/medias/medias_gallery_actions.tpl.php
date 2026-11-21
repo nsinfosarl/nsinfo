@@ -19,24 +19,24 @@
 /**
  * \file    core/tpl/medias/medias_gallery_actions.tpl.php
  * \ingroup nsinfo
- * \brief   NSINFO media gallery: processes the media subactions (upload, link,
- *          favorite, unlink, delete, pagination). Must be included from the
- *          "Actions" section of the calling page, before any code that reads
- *          the linked medias from disk (nsinfo_show_medias_linked(), ...), so
- *          that page fragments returned to AJAX callers reflect the change.
+ * \brief   Galerie de médias NSINFO : traite les sous-actions sur les médias (envoi, lien,
+ *          favori, délier, supprimer, pagination). À inclure depuis la
+ *          section « Actions » de la page appelante, avant tout code qui lit
+ *          les médias liés depuis le disque (nsinfo_show_medias_linked(), ...), afin que
+ *          les fragments de page renvoyés aux appels AJAX reflètent le changement.
  *
- * The following vars must be defined before including this template:
+ * Les variables suivantes doivent être définies avant d'inclure ce modèle :
  * Global     : $conf, $db, $langs, $user
- * Parameters : $modulepart      Module owning the medias (e.g. 'gmao')
- *              $object          Current object the medias are linked to (already fetched)
+ * Paramètres : $modulepart      Module propriétaire des médias (ex. 'gmao')
+ *              $object          Objet courant auquel les médias sont liés (déjà chargé)
  *              $subaction       GETPOST('subaction', 'aZ09')
- *              $permissiontoadd Right used to gate the upload/link/unlink actions
+ *              $permissiontoadd Droit qui contrôle les actions d'envoi, de lien et de délien
  *
- * This template does not depend on the Saturne module. It only needs the
- * NSINFO helper libraries (lib/medias.lib.php, lib/pagination.lib.php).
+ * Ce modèle ne dépend pas du module Saturne. Il n'a besoin que des
+ * bibliothèques d'aide NSINFO (lib/medias.lib.php, lib/pagination.lib.php).
  *
- * medias_gallery_modal.tpl.php (rendered later, in the "View" section) relies
- * on $mediaSizes, $modulepartUpper and $ecmMediasDir set below.
+ * medias_gallery_modal.tpl.php (affiché plus tard, dans la section « View ») s'appuie
+ * sur $mediaSizes, $modulepartUpper et $ecmMediasDir définis ci-dessous.
  */
 
 require_once DOL_DOCUMENT_ROOT . '/core/lib/files.lib.php';
@@ -49,7 +49,7 @@ $mediaSizes = ['mini', 'small', 'medium', 'large'];
 $modulepartUpper = dol_strtoupper($modulepart);
 $ecmMediasDir     = $conf->ecm->multidir_output[$conf->entity] . '/' . $modulepart . '/medias';
 
-// Upload a file into the shared staging directory (from the fast-upload button or the modal add-file input).
+// Envoie un fichier dans le répertoire de transit partagé (depuis le bouton d'envoi rapide ou le champ d'ajout de la fenêtre modale).
 if (!(isset($error) && $error) && $subaction == 'uploadPhoto' && $permissiontoadd && !empty($conf->global->MAIN_UPLOAD_DOC)) {
     if (!dol_is_dir($ecmMediasDir)) {
         dol_mkdir($ecmMediasDir);
@@ -81,7 +81,7 @@ if (!(isset($error) && $error) && $subaction == 'uploadPhoto' && $permissiontoad
     }
 }
 
-// Link one or more staged files to the current object (from the fast-upload button or the "Add" button in the gallery modal).
+// Lie un ou plusieurs fichiers en transit à l'objet courant (depuis le bouton d'envoi rapide ou le bouton « Ajouter » de la galerie).
 if ($subaction == 'addFiles' && $permissiontoadd && is_object($object)) {
     $data = json_decode(file_get_contents('php://input'), true);
 
@@ -124,7 +124,7 @@ if ($subaction == 'addFiles' && $permissiontoadd && is_object($object)) {
     }
 }
 
-// Remove one or more staged files from the shared gallery (multi-select delete in the modal footer).
+// Retire un ou plusieurs fichiers en transit de la galerie partagée (suppression multiple dans le pied de la fenêtre modale).
 if ($subaction == 'delete_files' && $permissiontodelete) {
     $data = json_decode(file_get_contents('php://input'), true);
 
@@ -153,7 +153,7 @@ if ($subaction == 'delete_files' && $permissiontodelete) {
     }
 }
 
-// Unlink a file from the current object (does not delete it from the shared staging gallery).
+// Délie un fichier de l'objet courant (ne le supprime pas de la galerie partagée).
 if ($subaction == 'unlinkFile' && $permissiontodelete && is_object($object)) {
     $data = json_decode(file_get_contents('php://input'), true);
 
@@ -180,7 +180,7 @@ if ($subaction == 'unlinkFile' && $permissiontodelete && is_object($object)) {
     }
 }
 
-// Set a file already linked to the object as its favorite (main) photo.
+// Définit un fichier déjà lié à l'objet comme photo favorite (principale).
 if ($subaction == 'addToFavorite' && $permissiontoadd && is_object($object)) {
     $data = json_decode(file_get_contents('php://input'), true);
 
@@ -193,7 +193,7 @@ if ($subaction == 'addToFavorite' && $permissiontoadd && is_object($object)) {
     }
 }
 
-// Recompute the pagination array (used when clicking a page number in the modal footer).
+// Recalcule le tableau de pagination (utilisé lors du clic sur un numéro de page dans le pied de la fenêtre modale).
 if (!(isset($error) && $error) && $subaction == 'pagination') {
     $data = json_decode(file_get_contents('php://input'), true);
 
@@ -202,7 +202,7 @@ if (!(isset($error) && $error) && $subaction == 'pagination') {
     $loadedPageArray = nsinfo_load_pagination($pagesCounter, [], $offset);
 }
 
-// Toggle the "today's medias only" filter (stored as a per-user preference).
+// Active ou désactive le filtre « médias du jour uniquement » (enregistré comme préférence de l'utilisateur).
 if (!(isset($error) && $error) && $subaction == 'toggleTodayMedias') {
     $toggleValue                                      = GETPOST('toggle_today_medias');
     $tabparam['NSINFO_MEDIA_GALLERY_SHOW_TODAY_MEDIAS'] = $toggleValue;
@@ -210,7 +210,7 @@ if (!(isset($error) && $error) && $subaction == 'toggleTodayMedias') {
     dol_set_user_param($db, $conf, $user, $tabparam);
 }
 
-// Force regenerate a missing thumb (clicked from the gallery grid when a thumb could not be found).
+// Force la régénération d'une vignette manquante (cliquée depuis la grille de la galerie quand la vignette est introuvable).
 if (!(isset($error) && $error) && $subaction == 'regenerate_thumbs') {
     $data = json_decode(file_get_contents('php://input'), true);
 

@@ -24,12 +24,12 @@
  *
  *  \file       htdocs/nsinfo/core/modules/modNsinfo.class.php
  *  \ingroup    nsinfo
- *  \brief      Description and activation file for module Nsinfo
+ *  \brief      Fichier de description et d'activation du module Nsinfo
  */
 include_once DOL_DOCUMENT_ROOT.'/core/modules/DolibarrModules.class.php';
 
 /**
- *  Description and activation class for module Nsinfo
+ *  Classe de description et d'activation du module Nsinfo
  */
 class modNsinfo extends DolibarrModules
 {
@@ -62,7 +62,7 @@ class modNsinfo extends DolibarrModules
                 '/nsinfo/css/nsfa.css.php',
                 getDolGlobalInt('NSINFO_CSSSTATUS')?'/nsinfo/css/nsinfostatus.css.php':'',
                 ),
-			// Set this to relative path of js file if module must load a js on all pages
+			// Indiquer le chemin relatif du fichier js si le module doit charger un js sur toutes les pages
 			'js' => array(
 				'/nsinfo/js/nsinfo.js',
 				'/nsinfo/js/modules/toolbox.js',
@@ -72,23 +72,23 @@ class modNsinfo extends DolibarrModules
 				'/nsinfo/js/modules/menu.js',	// Réduction du menu de gauche (nsinfoMenuMinimize)
 			)
 		);
-		// Data directories to create when module is enabled.
-		// Example: this->dirs = array("/nsinfo/temp","/nsinfo/subdir");
+		// Répertoires de données à créer à l'activation du module.
+		// Exemple : this->dirs = array("/nsinfo/temp","/nsinfo/subdir");
 		$this->dirs = array("/nsinfo/temp");
-		// Config pages. Put here list of php page, stored into nsinfo/admin directory, to use to setup module.
+		// Pages de configuration. Indiquer ici la liste des pages php, stockées dans le répertoire nsinfo/admin, servant à paramétrer le module.
 		$this->config_page_url = array("setup.php@nsinfo");
 		// Dependencies
-		// A condition to hide module
+		// Une condition pour masquer le module
 		$this->hidden = false;
-		// List of module class names as string that must be enabled if this module is enabled. Example: array('always1'=>'modModuleToEnable1','always2'=>'modModuleToEnable2', 'FR1'=>'modModuleToEnableFR'...)
+		// Liste des noms de classes de modules (chaînes) à activer si ce module est activé. Exemple : array('always1'=>'modModuleToEnable1','always2'=>'modModuleToEnable2', 'FR1'=>'modModuleToEnableFR'...)
 		$this->depends = array();
-		$this->requiredby = array(); // List of module class names as string to disable if this one is disabled. Example: array('modModuleToDisable1', ...)
-		$this->conflictwith = array(); // List of module class names as string this module is in conflict with. Example: array('modModuleToDisable1', ...)
+		$this->requiredby = array(); // Liste des noms de classes de modules (chaînes) à désactiver si celui-ci est désactivé. Exemple : array('modModuleToDisable1', ...)
+		$this->conflictwith = array(); // Liste des noms de classes de modules (chaînes) en conflit avec ce module. Exemple : array('modModuleToDisable1', ...)
 		$this->langfiles = array("nsinfo@nsinfo");
-		$this->phpmin = array(5, 5); // Minimum version of PHP required by module
-		$this->need_dolibarr_version = array(11, -3); // Minimum version of Dolibarr required by module
-		$this->warnings_activation = array(); // Warning to show when we activate module. array('always'='text') or array('FR'='textfr','ES'='textes'...)
-		$this->warnings_activation_ext = array(); // Warning to show when we activate an external module. array('always'='text') or array('FR'='textfr','ES'='textes'...)
+		$this->phpmin = array(5, 5); // Version minimale de PHP requise par le module
+		$this->need_dolibarr_version = array(11, -3); // Version minimale de Dolibarr requise par le module
+		$this->warnings_activation = array(); // Avertissement à afficher lors de l'activation du module. array('always'='text') or array('FR'='textfr','ES'='textes'...)
+		$this->warnings_activation_ext = array(); // Avertissement à afficher lors de l'activation d'un module externe. array('always'='text') or array('FR'='textfr','ES'='textes'...)
 		//$this->automatic_activation = array('FR'=>'NsinfoWasAutomaticallyActivatedBecauseOfYourCountryChoice');
 
 
@@ -101,40 +101,40 @@ class modNsinfo extends DolibarrModules
 			$conf->nsinfo->enabled = 0;
 		}
 
-		// Array to add new pages in new tabs
+		// Tableau pour ajouter de nouvelles pages dans de nouveaux onglets
 		$this->tabs = array();
 
 		// Dictionaries
 		$this->dictionaries = array();
 
 		// Boxes/Widgets
-		// Add here list of php file(s) stored in nsinfo/core/boxes that contains a class to show a widget.
+		// Indiquer ici la liste des fichiers php stockés dans nsinfo/core/boxes qui contiennent une classe affichant un widget.
 		$this->boxes = array();
 
 		$this->cronjobs = array();
 
-		// Permissions provided by this module
+		// Droits fournis par ce module
 		$this->rights = array();
 		$r = 0;
 
-		// Main menu entries to add
+		// Entrées de menu principal à ajouter
 		$this->menu = array();
 	}
 
 	/**
-	 *  Function called when module is enabled.
-	 *  The init function add constants, boxes, permissions and menus (defined in constructor) into Dolibarr database.
+	 *  Fonction appelée à l'activation du module.
+	 *  La fonction init ajoute dans la base Dolibarr les constantes, boîtes, droits et menus (définis dans le constructeur).
 	 *  It also creates data directories
 	 *
-	 *  @param      string  $options    Options when enabling module ('', 'noboxes')
-	 *  @return     int             	1 if OK, 0 if KO
+	 *  @param      string  $options    Options lors de l'activation du module ('', 'noboxes')
+	 *  @return     int             	1 si OK, 0 si KO
 	 */
 	public function init($options = '')
 	{
 		global $conf, $langs;
 
 		$result = $this->_load_tables('/nsinfo/sql/');
-		if ($result < 0) return -1; // Do not activate module if error 'not allowed' returned when loading module SQL queries (the _load_table run sql with run_sql with the error allowed parameter set to 'default')
+		if ($result < 0) return -1; // Ne pas activer le module si l'erreur 'not allowed' est renvoyée lors du chargement des requêtes SQL du module (_load_table exécute run_sql avec le paramètre d'erreur autorisée réglé sur 'default')
 
 		// Permissions
 		$this->remove($options);
@@ -145,12 +145,12 @@ class modNsinfo extends DolibarrModules
 	}
 
 	/**
-	 *  Function called when module is disabled.
-	 *  Remove from database constants, boxes and permissions from Dolibarr database.
-	 *  Data directories are not deleted
+	 *  Fonction appelée à la désactivation du module.
+	 *  Supprime de la base Dolibarr les constantes, boîtes et droits.
+	 *  Les répertoires de données ne sont pas supprimés
 	 *
-	 *  @param      string	$options    Options when enabling module ('', 'noboxes')
-	 *  @return     int                 1 if OK, 0 if KO
+	 *  @param      string	$options    Options lors de la désactivation du module ('', 'noboxes')
+	 *  @return     int                 1 si OK, 0 si KO
 	 */
 	public function remove($options = '')
 	{

@@ -19,22 +19,22 @@
 /**
  * \file    core/tpl/medias/medias_gallery_modal.tpl.php
  * \ingroup nsinfo
- * \brief   NSINFO media gallery: renders the #media_gallery modal.
+ * \brief   Galerie de médias NSINFO : affiche la fenêtre modale #media_gallery.
  *
- * medias_gallery_actions.tpl.php MUST have already been included (from the
- * "Actions" section of the calling page, before this template) so that the
+ * medias_gallery_actions.tpl.php DOIT déjà avoir été inclus (depuis la
+ * section « Actions » de la page appelante, avant ce modèle) afin que les
  * medias listed below reflect any subaction (addFiles, unlinkFile, ...)
- * processed for the current request.
+ * traités pour la requête courante.
  *
- * The following vars must be defined before including this template:
+ * Les variables suivantes doivent être définies avant d'inclure ce modèle :
  * Global     : $conf, $db, $langs, $user
- * Parameters : $modulepart      Module owning the medias (e.g. 'gmao')
- *              $object          Current object the medias are linked to (already fetched)
- *              $ecmMediasDir    Set by medias_gallery_actions.tpl.php
- *              $modulepartUpper Set by medias_gallery_actions.tpl.php
+ * Paramètres : $modulepart      Module propriétaire des médias (ex. 'gmao')
+ *              $object          Objet courant auquel les médias sont liés (déjà chargé)
+ *              $ecmMediasDir    Défini par medias_gallery_actions.tpl.php
+ *              $modulepartUpper Défini par medias_gallery_actions.tpl.php
  *
- * This template does not depend on the Saturne module. It only needs the
- * NSINFO helper libraries (lib/medias.lib.php, lib/pagination.lib.php).
+ * Ce modèle ne dépend pas du module Saturne. Il n'a besoin que des
+ * bibliothèques d'aide NSINFO (lib/medias.lib.php, lib/pagination.lib.php).
  */
 
 require_once __DIR__ . '/../../../lib/medias.lib.php';

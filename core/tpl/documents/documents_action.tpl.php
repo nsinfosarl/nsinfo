@@ -19,11 +19,11 @@
 /**
  * \file    core/tpl/documents/documents_action.tpl.php
  * \ingroup nsinfo
- * \brief   Template page for documents action.
+ * \brief   Page modèle pour l'action sur les documents.
  */
 
 /**
- * The following vars must be defined:
+ * Les variables suivantes doivent être définies :
  * Global     : $conf, $db, $hookmanager, $langs, $user,
  * Parameters : $action,
  * Objects    : $object, $document
@@ -47,7 +47,7 @@ if (($action == 'builddoc' || GETPOST('forcebuilddoc')) && $permissiontoadd) {
         $outputLangs->setDefaultLang($newLang);
     }
 
-    // To be sure vars is defined.
+    // Pour s'assurer que les variables sont définies.
     if (empty($hideDetails)) {
         $hideDetails = 0;
     }
@@ -106,9 +106,9 @@ if (($action == 'builddoc' || GETPOST('forcebuilddoc')) && $permissiontoadd) {
             setEventMessages($langs->trans('FileGenerated') . ' - ' . '<a href=' . DOL_URL_ROOT . '/document.php?modulepart=' . (!empty($moreParams['modulePart']) ? $moreParams['modulePart'] : $object->module) . '&file=' . urlencode((empty($moreParams['modulePart']) ? $document->element . '/' : '') . (dol_strlen($object->ref) > 0 ? $object->ref . '/' : '') . $document->last_main_doc) . '&entity=' . $conf->entity . '"' . '>' . $document->last_main_doc . '</a>', []);
             $urlToRedirect = $_SERVER['REQUEST_URI'];
             $urlToRedirect = preg_replace('/#builddoc$/', '', $urlToRedirect);
-            // To avoid infinite loop.
+            // Pour éviter une boucle infinie.
             $urlToRedirect = preg_replace('/action=builddoc&?/', '', $urlToRedirect);
-            // To avoid infinite loop.
+            // Pour éviter une boucle infinie.
             $urlToRedirect = preg_replace('/forcebuilddoc=1&?/', '', $urlToRedirect);
             if (!isset($shouldRedirect) || $shouldRedirect) {
                 header('Location: ' . $urlToRedirect);
@@ -118,7 +118,7 @@ if (($action == 'builddoc' || GETPOST('forcebuilddoc')) && $permissiontoadd) {
     }
 }
 
-// Remove file action.
+// Action de suppression de fichier.
 if ($action == 'remove_file' && $permissiontodelete) {
     if (!empty($upload_dir)) {
         require_once DOL_DOCUMENT_ROOT . '/core/lib/files.lib.php';
@@ -132,7 +132,7 @@ if ($action == 'remove_file' && $permissiontodelete) {
             setEventMessages($langs->trans('ErrorFailToDeleteFile', $fileToDelete), [], 'errors');
         }
 
-        // Make a redirect to avoid to keep the remove_file into the url that create side effects.
+        // Redirection pour éviter de garder remove_file dans l'URL, ce qui provoque des effets de bord.
         $urlToRedirect = $_SERVER['REQUEST_URI'];
         $urlToRedirect = preg_replace('/#builddoc$/', '', $urlToRedirect);
         $urlToRedirect = preg_replace('/action=remove_file&?/', '', $urlToRedirect);

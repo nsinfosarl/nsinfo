@@ -18,9 +18,9 @@
 /**
  *	\file       nsinfo/ajax/translate.php
  *	\ingroup    nsinfo
- *	\brief      Automatic translation of a text for all the modules (JSON answer, nothing is saved).
- *	            POST : token, module (module that calls : its settings are used, common or specific), text, to (index 1..5 of the target language), html (0/1), from (index of the source language,
- *	            by default the language of the user). Indexes : 1 en_US, 2 fr_FR, 3 de_DE, 4 it_IT, 5 es_ES.
+ *	\brief      Traduction automatique d'un texte pour tous les modules (réponse JSON, rien n'est enregistré).
+ *	            POST : token, module (module appelant : ses réglages sont utilisés, communs ou propres), text, to (index 1..5 de la langue cible), html (0/1), from (index de la langue source,
+ *	            par défaut la langue de l'utilisateur). Index : 1 en_US, 2 fr_FR, 3 de_DE, 4 it_IT, 5 es_ES.
  */
 
 if (!defined('NOTOKENRENEWAL')) {
@@ -67,12 +67,12 @@ $answer = array();
 if (!empty($user->socid) || !$user->id) {
 	$answer = array('error' => $langs->transnoentities('NotEnoughPermissions'));
 } elseif (isModEnabled('nstranslate') && !$user->hasRight('nstranslate', 'translate', 'use')) {
-	// Module nstranslate enabled: the on-demand translation is reserved to the users who have its right
+	// Module nstranslate activé : la traduction à la demande est réservée aux utilisateurs qui ont ce droit
 	$answer = array('error' => $langs->transnoentities('NotEnoughPermissions'));
 } elseif (nsinfoTradActiveProvider() === '') {
 	$answer = array('error' => $langs->transnoentities('NsinfoTradNotConfigured'));
 } else {
-	// Languages : index (1..5) or code of the language of the provider (fr, pt-BR...)
+	// Langues : index (1..5) ou code de la langue du fournisseur (fr, pt-BR...)
 	$fromparam = (string) GETPOST('from', 'alphanohtml');
 	$toparam = (string) GETPOST('to', 'alphanohtml');
 	$from = ($fromparam !== '' ? (ctype_digit($fromparam) ? (int) $fromparam : $fromparam) : nsinfoTradLangIndex($user->lang ? $user->lang : $langs->defaultlang));

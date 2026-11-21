@@ -24,7 +24,7 @@
 /**
  *	\file       htdocs/core/modules/nsinfo/doc/doc_generic_myobject_odt.modules.php
  *	\ingroup    nsinfo
- *	\brief      File of class to build ODT documents for myobjects
+ *	\brief      Fichier de classe de génération des documents ODT pour les myobjects
  */
 
 dol_include_once('/nsinfo/core/modules/nsinfo/modules_myobject.php');
@@ -36,7 +36,7 @@ require_once DOL_DOCUMENT_ROOT.'/core/lib/doc.lib.php';
 
 
 /**
- *	Class to build documents using ODF templates generator
+ *	Classe de génération de documents à partir de modèles ODF
  */
 class doc_generic_myobject_odt extends ModelePDFMyObject
 {
@@ -47,13 +47,13 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 	public $emetteur;
 
 	/**
-	 * @var array Minimum version of PHP required by module.
-	 * e.g.: PHP ≥ 5.5 = array(5, 5)
+	 * @var array Version minimale de PHP requise par le module.
+	 * par ex. : PHP ≥ 5.5 = array(5, 5)
 	 */
 	public $phpmin = array(5, 5);
 
 	/**
-	 * @var string Dolibarr version of the loaded document
+	 * @var string Version de Dolibarr du document chargé
 	 */
 	public $version = 'dolibarr';
 
@@ -67,15 +67,15 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 	{
 		global $conf, $langs, $mysoc;
 
-		// Load translation files required by the page
+		// Charge les fichiers de traduction nécessaires à la page
 		$langs->loadLangs(array("main", "companies"));
 
 		$this->db = $db;
 		$this->name = "ODT templates";
 		$this->description = $langs->trans("DocumentModelOdt");
-		$this->scandir = 'NSINFO_MYOBJECT_ADDON_PDF_ODT_PATH'; // Name of constant that is used to save list of directories to scan
+		$this->scandir = 'NSINFO_MYOBJECT_ADDON_PDF_ODT_PATH'; // Nom de la constante qui enregistre la liste des répertoires à parcourir
 
-		// Page size for A4 format
+		// Format de page A4
 		$this->type = 'odt';
 		$this->page_largeur = 0;
 		$this->page_hauteur = 0;
@@ -92,27 +92,27 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 		$this->option_codeproduitservice = 0; // Affiche code produit-service
 		$this->option_multilang = 1; // Dispo en plusieurs langues
 		$this->option_escompte = 0; // Affiche si il y a eu escompte
-		$this->option_credit_note = 0; // Support credit notes
-		$this->option_freetext = 1; // Support add of a personalised text
-		$this->option_draft_watermark = 0; // Support add of a watermark on drafts
+		$this->option_credit_note = 0; // Gère les avoirs
+		$this->option_freetext = 1; // Permet l'ajout d'un texte personnalisé
+		$this->option_draft_watermark = 0; // Permet l'ajout d'un filigrane sur les brouillons
 
 		// Recupere emetteur
 		$this->emetteur = $mysoc;
-		if (!$this->emetteur->country_code) $this->emetteur->country_code = substr($langs->defaultlang, -2); // By default if not defined
+		if (!$this->emetteur->country_code) $this->emetteur->country_code = substr($langs->defaultlang, -2); // Par défaut si non défini
 	}
 
 
 	/**
-	 *	Return description of a module
+	 *	Renvoie la description du module
 	 *
-	 *	@param	Translate	$langs      Lang object to use for output
+	 *	@param	Translate	$langs      Objet langue à utiliser pour la sortie
 	 *	@return string       			Description
 	 */
 	public function info($langs)
 	{
 		global $conf, $langs;
 
-		// Load translation files required by the page
+		// Charge les fichiers de traduction nécessaires à la page
 		$langs->loadLangs(array("errors", "companies"));
 
 		$form = new Form($this->db);
@@ -124,7 +124,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 		$texte .= '<input type="hidden" name="param1" value="NSINFO_MYOBJECT_ADDON_PDF_ODT_PATH">';
 		$texte .= '<table class="nobordernopadding" width="100%">';
 
-		// List of directories area
+		// Zone de la liste des répertoires
 		$texte .= '<tr><td>';
 		$texttitle = $langs->trans("ListOfDirectories");
 		$listofdir = explode(',', preg_replace('/[\r\n]+/', ',', trim($conf->global->NSINFO_MYOBJECT_ADDON_PDF_ODT_PATH)));
@@ -144,9 +144,9 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 			}
 		}
 		$texthelp = $langs->trans("ListOfDirectoriesForModelGenODT");
-		// Add list of substitution keys
+		// Ajoute la liste des clés de substitution
 		$texthelp .= '<br>'.$langs->trans("FollowingSubstitutionKeysCanBeUsed").'<br>';
-		$texthelp .= $langs->transnoentitiesnoconv("FullListOnOnlineDocumentation"); // This contains an url, we don't modify it
+		$texthelp .= $langs->transnoentitiesnoconv("FullListOnOnlineDocumentation"); // Contient une URL, on ne la modifie pas
 
 		$texte .= $form->textwithpicto($texttitle, $texthelp, 1, 'help', '', 1);
 		$texte .= '<div><div style="display: inline-block; min-width: 100px; vertical-align: middle;">';
@@ -193,15 +193,15 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
 	/**
-	 *  Function to build a document on disk using the generic odt module.
+	 *  Fonction de génération d'un document sur disque avec le module ODT générique.
 	 *
-	 *	@param		Commande	$object				Object source to build document
+	 *	@param		Commande	$object				Objet source pour générer le document
 	 *	@param		Translate	$outputlangs		Lang output object
-	 * 	@param		string		$srctemplatepath	Full path of source filename for generator using a template file
-	 *  @param		int			$hidedetails		Do not show line details
-	 *  @param		int			$hidedesc			Do not show desc
-	 *  @param		int			$hideref			Do not show ref
-	 *	@return		int         					1 if OK, <=0 if KO
+	 * 	@param		string		$srctemplatepath	Chemin complet du fichier source pour le générateur utilisant un modèle
+	 *  @param		int			$hidedetails		Ne pas afficher le détail des lignes
+	 *  @param		int			$hidedesc			Ne pas afficher la description
+	 *  @param		int			$hideref			Ne pas afficher la référence
+	 *	@return		int         					1 si OK, <=0 si KO
 	 */
 	public function write_file($object, $outputlangs, $srctemplatepath, $hidedetails = 0, $hidedesc = 0, $hideref = 0)
 	{
@@ -231,7 +231,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 
 		if ($conf->commande->dir_output)
 		{
-			// If $object is id instead of object
+			// Si $object est un id et non un objet
 			if (!is_object($object))
 			{
 				$id = $object;
@@ -267,7 +267,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 				$newfiletmp = preg_replace('/modele_/i', '', $newfiletmp);
 				$newfiletmp = $objectref.'_'.$newfiletmp;
 				//$file=$dir.'/'.$newfiletmp.'.'.dol_print_date(dol_now(),'%Y%m%d%H%M%S').'.odt';
-				// Get extension (ods or odt)
+				// Récupère l'extension (ods ou odt)
 				$newfileformat = substr($newfile, strrpos($newfile, '.') + 1);
 				if (!empty($conf->global->MAIN_DOC_USE_TIMING))
 				{
@@ -288,7 +288,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 				dol_mkdir($conf->nsinfo->dir_temp);
 
 
-				// If CUSTOMER contact defined on order, we use it
+				// Si un contact CLIENT est défini sur la commande, on l'utilise
 				$usecontact = false;
 				$arrayidcontact = $object->getIdContact('external', 'CUSTOMER');
 				if (count($arrayidcontact) > 0)
@@ -297,7 +297,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 					$result = $object->fetch_contact($arrayidcontact[0]);
 				}
 
-				// Recipient name
+				// Nom du destinataire
 				$contactobject = null;
 				if (!empty($usecontact))
 				{
@@ -305,7 +305,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 					if (!empty($conf->global->MAIN_USE_COMPANY_NAME_OF_CONTACT)) $socobject = $object->contact;
 					else {
 						$socobject = $object->thirdparty;
-						// if we have a CUSTOMER contact and we dont use it as recipient we store the contact object for later use
+						// si on a un contact CLIENT et qu'on ne l'utilise pas comme destinataire, on conserve l'objet contact pour plus tard
 						$contactobject = $object->contact;
 					}
 				}
@@ -323,11 +323,11 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 				'__TOTAL_VAT__' => $object->total_vat
 				);
 				complete_substitutions_array($substitutionarray, $langs, $object);
-				// Call the ODTSubstitution hook
+				// Appelle le hook ODTSubstitution
 				$parameters = array('file'=>$file, 'object'=>$object, 'outputlangs'=>$outputlangs, 'substitutionarray'=>&$substitutionarray);
-				$reshook = $hookmanager->executeHooks('ODTSubstitution', $parameters, $this, $action); // Note that $action and $object may have been modified by some hooks
+				$reshook = $hookmanager->executeHooks('ODTSubstitution', $parameters, $this, $action); // Attention : $action et $object peuvent avoir été modifiés par certains hooks
 
-				// Line of free text
+				// Ligne de texte libre
 				$newfreetext = '';
 				$paramfreetext = 'ORDER_FREE_TEXT';
 				if (!empty($conf->global->$paramfreetext))
@@ -335,14 +335,14 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 					$newfreetext = make_substitutions($conf->global->$paramfreetext, $substitutionarray);
 				}
 
-				// Open and load template
+				// Ouvre et charge le modèle
 				require_once ODTPHP_PATH.'odf.php';
 				try {
 					$odfHandler = new odf(
 						$srctemplatepath,
 						array(
 						'PATH_TO_TMP'	  => $conf->commande->dir_temp,
-						'ZIP_PROXY'		  => 'PclZipProxy', // PhpZipProxy or PclZipProxy. Got "bad compression method" error when using PhpZipProxy.
+						'ZIP_PROXY'		  => 'PclZipProxy', // PhpZipProxy ou PclZipProxy. Erreur « bad compression method » avec PhpZipProxy.
 						'DELIMITER_LEFT'  => '{',
 						'DELIMITER_RIGHT' => '}'
 						)
@@ -354,14 +354,14 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 					dol_syslog($e->getMessage(), LOG_INFO);
 					return -1;
 				}
-				// After construction $odfHandler->contentXml contains content and
-				// [!-- BEGIN row.lines --]*[!-- END row.lines --] has been replaced by
+				// Après construction, $odfHandler->contentXml contient le contenu et
+				// [!-- BEGIN row.lines --]*[!-- END row.lines --] a été remplacé par
 				// [!-- BEGIN lines --]*[!-- END lines --]
 				//print html_entity_decode($odfHandler->__toString());
 				//print exit;
 
 
-				// Make substitutions into odt of freetext
+				// Effectue les substitutions dans l'odt du texte libre
 				try {
 					$odfHandler->setVars('free_text', $newfreetext, true, 'UTF-8');
 				}
@@ -370,7 +370,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 					dol_syslog($e->getMessage(), LOG_INFO);
 				}
 
-				// Define substitution array
+				// Définit le tableau de substitutions
 				$substitutionarray = getCommonSubstitutionArray($outputlangs, 0, null, $object);
 				$array_object_from_properties = $this->get_substitutionarray_each_var_object($object, $outputlangs);
 				$array_objet = $this->get_substitutionarray_object($object, $outputlangs);
@@ -378,16 +378,16 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 				$array_soc = $this->get_substitutionarray_mysoc($mysoc, $outputlangs);
 				$array_thirdparty = $this->get_substitutionarray_thirdparty($socobject, $outputlangs);
 				$array_other = $this->get_substitutionarray_other($outputlangs);
-				// retrieve contact information for use in object as contact_xxx tags
+				// récupère les informations du contact pour les utiliser dans l'objet via les balises contact_xxx
 				$array_thirdparty_contact = array();
 				if ($usecontact && is_object($contactobject)) $array_thirdparty_contact = $this->get_substitutionarray_contact($contactobject, $outputlangs, 'contact');
 
 				$tmparray = array_merge($substitutionarray, $array_object_from_properties, $array_user, $array_soc, $array_thirdparty, $array_objet, $array_other, $array_thirdparty_contact);
 				complete_substitutions_array($tmparray, $outputlangs, $object);
 
-				// Call the ODTSubstitution hook
+				// Appelle le hook ODTSubstitution
 				$parameters = array('odfHandler'=>&$odfHandler, 'file'=>$file, 'object'=>$object, 'outputlangs'=>$outputlangs, 'substitutionarray'=>&$tmparray);
-				$reshook = $hookmanager->executeHooks('ODTSubstitution', $parameters, $this, $action); // Note that $action and $object may have been modified by some hooks
+				$reshook = $hookmanager->executeHooks('ODTSubstitution', $parameters, $this, $action); // Attention : $action et $object peuvent avoir été modifiés par certains hooks
 
 				foreach ($tmparray as $key=>$value)
 				{
@@ -407,7 +407,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 						dol_syslog($e->getMessage(), LOG_INFO);
 					}
 				}
-				// Replace tags of lines
+				// Remplace les balises des lignes
 				try
 				{
 					$foundtagforlines = 1;
@@ -416,7 +416,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 					}
 					catch (OdfException $e)
 					{
-						// We may arrive here if tags for lines not present into template
+						// On peut arriver ici si les balises de lignes ne sont pas présentes dans le modèle
 						$foundtagforlines = 0;
 						dol_syslog($e->getMessage(), LOG_INFO);
 					}
@@ -428,9 +428,9 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 							$linenumber++;
 							$tmparray = $this->get_substitutionarray_lines($line, $outputlangs, $linenumber);
 							complete_substitutions_array($tmparray, $outputlangs, $object, $line, "completesubstitutionarray_lines");
-							// Call the ODTSubstitutionLine hook
+							// Appelle le hook ODTSubstitutionLine
 							$parameters = array('odfHandler'=>&$odfHandler, 'file'=>$file, 'object'=>$object, 'outputlangs'=>$outputlangs, 'substitutionarray'=>&$tmparray, 'line'=>$line);
-							$reshook = $hookmanager->executeHooks('ODTSubstitutionLine', $parameters, $this, $action); // Note that $action and $object may have been modified by some hooks
+							$reshook = $hookmanager->executeHooks('ODTSubstitutionLine', $parameters, $this, $action); // Attention : $action et $object peuvent avoir été modifiés par certains hooks
 							foreach ($tmparray as $key => $val)
 							{
 								try
@@ -471,12 +471,12 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 					}
 				}
 
-				// Call the beforeODTSave hook
+				// Appelle le hook beforeODTSave
 
 				$parameters = array('odfHandler'=>&$odfHandler, 'file'=>$file, 'object'=>$object, 'outputlangs'=>$outputlangs, 'substitutionarray'=>&$tmparray);
-				$reshook = $hookmanager->executeHooks('beforeODTSave', $parameters, $this, $action); // Note that $action and $object may have been modified by some hooks
+				$reshook = $hookmanager->executeHooks('beforeODTSave', $parameters, $this, $action); // Attention : $action et $object peuvent avoir été modifiés par certains hooks
 
-				// Write new file
+				// Écrit le nouveau fichier
 				if (!empty($conf->global->MAIN_ODT_AS_PDF)) {
 					try {
 						$odfHandler->exportAsAttachedPDF($file);
@@ -497,7 +497,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 				}
 
 				$parameters = array('odfHandler'=>&$odfHandler, 'file'=>$file, 'object'=>$object, 'outputlangs'=>$outputlangs, 'substitutionarray'=>&$tmparray);
-				$reshook = $hookmanager->executeHooks('afterODTCreation', $parameters, $this, $action); // Note that $action and $object may have been modified by some hooks
+				$reshook = $hookmanager->executeHooks('afterODTCreation', $parameters, $this, $action); // Attention : $action et $object peuvent avoir été modifiés par certains hooks
 
 				if (!empty($conf->global->MAIN_UMASK))
 					@chmod($file, octdec($conf->global->MAIN_UMASK));
@@ -506,7 +506,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 
 				$this->result = array('fullpath'=>$file);
 
-				return 1; // Success
+				return 1; // Succès
 			}
 			else
 			{

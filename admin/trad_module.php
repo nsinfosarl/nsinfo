@@ -18,7 +18,7 @@
 /**
  * \file    nsinfo/admin/trad_module.php
  * \ingroup toolsdolistore
- * \brief   Setup of the automatic translation, shared by the modules NS INFO : page called with ?namemodule=<module> (API of translation chosen in a list, its settings and its conditions of use)
+ * \brief   Réglage de la traduction automatique, partagé par les modules NS INFO : page appelée avec ?namemodule=<module> (API de traduction choisie dans une liste, ses réglages et ses conditions d'utilisation)
  */
 
 // Load Dolibarr environment
@@ -53,7 +53,7 @@ $namemodule = preg_replace('/[^a-z0-9_]/', '', strtolower(GETPOST('namemodule', 
 if ($namemodule === '' || !is_dir(dol_buildpath('/'.$namemodule, 0))) {
 	$namemodule = 'nsinfo';
 }
-// Header of the module that shows the tab (same principle as changelog_module.php)
+// En-tête du module qui affiche l'onglet (même principe que changelog_module.php)
 if ($namemodule == 'factory') {
 	dol_include_once('/'.$namemodule.'/core/lib/'.$namemodule.'.lib.php');
 	$namehead = 'factory_admin_prepare_head';
@@ -63,10 +63,10 @@ if ($namemodule == 'factory') {
 }
 $langs->loadLangs(array("admin", "nsinfo@nsinfo", $namemodule.'@'.$namemodule));
 
-// Settings common to all the modules, or specific to the module (option shown below)
+// Réglages communs à tous les modules, ou propres au module (option affichée ci-dessous)
 nsinfoTradContext($namemodule);
 $prefix = nsinfoTradPrefix();
-$forcedscope = nsinfoTradForcedScope($namemodule);	// Scope imposed by the module (<module>TradScope()), '' = free choice
+$forcedscope = nsinfoTradForcedScope($namemodule);	// Périmètre imposé par le module (<module>TradScope()), '' = choix libre
 $canscope = ($namemodule != 'nsinfo');
 
 if (!$user->admin) {
@@ -78,7 +78,7 @@ $providers = nsinfoTradProviders();
  * Actions
  */
 
-// Save of one setting (called at each change) : the provider, or a setting of a provider
+// Enregistrement d'un réglage (appelé à chaque modification) : le fournisseur, ou un réglage d'un fournisseur
 if ($action == 'setconst') {
 	$name = GETPOST('name', 'aZ09');
 	$value = trim((string) GETPOST('value', 'restricthtml'));
@@ -97,7 +97,7 @@ if ($action == 'setconst') {
 			$value = '';
 		}
 		if ($name == nsinfoTradFieldsConst()) {
-			// Only the fields listed by the module
+			// Uniquement les champs listés par le module
 			$known = function_exists($namemodule.'TradFields') ? array_keys(call_user_func($namemodule.'TradFields')) : array();
 			$value = implode(',', array_intersect(array_map('trim', explode(',', $value)), $known));
 		}
@@ -111,7 +111,7 @@ if ($action == 'setconst') {
 	exit;
 }
 
-// Test of the provider : translation of a short sentence from French to English
+// Test du fournisseur : traduction d'une courte phrase du français vers l'anglais
 if ($action == 'testtrad') {
 	$error = '';
 	$out = nsinfoTradTranslate('Bonjour, ceci est un test de traduction.', 2, 1, false, $error);
@@ -142,7 +142,7 @@ print dol_get_fiche_head($head, 'trad', $langs->trans("NsinfoTradTab"), -1, $nam
 $current = getDolGlobalString($prefix.'PROVIDER');
 print '<div class="opacitymedium marginbottomonly">'.$langs->trans('NsinfoTradIntro').'</div>';
 
-// Sub-tabs : API (provider, scope, position, color) and fields that have the picto (list given by the module)
+// Sous-onglets : API (fournisseur, périmètre, position, couleur) et champs qui ont le picto (liste fournie par le module)
 $hasfields = function_exists($namemodule.'TradFields');
 $subtab = ($hasfields && GETPOST('subtab', 'aZ09') == 'fields') ? 'fields' : 'api';
 if ($hasfields) {
@@ -176,7 +176,7 @@ print '<style>
 </style>';
 
 if ($subtab == 'fields') {
-// Fields that have the picto : only the ticked ones (the module lists its translatable fields with <module>TradFields())
+// Champs qui ont le picto : uniquement ceux cochés (le module liste ses champs traduisibles avec <module>TradFields())
 $ticked = nsinfoTradFields();
 print '<table class="border centpercent"><tr><td class="titlefield">'.$langs->trans('NsinfoTradFields').'</td><td><div class="tdl-fields">';
 foreach (call_user_func($namemodule.'TradFields') as $code => $label) {
@@ -184,12 +184,12 @@ foreach (call_user_func($namemodule.'TradFields') as $code => $label) {
 }
 print '</div><span class="tdl-ok">&#10004;</span><br><span class="opacitymedium small">'.$langs->trans('NsinfoTradFieldsHelp').'</span></td></tr></table>';
 } else {
-// List of the providers
+// Liste des fournisseurs
 print '<table class="border centpercent">';
 if ($canscope && $forcedscope !== '') {
 	print '<tr><td class="titlefield">'.$langs->trans('NsinfoTradScope').'</td><td>'.dol_escape_htmltag($forcedscope == 'module' ? $langs->transnoentitiesnoconv('NsinfoTradScopeModule', $modulelabel) : $langs->transnoentitiesnoconv('NsinfoTradScopeGlobal')).'<br><span class="opacitymedium small">'.$langs->trans('NsinfoTradScopeForced').'</span></td></tr>';
 } elseif ($canscope) {
-	// Settings common to all the modules (Dolibarr) or specific to this module
+	// Réglages communs à tous les modules (Dolibarr) ou propres à ce module
 	print '<tr><td class="titlefield">'.$langs->trans('NsinfoTradScope').'</td><td><select id="tdl-scope" class="flat minwidth300">';
 	print '<option value="global"'.(nsinfoTradIsModuleScope() ? '' : ' selected').'>'.dol_escape_htmltag($langs->transnoentitiesnoconv('NsinfoTradScopeGlobal')).'</option>';
 	print '<option value="module"'.(nsinfoTradIsModuleScope() ? ' selected' : '').'>'.dol_escape_htmltag($langs->transnoentitiesnoconv('NsinfoTradScopeModule', $modulelabel)).'</option>';
@@ -201,24 +201,24 @@ foreach ($providers as $code => $p) {
 	print '<option value="'.$code.'"'.($code == $current ? ' selected' : '').'>'.dol_escape_htmltag($p['label']).'</option>';
 }
 print '</select><span class="tdl-ok" id="tdl-ok-provider">&#10004;</span></td></tr>';
-// Position of the picto of translation beside the fields (shown only when an API is active)
+// Position du picto de traduction à côté des champs (affiché seulement lorsqu'une API est active)
 $position = nsinfoTradPosition();
-if (function_exists($namemodule.'TradPositionForced')) {	// A module can force the position (function <module>TradPositionForced() returns a note) : no choice, the note is shown
+if (function_exists($namemodule.'TradPositionForced')) {	// Un module peut imposer la position (la fonction <module>TradPositionForced() renvoie une note) : pas de choix, la note est affichée
 print '<tr><td class="titlefield">'.$langs->trans('NsinfoTradPosition').'</td><td>'.dol_escape_htmltag(call_user_func($namemodule.'TradPositionForced')).'</td></tr>';
 } else {
 print '<tr><td class="titlefield">'.$langs->trans('NsinfoTradPosition').'</td><td><div class="tdl-pos">';
 foreach (array('right' => 'NsinfoTradPosRight', 'top' => 'NsinfoTradPosTop', 'bottom' => 'NsinfoTradPosBottom') as $k => $key) {
-	// Mini preview of a field with the picto at the position
+	// Mini aperçu d'un champ avec le picto à la position choisie
 	print '<div class="tdl-pos-tile'.($k == $position ? ' on' : '').'" data-value="'.$k.'" data-name="'.$prefix.'POSITION" tabindex="0" role="radio" aria-checked="'.($k == $position ? 'true' : 'false').'">';
 	print '<div class="tdl-pos-prev tdl-pos-'.$k.'"><span class="tdl-pos-field">'.($k == 'right' ? '' : '<i class="fas fa-language tdl-sample" style="color: '.nsinfoTradColor().'"></i>').'</span>'.($k == 'right' ? '<i class="fas fa-language tdl-sample" style="color: '.nsinfoTradColor().'"></i>' : '').'</div>';
 	print '<div class="tdl-pos-label">'.dol_escape_htmltag($langs->transnoentitiesnoconv($key)).'</div></div>';
 }
 print '</div><span class="tdl-ok">&#10004;</span><br><span class="opacitymedium small">'.$langs->trans('NsinfoTradPositionHelp').'</span></td></tr>';
 }
-// Color of the picto (green by default), saved at each change
+// Couleur du picto (vert par défaut), enregistrée à chaque modification
 print '<tr><td class="titlefield">'.$langs->trans('NsinfoTradColor').'</td><td><input type="color" class="tdl-set tdl-color" data-name="'.$prefix.'COLOR" value="'.nsinfoTradColor().'"><span class="tdl-ok">&#10004;</span> <a href="#" id="tdl-color-reset" class="opacitymedium small">'.$langs->trans('NsinfoTradColorReset').'</a></td></tr></table>';
 
-// Settings of the provider chosen
+// Réglages du fournisseur choisi
 if (isset($providers[$current])) {
 	$p = $providers[$current];
 	print '<div id="tdl-conf"><h3 style="margin-top:0"><span class="'.(in_array($current, array('google', 'azure')) ? 'fab' : 'fas').' '.$p['picto'].'" style="color: '.$p['color'].'"></span> '.dol_escape_htmltag($p['label']).'</h3>';
@@ -244,7 +244,7 @@ if (isset($providers[$current])) {
 	}
 	print '</table>';
 
-	// Conditions of operation
+	// Conditions d'utilisation
 	print '<div class="marginbottomonly margintoponly"><b>'.$langs->trans('NsinfoTradConditions').'</b></div>';
 	print '<div>'.$langs->transnoentitiesnoconv('NsinfoTradCond'.ucfirst($current)).'</div>';
 	print '<div class="margintoponly">'.nsinfoTradLinksHtml($p, $langs).'</div>';
@@ -252,7 +252,7 @@ if (isset($providers[$current])) {
 	print '<div class="margintoponly"><button type="button" class="button" id="tdl-test"><span class="fas fa-vial pictofixedwidth"></span>'.$langs->trans('NsinfoTradTest').'</button> <span id="tdl-test-res"></span></div>';
 	print '</div>';
 } else {
-	// Summary of all the providers to help the choice
+	// Tableau récapitulatif de tous les fournisseurs pour aider au choix
 	print '<div class="tdl-prov">';
 	foreach ($providers as $code => $p) {
 		print '<div style="--c: '.$p['color'].'"><h3><span class="'.(in_array($code, array('google', 'azure')) ? 'fab' : 'fas').' '.$p['picto'].'"></span>'.dol_escape_htmltag($p['label']).'</h3>'.$langs->transnoentitiesnoconv('NsinfoTradCond'.ucfirst($code)).nsinfoTradLinksHtml($p, $langs).'</div>';

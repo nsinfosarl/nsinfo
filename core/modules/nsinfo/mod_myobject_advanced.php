@@ -23,36 +23,36 @@
 /**
  * \file       htdocs/core/modules/nsinfo/mod_myobject_advanced.php
  * \ingroup    nsinfo
- * \brief      File containing class for advanced numbering model of MyObject
+ * \brief      Fichier contenant la classe du modèle de numérotation avancé de MyObject
  */
 
 dol_include_once('/nsinfo/core/modules/nsinfo/modules_myobject.php');
 
 
 /**
- *	Class to manage customer Bom numbering rules advanced
+ *	Classe de gestion des règles de numérotation avancées de MyObject
  */
 class mod_myobject_advanced extends ModeleNumRefMyObject
 {
 	/**
-	 * Dolibarr version of the loaded document
+	 * Version de Dolibarr du document chargé
 	 * @var string
 	 */
 	public $version = 'dolibarr'; // 'development', 'experimental', 'dolibarr'
 
 	/**
-	 * @var string Error message
+	 * @var string Message d'erreur
 	 */
 	public $error = '';
 
 	/**
-	 * @var string name
+	 * @var string nom
 	 */
 	public $name = 'advanced';
 
 
 	/**
-	 *  Returns the description of the numbering model
+	 *  Renvoie la description du modèle de numérotation
 	 *
 	 *  @return     string      Texte descripif
 	 */
@@ -92,9 +92,9 @@ class mod_myobject_advanced extends ModeleNumRefMyObject
 	}
 
 	/**
-	 *  Return an example of numbering
+	 *  Renvoie un exemple de numérotation
 	 *
-	 *  @return     string      Example
+	 *  @return     string      Exemple
 	 */
 	public function getExample()
 	{
@@ -121,10 +121,10 @@ class mod_myobject_advanced extends ModeleNumRefMyObject
 	}
 
 	/**
-	 * 	Return next free value
+	 * 	Renvoie la prochaine valeur libre
 	 *
-	 *  @param  Object		$object		Object we need next value for
-	 *  @return string      			Value if KO, <0 if KO
+	 *  @param  Object		$object		Objet pour lequel on a besoin de la valeur suivante
+	 *  @return string      			Valeur si OK, <0 si KO
 	 */
 	public function getNextValue($object)
 	{
@@ -132,7 +132,7 @@ class mod_myobject_advanced extends ModeleNumRefMyObject
 
 		require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
 
-		// We get cursor rule
+		// On récupère la règle du curseur
 		$mask = getDolGlobalString('NSINFO_MYOBJECT_ADVANCED_MASK');
 
 		if (!$mask)

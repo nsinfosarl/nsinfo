@@ -18,17 +18,17 @@
 /**
  * \file    nsinfo/lib/htmlimport.lib.php
  * \ingroup nsinfo
- * \brief   Import of HTML code by drag and drop (or button) into a field, shared by the modules NS INFO
+ * \brief   Import de code HTML par glisser-déposer (ou bouton) dans un champ, partagé par les modules NS INFO
  */
 
 
 /**
- * Zone to insert HTML into a field by drag and drop (or with a button) : the file (.html, .htm, .txt) or the text dropped
- * replaces the content of the field. In the editor (CKEditor) the code is inserted as text, like the structures already
- * written by hand (tags escaped, see producttoolsStructureToHtml()) ; in a simple textarea it is inserted as it is.
+ * Zone d'insertion de HTML dans un champ par glisser-déposer (ou par bouton) : le fichier (.html, .htm, .txt) ou le texte déposé
+ * remplace le contenu du champ. Dans l'éditeur (CKEditor) le code est inséré comme texte, comme les structures déjà
+ * écrites à la main (balises échappées, voir producttoolsStructureToHtml()) ; dans une zone de texte simple il est inséré tel quel.
  *
- * @param	string	$field	Name of the field (e.g. codehtml)
- * @return	string			HTML and script
+ * @param	string	$field	Nom du champ (ex. codehtml)
+ * @return	string			HTML et script
  */
 function nsinfoHtmlDropZone($field)
 {
@@ -81,10 +81,10 @@ function nsinfoHtmlDropZone($field)
 
 
 /**
- * Convert a file of HTML code into the way the code of a structure is stored (the editor keeps the tags as text :
- * escaped, one line per <br>, indentation in non-breaking spaces ; producttoolsStructureToHtml() gives the HTML back)
+ * Convertit un fichier de code HTML dans la forme de stockage du code d'une structure (l'éditeur garde les balises en texte :
+ * échappées, une ligne par <br>, indentation en espaces insécables ; producttoolsStructureToHtml() renvoie le HTML)
  *
- * @param	string	$text	Content of the file (UTF-8)
+ * @param	string	$text	Contenu du fichier (UTF-8)
  * @return	string
  */
 function nsinfoHtmlToStored($text)
@@ -103,13 +103,13 @@ function nsinfoHtmlToStored($text)
 
 
 /**
- * Button and window (drop zone) to import a file of HTML code into a structure : the code of the structure is replaced
+ * Bouton et fenêtre (zone de dépôt) pour importer un fichier de code HTML dans une structure : le code de la structure est remplacé
  *
- * @param	string					$url		Url of the page
- * @param	array<string,string>	$hiddens	Hidden values (id)
+ * @param	string					$url		URL de la page
+ * @param	array<string,string>	$hiddens	Valeurs cachées (id)
  * @param	int						$disabled	1 = button inactive (no right)
- * @param	string					$action		Action posted to the page
- * @param	string					$filename	Name of the file field ($_FILES[$filename]['tmp_name'][0])
+ * @param	string					$action		Action envoyée à la page
+ * @param	string					$filename	Nom du champ fichier ($_FILES[$filename]['tmp_name'][0])
  * @return	string							HTML
  */
 function nsinfoHtmlImportDialog($url, $hiddens = array(), $disabled = 0, $action = 'importhtml', $filename = 'nsinfo_html')

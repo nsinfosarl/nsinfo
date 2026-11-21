@@ -19,16 +19,16 @@
 /**
  * \file    lib/pagination.lib.php
  * \ingroup nsinfo
- * \brief   Library files with common functions for NSINFO Pagination
+ * \brief   Fichiers de bibliothèque avec les fonctions communes à la pagination NSINFO
  */
 
 /**
- * Load array of pages to display
+ * Charge le tableau des pages à afficher
  *
- * @param  float      $pagesCounter Number of pages
- * @param  array|null $pageArray    Array with all available pages
+ * @param  float      $pagesCounter Nombre de pages
+ * @param  array|null $pageArray    Tableau de toutes les pages disponibles
  * @param  int|null   $offset       Selected page
- * @return array      $page_array   Pages number array
+ * @return array      $page_array   Tableau des numéros de pages
  */
 function nsinfo_load_pagination(float $pagesCounter, ?array $pageArray, ?int $offset): array
 {
@@ -79,13 +79,13 @@ function nsinfo_load_pagination(float $pagesCounter, ?array $pageArray, ?int $of
 }
 
 /**
- * Show pages based on loaded pages array
+ * Affiche les pages à partir du tableau de pages chargé
  *
- * @param  float      $pagesCounter     Number of pages
- * @param  array|null $pageArray        Array with all available pages
+ * @param  float      $pagesCounter     Nombre de pages
+ * @param  array|null $pageArray        Tableau de toutes les pages disponibles
  * @param  int|null   $offset           Selected page
- * @param  string     $containerToRefresh Id of the container the pagination click must refresh
- * @return string     $return           Pages html content
+ * @param  string     $containerToRefresh Id du conteneur que le clic de pagination doit rafraîchir
+ * @return string     $return           Contenu HTML des pages
  */
 function nsinfo_show_pagination(float $pagesCounter, ?array $pageArray, ?int $offset, string $containerToRefresh = 'media_gallery'): string
 {

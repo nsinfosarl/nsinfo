@@ -18,18 +18,18 @@
 /**
  * \file    nsinfo/lib/autotrad.lib.php
  * \ingroup nsinfo
- * \brief   Automatic translation through an external API (DeepL, Google, Azure, LibreTranslate, MyMemory, Lingva), shared by the modules NS INFO (setup page nsinfo/admin/trad_module.php?namemodule=<module>)
+ * \brief   Traduction automatique par API externe (DeepL, Google, Azure, LibreTranslate, MyMemory, Lingva), partagée par les modules NS INFO (page de réglage nsinfo/admin/trad_module.php?namemodule=<module>)
  */
 
 require_once DOL_DOCUMENT_ROOT.'/core/lib/geturl.lib.php';
 
 /**
- * Module whose settings of translation are used (the module that calls the functions of this library). The settings are either
- * common to all the modules (default) or specific to the module (option of the setup page, constant NSINFO_TRAD_SCOPE_<MODULE>).
- * To call once at the beginning of the page / of the ajax script of a module, before the other functions.
+ * Module dont les réglages de traduction sont utilisés (le module qui appelle les fonctions de cette bibliothèque). Les réglages sont soit
+ * communs à tous les modules (par défaut) ou propres au module (option de la page de réglage, constante NSINFO_TRAD_SCOPE_<MODULE>).
+ * À appeler une fois au début de la page / du script ajax d'un module, avant les autres fonctions.
  *
- * @param	string|null	$module		Code of the module (null = only read the current one)
- * @return	string					Code of the current module ('' = none, common settings)
+ * @param	string|null	$module		Code du module (null = lit seulement le module courant)
+ * @return	string					Code du module courant ('' = aucun, réglages communs)
  */
 function nsinfoTradContext($module = null)
 {
@@ -43,11 +43,11 @@ function nsinfoTradContext($module = null)
 }
 
 /**
- * Scope imposed by the module : its function <module>TradScope() (file /<module>/lib/<module>.lib.php) returns 'global' (settings common to all
- * the modules) or 'module' (settings of its own). Without this function the scope is chosen in the setup page.
+ * Périmètre imposé par le module : sa fonction <module>TradScope() (fichier /<module>/lib/<module>.lib.php) renvoie 'global' (réglages communs à tous
+ * les modules) ou 'module' (réglages propres). Sans cette fonction, le périmètre est choisi dans la page de réglage.
  *
- * @param	string	$module		Code of the module ('' = the current one)
- * @return	string				'global', 'module' or '' (not imposed)
+ * @param	string	$module		Code du module ('' = le module courant)
+ * @return	string				'global', 'module' ou '' (non imposé)
  */
 function nsinfoTradForcedScope($module = '')
 {
@@ -64,10 +64,10 @@ function nsinfoTradForcedScope($module = '')
 }
 
 /**
- * Is the setup of the module specific (not common to all the modules) ?
- * The module can impose its scope (nsinfoTradForcedScope()), otherwise it is the choice made in the setup page.
+ * Le réglage du module est-il propre (non commun à tous les modules) ?
+ * Le module peut imposer son périmètre (nsinfoTradForcedScope()), sinon c'est le choix fait dans la page de réglage.
  *
- * @param	string	$module		Code of the module ('' = the current one)
+ * @param	string	$module		Code du module ('' = le module courant)
  * @return	bool
  */
 function nsinfoTradIsModuleScope($module = '')
@@ -82,9 +82,9 @@ function nsinfoTradIsModuleScope($module = '')
 }
 
 /**
- * Prefix of the constants of the settings : NSINFO_TRAD_ (common to all the modules) or NSINFO_TRAD_<MODULE>_ (specific to the module)
+ * Préfixe des constantes des réglages : NSINFO_TRAD_ (communs à tous les modules) ou NSINFO_TRAD_<MODULE>_ (propre au module)
  *
- * @param	string	$module		Code of the module ('' = the current one)
+ * @param	string	$module		Code du module ('' = le module courant)
  * @return	string
  */
 function nsinfoTradPrefix($module = '')
@@ -95,12 +95,12 @@ function nsinfoTradPrefix($module = '')
 }
 
 /**
- * Providers of automatic translation, with the settings each one needs and its conditions of use
+ * Fournisseurs de traduction automatique, avec les réglages dont chacun a besoin et ses conditions d'utilisation
  *
- * Settings : name (suffix of the constant NSINFO_TRAD_<PROVIDER>_<NAME>), label (language key), type (text, password,
- * select), required, default, help (language key), options (for select).
- * The conditions (free quota, limits, what is needed) are language keys NsinfoTrad<Provider>Cond, written from the
- * documentation of each provider.
+ * Réglages : name (suffixe de la constante NSINFO_TRAD_<PROVIDER>_<NAME>), label (clé de langue), type (text, password,
+ * select), required, default, help (clé de langue), options (pour select).
+ * Les conditions (quota gratuit, limites, éléments nécessaires) sont des clés de langue NsinfoTrad<Provider>Cond, rédigées à partir de la
+ * documentation de chaque fournisseur.
  *
  * @return	array<string,array<string,mixed>>
  */
@@ -157,9 +157,9 @@ function nsinfoTradProviders()
 }
 
 /**
- * Links of a provider (create the account / get the key, documentation), always opened in a new tab
+ * Liens d'un fournisseur (créer le compte / obtenir la clé, documentation), toujours ouverts dans un nouvel onglet
  *
- * @param	array<string,mixed>	$provider	Definition of the provider (see nsinfoTradProviders())
+ * @param	array<string,mixed>	$provider	Définition du fournisseur (voir nsinfoTradProviders())
  * @param	Translate			$langs		Translate
  * @return	string				HTML
  */
@@ -176,7 +176,7 @@ function nsinfoTradLinksHtml($provider, $langs)
 }
 
 /**
- * Position of the translation picto set in the setup : right (beside the field), top or bottom (inside the field, on the right)
+ * Position du picto de traduction défini dans les réglages : right (à côté du champ), top ou bottom (dans le champ, à droite)
  *
  * @return	string	'right', 'top' or 'bottom'
  */
@@ -188,7 +188,7 @@ function nsinfoTradPosition()
 }
 
 /**
- * Name of the constant of the fields that have the picto : always specific to the module (even when the API settings are common to all the modules)
+ * Nom de la constante des champs qui ont le picto : toujours propre au module (même lorsque les réglages de l'API sont communs à tous les modules)
  *
  * @param	string	$module		Code of the module ('' = the current one)
  * @return	string
@@ -201,9 +201,9 @@ function nsinfoTradFieldsConst($module = '')
 }
 
 /**
- * Fields of the module that have the translation picto : codes ticked in the setup (constant nsinfoTradFieldsConst(), comma separated).
- * The module lists its translatable fields with a function <module>TradFields() returning code => label ; none is ticked
- * by default : the picto is shown only on the fields asked for.
+ * Champs du module qui ont le picto de traduction : codes cochés dans les réglages (constante nsinfoTradFieldsConst(), séparés par des virgules).
+ * Le module liste ses champs traduisibles avec une fonction <module>TradFields() renvoyant code => libellé ; aucun n'est coché
+ * par défaut : le picto n'est affiché que sur les champs demandés.
  *
  * @return	string[]
  */
@@ -213,9 +213,9 @@ function nsinfoTradFields()
 }
 
 /**
- * Has this field the translation picto ? (an API is set up and the field is ticked in the setup)
+ * Ce champ a-t-il le picto de traduction ? (une API est configurée et le champ est coché dans les réglages)
  *
- * @param	string	$code	Code of the field, as given by <module>TradFields()
+ * @param	string	$code	Code du champ, tel que donné par <module>TradFields()
  * @return	bool
  */
 function nsinfoTradFieldEnabled($code)
@@ -224,7 +224,7 @@ function nsinfoTradFieldEnabled($code)
 }
 
 /**
- * Color of the translation picto set in the setup (green by default)
+ * Couleur du picto de traduction défini dans les réglages (vert par défaut)
  *
  * @return	string	Color #rrggbb
  */
@@ -236,7 +236,7 @@ function nsinfoTradColor()
 }
 
 /**
- * Style of the translation picto (to print once in the page)
+ * Style du picto de traduction (à afficher une seule fois dans la page)
  *
  * @return	string	HTML
  */
@@ -258,7 +258,7 @@ a.nsinfo-trad, a.nsinfo-trad:link, a.nsinfo-trad:visited, a.nsinfo-trad:hover, a
 }
 
 /**
- * Opening of the wrapper of a field that has a translation picto
+ * Ouverture de l'enveloppe d'un champ qui a un picto de traduction
  *
  * @return	string	HTML
  */
@@ -268,10 +268,10 @@ function nsinfoTradWrapOpen()
 }
 
 /**
- * Picto of translation of a field (nothing else : no text), to print after the field inside nsinfoTradWrapOpen() ... </span>
+ * Picto de traduction d'un champ (rien d'autre : pas de texte), à afficher après le champ à l'intérieur de nsinfoTradWrapOpen() ... </span>
  *
- * @param	array<string,string|int>	$data	Data attributes (data-xxx) read by the script of the page
- * @param	string						$title	Title (tooltip)
+ * @param	array<string,string|int>	$data	Attributs data (data-xxx) lus par le script de la page
+ * @param	string						$title	Titre (info-bulle)
  * @return	string						HTML
  */
 function nsinfoTradPictoHtml($data, $title)
@@ -285,10 +285,10 @@ function nsinfoTradPictoHtml($data, $title)
 }
 
 /**
- * Value of a setting of a provider (constant NSINFO_TRAD_<PROVIDER>_<NAME>), or its default value
+ * Valeur d'un réglage d'un fournisseur (constante NSINFO_TRAD_<PROVIDER>_<NAME>), ou sa valeur par défaut
  *
- * @param	string	$provider	Code of the provider
- * @param	string	$name		Name of the setting
+ * @param	string	$provider	Code du fournisseur
+ * @param	string	$name		Nom du réglage
  * @return	string
  */
 function nsinfoTradSetting($provider, $name)
@@ -307,9 +307,9 @@ function nsinfoTradSetting($provider, $name)
 }
 
 /**
- * Provider chosen in the setup, only if its required settings are filled in
+ * Fournisseur choisi dans les réglages, seulement si ses réglages obligatoires sont renseignés
  *
- * @return	string	Code of the provider, '' if none or incomplete
+ * @return	string	Code du fournisseur, '' si aucun ou incomplet
  */
 function nsinfoTradActiveProvider()
 {
@@ -328,7 +328,7 @@ function nsinfoTradActiveProvider()
 }
 
 /**
- * Index (1 = en_US, 2 = fr_FR, 3 = de_DE, 4 = it_IT, 5 = es_ES) of a locale, 0 if not one of the 5 languages of the module
+ * Index (1 = en_US, 2 = fr_FR, 3 = de_DE, 4 = it_IT, 5 = es_ES) d'une locale, 0 si ce n'est pas une des 5 langues du module
  *
  * @param	string	$locale		Locale (fr_FR, fr_CA, en_GB...)
  * @return	int
@@ -342,12 +342,12 @@ function nsinfoTradLangIndex($locale)
 }
 
 /**
- * Languages the provider of the setup can translate to (list asked to its API, kept one day), used by the modules to offer the
- * choice of a language. Without a provider (or if its API does not answer) : the five languages of the module.
+ * Langues vers lesquelles le fournisseur des réglages peut traduire (liste demandée à son API, conservée un jour), utilisée par les modules pour proposer le
+ * choix d'une langue. Sans fournisseur (ou si son API ne répond pas) : les cinq langues du module.
  *
- * @param	string	$provider	Provider ('' = the one of the setup)
- * @param	bool	$refresh	Ignore the list kept
- * @return	array<string,string>	Name of the language, by code of the provider ; the favourite languages first, then by name
+ * @param	string	$provider	Fournisseur ('' = celui des réglages)
+ * @param	bool	$refresh	Ignore la liste conservée
+ * @return	array<string,string>	Nom de la langue, par code du fournisseur ; les langues favorites d'abord, puis par nom
  */
 function nsinfoTradLanguages($provider = '', $refresh = false)
 {
@@ -415,14 +415,14 @@ function nsinfoTradLanguages($provider = '', $refresh = false)
 			}
 			break;
 		default:
-			// MyMemory has no list of languages : the usual ones
+			// MyMemory n'a pas de liste de langues : les langues usuelles
 			$list = $base + array('pt' => 'Português', 'nl' => 'Nederlands', 'pl' => 'Polski', 'ru' => 'Русский', 'ja' => '日本語', 'zh' => '中文', 'ar' => 'العربية', 'sv' => 'Svenska', 'da' => 'Dansk', 'fi' => 'Suomi', 'el' => 'Ελληνικά', 'tr' => 'Türkçe');
 	}
 	if (!count($list)) {
-		return $memo[$sign] = $base;	// API not reachable : the five languages, not kept
+		return $memo[$sign] = $base;	// API injoignable : les cinq langues, non conservées
 	}
 
-	// Favourite languages first, then by name
+	// Langues favorites d'abord, puis par nom
 	$favourites = array_keys($base);
 	uksort($list, function ($a, $b) use ($list, $favourites) {
 		$pa = array_search(strtolower(preg_replace('/[-_].*$/', '', $a)), $favourites);
@@ -439,10 +439,10 @@ function nsinfoTradLanguages($provider = '', $refresh = false)
 }
 
 /**
- * Code of a language for the API : an index (1..5) of the module, or a code of the provider (fr, pt-BR, EN-US...)
+ * Code d'une langue pour l'API : un index (1..5) du module, ou un code du fournisseur (fr, pt-BR, EN-US...)
  *
- * @param	int|string	$value	Index or code
- * @return	string				Code, '' if not valid
+ * @param	int|string	$value	Index ou code
+ * @return	string				Code, '' si non valide
  */
 function nsinfoTradIsoCode($value)
 {
@@ -455,15 +455,15 @@ function nsinfoTradIsoCode($value)
 }
 
 /**
- * Translate a text with the provider chosen in the setup
+ * Traduit un texte avec le fournisseur choisi dans les réglages
  *
- * @param	string	$text		Text to translate
- * @param	int		$from		Index of the language of the text (1..5)
- * @param	int		$to			Index of the target language (1..5)
- * @param	bool	$ishtml		The text is HTML (tags kept by the providers that support it, removed otherwise)
- * @param	string	$error		Error message (output)
- * @param	string	$provider	Provider to use ('' = the one of the setup)
- * @return	string|null			Translated text, null on error
+ * @param	string	$text		Texte à traduire
+ * @param	int		$from		Index de la langue du texte (1..5)
+ * @param	int		$to			Index de la langue cible (1..5)
+ * @param	bool	$ishtml		Le texte est du HTML (balises conservées par les fournisseurs qui le gèrent, supprimées sinon)
+ * @param	string	$error		Message d'erreur (sortie)
+ * @param	string	$provider	Fournisseur à utiliser ('' = celui des réglages)
+ * @return	string|null			Texte traduit, null en cas d'erreur
  */
 function nsinfoTradTranslate($text, $from, $to, $ishtml, &$error, $provider = '')
 {
@@ -473,7 +473,7 @@ function nsinfoTradTranslate($text, $from, $to, $ishtml, &$error, $provider = ''
 		$error = 'NsinfoTradNotConfigured';
 		return null;
 	}
-	// Languages : index (1..5) of the module or code of the language of the provider (see nsinfoTradLanguages())
+	// Langues : index (1..5) du module ou code de la langue du fournisseur (voir nsinfoTradLanguages())
 	$src = nsinfoTradIsoCode($from);
 	$dst = nsinfoTradIsoCode($to);
 	if ($src === '' || $dst === '' || strtolower($src) == strtolower($dst)) {
@@ -483,7 +483,7 @@ function nsinfoTradTranslate($text, $from, $to, $ishtml, &$error, $provider = ''
 	if (trim($text) === '') {
 		return '';
 	}
-	// Providers that only translate plain text : the HTML is translated text by text, the markup is kept
+	// Fournisseurs qui ne traduisent que le texte brut : le HTML est traduit texte par texte, le balisage est conservé
 	if ($ishtml && empty($providers[$provider]['html'])) {
 		$byNodes = nsinfoTradHtmlNodes($text, $src, $dst, $error, $provider);
 		if ($byNodes !== null) {
@@ -498,7 +498,7 @@ function nsinfoTradTranslate($text, $from, $to, $ishtml, &$error, $provider = ''
 	switch ($provider) {
 		case 'deepl':
 			$base = (nsinfoTradSetting('deepl', 'PLAN') == 'pro') ? 'https://api.deepl.com' : 'https://api-free.deepl.com';
-			// DeepL : source = language only (EN), target = EN-GB / EN-US and PT-BR / PT-PT for these two languages
+			// DeepL : source = langue seule (EN), cible = EN-GB / EN-US et PT-BR / PT-PT pour ces deux langues
 			$deepltarget = strtoupper($dst);
 			$deepltarget = ($deepltarget == 'EN' ? 'EN-US' : ($deepltarget == 'PT' ? 'PT-PT' : $deepltarget));
 			$body = array('text' => array($text), 'source_lang' => strtoupper(preg_replace('/-.*$/', '', $src)), 'target_lang' => $deepltarget);
@@ -532,7 +532,7 @@ function nsinfoTradTranslate($text, $from, $to, $ishtml, &$error, $provider = ''
 			return isset($data['translatedText']) ? $data['translatedText'] : nsinfoTradFail($res, $data, $error);
 		case 'mymemory':
 		case 'lingva':
-			// Plain text only, cut into pieces (MyMemory : 500 bytes by request ; Lingva : the text is in the URL)
+			// Texte brut seulement, découpé en morceaux (MyMemory : 500 octets par requête ; Lingva : le texte est dans l'URL)
 			$plain = $ishtml ? trim(html_entity_decode(strip_tags(preg_replace('/<\/(p|li|div|h[1-6])>|<br\s*\/?>/i', "\n", $text)), ENT_QUOTES | ENT_HTML5, 'UTF-8')) : $text;
 			$out = array();
 			foreach (nsinfoTradChunks($plain, $provider == 'mymemory' ? 450 : 1200) as $chunk) {
@@ -562,7 +562,7 @@ function nsinfoTradTranslate($text, $from, $to, $ishtml, &$error, $provider = ''
 				}
 			}
 			$result = implode("\n", $out);
-			// A text that was HTML comes back as plain text, one paragraph per line
+			// Un texte HTML revient en texte brut, un paragraphe par ligne
 			return $ishtml ? '<p>'.implode('</p><p>', array_filter(array_map('trim', explode("\n", $result)), 'strlen')).'</p>' : $result;
 	}
 
@@ -571,15 +571,15 @@ function nsinfoTradTranslate($text, $from, $to, $ishtml, &$error, $provider = ''
 }
 
 /**
- * HTML text translated by a provider that only translates plain text (MyMemory, Lingva) : the markup is kept, only the texts
- * between the tags are translated, one by one, and put back in place (bold, lists, links, colours... are kept).
+ * Texte HTML traduit par un fournisseur qui ne traduit que le texte brut (MyMemory, Lingva) : le balisage est conservé, seuls les textes
+ * entre les balises sont traduits, un par un, puis remis en place (gras, listes, liens, couleurs... sont conservés).
  *
- * @param	string	$html		HTML text
- * @param	string	$from		Code of the language of the text
- * @param	string	$to			Code of the target language
- * @param	string	$error		Error message (output)
- * @param	string	$provider	Provider
- * @return	string|null			HTML translated, null on error
+ * @param	string	$html		Texte HTML
+ * @param	string	$from		Code de la langue du texte
+ * @param	string	$to			Code de la langue cible
+ * @param	string	$error		Message d'erreur (sortie)
+ * @param	string	$provider	Fournisseur
+ * @return	string|null			HTML traduit, null en cas d'erreur
  */
 function nsinfoTradHtmlNodes($html, $from, $to, &$error, $provider)
 {
@@ -604,7 +604,7 @@ function nsinfoTradHtmlNodes($html, $from, $to, &$error, $provider)
 		}
 		preg_match('/^(\s*)(.*?)(\s*)$/su', $value, $m);
 		$core = $m[2];
-		// A text without any letter (numbers, signs) is kept as is
+		// Un texte sans lettre (chiffres, signes) est conservé tel quel
 		if (!preg_match('/\p{L}/u', $core)) {
 			continue;
 		}
@@ -626,13 +626,13 @@ function nsinfoTradHtmlNodes($html, $from, $to, &$error, $provider)
 }
 
 /**
- * Call of an API
+ * Appel d'une API
  *
  * @param	string		$url		URL
  * @param	string		$method		GET or POST
- * @param	string		$body		Body (JSON) for POST
- * @param	string[]	$headers	Headers
- * @param	int			$localurl	0 = external URL only, 2 = also local URL (instance on the network)
+ * @param	string		$body		Corps (JSON) pour POST
+ * @param	string[]	$headers	En-têtes
+ * @param	int			$localurl	0 = URL externe seulement, 2 = aussi URL locale (instance sur le réseau)
  * @return	array<string,mixed>
  */
 function nsinfoTradCall($url, $method, $body, $headers, $localurl)
@@ -641,10 +641,10 @@ function nsinfoTradCall($url, $method, $body, $headers, $localurl)
 }
 
 /**
- * Decode the JSON answer of an API
+ * Décode la réponse JSON d'une API
  *
- * @param	array<string,mixed>	$res	Result of getURLContent()
- * @param	string				$error	Error message (output)
+ * @param	array<string,mixed>	$res	Résultat de getURLContent()
+ * @param	string				$error	Message d'erreur (sortie)
  * @return	array<mixed>
  */
 function nsinfoTradDecode($res, &$error)
@@ -658,10 +658,10 @@ function nsinfoTradDecode($res, &$error)
 }
 
 /**
- * Error of an API : message of the provider or HTTP code
+ * Erreur d'une API : message du fournisseur ou code HTTP
  *
  * @param	array<string,mixed>	$res	Result of getURLContent()
- * @param	array<mixed>		$data	Answer decoded
+ * @param	array<mixed>		$data	Réponse décodée
  * @param	string				$error	Error message (output)
  * @return	null
  */
@@ -684,10 +684,10 @@ function nsinfoTradFail($res, $data, &$error)
 }
 
 /**
- * Cut a text into pieces of at most $max bytes, on the lines then on the sentences (the empty lines are kept)
+ * Découpe un texte en morceaux d'au plus $max octets, sur les lignes puis sur les phrases (les lignes vides sont conservées)
  *
- * @param	string	$text	Text
- * @param	int		$max	Maximum size in bytes of a piece
+ * @param	string	$text	Texte
+ * @param	int		$max	Taille maximale en octets d'un morceau
  * @return	string[]
  */
 function nsinfoTradChunks($text, $max)

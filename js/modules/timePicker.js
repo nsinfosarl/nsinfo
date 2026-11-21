@@ -15,11 +15,11 @@
  */
 
 /**
- * Clock to choose a time (NS INFO), like the one of Android : the hour on a dial (outer ring 1 to 12, inner ring 13 to 00),
- * then the minutes on the dial. Mouse or finger (press, drag, release). No library.
+ * Horloge pour choisir une heure (NS INFO), comme celle d'Android : l'heure sur un cadran (anneau extérieur 1 à 12, anneau intérieur 13 à 00),
+ * puis les minutes sur le cadran. Souris ou doigt (appui, glissement, relâchement). Aucune bibliothèque.
  *
  *   nsinfoTimePicker(anchor, {value: 'HH:MM', lang: 'fr-FR', step: 1, labels: {ok:'', cancel:'', now:'', clear:''},
- *                             onChange: function(hhmm) {}})      hhmm = 'HH:MM', '' when cleared
+ *                             onChange: function(hhmm) {}})      hhmm = 'HH:MM', '' si effacé
  */
 (function (window, $) {
 	'use strict';

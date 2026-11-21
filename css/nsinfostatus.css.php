@@ -18,23 +18,23 @@
 /**
  * \file    nsinfo/css/nsinfo.css.php
  * \ingroup nsinfo
- * \brief   CSS file for module Nsinfo.
+ * \brief   Fichier CSS du module Nsinfo.
  */
 
-//if (!defined('NOREQUIREUSER')) define('NOREQUIREUSER','1');	// Not disabled because need to load personalized language
-//if (!defined('NOREQUIREDB'))   define('NOREQUIREDB','1');	// Not disabled. Language code is found on url.
+//if (!defined('NOREQUIREUSER')) define('NOREQUIREUSER','1');	// Non désactivé car il faut charger la langue personnalisée
+//if (!defined('NOREQUIREDB'))   define('NOREQUIREDB','1');	// Non désactivé. Le code langue est trouvé dans l'URL.
 if (!defined('NOREQUIRESOC')) {
 	define('NOREQUIRESOC', '1');
 }
-//if (!defined('NOREQUIRETRAN')) define('NOREQUIRETRAN','1');	// Not disabled because need to do translations
-//if (!defined('NOCSRFCHECK'))   define('NOCSRFCHECK', 1);		// Should be disable only for special situation
+//if (!defined('NOREQUIRETRAN')) define('NOREQUIRETRAN','1');	// Non désactivé car il faut faire les traductions
+//if (!defined('NOCSRFCHECK'))   define('NOCSRFCHECK', 1);		// À désactiver uniquement dans une situation particulière
 if (!defined('NOTOKENRENEWAL')) {
 	define('NOTOKENRENEWAL', 1);
 }
 if (!defined('NOLOGIN')) {
-	define('NOLOGIN', 1); // File must be accessed by logon page so without login
+	define('NOLOGIN', 1); // Le fichier doit être accessible depuis la page de connexion, donc sans authentification
 }
-//if (! defined('NOREQUIREMENU'))   define('NOREQUIREMENU',1);  // We need top menu content
+//if (! defined('NOREQUIREMENU'))   define('NOREQUIREMENU',1);  // Nous avons besoin du contenu du menu supérieur
 if (!defined('NOREQUIREHTML')) {
 	define('NOREQUIREHTML', 1);
 }
@@ -43,17 +43,17 @@ if (!defined('NOREQUIREAJAX')) {
 }
 
 session_cache_limiter('public');
-// false or '' = keep cache instruction added by server
-// 'public'  = remove cache instruction added by server
-// and if no cache-control added later, a default cache delay (10800) will be added by PHP.
+// false ou '' = conserver l'instruction de cache ajoutée par le serveur
+// 'public' = supprimer l'instruction de cache ajoutée par le serveur
+// et si aucun cache-control n'est ajouté ensuite, un délai de cache par défaut (10800) sera ajouté par PHP.
 
-// Load Dolibarr environment
+// Charge l'environnement Dolibarr
 $res = 0;
-// Try main.inc.php into web root known defined into CONTEXT_DOCUMENT_ROOT (not always defined)
+// Essaie main.inc.php dans la racine web connue, définie dans CONTEXT_DOCUMENT_ROOT (pas toujours définie)
 if (!$res && !empty($_SERVER["CONTEXT_DOCUMENT_ROOT"])) {
 	$res = @include $_SERVER["CONTEXT_DOCUMENT_ROOT"]."/main.inc.php";
 }
-// Try main.inc.php into web root detected using web root calculated from SCRIPT_FILENAME
+// Essaie main.inc.php dans la racine web détectée à partir de SCRIPT_FILENAME
 $tmp = empty($_SERVER['SCRIPT_FILENAME']) ? '' : $_SERVER['SCRIPT_FILENAME']; $tmp2 = realpath(__FILE__); $i = strlen($tmp) - 1; $j = strlen($tmp2) - 1;
 while ($i > 0 && $j > 0 && isset($tmp[$i]) && isset($tmp2[$j]) && $tmp[$i] == $tmp2[$j]) {
 	$i--; $j--;
@@ -64,7 +64,7 @@ if (!$res && $i > 0 && file_exists(substr($tmp, 0, ($i + 1))."/main.inc.php")) {
 if (!$res && $i > 0 && file_exists(substr($tmp, 0, ($i + 1))."/../main.inc.php")) {
 	$res = @include substr($tmp, 0, ($i + 1))."/../main.inc.php";
 }
-// Try main.inc.php using relative path
+// Essaie main.inc.php avec un chemin relatif
 if (!$res && file_exists("../../main.inc.php")) {
 	$res = @include "../../main.inc.php";
 }
@@ -77,17 +77,17 @@ if (!$res) {
 
 require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
 
-// Load user to have $user->conf loaded (not done by default here because of NOLOGIN constant defined) and load permission if we need to use them in CSS
+// Charge l'utilisateur pour avoir $user->conf chargé (non fait par défaut ici à cause de la constante NOLOGIN) et charge les droits si on en a besoin dans le CSS
 /*if (empty($user->id) && !empty($_SESSION['dol_login'])) {
 	$user->fetch('',$_SESSION['dol_login']);
 	$user->getrights();
 }*/
 
 
-// Define css type
+// Définit le type CSS
 header('Content-type: text/css');
-// Important: Following code is to cache this file to avoid page request by browser at each Dolibarr page access.
-// You can use CTRL+F5 to refresh your browser cache.
+// Important : le code suivant sert à mettre ce fichier en cache pour éviter une requête du navigateur à chaque accès à une page Dolibarr.
+// Vous pouvez utiliser CTRL+F5 pour rafraîchir le cache du navigateur.
 if (empty($dolibarr_nocache)) {
 	header('Cache-Control: max-age=10800, public, must-revalidate');
 } else {

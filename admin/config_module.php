@@ -18,7 +18,7 @@
 /**
  * \file    nsinfo/admin/config_module.php
  * \ingroup nsinfo
- * \brief   Backup of the settings of a NS INFO module in a JSON file, to transfer them to another Dolibarr : page called with ?namemodule=<module>, like changelog_module.php
+ * \brief   Sauvegarde des réglages d'un module NS INFO dans un fichier JSON, pour les transférer vers un autre Dolibarr : page appelée avec ?namemodule=<module>, comme changelog_module.php
  */
 
 // Load Dolibarr environment
@@ -53,7 +53,7 @@ $namemodule = preg_replace('/[^a-z0-9_]/', '', strtolower(GETPOST('namemodule', 
 if ($namemodule === '' || !is_dir(dol_buildpath('/'.$namemodule, 0))) {
 	$namemodule = 'nsinfo';
 }
-// Header of the module that shows the tab (same principle as changelog_module.php)
+// En-tête du module qui affiche l'onglet (même principe que changelog_module.php)
 if ($namemodule == 'factory') {
 	dol_include_once('/'.$namemodule.'/core/lib/'.$namemodule.'.lib.php');
 	$namehead = 'factory_admin_prepare_head';
@@ -72,10 +72,10 @@ $token = newToken();
 $subtab = GETPOST('subtab', 'aZ09') == 'import' ? 'import' : 'export';
 
 /**
- * Constants of the module (entity in use) : name => array(value, type)
+ * Constantes du module (entité utilisée) : nom => array(valeur, type)
  *
  * @param	DoliDB	$db			Database
- * @param	string	$prefix		Prefix of the constants (MODULE_)
+ * @param	string	$prefix		Préfixe des constantes (MODULE_)
  * @return	array<string,array{0:string,1:string}>
  */
 function nsinfoCfgConstants($db, $prefix)
@@ -91,9 +91,9 @@ function nsinfoCfgConstants($db, $prefix)
 }
 
 /**
- * Tells if a constant looks like a secret (password, key, token) : not exported unless asked
+ * Indique si une constante ressemble à un secret (mot de passe, clé, jeton) : non exportée sauf demande
  *
- * @param	string	$name	Name of the constant
+ * @param	string	$name	Nom de la constante
  * @return	bool
  */
 function nsinfoCfgIsSecret($name)
@@ -109,7 +109,7 @@ $all = nsinfoCfgConstants($db, $prefix);
 
 $tokenok = (GETPOST('token', 'alpha') == currentToken());
 
-// Download of the JSON file of the selected constants
+// Téléchargement du fichier JSON des constantes sélectionnées
 if ($action == 'download' && $tokenok) {
 	$selected = GETPOST('sel', 'array:aZ09');
 	$withsecrets = GETPOSTINT('withsecrets');
@@ -131,14 +131,14 @@ if ($action == 'download' && $tokenok) {
 		'constants' => $constants,
 	);
 	header('Content-Type: application/json; charset=utf-8');
-	// The name of the file carries the name of the module, the name of the company and the date of creation
+	// Le nom du fichier contient le nom du module, celui de la société et la date de création
 	$company = trim(preg_replace('/[^A-Za-z0-9]+/', '_', dol_string_unaccent((string) $mysoc->name)), '_');
 	header('Content-Disposition: attachment; filename="'.$namemodule.'_parametres'.($company !== '' ? '_'.$company : '').'_'.dol_print_date(dol_now(), '%Y-%m-%d_%H%M').'.json"');
 	print json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)."\n";
 	exit;
 }
 
-// Import of a JSON file (dropped file or pasted text)
+// Import d'un fichier JSON (fichier déposé ou texte collé)
 if ($action == 'import' && $tokenok) {
 	$text = '';
 	$dropped = (!empty($_FILES['nsinfo_cfg']['tmp_name'][0]) && is_uploaded_file($_FILES['nsinfo_cfg']['tmp_name'][0])) ? $_FILES['nsinfo_cfg']['tmp_name'][0] : '';
@@ -157,7 +157,7 @@ if ($action == 'import' && $tokenok) {
 		$skipped = 0;
 		$db->begin();
 		foreach ($data['constants'] as $name => $info) {
-			// Only the constants of the module, never the ones of the core or of another module
+			// Uniquement les constantes du module, jamais celles du noyau ou d'un autre module
 			if (!is_string($name) || strpos($name, $prefix) !== 0 || !preg_match('/^[A-Z0-9_]+$/', $name) || !is_array($info) || !isset($info['value']) || !is_scalar($info['value'])) {
 				$skipped++;
 				continue;
@@ -169,8 +169,8 @@ if ($action == 'import' && $tokenok) {
 				$skipped++;
 			}
 		}
-		// A setting of the module that is not in the file goes back to zero (constant deleted : the module uses its default).
-		// Kept : the markers of first activation (*_INIT) and the sensitive settings when the file was made without them
+		// Un réglage du module absent du fichier revient à zéro (constante supprimée : le module utilise sa valeur par défaut).
+		// Conservés : les marqueurs de première activation (*_INIT) et les réglages sensibles lorsque le fichier a été créé sans eux
 		$reset = 0;
 		foreach ($all as $name => $info) {
 			if (array_key_exists($name, $data['constants']) || substr($name, -5) === '_INIT' || (nsinfoCfgIsSecret($name) && empty($data['secrets']))) {

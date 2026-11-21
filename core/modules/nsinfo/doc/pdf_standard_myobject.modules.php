@@ -28,7 +28,7 @@
 /**
  *  \file       nsinfo/core/modules/nsinfo/doc/pdf_standard.modules.php
  *  \ingroup    nsinfo
- *  \brief      File of class to generate document from standard template
+ *  \brief      Fichier de classe de génération de document à partir du modèle standard
  */
 
 dol_include_once('/nsinfo/core/modules/nsinfo/modules_myobject.php');
@@ -39,7 +39,7 @@ require_once DOL_DOCUMENT_ROOT.'/core/lib/pdf.lib.php';
 
 
 /**
- *	Class to manage PDF template standard_myobject
+ *	Classe de gestion du modèle PDF standard_myobject
  */
 class pdf_standard_myobject extends ModelePDFMyObject
 {
@@ -49,33 +49,33 @@ class pdf_standard_myobject extends ModelePDFMyObject
     public $db;
 
 	/**
-     * @var string model name
+     * @var string nom du modèle
      */
     public $name;
 
 	/**
-     * @var string model description (short text)
+     * @var string description du modèle (texte court)
      */
     public $description;
 
     /**
-     * @var int     Save the name of generated file as the main doc when generating a doc with this template
+     * @var int     Enregistre le nom du fichier généré comme document principal lors de la génération avec ce modèle
      */
     public $update_main_doc_field;
 
 	/**
-     * @var string document type
+     * @var string type de document
      */
     public $type;
 
 	/**
-     * @var array Minimum version of PHP required by module.
-     * e.g.: PHP ≥ 5.5 = array(5, 5)
+     * @var array Version minimale de PHP requise par le module.
+     * par ex. : PHP ≥ 5.5 = array(5, 5)
      */
 	public $phpmin = array(5, 5);
 
 	/**
-     * Dolibarr version of the loaded document
+     * Version de Dolibarr du document chargé
      * @var string
      */
 	public $version = 'dolibarr';
@@ -117,7 +117,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 
     /**
 	* Issuer
-	* @var Societe Object that emits
+	* @var Societe Objet émetteur
 	*/
 	public $emetteur;
 
@@ -128,7 +128,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 
 
 	/**
-	 * @var array of document table collumns
+	 * @var array des colonnes du tableau du document
 	 */
 	public $cols;
 
@@ -148,7 +148,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 		$this->db = $db;
 		$this->name = "standard";
 		$this->description = $langs->trans('DocumentModelStandardPDF');
-		$this->update_main_doc_field = 1; // Save the name of generated file as the main doc when generating a doc with this template
+		$this->update_main_doc_field = 1; // Enregistre le nom du fichier généré comme document principal lors de la génération avec ce modèle
 
 		// Dimension page
 		$this->type = 'pdf';
@@ -161,28 +161,28 @@ class pdf_standard_myobject extends ModelePDFMyObject
 		$this->marge_haute = isset($conf->global->MAIN_PDF_MARGIN_TOP) ? $conf->global->MAIN_PDF_MARGIN_TOP : 10;
 		$this->marge_basse = isset($conf->global->MAIN_PDF_MARGIN_BOTTOM) ? $conf->global->MAIN_PDF_MARGIN_BOTTOM : 10;
 
-		$this->option_logo = 1; // Display logo
-		$this->option_tva = 1; // Manage the vat option FACTURE_TVAOPTION
-		$this->option_modereg = 1; // Display payment mode
-		$this->option_condreg = 1; // Display payment terms
-		$this->option_codeproduitservice = 1; // Display product-service code
-		$this->option_multilang = 1; // Available in several languages
-		$this->option_escompte = 1; // Displays if there has been a discount
-		$this->option_credit_note = 1; // Support credit notes
-		$this->option_freetext = 1; // Support add of a personalised text
-		$this->option_draft_watermark = 1; // Support add of a watermark on drafts
+		$this->option_logo = 1; // Affiche le logo
+		$this->option_tva = 1; // Gère l'option TVA FACTURE_TVAOPTION
+		$this->option_modereg = 1; // Affiche le mode de règlement
+		$this->option_condreg = 1; // Affiche les conditions de règlement
+		$this->option_codeproduitservice = 1; // Affiche le code produit-service
+		$this->option_multilang = 1; // Disponible en plusieurs langues
+		$this->option_escompte = 1; // Affiche s'il y a eu un escompte
+		$this->option_credit_note = 1; // Gère les avoirs
+		$this->option_freetext = 1; // Permet l'ajout d'un texte personnalisé
+		$this->option_draft_watermark = 1; // Permet l'ajout d'un filigrane sur les brouillons
 
-		// Get source company
+		// Récupère la société émettrice
 		$this->emetteur = $mysoc;
-		if (empty($this->emetteur->country_code)) $this->emetteur->country_code = substr($langs->defaultlang, -2); // By default, if was not defined
+		if (empty($this->emetteur->country_code)) $this->emetteur->country_code = substr($langs->defaultlang, -2); // Par défaut, si non défini
 
-		// Define position of columns
-		$this->posxdesc = $this->marge_gauche + 1; // used for notes ans other stuff
+		// Définit la position des colonnes
+		$this->posxdesc = $this->marge_gauche + 1; // utilisé pour les notes et autres éléments
 
 
-		$this->tabTitleHeight = 5; // default height
+		$this->tabTitleHeight = 5; // hauteur par défaut
 
-		//  Use new system for position of columns, view  $this->defineColumnField()
+		//  Utilise le nouveau système de position des colonnes, voir  $this->defineColumnField()
 
 		$this->tva = array();
 		$this->localtax1 = array();
@@ -195,14 +195,14 @@ class pdf_standard_myobject extends ModelePDFMyObject
 
     // phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
     /**
-     *  Function to build pdf onto disk
+     *  Fonction de génération du PDF sur disque
      *
-     *  @param		Object		$object				Object to generate
+     *  @param		Object		$object				Objet à générer
      *  @param		Translate	$outputlangs		Lang output object
-     *  @param		string		$srctemplatepath	Full path of source filename for generator using a template file
-     *  @param		int			$hidedetails		Do not show line details
-     *  @param		int			$hidedesc			Do not show desc
-     *  @param		int			$hideref			Do not show ref
+     *  @param		string		$srctemplatepath	Chemin complet du fichier source pour le générateur utilisant un modèle
+     *  @param		int			$hidedetails		Ne pas afficher le détail des lignes
+     *  @param		int			$hidedesc			Ne pas afficher la description
+     *  @param		int			$hideref			Ne pas afficher la référence
      *  @return     int         	    			1=OK, 0=KO
 	 */
 	public function write_file($object, $outputlangs, $srctemplatepath = '', $hidedetails = 0, $hidedesc = 0, $hideref = 0)
@@ -213,10 +213,10 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	    dol_syslog("write_file outputlangs->defaultlang=".(is_object($outputlangs) ? $outputlangs->defaultlang : 'null'));
 
 	    if (!is_object($outputlangs)) $outputlangs = $langs;
-	    // For backward compatibility with FPDF, force output charset to ISO, because FPDF expect text to be encoded in ISO
+	    // Pour la compatibilité ascendante avec FPDF, force le jeu de caractères de sortie en ISO, car FPDF attend un texte encodé en ISO
 	    if (!empty($conf->global->MAIN_USE_FPDF)) $outputlangs->charset_output = 'ISO-8859-1';
 
-	    // Load translation files required by the page
+	    // Charge les fichiers de traduction nécessaires à la page
 	    $outputlangs->loadLangs(array("main", "bills", "products", "dict", "companies"));
 
 	    if (!empty($conf->global->PDF_USE_ALSO_LANGUAGE_CODE) && $outputlangs->defaultlang != $conf->global->PDF_USE_ALSO_LANGUAGE_CODE) {
@@ -233,7 +233,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	        $hidetop = $conf->global->MAIN_PDF_DISABLE_COL_HEAD_TITLE;
 	    }
 
-	    // Loop on each lines to detect if there is at least one image to show
+	    // Parcourt chaque ligne pour détecter s'il y a au moins une image à afficher
 	    $realpatharray = array();
 	    $this->atleastonephoto = false;
 	    /*
@@ -252,7 +252,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	                $pdir[0] = get_exdir($objphoto->id, 2, 0, 0, $objphoto, 'product').$objphoto->id."/photos/";
 	                $pdir[1] = get_exdir(0, 0, 0, 0, $objphoto, 'product').dol_sanitizeFileName($objphoto->ref).'/';
 	            } else {
-	                $pdir[0] = get_exdir(0, 0, 0, 0, $objphoto, 'product').dol_sanitizeFileName($objphoto->ref).'/'; // default
+	                $pdir[0] = get_exdir(0, 0, 0, 0, $objphoto, 'product').dol_sanitizeFileName($objphoto->ref).'/'; // par défaut
 	                $pdir[1] = get_exdir($objphoto->id, 2, 0, 0, $objphoto, 'product').$objphoto->id."/photos/"; // alternative
 	            }
 
@@ -265,7 +265,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 
 	                    foreach ($objphoto->liste_photos($dir, 1) as $key => $obj)
 	                    {
-	                        if (empty($conf->global->CAT_HIGH_QUALITY_IMAGES))		// If CAT_HIGH_QUALITY_IMAGES not defined, we use thumb if defined and then original photo
+	                        if (empty($conf->global->CAT_HIGH_QUALITY_IMAGES))		// Si CAT_HIGH_QUALITY_IMAGES n'est pas défini, on utilise la vignette si elle existe, puis la photo originale
 	                        {
 	                            if ($obj['photo_vignette'])
 	                            {
@@ -295,7 +295,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	    {
 	        $object->fetch_thirdparty();
 
-	        // Definition of $dir and $file
+	        // Définition de $dir et $file
 	        if ($object->specimen)
 	        {
 	        	$dir = $conf->nsinfo->dir_output.'/myobject';
@@ -325,19 +325,19 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	            $hookmanager->initHooks(array('pdfgeneration'));
 	            $parameters = array('file'=>$file, 'object'=>$object, 'outputlangs'=>$outputlangs);
 	            global $action;
-	            $reshook = $hookmanager->executeHooks('beforePDFCreation', $parameters, $object, $action); // Note that $action and $object may have been modified by some hooks
+	            $reshook = $hookmanager->executeHooks('beforePDFCreation', $parameters, $object, $action); // Attention : $action et $object peuvent avoir été modifiés par certains hooks
 
-	            // Set nblines with the new facture lines content after hook
+	            // Définit nblines avec le contenu des nouvelles lignes de facture après le hook
 	            $nblines = (is_array($object->lines) ? count($object->lines) : 0);
 
 	            // Create pdf instance
 	            $pdf = pdf_getInstance($this->format);
-	            $default_font_size = pdf_getPDFFontSize($outputlangs); // Must be after pdf_getInstance
+	            $default_font_size = pdf_getPDFFontSize($outputlangs); // Doit être placé après pdf_getInstance
 	            $pdf->SetAutoPageBreak(1, 0);
 
-	            $heightforinfotot = 50; // Height reserved to output the info and total part and payment part
-	            $heightforfreetext = (isset($conf->global->MAIN_PDF_FREETEXT_HEIGHT) ? $conf->global->MAIN_PDF_FREETEXT_HEIGHT : 5); // Height reserved to output the free text on last page
-	            $heightforfooter = $this->marge_basse + (empty($conf->global->MAIN_GENERATE_DOCUMENTS_SHOW_FOOT_DETAILS) ? 12 : 22); // Height reserved to output the footer (value include bottom margin)
+	            $heightforinfotot = 50; // Hauteur réservée à l'affichage des infos, du total et du règlement
+	            $heightforfreetext = (isset($conf->global->MAIN_PDF_FREETEXT_HEIGHT) ? $conf->global->MAIN_PDF_FREETEXT_HEIGHT : 5); // Hauteur réservée à l'affichage du texte libre sur la dernière page
+	            $heightforfooter = $this->marge_basse + (empty($conf->global->MAIN_GENERATE_DOCUMENTS_SHOW_FOOT_DETAILS) ? 12 : 22); // Hauteur réservée à l'affichage du pied de page (valeur incluant la marge basse)
 
 	            if (class_exists('TCPDF'))
 	            {
@@ -346,7 +346,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	            }
 	            $pdf->SetFont(pdf_getPDFFont($outputlangs));
 
-	            // Set path to the background PDF File
+	            // Définit le chemin du fichier PDF d'arrière-plan
                 if (!empty($conf->global->MAIN_ADD_PDF_BACKGROUND))
 	            {
 	            	$pagecount = $pdf->setSourceFile($conf->mycompany->multidir_output[$object->entity].'/'.$conf->global->MAIN_ADD_PDF_BACKGROUND);
@@ -364,13 +364,13 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	            $pdf->SetKeyWords($outputlangs->convToOutputCharset($object->ref)." ".$outputlangs->transnoentities("PdfTitle")." ".$outputlangs->convToOutputCharset($object->thirdparty->name));
 	            if (!empty($conf->global->MAIN_DISABLE_PDF_COMPRESSION)) $pdf->SetCompression(false);
 
-	            // Set certificate
+	            // Définit le certificat
 	            $cert = empty($user->conf->CERTIFICATE_CRT) ? '' : $user->conf->CERTIFICATE_CRT;
-	            // If user has no certificate, we try to take the company one
+	            // Si l'utilisateur n'a pas de certificat, on essaie de prendre celui de la société
 	            if (!$cert) {
 	            	$cert = empty($conf->global->CERTIFICATE_CRT) ? '' : $conf->global->CERTIFICATE_CRT;
 	            }
-	            // If a certificate is found
+	            // Si un certificat est trouvé
 	            if ($cert) {
 	            	$info = array(
 	            		'Name' => $this->emetteur->name,
@@ -381,7 +381,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	            	$pdf->setSignature($cert, $cert, $this->emetteur->name, '', 2, $info);
 	            }
 
-	            $pdf->SetMargins($this->marge_gauche, $this->marge_haute, $this->marge_droite); // Left, Top, Right
+	            $pdf->SetMargins($this->marge_gauche, $this->marge_haute, $this->marge_droite); // Gauche, haut, droite
 
 	            // New page
 	            $pdf->AddPage();
@@ -390,7 +390,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 
 	            $top_shift = $this->_pagehead($pdf, $object, 1, $outputlangs, $outputlangsbis);
 	            $pdf->SetFont('', '', $default_font_size - 1);
-	            $pdf->MultiCell(0, 3, ''); // Set interline to 3
+	            $pdf->MultiCell(0, 3, ''); // Définit l'interligne à 3
 	            $pdf->SetTextColor(0, 0, 0);
 
 	            $tab_top = 90 + $top_shift;
@@ -403,7 +403,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 
 	            // Display notes
 	            $notetoshow = empty($object->note_public) ? '' : $object->note_public;
-	            // Extrafields in note
+	            // Champs supplémentaires dans la note
                 $extranote = $this->getExtrafieldsInHtml($object, $outputlangs);
                 if (!empty($extranote))
                 {
@@ -435,7 +435,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	                {
 	                    $pdf->rollbackTransaction(true);
 
-	                    // prepare pages to receive notes
+	                    // prépare les pages pour recevoir les notes
 	                    while ($pagenb < $pageposafternote) {
 	                        $pdf->AddPage();
 	                        $pagenb++;
@@ -443,11 +443,11 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	                        if (empty($conf->global->MAIN_PDF_DONOTREPEAT_HEAD)) $this->_pagehead($pdf, $object, 0, $outputlangs);
 	                        // $this->_pagefoot($pdf,$object,$outputlangs,1);
 	                        $pdf->setTopMargin($tab_top_newpage);
-	                        // The only function to edit the bottom margin of current page to set it.
+	                        // Seule fonction permettant de modifier la marge basse de la page courante pour la définir.
 	                        $pdf->setPageOrientation('', 1, $heightforfooter + $heightforfreetext);
 	                    }
 
-	                    // back to start
+	                    // retour au début
 	                    $pdf->setPage($pageposbeforenote);
 	                    $pdf->setPageOrientation('', 1, $heightforfooter + $heightforfreetext);
 	                    $pdf->SetFont('', '', $default_font_size - 1);
@@ -456,20 +456,20 @@ class pdf_standard_myobject extends ModelePDFMyObject
 
 	                    $posyafter = $pdf->GetY();
 
-	                    if ($posyafter > ($this->page_hauteur - ($heightforfooter + $heightforfreetext + 20)))	// There is no space left for total+free text
+	                    if ($posyafter > ($this->page_hauteur - ($heightforfooter + $heightforfreetext + 20)))	// Il ne reste pas de place pour le total et le texte libre
 	                    {
 	                        $pdf->AddPage('', '', true);
 	                        $pagenb++;
 	                        $pageposafternote++;
 	                        $pdf->setPage($pageposafternote);
 	                        $pdf->setTopMargin($tab_top_newpage);
-	                        // The only function to edit the bottom margin of current page to set it.
+	                        // Seule fonction permettant de modifier la marge basse de la page courante pour la définir.
 	                        $pdf->setPageOrientation('', 1, $heightforfooter + $heightforfreetext);
 	                        //$posyafter = $tab_top_newpage;
 	                    }
 
 
-	                    // apply note frame to previous pages
+	                    // applique le cadre des notes aux pages précédentes
 	                    $i = $pageposbeforenote;
 	                    while ($i < $pageposafternote) {
 	                        $pdf->setPage($i);
@@ -486,13 +486,13 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	                        }
 
 	                        // Add footer
-	                        $pdf->setPageOrientation('', 1, 0); // The only function to edit the bottom margin of current page to set it.
+	                        $pdf->setPageOrientation('', 1, 0); // Seule fonction permettant de modifier la marge basse de la page courante pour la définir.
 	                        $this->_pagefoot($pdf, $object, $outputlangs, 1);
 
 	                        $i++;
 	                    }
 
-	                    // apply note frame to last page
+	                    // applique le cadre des notes à la dernière page
 	                    $pdf->setPage($pageposafternote);
 	                    if (!empty($tplidx)) $pdf->useTemplate($tplidx);
 	                    if (empty($conf->global->MAIN_PDF_DONOTREPEAT_HEAD)) $this->_pagehead($pdf, $object, 0, $outputlangs);
@@ -508,7 +508,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 
 	                    if ($posyafter > ($this->page_hauteur - ($heightforfooter + $heightforfreetext + 20)))
 	                    {
-	                        // not enough space, need to add page
+	                        // pas assez de place, il faut ajouter une page
 	                        $pdf->AddPage('', '', true);
 	                        $pagenb++;
 	                        $pageposafternote++;
@@ -529,28 +529,28 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	            // Use new auto column system
 	            $this->prepareArrayColumnField($object, $outputlangs, $hidedetails, $hidedesc, $hideref);
 
-	            // Table simulation to know the height of the title line
+	            // Simulation du tableau pour connaître la hauteur de la ligne de titre
 			    $pdf->startTransaction();
 			    $this->pdfTabTitles($pdf, $tab_top, $tab_height, $outputlangs, $hidetop);
 			    $pdf->rollbackTransaction(true);
 
 			    $nexY = $tab_top + $this->tabTitleHeight;
 
-	            // Loop on each lines
+	            // Parcourt chaque ligne
 	            $pageposbeforeprintlines = $pdf->getPage();
 	            $pagenb = $pageposbeforeprintlines;
 	            for ($i = 0; $i < $nblines; $i++)
 	            {
 	                $curY = $nexY;
-	                $pdf->SetFont('', '', $default_font_size - 1); // Into loop to work with multipage
+	                $pdf->SetFont('', '', $default_font_size - 1); // Dans la boucle pour gérer le multipage
 	                $pdf->SetTextColor(0, 0, 0);
 
-	                // Define size of image if we need it
+	                // Définit la taille de l'image si besoin
 	                $imglinesize = array();
 	                if (!empty($realpatharray[$i])) $imglinesize = pdf_getSizeForImage($realpatharray[$i]);
 
 	                $pdf->setTopMargin($tab_top_newpage);
-	                $pdf->setPageOrientation('', 1, $heightforfooter + $heightforfreetext + $heightforinfotot); // The only function to edit the bottom margin of current page to set it.
+	                $pdf->setPageOrientation('', 1, $heightforfooter + $heightforfreetext + $heightforinfotot); // Seule fonction permettant de modifier la marge basse de la page courante pour la définir.
 	                $pageposbefore = $pdf->getPage();
 
 	                $showpricebeforepagebreak = 1;
@@ -558,8 +558,8 @@ class pdf_standard_myobject extends ModelePDFMyObject
 
 	                if ($this->getColumnStatus('photo'))
 	                {
-    	                // We start with Photo of product line
-    	                if (isset($imglinesize['width']) && isset($imglinesize['height']) && ($curY + $imglinesize['height']) > ($this->page_hauteur - ($heightforfooter + $heightforfreetext + $heightforinfotot)))	// If photo too high, we moved completely on new page
+    	                // On commence par la photo de la ligne produit
+    	                if (isset($imglinesize['width']) && isset($imglinesize['height']) && ($curY + $imglinesize['height']) > ($this->page_hauteur - ($heightforfooter + $heightforfreetext + $heightforinfotot)))	// Si la photo est trop haute, on la déplace entièrement sur une nouvelle page
     	                {
     	                    $pdf->AddPage('', '', true);
     	                    if (!empty($tplidx)) $pdf->useTemplate($tplidx);
@@ -567,7 +567,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 
     	                    $curY = $tab_top_newpage;
 
-							// Allows data in the first page if description is long enough to break in multiples pages
+							// Permet d'afficher des données sur la première page si la description est assez longue pour se répartir sur plusieurs pages
 							if (!empty($conf->global->MAIN_PDF_DATA_ON_FIRST_PAGE))
 								$showpricebeforepagebreak = 1;
 							else $showpricebeforepagebreak = 0;
@@ -575,13 +575,13 @@ class pdf_standard_myobject extends ModelePDFMyObject
 
     	                if (!empty($this->cols['photo']) && isset($imglinesize['width']) && isset($imglinesize['height']))
     	                {
-    	                    $pdf->Image($realpatharray[$i], $this->getColumnContentXStart('photo'), $curY, $imglinesize['width'], $imglinesize['height'], '', '', '', 2, 300); // Use 300 dpi
-    	                    // $pdf->Image does not increase value return by getY, so we save it manually
+    	                    $pdf->Image($realpatharray[$i], $this->getColumnContentXStart('photo'), $curY, $imglinesize['width'], $imglinesize['height'], '', '', '', 2, 300); // Utilise 300 dpi
+    	                    // $pdf->Image n'augmente pas la valeur renvoyée par getY, on la sauvegarde donc manuellement
     	                    $posYAfterImage = $curY + $imglinesize['height'];
     	                }
 	                }
 
-	                // Description of product line
+	                // Description de la ligne produit
 	                if ($this->getColumnStatus('desc'))
 	                {
     	                $pdf->startTransaction();
@@ -589,27 +589,27 @@ class pdf_standard_myobject extends ModelePDFMyObject
                         $this->printColDescContent($pdf, $curY, 'desc', $object, $i, $outputlangs, $hideref, $hidedesc);
     	                $pageposafter = $pdf->getPage();
 
-    	                if ($pageposafter > $pageposbefore)	// There is a pagebreak
+    	                if ($pageposafter > $pageposbefore)	// Il y a un saut de page
     	                {
     	                    $pdf->rollbackTransaction(true);
-    	                    $pdf->setPageOrientation('', 1, $heightforfooter); // The only function to edit the bottom margin of current page to set it.
+    	                    $pdf->setPageOrientation('', 1, $heightforfooter); // Seule fonction permettant de modifier la marge basse de la page courante pour la définir.
 
                             $this->printColDescContent($pdf, $curY, 'desc', $object, $i, $outputlangs, $hideref, $hidedesc);
 
     	                    $pageposafter = $pdf->getPage();
     	                    $posyafter = $pdf->GetY();
     	                    //var_dump($posyafter); var_dump(($this->page_hauteur - ($heightforfooter+$heightforfreetext+$heightforinfotot))); exit;
-    	                    if ($posyafter > ($this->page_hauteur - ($heightforfooter + $heightforfreetext + $heightforinfotot)))	// There is no space left for total+free text
+    	                    if ($posyafter > ($this->page_hauteur - ($heightforfooter + $heightforfreetext + $heightforinfotot)))	// Il ne reste pas de place pour le total et le texte libre
     	                    {
-    	                        if ($i == ($nblines - 1))	// No more lines, and no space left to show total, so we create a new page
+    	                        if ($i == ($nblines - 1))	// Plus de lignes, et pas de place pour afficher le total, on crée donc une nouvelle page
     	                        {
     	                            $pdf->AddPage('', '', true);
     	                            if (!empty($tplidx)) $pdf->useTemplate($tplidx);
     	                            $pdf->setPage($pageposafter + 1);
     	                        }
     	                    } else {
-    	                        // We found a page break
-								// Allows data in the first page if description is long enough to break in multiples pages
+    	                        // Un saut de page a été trouvé
+								// Permet d'afficher des données sur la première page si la description est assez longue pour se répartir sur plusieurs pages
 								if (!empty($conf->global->MAIN_PDF_DATA_ON_FIRST_PAGE))
 									$showpricebeforepagebreak = 1;
 								else $showpricebeforepagebreak = 0;
@@ -624,9 +624,9 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	                $pageposafter = $pdf->getPage();
 	                $pdf->setPage($pageposbefore);
 	                $pdf->setTopMargin($this->marge_haute);
-	                $pdf->setPageOrientation('', 1, 0); // The only function to edit the bottom margin of current page to set it.
+	                $pdf->setPageOrientation('', 1, 0); // Seule fonction permettant de modifier la marge basse de la page courante pour la définir.
 
-	                // We suppose that a too long description or photo were moved completely on next page
+	                // On suppose qu'une description ou une photo trop longue a été déplacée entièrement sur la page suivante
 	                if ($pageposafter > $pageposbefore && empty($showpricebeforepagebreak)) {
 	                    $pdf->setPage($pageposafter); $curY = $tab_top_newpage;
 	                }
@@ -634,7 +634,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	                $pdf->SetFont('', '', $default_font_size - 1); // On repositionne la police par defaut
 
 	                // Quantity
-	                // Enough for 6 chars
+	                // Suffisant pour 6 caractères
 	                if ($this->getColumnStatus('qty'))
 	                {
 	                    $qty = pdf_getlineqty($object, $i, $outputlangs, $hidedetails);
@@ -664,13 +664,13 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	                    'outputlangs' => $outputlangs,
 	                    'hidedetails' => $hidedetails
 	                );
-	                $reshook = $hookmanager->executeHooks('printPDFline', $parameters, $this); // Note that $object may have been modified by hook
+	                $reshook = $hookmanager->executeHooks('printPDFline', $parameters, $this); // Attention : $object peut avoir été modifié par le hook
 
 
 	                $sign = 1;
 	                // Collecte des totaux par valeur de tva dans $this->tva["taux"]=total_tva
 	                $prev_progress = $object->lines[$i]->get_prev_progress($object->id);
-	                if ($prev_progress > 0 && !empty($object->lines[$i]->situation_percent)) // Compute progress from previous situation
+	                if ($prev_progress > 0 && !empty($object->lines[$i]->situation_percent)) // Calcule l'avancement depuis la situation précédente
 	                {
 	                    if ($conf->multicurrency->enabled && $object->multicurrency_tx != 1) $tvaligne = $sign * $object->lines[$i]->multicurrency_total_tva * ($object->lines[$i]->situation_percent - $prev_progress) / $object->lines[$i]->situation_percent;
 	                    else $tvaligne = $sign * $object->lines[$i]->total_tva * ($object->lines[$i]->situation_percent - $prev_progress) / $object->lines[$i]->situation_percent;
@@ -692,9 +692,9 @@ class pdf_standard_myobject extends ModelePDFMyObject
 
 	                $vatrate = (string) $object->lines[$i]->tva_tx;
 
-	                // Retrieve type from database for backward compatibility with old records
-	                if ((!isset($localtax1_type) || $localtax1_type == '' || !isset($localtax2_type) || $localtax2_type == '') // if tax type not defined
-	                    && (!empty($localtax1_rate) || !empty($localtax2_rate))) // and there is local tax
+	                // Récupère le type depuis la base pour la compatibilité avec les anciens enregistrements
+	                if ((!isset($localtax1_type) || $localtax1_type == '' || !isset($localtax2_type) || $localtax2_type == '') // si le type de taxe n'est pas défini
+	                    && (!empty($localtax1_rate) || !empty($localtax2_rate))) // et il existe une taxe locale
 	                {
 	                    $localtaxtmp_array = getLocalTaxesFromRate($vatrate, 0, $object->thirdparty, $mysoc);
 	                    $localtax1_type = $localtaxtmp_array[0];
@@ -724,7 +724,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
                         $pdf->SetLineStyle(array('dash'=>0));
                     }
 
-                    // Detect if some page were added automatically and output _tableau for past pages
+                    // Détecte si des pages ont été ajoutées automatiquement et affiche _tableau pour les pages précédentes
                     while ($pagenb < $pageposafter) {
                         $pdf->setPage($pagenb);
                         if ($pagenb == $pageposbeforeprintlines) {
@@ -735,7 +735,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
                         $this->_pagefoot($pdf, $object, $outputlangs, 1);
                         $pagenb++;
                         $pdf->setPage($pagenb);
-                        $pdf->setPageOrientation('', 1, 0); // The only function to edit the bottom margin of current page to set it.
+                        $pdf->setPageOrientation('', 1, 0); // Seule fonction permettant de modifier la marge basse de la page courante pour la définir.
                         if (empty($conf->global->MAIN_PDF_DONOTREPEAT_HEAD)) $this->_pagehead($pdf, $object, 0, $outputlangs);
                     }
 
@@ -790,7 +790,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	            $hookmanager->initHooks(array('pdfgeneration'));
 	            $parameters = array('file'=>$file, 'object'=>$object, 'outputlangs'=>$outputlangs);
 	            global $action;
-	            $reshook = $hookmanager->executeHooks('afterPDFCreation', $parameters, $this, $action); // Note that $action and $object may have been modified by some hooks
+	            $reshook = $hookmanager->executeHooks('afterPDFCreation', $parameters, $this, $action); // Attention : $action et $object peuvent avoir été modifiés par certains hooks
 	            if ($reshook < 0)
 	            {
 	                $this->error = $hookmanager->error;
@@ -802,7 +802,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 
 	                $this->result = array('fullpath'=>$file);
 
-	                return 1; // No error
+	                return 1; // Pas d'erreur
 	        } else {
 	            $this->error = $langs->transnoentities("ErrorCanNotCreateDir", $dir);
 	            return 0;
@@ -815,30 +815,30 @@ class pdf_standard_myobject extends ModelePDFMyObject
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
 	/**
-	 *  Return list of active generation modules
+	 *  Renvoie la liste des modules de génération actifs
 	 *
 	 *  @param	DoliDB	$db     			Database handler
-	 *  @param  integer	$maxfilenamelength  Max length of value to show
-	 *  @return	array						List of templates
+	 *  @param  integer	$maxfilenamelength  Longueur maximale de la valeur à afficher
+	 *  @return	array						Liste des modèles
 	 */
 	public static function liste_modeles($db, $maxfilenamelength = 0)
 	{
 		// phpcs:enable
-		return parent::liste_modeles($db, $maxfilenamelength); // TODO: Change the autogenerated stub
+		return parent::liste_modeles($db, $maxfilenamelength); // TODO : remplacer le squelette généré automatiquement
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.PublicUnderscore
 	/**
-	 *   Show table for lines
+	 *   Affiche le tableau des lignes
 	 *
 	 *   @param		tcpdf			$pdf     		Object PDF
-	 *   @param		string		$tab_top		Top position of table
-	 *   @param		string		$tab_height		Height of table (rectangle)
-	 *   @param		int			$nexY			Y (not used)
+	 *   @param		string		$tab_top		Position haute du tableau
+	 *   @param		string		$tab_height		Hauteur du tableau (rectangle)
+	 *   @param		int			$nexY			Y (non utilisé)
 	 *   @param		Translate	$outputlangs	Langs object
-	 *   @param		int			$hidetop		1=Hide top bar of array and title, 0=Hide nothing, -1=Hide only title
-	 *   @param		int			$hidebottom		Hide bottom bar of array
-	 *   @param		string		$currency		Currency code
+	 *   @param		int			$hidetop		1=Masque la barre haute du tableau et le titre, 0=Ne masque rien, -1=Masque seulement le titre
+	 *   @param		int			$hidebottom		Masque la barre basse du tableau
+	 *   @param		string		$currency		Code de la devise
 	 *   @param		Translate	$outputlangsbis	Langs object bis
 	 *   @return	void
 	 */
@@ -846,14 +846,14 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	{
 		global $conf;
 
-		// Force to disable hidetop and hidebottom
+		// Force la désactivation de hidetop et hidebottom
 		$hidebottom = 0;
 		if ($hidetop) $hidetop = -1;
 
 		$currency = !empty($currency) ? $currency : $conf->currency;
 		$default_font_size = pdf_getPDFFontSize($outputlangs);
 
-		// Amount in (at tab_top - 1)
+		// Montant dans (à tab_top - 1)
 		$pdf->SetTextColor(0, 0, 0);
 		$pdf->SetFont('', '', $default_font_size - 2);
 
@@ -877,32 +877,32 @@ class pdf_standard_myobject extends ModelePDFMyObject
 		$pdf->SetFont('', '', $default_font_size - 1);
 
 		// Output Rect
-		$this->printRect($pdf, $this->marge_gauche, $tab_top, $this->page_largeur - $this->marge_gauche - $this->marge_droite, $tab_height, $hidetop, $hidebottom); // Rect takes a length in 3rd parameter and 4th parameter
+		$this->printRect($pdf, $this->marge_gauche, $tab_top, $this->page_largeur - $this->marge_gauche - $this->marge_droite, $tab_height, $hidetop, $hidebottom); // Rect prend une longueur en 3e et 4e paramètres
 
 
 		$this->pdfTabTitles($pdf, $tab_top, $tab_height, $outputlangs, $hidetop);
 
 		if (empty($hidetop)) {
-		    $pdf->line($this->marge_gauche, $tab_top + $this->tabTitleHeight, $this->page_largeur - $this->marge_droite, $tab_top + $this->tabTitleHeight); // line takes a position y in 2nd parameter and 4th parameter
+		    $pdf->line($this->marge_gauche, $tab_top + $this->tabTitleHeight, $this->page_largeur - $this->marge_droite, $tab_top + $this->tabTitleHeight); // line prend une position y en 2e et 4e paramètres
 		}
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.PublicUnderscore
 	/**
-	 *  Show top header of page.
+	 *  Affiche l'en-tête haut de page.
 	 *
 	 *  @param	Tcpdf			$pdf     		Object PDF
-	 *  @param  Object		$object     	Object to show
+	 *  @param  Object		$object     	Objet à afficher
 	 *  @param  int	    	$showaddress    0=no, 1=yes
-	 *  @param  Translate	$outputlangs	Object lang for output
-	 *  @param  Translate	$outputlangsbis	Object lang for output bis
+	 *  @param  Translate	$outputlangs	Langue de l'objet pour la sortie
+	 *  @param  Translate	$outputlangsbis	Langue de l'objet pour la sortie (bis)
 	 *  @return	void
 	 */
 	protected function _pagehead(&$pdf, $object, $showaddress, $outputlangs, $outputlangsbis = null)
 	{
 		global $conf, $langs;
 
-		// Load traductions files required by page
+		// Charge les fichiers de traduction nécessaires à la page
 		$outputlangs->loadLangs(array("main", "bills", "propal", "companies"));
 
 		$default_font_size = pdf_getPDFFontSize($outputlangs);
@@ -941,7 +941,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 				if (is_readable($logo))
 				{
 				    $height = pdf_getHeightForLogo($logo);
-					$pdf->Image($logo, $this->marge_gauche, $posy, 0, $height); // width=0 (auto)
+					$pdf->Image($logo, $this->marge_gauche, $posy, 0, $height); // largeur=0 (auto)
 				} else {
 					$pdf->SetTextColor(200, 0, 0);
 					$pdf->SetFont('', 'B', $default_font_size - 2);
@@ -1030,7 +1030,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 			$pdf->MultiCell($w, 3, $outputlangs->transnoentities("CustomerCode")." : ".$outputlangs->transnoentities($object->thirdparty->code_client), '', 'R');
 		}
 
-		// Get contact
+		// Récupère le contact
 		if (!empty($conf->global->DOC_SHOW_FIRST_SALES_REP))
 		{
 		    $arrayidcontact = $object->getIdContact('internal', 'SALESREPFOLL');
@@ -1048,7 +1048,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 		$posy += 1;
 
 		$top_shift = 0;
-		// Show list of linked objects
+		// Affiche la liste des objets liés
 		$current_y = $pdf->getY();
 		$posy = pdf_writeLinkedObjects($pdf, $object, $outputlangs, $posx, $posy, $w, 3, 'R', $default_font_size);
 		if ($current_y < $pdf->getY())
@@ -1081,7 +1081,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 			$pdf->MultiCell($widthrecbox, $hautcadre, "", 0, 'R', 1);
 			$pdf->SetTextColor(0, 0, 60);
 
-			// Show sender name
+			// Affiche le nom de l'expéditeur
 			$pdf->SetXY($posx + 2, $posy + 3);
 			$pdf->SetFont('', 'B', $default_font_size);
 			$pdf->MultiCell($widthrecbox - 2, 4, $outputlangs->convToOutputCharset($this->emetteur->name), 0, 'L');
@@ -1092,7 +1092,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 			$pdf->SetFont('', '', $default_font_size - 1);
 			$pdf->MultiCell($widthrecbox - 2, 4, $carac_emetteur, 0, 'L');
 
-			// If BILLING contact defined on invoice, we use it
+			// Si un contact FACTURATION est défini sur la facture, on l'utilise
 			$usecontact = false;
 			$arrayidcontact = $object->getIdContact('external', 'BILLING');
 			if (count($arrayidcontact) > 0)
@@ -1101,7 +1101,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 				$result = $object->fetch_contact($arrayidcontact[0]);
 			}
 
-			// Recipient name
+			// Nom du destinataire
 			if ($usecontact && !empty($conf->global->MAIN_USE_COMPANY_NAME_OF_CONTACT)) {
 				$thirdparty = $object->contact;
 			} else {
@@ -1116,7 +1116,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 
 			// Show recipient
 			$widthrecbox = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 92 : 100;
-			if ($this->page_largeur < 210) $widthrecbox = 84; // To work with US executive format
+			if ($this->page_largeur < 210) $widthrecbox = 84; // Pour le format US executive
 			$posy = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 40 : 42;
 			$posy += $top_shift;
 			$posx = $this->page_largeur - $this->marge_droite - $widthrecbox;
@@ -1129,7 +1129,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 			$pdf->MultiCell($widthrecbox, 5, $outputlangs->transnoentities("BillTo").":", 0, 'L');
 			$pdf->Rect($posx, $posy, $widthrecbox, $hautcadre);
 
-			// Show recipient name
+			// Affiche le nom du destinataire
 			$pdf->SetXY($posx + 2, $posy + 3);
 			$pdf->SetFont('', 'B', $default_font_size);
 			$pdf->MultiCell($widthrecbox, 2, $carac_client_name, 0, 'L');
@@ -1148,13 +1148,13 @@ class pdf_standard_myobject extends ModelePDFMyObject
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.PublicUnderscore
 	/**
-	 *   	Show footer of page. Need this->emetteur object
+	 *   	Affiche le pied de page. Nécessite l'objet this->emetteur
      *
 	 *   	@param	PDF			$pdf     			PDF
-	 * 		@param	Object		$object				Object to show
-	 *      @param	Translate	$outputlangs		Object lang for output
+	 * 		@param	Object		$object				Objet à afficher
+	 *      @param	Translate	$outputlangs		Langue de l'objet pour la sortie
 	 *      @param	int			$hidefreetext		1=Hide free text
-	 *      @return	int								Return height of bottom margin including footer text
+	 *      @return	int								Renvoie la hauteur de la marge basse, texte du pied de page inclus
 	 */
 	protected function _pagefoot(&$pdf, $object, $outputlangs, $hidefreetext = 0)
 	{
@@ -1164,64 +1164,64 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	}
 
 	/**
-	 *  Define Array Column Field
+	 *  Définit le tableau des champs de colonnes
 	 *
 	 *  @param	object			$object    		common object
 	 *  @param	Translate		$outputlangs    langs
-     *  @param	int			   $hidedetails		Do not show line details
-     *  @param	int			   $hidedesc		Do not show desc
-     *  @param	int			   $hideref			Do not show ref
+     *  @param	int			   $hidedetails		Ne pas afficher le détail des lignes
+     *  @param	int			   $hidedesc		Ne pas afficher la description
+     *  @param	int			   $hideref			Ne pas afficher la référence
      *  @return	null
      */
     public function defineColumnField($object, $outputlangs, $hidedetails = 0, $hidedesc = 0, $hideref = 0)
     {
 	    global $conf, $hookmanager;
 
-	    // Default field style for content
+	    // Style de champ par défaut pour le contenu
 	    $this->defaultContentsFieldsStyle = array(
 	        'align' => 'R', // R,C,L
-	        'padding' => array(1, 0.5, 1, 0.5), // Like css 0 => top , 1 => right, 2 => bottom, 3 => left
+	        'padding' => array(1, 0.5, 1, 0.5), // Comme en css : 0 => haut, 1 => droite, 2 => bas, 3 => gauche
 	    );
 
-	    // Default field style for content
+	    // Style de champ par défaut pour le contenu
 	    $this->defaultTitlesFieldsStyle = array(
 	        'align' => 'C', // R,C,L
-	        'padding' => array(0.5, 0, 0.5, 0), // Like css 0 => top , 1 => right, 2 => bottom, 3 => left
+	        'padding' => array(0.5, 0, 0.5, 0), // Comme en css : 0 => haut, 1 => droite, 2 => bas, 3 => gauche
 	    );
 
 	    /*
-	     * For exemple
+	     * Par exemple
 	    $this->cols['theColKey'] = array(
-	        'rank' => $rank, // int : use for ordering columns
-	        'width' => 20, // the column width in mm
+	        'rank' => $rank, // int : sert à trier les colonnes
+	        'width' => 20, // la largeur de la colonne en mm
 	        'title' => array(
-	            'textkey' => 'yourLangKey', // if there is no label, yourLangKey will be translated to replace label
-	            'label' => ' ', // the final label : used fore final generated text
+	            'textkey' => 'yourLangKey', // si pas de libellé, yourLangKey sera traduit pour remplacer le libellé
+	            'label' => ' ', // le libellé final : utilisé pour le texte final généré
 	            'align' => 'L', // text alignement :  R,C,L
-	            'padding' => array(0.5,0.5,0.5,0.5), // Like css 0 => top , 1 => right, 2 => bottom, 3 => left
+	            'padding' => array(0.5,0.5,0.5,0.5), // Comme en css : 0 => haut, 1 => droite, 2 => bas, 3 => gauche
 	        ),
 	        'content' => array(
 	            'align' => 'L', // text alignement :  R,C,L
-	            'padding' => array(0.5,0.5,0.5,0.5), // Like css 0 => top , 1 => right, 2 => bottom, 3 => left
+	            'padding' => array(0.5,0.5,0.5,0.5), // Comme en css : 0 => haut, 1 => droite, 2 => bas, 3 => gauche
 	        ),
 	    );
 	    */
 
-	    $rank = 0; // do not use negative rank
+	    $rank = 0; // ne pas utiliser de rang négatif
 	    $this->cols['desc'] = array(
 	        'rank' => $rank,
-	        'width' => false, // only for desc
+	        'width' => false, // seulement pour la description
 	        'status' => true,
 	        'title' => array(
-	            'textkey' => 'Designation', // use lang key is usefull in somme case with module
+	            'textkey' => 'Designation', // utiliser une clé de langue est utile dans certains cas avec le module
 	            'align' => 'L',
-	            // 'textkey' => 'yourLangKey', // if there is no label, yourLangKey will be translated to replace label
-	            // 'label' => ' ', // the final label
-	            'padding' => array(0.5, 0.5, 0.5, 0.5), // Like css 0 => top , 1 => right, 2 => bottom, 3 => left
+	            // 'textkey' => 'yourLangKey', // si pas de libellé, yourLangKey sera traduit pour remplacer le libellé
+	            // 'label' => ' ', // le libellé final
+	            'padding' => array(0.5, 0.5, 0.5, 0.5), // Comme en css : 0 => haut, 1 => droite, 2 => bas, 3 => gauche
 	        ),
 	        'content' => array(
 	            'align' => 'L',
-                'padding' => array(1, 0.5, 1, 1.5), // Like css 0 => top , 1 => right, 2 => bottom, 3 => left
+                'padding' => array(1, 0.5, 1, 1.5), // Comme en css : 0 => haut, 1 => droite, 2 => bas, 3 => gauche
 	        ),
 	    );
 
@@ -1229,14 +1229,14 @@ class pdf_standard_myobject extends ModelePDFMyObject
         $rank = $rank + 10;
         $this->cols['photo'] = array(
             'rank' => $rank,
-            'width' => (empty($conf->global->MAIN_DOCUMENTS_WITH_PICTURE_WIDTH) ? 20 : $conf->global->MAIN_DOCUMENTS_WITH_PICTURE_WIDTH), // in mm
+            'width' => (empty($conf->global->MAIN_DOCUMENTS_WITH_PICTURE_WIDTH) ? 20 : $conf->global->MAIN_DOCUMENTS_WITH_PICTURE_WIDTH), // en mm
             'status' => false,
             'title' => array(
                 'textkey' => 'Photo',
                 'label' => ' '
             ),
             'content' => array(
-                'padding' => array(0, 0, 0, 0), // Like css 0 => top , 1 => right, 2 => bottom, 3 => left
+                'padding' => array(0, 0, 0, 0), // Comme en css : 0 => haut, 1 => droite, 2 => bas, 3 => gauche
             ),
             'border-left' => false, // remove left line separator
         );
@@ -1251,7 +1251,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	    $this->cols['vat'] = array(
 	        'rank' => $rank,
 	        'status' => false,
-	        'width' => 16, // in mm
+	        'width' => 16, // en mm
 	        'title' => array(
 	            'textkey' => 'VAT'
 	        ),
@@ -1266,7 +1266,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	    $rank = $rank + 10;
 	    $this->cols['subprice'] = array(
 	        'rank' => $rank,
-	        'width' => 19, // in mm
+	        'width' => 19, // en mm
 	        'status' => true,
 	        'title' => array(
 	            'textkey' => 'PriceUHT'
@@ -1277,7 +1277,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	    $rank = $rank + 10;
 	    $this->cols['qty'] = array(
 	        'rank' => $rank,
-	        'width' => 16, // in mm
+	        'width' => 16, // en mm
 	        'status' => true,
 	        'title' => array(
 	            'textkey' => 'Qty'
@@ -1288,7 +1288,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	    $rank = $rank + 10;
 	    $this->cols['progress'] = array(
 	        'rank' => $rank,
-	        'width' => 19, // in mm
+	        'width' => 19, // en mm
 	        'status' => false,
 	        'title' => array(
 	            'textkey' => 'Progress'
@@ -1304,7 +1304,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	    $rank = $rank + 10;
 	    $this->cols['unit'] = array(
 	        'rank' => $rank,
-	        'width' => 11, // in mm
+	        'width' => 11, // en mm
 	        'status' => false,
 	        'title' => array(
 	            'textkey' => 'Unit'
@@ -1318,7 +1318,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	    $rank = $rank + 10;
 	    $this->cols['discount'] = array(
 	        'rank' => $rank,
-	        'width' => 13, // in mm
+	        'width' => 13, // en mm
 	        'status' => false,
 	        'title' => array(
 	            'textkey' => 'ReductionShort'
@@ -1329,10 +1329,10 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	        $this->cols['discount']['status'] = true;
 	    }
 
-	    $rank = $rank + 1000; // add a big offset to be sure is the last col because default extrafield rank is 100
+	    $rank = $rank + 1000; // ajoute un grand décalage pour être sûr d'être la dernière colonne, car le rang par défaut d'un champ supplémentaire est 100
 	    $this->cols['totalexcltax'] = array(
 	        'rank' => $rank,
-	        'width' => 26, // in mm
+	        'width' => 26, // en mm
 	        'status' => true,
 	        'title' => array(
 	            'textkey' => 'TotalHT'
@@ -1354,13 +1354,13 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	        'hideref' => $hideref
 	    );
 
-	    $reshook = $hookmanager->executeHooks('defineColumnField', $parameters, $this); // Note that $object may have been modified by hook
+	    $reshook = $hookmanager->executeHooks('defineColumnField', $parameters, $this); // Attention : $object peut avoir été modifié par le hook
 	    if ($reshook < 0)
 	    {
 	        setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');
 	    } elseif (empty($reshook))
 	    {
-	        $this->cols = array_replace($this->cols, $hookmanager->resArray); // array_replace is used to preserve keys
+	        $this->cols = array_replace($this->cols, $hookmanager->resArray); // array_replace est utilisé pour conserver les clés
 	    } else {
 	        $this->cols = $hookmanager->resArray;
 	    }

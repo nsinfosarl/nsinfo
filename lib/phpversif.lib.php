@@ -45,9 +45,9 @@ function vard2($lib, $val, $lib2='', $val2='') {
 }
 
 /**
- * Is Dolibarr module enabled
+ * Le module Dolibarr est-il activé ?
  *
- * @param string $module module name to check
+ * @param string $module nom du module à vérifier
  * @return int
  */
 if (!function_exists('isModEnabled')) {

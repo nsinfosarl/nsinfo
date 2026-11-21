@@ -17,7 +17,7 @@
 /**
  * \file    js/modules/loader.js
  * \ingroup nsinfo
- * \brief   JavaScript loader indicator for module NSINFO.
+ * \brief   Indicateur de chargement JavaScript du module NSINFO.
  */
 
 window.nsinfo.loader = {};
@@ -30,9 +30,9 @@ window.nsinfo.loader.event = function() {
 };
 
 /**
- * Shows loader on selected element
+ * Affiche le chargeur sur l'élément sélectionné
  *
- * @param  {jQuery} element Element to show the loader on
+ * @param  {jQuery} element Élément sur lequel afficher le chargeur
  * @return {void}
  */
 window.nsinfo.loader.display = function(element) {
@@ -46,9 +46,9 @@ window.nsinfo.loader.display = function(element) {
 };
 
 /**
- * Removes loader on selected element
+ * Retire le chargeur de l'élément sélectionné
  *
- * @param  {jQuery} element Element to remove the loader from
+ * @param  {jQuery} element Élément dont retirer le chargeur
  * @return {void}
  */
 window.nsinfo.loader.remove = function(element) {

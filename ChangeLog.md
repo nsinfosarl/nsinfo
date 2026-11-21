@@ -1,5 +1,9 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 24.0.1 - 21/11/2026
+- Pictos Font Awesome 7 : espace entre le picto et le texte quand la classe `paddingright` ou `pictofixedwidth` est donnée (onglets des réglages)
+- Commentaires du code traduits en français
+
 ## 24.0.0 - 17/11/2026
 - Font Awesome Free 7.3.1 (gratuit) livré dans le framework (`fontawesome/`, licence incluse) et utilisable par tous les modules : classes préfixées `nsfa` (ex. `<i class="nsfa nsfa-solid nsfa-table-list">`), police nommée « NS Font Awesome 7 », donc sans conflit avec le Font Awesome 5.15 de Dolibarr (ses icônes restent inchangées). Chargé par `css/nsfa.css.php` seulement si le Font Awesome de Dolibarr est plus ancien que le 7 (`nsinfoFontAwesomeLoaded()`, `nsinfoDolibarrFontAwesomeVersion()`) ; `nsinfoFaIcon($nom, $couleur, $style, $classes)` renvoie les classes `nsfa-*`, ou les classes `fa-*` de Dolibarr quand il embarque déjà le 7. Désactiver puis réactiver le module pour déclarer la feuille de style
 - À propos (de nsinfo et de tous les modules NS INFO) : ligne « Boutique » avec le lien cliquable https://store.ns-info.fr, aux couleurs de la boutique (violet #5A2D82), sous le lien vers la documentation Wiki (5 langues)

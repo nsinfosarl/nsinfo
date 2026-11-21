@@ -17,7 +17,7 @@
 /**
  * \file    js/modules/toolbox.js
  * \ingroup nsinfo
- * \brief   JavaScript toolbox helpers for module NSINFO.
+ * \brief   Fonctions utilitaires JavaScript du module NSINFO.
  */
 
 window.nsinfo.toolbox = {};
@@ -30,19 +30,19 @@ window.nsinfo.toolbox.event = function() {
 };
 
 /**
- * Return suitable query separator
+ * Renvoie le séparateur de paramètres d'URL adapté
  *
- * @param  {string} url Url of current page
- * @return {string}     Suitable query separator
+ * @param  {string} url Url de la page courante
+ * @return {string}     Séparateur adapté
  */
 window.nsinfo.toolbox.getQuerySeparator = function(url) {
 	return url.match(/\?/) ? '&' : '?';
 };
 
 /**
- * Return security token value
+ * Renvoie la valeur du jeton de sécurité
  *
- * @return {string} Security token value
+ * @return {string} Valeur du jeton de sécurité
  */
 window.nsinfo.toolbox.getToken = function() {
 	return $('input[name="token"]').val();

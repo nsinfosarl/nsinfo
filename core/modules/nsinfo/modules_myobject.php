@@ -25,26 +25,26 @@
 /**
  *  \file			htdocs/core/modules/nsinfo/modules_myobject.php
  *  \ingroup		nsinfo
- *  \brief			File that contains parent class for myobjects document models and parent class for myobjects numbering models
+ *  \brief			Fichier contenant la classe mère des modèles de documents et la classe mère des modèles de numérotation des myobjects
  */
 
 require_once DOL_DOCUMENT_ROOT.'/core/class/commondocgenerator.class.php';
-require_once DOL_DOCUMENT_ROOT.'/compta/bank/class/account.class.php'; // required for use by classes that inherit
+require_once DOL_DOCUMENT_ROOT.'/compta/bank/class/account.class.php'; // nécessaire aux classes qui en héritent
 
 
 /**
- *	Parent class for documents models
+ *	Classe mère des modèles de documents
  */
 abstract class ModelePDFMyObject extends CommonDocGenerator
 {
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
 	/**
-	 *  Return list of active generation modules
+	 *  Renvoie la liste des modules de génération actifs
 	 *
 	 *  @param	DoliDB	$db     			Database handler
-	 *  @param  integer	$maxfilenamelength  Max length of value to show
-	 *  @return	array						List of templates
+	 *  @param  integer	$maxfilenamelength  Longueur maximale de la valeur à afficher
+	 *  @return	array						Liste des modèles
 	 */
 	public static function liste_modeles($db, $maxfilenamelength = 0)
 	{
@@ -64,19 +64,19 @@ abstract class ModelePDFMyObject extends CommonDocGenerator
 
 
 /**
- *  Parent class to manage numbering of MyObject
+ *  Classe mère de gestion de la numérotation de MyObject
  */
 abstract class ModeleNumRefMyObject
 {
 	/**
-	 * @var string Error code (or message)
+	 * @var string Code d'erreur (ou message)
 	 */
 	public $error = '';
 
 	/**
-	 *	Return if a module can be used or not
+	 *	Indique si un module peut être utilisé ou non
 	 *
-	 *	@return		boolean     true if module can be used
+	 *	@return		boolean     true si le module peut être utilisé
 	 */
 	public function isEnabled()
 	{
@@ -84,7 +84,7 @@ abstract class ModeleNumRefMyObject
 	}
 
 	/**
-	 *	Returns the default description of the numbering template
+	 *	Renvoie la description par défaut du modèle de numérotation
 	 *
 	 *	@return     string      Texte descripif
 	 */
@@ -96,7 +96,7 @@ abstract class ModeleNumRefMyObject
 	}
 
 	/**
-	 *	Returns an example of numbering
+	 *	Renvoie un exemple de numérotation
 	 *
 	 *	@return     string      Example
 	 */
@@ -108,11 +108,11 @@ abstract class ModeleNumRefMyObject
 	}
 
 	/**
-	 *  Checks if the numbers already in the database do not
-	 *  cause conflicts that would prevent this numbering working.
+	 *  Vérifie que les numéros déjà présents en base ne
+	 *  provoquent pas de conflits qui empêcheraient cette numérotation de fonctionner.
 	 *
-	 *	@param	Object		$object		Object we need next value for
-	 *	@return boolean     			false if conflict, true if ok
+	 *	@param	Object		$object		Objet pour lequel on a besoin de la valeur suivante
+	 *	@return boolean     			false en cas de conflit, true si OK
 	 */
 	public function canBeActivated($object)
 	{
@@ -120,9 +120,9 @@ abstract class ModeleNumRefMyObject
 	}
 
 	/**
-	 *	Returns next assigned value
+	 *	Renvoie la prochaine valeur attribuée
 	 *
-	 *	@param	Object		$object		Object we need next value for
+	 *	@param	Object		$object		Objet pour lequel on a besoin de la valeur suivante
 	 *	@return	string      Valeur
 	 */
 	public function getNextValue($object)
@@ -132,7 +132,7 @@ abstract class ModeleNumRefMyObject
 	}
 
 	/**
-	 *	Returns version of numbering module
+	 *	Renvoie la version du module de numérotation
 	 *
 	 *	@return     string      Valeur
 	 */

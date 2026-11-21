@@ -18,7 +18,7 @@
 /**
  * \file    lib/medias.lib.php
  * \ingroup nsinfo
- * \brief   Library files with common functions for NSINFO Medias
+ * \brief   Fichiers de bibliothèque avec les fonctions communes aux médias NSINFO
  */
 
 include_once DOL_DOCUMENT_ROOT . '/core/lib/files.lib.php';
@@ -26,8 +26,8 @@ include_once DOL_DOCUMENT_ROOT . '/core/lib/images.lib.php';
 require_once DOL_DOCUMENT_ROOT . '/core/lib/date.lib.php';
 
 /**
- * Default max width/height (px) used to generate a media thumb when no
- * {MODULEPART}_MEDIA_MAX_WIDTH_{SIZE} / _HEIGHT_ setup constant is defined.
+ * Largeur/hauteur max par défaut (px) utilisées pour générer une vignette de média quand aucune
+ * constante de réglage {MODULEPART}_MEDIA_MAX_WIDTH_{SIZE} / _HEIGHT_ n'est définie.
  */
 const NSINFO_MEDIA_DEFAULT_THUMB_SIZES = [
     'mini'   => ['width' => 100, 'height' => 100],
@@ -37,10 +37,10 @@ const NSINFO_MEDIA_DEFAULT_THUMB_SIZES = [
 ];
 
 /**
- * Return the configured (or default) max width/height for a thumb size, for a given module.
+ * Renvoie la largeur/hauteur max configurée (ou par défaut) pour une taille de vignette, pour un module donné.
  *
- * @param  string $modulepart Module name (e.g. 'gmao')
- * @param  string $size       Thumb size (mini, small, medium, large)
+ * @param  string $modulepart Nom du module (ex. 'gmao')
+ * @param  string $size       Taille de vignette (mini, small, medium, large)
  * @return array              ['width' => int, 'height' => int]
  */
 function nsinfo_get_media_thumb_size(string $modulepart, string $size): array
@@ -54,13 +54,13 @@ function nsinfo_get_media_thumb_size(string $modulepart, string $size): array
 }
 
 /**
- * Generate a thumb for a media file (thin wrapper on Dolibarr's native vignette()).
+ * Génère une vignette pour un fichier média (simple enveloppe de la fonction native vignette() de Dolibarr).
  *
- * @param  string $file      Full path of the source file
+ * @param  string $file      Chemin complet du fichier source
  * @param  int    $maxWidth  Thumb max width
  * @param  int    $maxHeight Thumb max height
- * @param  string $extName   Suffix of the generated thumb (e.g. '_small')
- * @return string             Full path of the generated thumb, or an error message
+ * @param  string $extName   Suffixe de la vignette générée (ex. '_small')
+ * @return string             Chemin complet de la vignette générée, ou message d'erreur
  */
 function nsinfo_vignette(string $file, int $maxWidth = 160, int $maxHeight = 120, string $extName = '_small')
 {
@@ -70,12 +70,12 @@ function nsinfo_vignette(string $file, int $maxWidth = 160, int $maxHeight = 120
 }
 
 /**
- * Return file specified thumb name, generating it if it does not exist yet.
+ * Renvoie le nom de la vignette du fichier, en la générant si elle n'existe pas encore.
  *
- * @param  string $filename   File name
- * @param  string $modulepart Module name, used to read the {MODULE}_MEDIA_MAX_WIDTH/HEIGHT_{SIZE} config
+ * @param  string $filename   Nom du fichier
+ * @param  string $modulepart Nom du module, utilisé pour lire la configuration {MODULE}_MEDIA_MAX_WIDTH/HEIGHT_{SIZE}
  * @param  string $thumbType  Thumb type (mini, small, medium, large)
- * @param  string $filePath   Directory containing the file
+ * @param  string $filePath   Répertoire contenant le fichier
  * @return string|int         Thumb filename, or -1 on error
  */
 function nsinfo_get_thumb_name(string $filename, string $modulepart, string $thumbType = 'small', string $filePath = '')
@@ -94,8 +94,8 @@ function nsinfo_get_thumb_name(string $filename, string $modulepart, string $thu
             return $thumbFileName;
         }
 
-        // vignette() returns the full path of the generated thumb (or an error string), not just its name.
-        // We only care whether generation succeeded: re-check for the expected basename afterwards.
+        // vignette() renvoie le chemin complet de la vignette générée (ou une chaîne d'erreur), pas seulement son nom.
+        // On vérifie seulement si la génération a réussi : on contrôle ensuite le nom de base attendu.
         $thumbSize = nsinfo_get_media_thumb_size($modulepart, $thumbType);
         nsinfo_vignette($filePath . '/' . $filename, $thumbSize['width'], $thumbSize['height'], '_' . $thumbType);
 
@@ -106,11 +106,11 @@ function nsinfo_get_thumb_name(string $filename, string $modulepart, string $thu
 }
 
 /**
- * Print medias from the shared module media gallery (browse-all grid, with pagination).
+ * Affiche les médias de la galerie partagée du module (grille de tous les médias, avec pagination).
  *
- * @param  string $modulepart Module name
- * @param  string $sdir       Directory path holding the gallery staging files
- * @param  string $size       Media size (mini or small)
+ * @param  string $modulepart Nom du module
+ * @param  string $sdir       Chemin du répertoire contenant les fichiers de transit de la galerie
+ * @param  string $size       Taille des médias (mini ou small)
  * @param  int    $maxHeight  Media max height
  * @param  int    $maxWidth   Media max width
  * @param  int    $offset     Media gallery offset page
@@ -189,30 +189,30 @@ function nsinfo_show_medias(string $modulepart, string $sdir = '', string $size 
 }
 
 /**
- * Show medias linked to an object
+ * Affiche les médias liés à un objet
  *
- * @param  string      $modulepart           Submodule name
- * @param  string      $sdir                 Directory path
- * @param  int|string  $size                 Medias size
- * @param  int|string  $nbmax                Max number of medias shown per page
- * @param  int         $nbbyrow              Number of images per row
+ * @param  string      $modulepart           Nom du sous-module
+ * @param  string      $sdir                 Chemin du répertoire
+ * @param  int|string  $size                 Taille des médias
+ * @param  int|string  $nbmax                Nombre max de médias affichés par page
+ * @param  int         $nbbyrow              Nombre d'images par ligne
  * @param  int         $showfilename         Show filename under image
- * @param  int         $showaction           Show icon with action links
+ * @param  int         $showaction           Affiche l'icône avec les liens d'action
  * @param  int         $maxHeight            Media max height
  * @param  int         $maxWidth             Media max width
- * @param  int         $nolink 	             Do not add href link to image
- * @param  int         $notitle              Do not add title tag on image
- * @param  int         $usesharelink         Use the public shared link of image (if not available, the 'nophoto' image will be shown instead)
- * @param  string      $subdir               Subdir for file
- * @param  object|null $object               Object linked to show medias of
- * @param  string      $favorite_field       Name of favorite sql field of object
- * @param  int         $show_favorite_button Show or hide favorite button
- * @param  int         $show_unlink_button   Show or hide unlink button
- * @param  int         $use_mini_format      Use media mini format instead of small
+ * @param  int         $nolink 	             Ne pas ajouter de lien href à l'image
+ * @param  int         $notitle              Ne pas ajouter de balise title à l'image
+ * @param  int         $usesharelink         Utiliser le lien partagé public de l'image (si indisponible, l'image 'nophoto' sera affichée à la place)
+ * @param  string      $subdir               Sous-répertoire du fichier
+ * @param  object|null $object               Objet lié dont afficher les médias
+ * @param  string      $favorite_field       Nom du champ SQL favori de l'objet
+ * @param  int         $show_favorite_button Affiche ou masque le bouton favori
+ * @param  int         $show_unlink_button   Affiche ou masque le bouton délier
+ * @param  int         $use_mini_format      Utiliser le format mini au lieu de small
  * @param  int         $show_only_favorite   Show only object favorite media
- * @param  string      $morecss              Add more CSS on link
- * @param  int         $showdiv              Add div with "media-container" class
- * @return string      $return               Show medias linked
+ * @param  string      $morecss              Ajoute du CSS au lien
+ * @param  int         $showdiv              Ajoute une div avec la classe « media-container »
+ * @return string      $return               Affiche les médias liés
  */
 function nsinfo_show_medias_linked(string $modulepart = 'ecm', string $sdir, $size = 0, $nbmax = 0, int $nbbyrow = 5, int $showfilename = 0, int $showaction = 0, int $maxHeight = 120, int $maxWidth = 160, int $nolink = 0, int $notitle = 0, int $usesharelink = 0, string $subdir = '', object $object = null, string $favorite_field = 'photo', int $show_favorite_button = 1, int $show_unlink_button = 1 , int $use_mini_format = 0, int $show_only_favorite = 0, string $morecss = '', int $showdiv = 1, array $moreParams = []): string
 {
@@ -275,7 +275,7 @@ function nsinfo_show_medias_linked(string $modulepart = 'ecm', string $sdir, $si
                     $viewfilename = $fileName;
 
                     if ($size == 1 || $size == 'small') {   // Format vignette
-                        // Find name of thumb file
+                        // Recherche le nom du fichier vignette
                         if ($use_mini_format) {
                             $photo_vignette = basename(getImageFileNameForSize($dir . $fileName, '_mini'));
                         } else {
@@ -284,7 +284,7 @@ function nsinfo_show_medias_linked(string $modulepart = 'ecm', string $sdir, $si
 
                         if ( ! dol_is_file($dirthumb . $photo_vignette)) $photo_vignette = '';
 
-                        // Get filesize of original file
+                        // Récupère la taille du fichier original
                         $imgarray = dol_getImageSize($dir . $photo);
 
                         if ($nbbyrow > 0) {

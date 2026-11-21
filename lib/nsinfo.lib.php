@@ -18,7 +18,7 @@
 /**
  * \file    nsinfo/lib/nsinfo.lib.php
  * \ingroup nsinfo
- * \brief   Library files with common functions for Nsinfo
+ * \brief   Fichiers de bibliothèque avec les fonctions communes à Nsinfo
  */
 
 /**
@@ -123,7 +123,7 @@ function nsinfoMenuMinimizePosition($mainmenu)
 		return $position;
 	}
 
-	// Positions already used by an entry without url of another module (the own entry of the module is replaced at activation)
+	// Positions déjà utilisées par une entrée sans URL d'un autre module (l'entrée propre au module est remplacée à l'activation)
 	$used = array();
 	$sql = "SELECT m.position FROM ".$db->prefix()."menu as m";
 	$sql .= " WHERE (m.url = '' OR m.url IS NULL)";
@@ -272,12 +272,12 @@ function nsinfoDropZone($htmlname, $url, $action, $hiddens = array(), $label = '
 }
 
 /**
- * Id (llx_rights_def) of a right of the current entity
+ * Id (llx_rights_def) d'un droit de l'entité courante
  *
- * @param	string	$module		Module (rights class, e.g. 'produit')
- * @param	string	$perms		Permission (e.g. 'creer')
- * @param	string	$subperms	Sub-permission ('' if none)
- * @return	int					Id, 0 if the right does not exist (module not enabled)
+ * @param	string	$module		Module (classe des droits, par ex. 'produit')
+ * @param	string	$perms		Droit (par ex. 'creer')
+ * @param	string	$subperms	Sous-droit ('' si aucun)
+ * @return	int					Id, 0 si le droit n'existe pas (module non activé)
  */
 function nsinfoRightId($module, $perms, $subperms = '')
 {
@@ -293,11 +293,11 @@ function nsinfoRightId($module, $perms, $subperms = '')
 }
 
 /**
- * State of a list of rights for a user (to show what a module needs)
+ * État d'une liste de droits pour un utilisateur (pour afficher ce dont a besoin un module)
  *
  * @param	User	$targetuser	User (existing)
- * @param	array<int,array{0:string,1:string,2?:string}>	$rights	Rights wanted : module, permission, sub-permission (as in llx_rights_def)
- * @return	array<int,array{label:string,id:int,has:int}>	One line by right (id 0 = the right does not exist : module not enabled)
+ * @param	array<int,array{0:string,1:string,2?:string}>	$rights	Droits demandés : module, droit, sous-droit (comme dans llx_rights_def)
+ * @return	array<int,array{label:string,id:int,has:int}>	Une ligne par droit (id 0 = le droit n'existe pas : module non activé)
  */
 function nsinfoRightsState($targetuser, $rights)
 {
@@ -317,11 +317,11 @@ function nsinfoRightsState($targetuser, $rights)
 }
 
 /**
- * Gives to a user the rights a module needs (generic : any module, any existing user)
+ * Accorde à un utilisateur les droits dont a besoin un module (générique : tout module, tout utilisateur existant)
  *
  * @param	User	$targetuser	User (existing)
- * @param	array<int,array{0:string,1:string,2?:string}>	$rights	Rights wanted : module, permission, sub-permission
- * @return	array{added:string[],missing:string[]}	Rights added, rights that do not exist (module not enabled)
+ * @param	array<int,array{0:string,1:string,2?:string}>	$rights	Droits demandés : module, droit, sous-droit
+ * @return	array{added:string[],missing:string[]}	Droits ajoutés, droits inexistants (module non activé)
  */
 function nsinfoGiveRights($targetuser, $rights)
 {
@@ -339,9 +339,9 @@ function nsinfoGiveRights($targetuser, $rights)
 
 
 /**
- * Version (first number) of the Font Awesome shipped with Dolibarr (folder htdocs/theme/common/fontawesome-<N>)
+ * Version (premier nombre) de Font Awesome fournie avec Dolibarr (dossier htdocs/theme/common/fontawesome-<N>)
  *
- * @return int	5 for Dolibarr 20 to 23 ; 0 if not found
+ * @return int	5 pour Dolibarr 20 à 23 ; 0 si non trouvé
  */
 function nsinfoDolibarrFontAwesomeVersion()
 {
@@ -356,9 +356,9 @@ function nsinfoDolibarrFontAwesomeVersion()
 }
 
 /**
- * Tells if the Font Awesome Free 7 of the framework NSINFO (classes nsfa-*, folder nsinfo/fontawesome) is loaded :
- * only when the Font Awesome of Dolibarr is older than the 7 (5 for Dolibarr 20 to 23), so that Dolibarr keeps its own
- * icons. The two versions do not clash : classes and font names of the NSINFO copy are prefixed.
+ * Indique si le Font Awesome Free 7 du framework NSINFO (classes nsfa-*, dossier nsinfo/fontawesome) est chargé :
+ * seulement lorsque le Font Awesome de Dolibarr est plus ancien que la version 7 (5 pour Dolibarr 20 à 23), afin que Dolibarr garde ses propres
+ * icônes. Les deux versions ne se gênent pas : les classes et noms de police de la copie NSINFO sont préfixés.
  *
  * @return bool
  */
@@ -368,13 +368,13 @@ function nsinfoFontAwesomeLoaded()
 }
 
 /**
- * Icon of Font Awesome Free 7 : the classes nsfa-* when the copy of the framework NSINFO is loaded, else the classes fa-* of Dolibarr
- * (Dolibarr 7 or more)
+ * Icône de Font Awesome Free 7 : les classes nsfa-* lorsque la copie du framework NSINFO est chargée, sinon les classes fa-* de Dolibarr
+ * (Dolibarr 7 ou plus)
  *
- * @param	string	$name		Name of the icon without prefix (ex : table-list)
- * @param	string	$color		Color (ex : #16a085), optional
- * @param	string	$style		Style : solid, regular or brands
- * @param	string	$moreclass	More classes (ex : paddingright pictofixedwidth)
+ * @param	string	$name		Nom de l'icône sans préfixe (ex : table-list)
+ * @param	string	$color		Couleur (ex : #16a085), facultative
+ * @param	string	$style		Style : solid, regular ou brands
+ * @param	string	$moreclass	Classes supplémentaires (ex : paddingright pictofixedwidth)
  * @return	string				HTML
  */
 function nsinfoFaIcon($name, $color = '', $style = 'solid', $moreclass = '')

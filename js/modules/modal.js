@@ -17,7 +17,7 @@
 /**
  * \file    js/modules/modal.js
  * \ingroup nsinfo
- * \brief   JavaScript generic modal handling for module NSINFO.
+ * \brief   Gestion générique des fenêtres modales JavaScript du module NSINFO.
  */
 
 window.nsinfo.modal = {};
@@ -33,7 +33,7 @@ window.nsinfo.modal.event = function() {
 };
 
 /**
- * Open modal referenced by the clicked element's .modal-options data attributes.
+ * Ouvre la fenêtre modale référencée par les attributs data .modal-options de l'élément cliqué.
  *
  * @return {void}
  */
@@ -65,7 +65,7 @@ window.nsinfo.modal.openModal = function() {
 };
 
 /**
- * Close the currently active modal.
+ * Ferme la fenêtre modale active.
  *
  * @param  {MouseEvent} event Click event
  * @return {void}
@@ -82,7 +82,7 @@ window.nsinfo.modal.closeModal = function(event) {
 };
 
 /**
- * Reload the current page (used by .modal-refresh triggers).
+ * Recharge la page courante (utilisé par les déclencheurs .modal-refresh).
  *
  * @return {void}
  */
@@ -91,9 +91,9 @@ window.nsinfo.modal.refreshModal = function() {
 };
 
 /**
- * Lazy load images inside the modal: sets `src` from `data-src` on `.photo` elements.
+ * Chargement différé des images de la fenêtre modale : définit `src` à partir de `data-src` sur les éléments `.photo`.
  *
- * Call this after the modal is opened, or after replacing its content with an AJAX response.
+ * À appeler après l'ouverture de la fenêtre modale, ou après remplacement de son contenu par une réponse AJAX.
  *
  * @return {void}
  */
