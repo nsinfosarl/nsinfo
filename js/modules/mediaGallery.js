@@ -153,8 +153,8 @@ window.nsinfo.mediaGallery.deletePhoto = function() {
 /**
  * Masque la boîte de confirmation sans rien supprimer.
  *
- * @param  {jQuery} filesLinked       Selected photo elements
- * @param  {jQuery} mediaGalleryModal Media gallery modal element
+ * @param  {jQuery} filesLinked       Éléments photo sélectionnés
+ * @param  {jQuery} mediaGalleryModal Élément de la fenêtre modale de la galerie média
  * @return {void}
  */
 window.nsinfo.mediaGallery.closeConfirmation = function(filesLinked, mediaGalleryModal) {

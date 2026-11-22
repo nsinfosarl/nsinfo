@@ -21,7 +21,7 @@
  * \brief   Sauvegarde des réglages d'un module NS INFO dans un fichier JSON, pour les transférer vers un autre Dolibarr : page appelée avec ?namemodule=<module>, comme changelog_module.php
  */
 
-// Load Dolibarr environment
+// Chargement de l’environnement Dolibarr
 $res = 0;
 if (!$res && !empty($_SERVER["CONTEXT_DOCUMENT_ROOT"])) {
 	$res = @include $_SERVER["CONTEXT_DOCUMENT_ROOT"]."/main.inc.php";
@@ -63,7 +63,7 @@ if ($namemodule == 'factory') {
 }
 $langs->loadLangs(array("admin", "nsinfo@nsinfo", $namemodule.'@'.$namemodule));
 
-if (!$user->admin) {
+if (!nsinfoCanSetup($namemodule)) {	// administrateur ou droit « Réglages du module »
 	accessforbidden();
 }
 
@@ -74,7 +74,7 @@ $subtab = GETPOST('subtab', 'aZ09') == 'import' ? 'import' : 'export';
 /**
  * Constantes du module (entité utilisée) : nom => array(valeur, type)
  *
- * @param	DoliDB	$db			Database
+ * @param	DoliDB	$db			Base de données
  * @param	string	$prefix		Préfixe des constantes (MODULE_)
  * @return	array<string,array{0:string,1:string}>
  */
@@ -193,7 +193,7 @@ if ($action == 'import' && $tokenok) {
 }
 
 /*
- * View
+ * Affichage
  */
 
 $form = new Form($db);
@@ -208,7 +208,7 @@ $head = $namehead();
 $picto = ($namemodule == 'nsinfo') ? "object_nsinfo.png@nsinfo" : "{$namemodule}@{$namemodule}";
 print dol_get_fiche_head($head, 'configmodule', $langs->trans('NsinfoCfgTab'), -1, $picto);
 
-// Horizontal sub tabs : export / import
+// Sous-onglets horizontaux : export / import
 $self = $_SERVER['PHP_SELF'].'?namemodule='.urlencode($namemodule);
 $subhead = array(
 	array($self.'&subtab=export', '<span class="fas fa-file-export pictofixedwidth" style="color: #E67E22"></span>'.$langs->trans('NsinfoCfgExport'), 'export'),

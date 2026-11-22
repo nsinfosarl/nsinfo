@@ -74,7 +74,7 @@ function nsSendMail($object, $diroutput, $outputlangs, $modelmail, $socpeople=''
 		$cMailFile = new CMailFile($sendTopic, $to, $from, $sendContent, $arr_file, $arr_mime, $arr_name, '', '', $arcclient, 1, '', '', $trackid, '', '', '');
 
 
-		// Sending Mail
+		// Envoi du mail
 		if ($cMailFile->sendfile()) {
 //			$resultmajcmde = $infocmdeclt->Verifbt($object->id, 1);
 

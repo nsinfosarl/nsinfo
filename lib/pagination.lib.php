@@ -27,7 +27,7 @@
  *
  * @param  float      $pagesCounter Nombre de pages
  * @param  array|null $pageArray    Tableau de toutes les pages disponibles
- * @param  int|null   $offset       Selected page
+ * @param  int|null   $offset       Page sélectionnée
  * @return array      $page_array   Tableau des numéros de pages
  */
 function nsinfo_load_pagination(float $pagesCounter, ?array $pageArray, ?int $offset): array
@@ -83,7 +83,7 @@ function nsinfo_load_pagination(float $pagesCounter, ?array $pageArray, ?int $of
  *
  * @param  float      $pagesCounter     Nombre de pages
  * @param  array|null $pageArray        Tableau de toutes les pages disponibles
- * @param  int|null   $offset           Selected page
+ * @param  int|null   $offset           Page sélectionnée
  * @param  string     $containerToRefresh Id du conteneur que le clic de pagination doit rafraîchir
  * @return string     $return           Contenu HTML des pages
  */

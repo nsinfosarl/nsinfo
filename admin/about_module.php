@@ -22,7 +22,7 @@
  * \brief   Page À propos du module Nsinfo.
  */
 
-// Load Dolibarr environment
+// Chargement de l'environnement Dolibarr
 $res = 0;
 // Essaie main.inc.php dans la racine web connue, définie dans CONTEXT_DOCUMENT_ROOT (pas toujours définie)
 if (!$res && !empty($_SERVER["CONTEXT_DOCUMENT_ROOT"])) $res = @include $_SERVER["CONTEXT_DOCUMENT_ROOT"]."/main.inc.php";
@@ -31,12 +31,12 @@ $tmp = empty($_SERVER['SCRIPT_FILENAME']) ? '' : $_SERVER['SCRIPT_FILENAME']; $t
 while ($i > 0 && $j > 0 && isset($tmp[$i]) && isset($tmp2[$j]) && $tmp[$i] == $tmp2[$j]) { $i--; $j--; }
 if (!$res && $i > 0 && file_exists(substr($tmp, 0, ($i + 1))."/main.inc.php")) $res = @include substr($tmp, 0, ($i + 1))."/main.inc.php";
 if (!$res && $i > 0 && file_exists(dirname(substr($tmp, 0, ($i + 1)))."/main.inc.php")) $res = @include dirname(substr($tmp, 0, ($i + 1)))."/main.inc.php";
-// Try main.inc.php using relative path
+// Essai de main.inc.php avec un chemin relatif
 if (!$res && file_exists("../../main.inc.php")) $res = @include "../../main.inc.php";
 if (!$res && file_exists("../../../main.inc.php")) $res = @include "../../../main.inc.php";
 if (!$res) die("Include of main fails");
 
-// Libraries
+// Bibliothèques
 require_once DOL_DOCUMENT_ROOT.'/core/lib/admin.lib.php';
 require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
 dol_include_once('/nsinfo/lib/nsinfo.lib.php');
@@ -44,10 +44,10 @@ dol_include_once('/nsinfo/lib/setup.lib.php');
 
 
 
-// Parameters
+// Paramètres
 $action = GETPOST('action', 'alpha');
 $backtopage = GETPOST('backtopage', 'alpha');
-$namemodule = GETPOST('namemodule', 'alpha');
+$namemodule = preg_replace('/[^a-z0-9_]/', '', strtolower(GETPOST('namemodule', 'alpha')));	// nom de module seul (inclusion de fichiers)
 
 $modM = ucfirst($namemodule);
 $nameMod = 'mod'.$modM;
@@ -60,13 +60,13 @@ else {
 dol_include_once('/'.$namemodule.'/core/modules/'.$nameMod.'.class.php');
 
 
-// Access control
+// Contrôle d'accès
 if ($namemodule == 'gmao') {
 	$permissiontoread=$user->rights->gmao->gmao->admin;
 	nsinfo_check_access($permissiontoread);
 }
-else if (!$user->admin) accessforbidden();
-// Translations
+else if (!nsinfoCanSetup($namemodule)) accessforbidden();	// administrateur ou droit « Réglages du module »
+// Traductions
 $langs->loadLangs(array("errors", "admin", "nsinfo@nsinfo", "{$namemodule}@{$namemodule}"));
 $version_nsinfo = getVersionModule('nsinfo');
 $modClass = new $nameMod($db);
@@ -82,7 +82,7 @@ $supportvalue.= " * Version PHP : ".PHP_VERSION."<br>";
 $supportvalue.= " *****/"."<br>";
 $supportvalue.= "Description de votre problème :"."<br>";
 
-// Initialize technical objects
+// Initialisation des objets techniques
 $className = 'mod' . ucfirst($namemodule);
 $modModule = new $className($db);
 
@@ -90,11 +90,11 @@ $modModule = new $className($db);
  * Actions
  */
 
-// None
+// Aucun
 
 
 /*
- * View
+ * Vue
  */
 
 $form = new Form($db);
@@ -105,12 +105,12 @@ $page_name = $module . " - ".$langs->trans("About");
 
 llxHeader('', $langs->trans($page_name));
 
-// Subheader
+// En-tête secondaire
 $linkback = '<a href="'.($backtopage ? $backtopage : DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_values=1').'">'.$langs->trans("BackToModuleList").'</a>';
 
 print load_fiche_titre($langs->trans($page_name), $linkback, "object_{$namemodule}@{$namemodule}");
 
-// Configuration header
+// En-tête de configuration
 if ($namemodule == 'factory') $namehead = 'factory_admin_prepare_head';
 else $namehead = $namemodule."AdminPrepareHead";
 $head = $namehead();

@@ -61,7 +61,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 	/**
 	 *	Constructor
 	 *
-	 *  @param		DoliDB		$db      Database handler
+	 *  @param		DoliDB		$db      Gestionnaire de base de données
 	 */
 	public function __construct($db)
 	{
@@ -157,7 +157,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 		$texte .= '<input type="submit" class="button" value="'.$langs->trans("Modify").'" name="Button">';
 		$texte .= '<br></div></div>';
 
-		// Scan directories
+		// Parcours des répertoires
 		$nbofiles = count($listoffiles);
 		if (!empty($conf->global->NSINFO_MYOBJECT_ADDON_PDF_ODT_PATH))
 		{
@@ -196,7 +196,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 	 *  Fonction de génération d'un document sur disque avec le module ODT générique.
 	 *
 	 *	@param		Commande	$object				Objet source pour générer le document
-	 *	@param		Translate	$outputlangs		Lang output object
+	 *	@param		Translate	$outputlangs		Objet langue de sortie
 	 * 	@param		string		$srctemplatepath	Chemin complet du fichier source pour le générateur utilisant un modèle
 	 *  @param		int			$hidedetails		Ne pas afficher le détail des lignes
 	 *  @param		int			$hidedesc			Ne pas afficher la description
@@ -214,7 +214,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 			return -1;
 		}
 
-		// Add odtgeneration hook
+		// Ajoute le hook odtgeneration
 		if (!is_object($hookmanager))
 		{
 			include_once DOL_DOCUMENT_ROOT.'/core/class/hookmanager.class.php';
@@ -314,7 +314,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 					$socobject = $object->thirdparty;
 				}
 
-				// Make substitution
+				// Effectue les substitutions
 				$substitutionarray = array(
 				'__FROM_NAME__' => $this->emetteur->name,
 				'__FROM_EMAIL__' => $this->emetteur->email,
@@ -458,7 +458,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 					return -1;
 				}
 
-				// Replace labels translated
+				// Remplace les libellés traduits
 				$tmparray = $outputlangs->get_translations_for_substitutions();
 				foreach ($tmparray as $key=>$value)
 				{
@@ -502,7 +502,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 				if (!empty($conf->global->MAIN_UMASK))
 					@chmod($file, octdec($conf->global->MAIN_UMASK));
 
-				$odfHandler = null; // Destroy object
+				$odfHandler = null; // Libère l'objet
 
 				$this->result = array('fullpath'=>$file);
 

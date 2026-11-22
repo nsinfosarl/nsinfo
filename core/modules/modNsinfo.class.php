@@ -20,7 +20,7 @@
 
 /**
  * 	\defgroup   nsinfo     Module Nsinfo
- *  \brief      Nsinfo module descriptor.
+ *  \brief      Descripteur du module Nsinfo.
  *
  *  \file       htdocs/nsinfo/core/modules/modNsinfo.class.php
  *  \ingroup    nsinfo
@@ -34,9 +34,9 @@ include_once DOL_DOCUMENT_ROOT.'/core/modules/DolibarrModules.class.php';
 class modNsinfo extends DolibarrModules
 {
 	/**
-	 * Constructor. Define names, constants, directories, boxes, permissions
+	 * Constructeur. Définit les noms, constantes, répertoires, boîtes et permissions
 	 *
-	 * @param DoliDB $db Database handler
+	 * @param DoliDB $db Gestionnaire de base de données
 	 */
 	public function __construct($db)
 	{
@@ -77,7 +77,7 @@ class modNsinfo extends DolibarrModules
 		$this->dirs = array("/nsinfo/temp");
 		// Pages de configuration. Indiquer ici la liste des pages php, stockées dans le répertoire nsinfo/admin, servant à paramétrer le module.
 		$this->config_page_url = array("setup.php@nsinfo");
-		// Dependencies
+		// Dépendances
 		// Une condition pour masquer le module
 		$this->hidden = false;
 		// Liste des noms de classes de modules (chaînes) à activer si ce module est activé. Exemple : array('always1'=>'modModuleToEnable1','always2'=>'modModuleToEnable2', 'FR1'=>'modModuleToEnableFR'...)
@@ -104,10 +104,10 @@ class modNsinfo extends DolibarrModules
 		// Tableau pour ajouter de nouvelles pages dans de nouveaux onglets
 		$this->tabs = array();
 
-		// Dictionaries
+		// Dictionnaires
 		$this->dictionaries = array();
 
-		// Boxes/Widgets
+		// Boîtes/Widgets
 		// Indiquer ici la liste des fichiers php stockés dans nsinfo/core/boxes qui contiennent une classe affichant un widget.
 		$this->boxes = array();
 
@@ -124,7 +124,7 @@ class modNsinfo extends DolibarrModules
 	/**
 	 *  Fonction appelée à l'activation du module.
 	 *  La fonction init ajoute dans la base Dolibarr les constantes, boîtes, droits et menus (définis dans le constructeur).
-	 *  It also creates data directories
+	 *  Elle crée aussi les répertoires de données
 	 *
 	 *  @param      string  $options    Options lors de l'activation du module ('', 'noboxes')
 	 *  @return     int             	1 si OK, 0 si KO

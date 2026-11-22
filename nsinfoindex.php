@@ -24,7 +24,7 @@
  *	\brief      Page d'accueil du menu principal de nsinfo
  */
 
-// Load Dolibarr environment
+// Chargement de l'environnement Dolibarr
 $res = 0;
 // Essaie main.inc.php dans la racine web connue, définie dans CONTEXT_DOCUMENT_ROOT (pas toujours définie)
 if (!$res && !empty($_SERVER["CONTEXT_DOCUMENT_ROOT"])) $res = @include $_SERVER["CONTEXT_DOCUMENT_ROOT"]."/main.inc.php";
@@ -33,7 +33,7 @@ $tmp = empty($_SERVER['SCRIPT_FILENAME']) ? '' : $_SERVER['SCRIPT_FILENAME']; $t
 while ($i > 0 && $j > 0 && isset($tmp[$i]) && isset($tmp2[$j]) && $tmp[$i] == $tmp2[$j]) { $i--; $j--; }
 if (!$res && $i > 0 && file_exists(substr($tmp, 0, ($i + 1))."/main.inc.php")) $res = @include substr($tmp, 0, ($i + 1))."/main.inc.php";
 if (!$res && $i > 0 && file_exists(dirname(substr($tmp, 0, ($i + 1)))."/main.inc.php")) $res = @include dirname(substr($tmp, 0, ($i + 1)))."/main.inc.php";
-// Try main.inc.php using relative path
+// Essai de main.inc.php avec un chemin relatif
 if (!$res && file_exists("../main.inc.php")) $res = @include "../main.inc.php";
 if (!$res && file_exists("../../main.inc.php")) $res = @include "../../main.inc.php";
 if (!$res && file_exists("../../../main.inc.php")) $res = @include "../../../main.inc.php";
@@ -47,7 +47,7 @@ $langs->loadLangs(array("nsinfo@nsinfo"));
 $action = GETPOST('action', 'alpha');
 
 
-// Security check
+// Contrôle de sécurité
 //if (! $user->rights->nsinfo->myobject->read) accessforbidden();
 $socid = GETPOST('socid', 'int');
 if (isset($user->socid) && $user->socid > 0)
@@ -64,11 +64,11 @@ $now = dol_now();
  * Actions
  */
 
-// None
+// Aucun
 
 
 /*
- * View
+ * Vue
  */
 
 $form = new Form($db);

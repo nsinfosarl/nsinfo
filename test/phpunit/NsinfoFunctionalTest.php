@@ -19,9 +19,9 @@
 /**
  * \file    test/phpunit/NsinfoFunctionalTest.php
  * \ingroup nsinfo
- * \brief   Example Selenium test.
+ * \brief   Exemple de test Selenium.
  *
- * Put detailed description here.
+ * Insérer ici une description détaillée.
  */
 
 namespace test\functional;
@@ -34,10 +34,10 @@ use PHPUnit_Extensions_Selenium2TestCase_WebDriverException;
  * Nécessite chromedriver pour Google Chrome
  * Nécessite geckodriver pour Mozilla Firefox
  *
- * @fixme Firefox (Geckodriver/Marionette) support
- * @todo Opera linux support
- * @todo Windows support (IE, Google Chrome, Mozilla Firefox, Safari)
- * @todo OSX support (Safari, Google Chrome, Mozilla Firefox)
+ * @fixme Support de Firefox (Geckodriver/Marionette)
+ * @todo Support d’Opera sous Linux
+ * @todo Support de Windows (IE, Google Chrome, Mozilla Firefox, Safari)
+ * @todo Support de OSX (Safari, Google Chrome, Mozilla Firefox)
  *
  * @package Testnsinfo
  */
@@ -57,7 +57,7 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 	 */
 	protected static $dol_admin_pass = 'admin';
 	/** @var int Dolibarr module ID */
-	private static $module_id = 500000; // TODO: autodetect?
+	private static $module_id = 500000; // TODO: détection automatique ?
 
 	/** @var array Navigateurs à tester */
 	public static $browsers = array(
@@ -98,7 +98,7 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 	}
 
 	/**
-	 * Global test setup
+	 * Initialisation globale des tests
 	 * @return void
 	 */
 	public static function setUpBeforeClass()
@@ -106,7 +106,7 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 	}
 
 	/**
-	 * Unit test setup
+	 * Initialisation unitaire des tests
 	 * @return void
 	 */
 	public function setUp()
@@ -116,7 +116,7 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 	}
 
 	/**
-	 * Verify pre conditions
+	 * Vérification des pré-conditions
 	 * @return void
 	 */
 	protected function assertPreConditions()
@@ -124,7 +124,7 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 	}
 
 	/**
-	 * Handle Dolibarr authentication
+	 * Gestion de l’authentification Dolibarr
 	 * @return void
 	 */
 	private function authenticate()
@@ -145,7 +145,7 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 	}
 
 	/**
-	 * Test enabling developer mode
+	 * Teste l’activation du mode développeur
 	 * @return bool
 	 */
 	public function testEnableDeveloperMode()
@@ -279,7 +279,7 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 	}
 
 	/**
-	 * Verify post conditions
+	 * Vérification des post-conditions
 	 * @return void
 	 */
 	protected function assertPostConditions()
@@ -287,7 +287,7 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 	}
 
 	/**
-	 * Unit test teardown
+	 * Nettoyage unitaire des tests
 	 * @return void
 	 */
 	public function tearDown()
@@ -295,7 +295,7 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 	}
 
 	/**
-	 * Global test teardown
+	 * Nettoyage global des tests
 	 * @return void
 	 */
 	public static function tearDownAfterClass()

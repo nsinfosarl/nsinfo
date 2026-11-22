@@ -22,7 +22,7 @@
  */
 
 /**
- * Prepare admin pages header
+ * Préparation de l'en-tête des pages d'administration
  *
  * @return array
  */
@@ -295,7 +295,7 @@ function nsinfoRightId($module, $perms, $subperms = '')
 /**
  * État d'une liste de droits pour un utilisateur (pour afficher ce dont a besoin un module)
  *
- * @param	User	$targetuser	User (existing)
+ * @param	User	$targetuser	Utilisateur (existant)
  * @param	array<int,array{0:string,1:string,2?:string}>	$rights	Droits demandés : module, droit, sous-droit (comme dans llx_rights_def)
  * @return	array<int,array{label:string,id:int,has:int}>	Une ligne par droit (id 0 = le droit n'existe pas : module non activé)
  */
@@ -319,7 +319,7 @@ function nsinfoRightsState($targetuser, $rights)
 /**
  * Accorde à un utilisateur les droits dont a besoin un module (générique : tout module, tout utilisateur existant)
  *
- * @param	User	$targetuser	User (existing)
+ * @param	User	$targetuser	Utilisateur (existant)
  * @param	array<int,array{0:string,1:string,2?:string}>	$rights	Droits demandés : module, droit, sous-droit
  * @return	array{added:string[],missing:string[]}	Droits ajoutés, droits inexistants (module non activé)
  */
@@ -382,6 +382,28 @@ function nsinfoIsPwaApp()
 	}
 
 	return (!empty($_COOKIE['nspwa_app']) && $_COOKIE['nspwa_app'] === '1') || GETPOST('nspwa', 'aZ09') === '1';
+}
+
+/**
+ * Accès aux réglages d'un module : administrateur de Dolibarr, ou droit « Réglages du module » du module
+ * (droit setup / write déclaré par le module, qui ouvre ses pages de réglages sans être administrateur)
+ *
+ * @param	string	$module	Nom du module en minuscules (ex : digilocplus)
+ * @return	bool
+ */
+function nsinfoCanSetup($module)
+{
+	global $user;
+
+	if (!is_object($user)) {
+		return false;
+	}
+	if (!empty($user->admin)) {
+		return true;
+	}
+	$module = preg_replace('/[^a-z0-9_]/', '', strtolower((string) $module));
+
+	return $module !== '' && isModEnabled($module) && $user->hasRight($module, 'setup', 'write');
 }
 
 /**

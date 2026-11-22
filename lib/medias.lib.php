@@ -76,7 +76,7 @@ function nsinfo_vignette(string $file, int $maxWidth = 160, int $maxHeight = 120
  * @param  string $modulepart Nom du module, utilisé pour lire la configuration {MODULE}_MEDIA_MAX_WIDTH/HEIGHT_{SIZE}
  * @param  string $thumbType  Thumb type (mini, small, medium, large)
  * @param  string $filePath   Répertoire contenant le fichier
- * @return string|int         Thumb filename, or -1 on error
+ * @return string|int         Nom de fichier de la vignette, ou -1 en cas d'erreur
  */
 function nsinfo_get_thumb_name(string $filename, string $modulepart, string $thumbType = 'small', string $filePath = '')
 {

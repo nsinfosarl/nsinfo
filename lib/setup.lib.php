@@ -1325,7 +1325,7 @@ jQuery(function($) {
 	$(document).on("change", "form input, form select, form textarea", function() {
 		var form = this.form || $(this).closest("form")[0];
 		if (!form || $(this).is("[type=hidden], [type=submit], [type=button]")) return;
-		if (($(this).attr("onchange") || "").indexOf("dpChangeDay") >= 0) return;	/* field of date : saved through dpChangeDay() above */
+		if (($(this).attr("onchange") || "").indexOf("dpChangeDay") >= 0) return;	/* champ de date : enregistré par dpChangeDay() ci-dessus */
 		if (isAuto($(form))) save($(form), $(this));
 	});
 	// Au clic sur Mettre à jour ou à la touche Entrée : même enregistrement, sans rechargement

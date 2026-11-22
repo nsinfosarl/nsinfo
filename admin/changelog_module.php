@@ -22,7 +22,7 @@
  * \brief   Page À propos du module dpersoplus.
  */
 
-// Load Dolibarr environment
+// Charge l’environnement Dolibarr
 $res = 0;
 // Essaie main.inc.php dans la racine web connue, définie dans CONTEXT_DOCUMENT_ROOT (pas toujours définie)
 if (!$res && !empty($_SERVER["CONTEXT_DOCUMENT_ROOT"])) $res = @include $_SERVER["CONTEXT_DOCUMENT_ROOT"]."/main.inc.php";
@@ -31,12 +31,12 @@ $tmp = empty($_SERVER['SCRIPT_FILENAME']) ? '' : $_SERVER['SCRIPT_FILENAME']; $t
 while ($i > 0 && $j > 0 && isset($tmp[$i]) && isset($tmp2[$j]) && $tmp[$i] == $tmp2[$j]) { $i--; $j--; }
 if (!$res && $i > 0 && file_exists(substr($tmp, 0, ($i + 1))."/main.inc.php")) $res = @include substr($tmp, 0, ($i + 1))."/main.inc.php";
 if (!$res && $i > 0 && file_exists(dirname(substr($tmp, 0, ($i + 1)))."/main.inc.php")) $res = @include dirname(substr($tmp, 0, ($i + 1)))."/main.inc.php";
-// Try main.inc.php using relative path
+// Essaie main.inc.php avec un chemin relatif
 if (!$res && file_exists("../../main.inc.php")) $res = @include "../../main.inc.php";
 if (!$res && file_exists("../../../main.inc.php")) $res = @include "../../../main.inc.php";
 if (!$res) die("Include of main fails");
 
-// Libraries
+// Bibliothèques
 require_once DOL_DOCUMENT_ROOT.'/core/lib/admin.lib.php';
 require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
 
@@ -45,33 +45,33 @@ dol_include_once('/nsinfo/lib/setup.lib.php');
 
 
 
-// Parameters
+// Paramètres
 $action = GETPOST('action', 'alpha');
 $backtopage = GETPOST('backtopage', 'alpha');
-$namemodule = GETPOST('namemodule', 'alpha');
+$namemodule = preg_replace('/[^a-z0-9_]/', '', strtolower(GETPOST('namemodule', 'alpha')));	// nom de module seul (inclusion de fichiers)
 
 $modM = ucfirst($namemodule);
 
-// Access control
+// Contrôle d’accès
 if ($namemodule == 'gmao') {
 	$permissiontoread=$user->rights->gmao->gmao->admin;
 	nsinfo_check_access($permissiontoread);
 }
-else if (!$user->admin) accessforbidden();
+else if (!nsinfoCanSetup($namemodule)) accessforbidden();	// administrateur ou droit « Réglages du module »
 if ($namemodule == 'factory') dol_include_once('/'.$namemodule.'/core/lib/'.$namemodule.'.lib.php');
 else dol_include_once('/'.$namemodule.'/lib/'.$namemodule.'.lib.php');
-// Translations
+// Traductions
 $langs->loadLangs(array("errors", "admin", "dpersoplus@dpersoplus", "nsinfo@nsinfo", "{$namemodule}@{$namemodule}"));
 
 /*
  * Actions
  */
 
-// None
+// Aucune
 
 
 /*
- * View
+ * Affichage
  */
 
 $form = new Form($db);
@@ -80,12 +80,12 @@ $module=$langs->trans("Module".ucfirst("{$namemodule}")."Name");
 $page_name = $module . " - ChangeLog";
 llxHeader('', $langs->trans($page_name));
 
-// Subheader
+// En-tête secondaire
 $linkback = '<a href="'.($backtopage ? $backtopage : DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_values=1').'">'.$langs->trans("BackToModuleList").'</a>';
 
 print load_fiche_titre($langs->trans($page_name), $linkback, "object_{$namemodule}@{$namemodule}");
 
-// Configuration header
+// En-tête de configuration
 
 if ($namemodule == 'factory') $namehead = 'factory_admin_prepare_head';
 else $namehead = $namemodule."AdminPrepareHead";
@@ -115,7 +115,7 @@ $content = dolMd2Html($content, 'parsedown', array('doc/' => $moduleUrlPath . '/
 print $content;
 
 
-// Page end
+// Fin de page
 print dol_get_fiche_end();
 //dol_fiche_end();
 llxFooter();

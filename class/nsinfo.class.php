@@ -5,9 +5,9 @@ class Nsinfo
 	public $db;
 
 	/**
-	 * Constructor
+	 * Constructeur
 	 *
-	 * @param DoliDb $db Database handler
+	 * @param DoliDb $db Gestionnaire de base de données
 	 */
 	public function __construct(DoliDB $db)
 	{
@@ -19,37 +19,37 @@ class Nsinfo
     function InEurop($country='') {
 
         $country_code_in_EEC = array(
-            'AT', // Austria
+            'AT', // Autriche
             'BE', // Belgique
-            'BG', // Bulgaria
-            'CY', // Cyprus
-            'CZ', // Czech republic
-            'DE', // Germany
+            'BG', // Bulgarie
+            'CY', // Chypre
+            'CZ', // République tchèque
+            'DE', // Allemagne
             'DK', // Danemark
-            'EE', // Estonia
-            'ES', // Spain
-            'FI', // Finland
+            'EE', // Estonie
+            'ES', // Espagne
+            'FI', // Finlande
             'FR', // France
 //            'GB', // United Kingdom
-            'GR', // Greece
-            'HR', // Croatia
-            'NL', // Holland
-            'HU', // Hungary
-            'IE', // Ireland
+            'GR', // Grèce
+            'HR', // Croatie
+            'NL', // Pays-Bas
+            'HU', // Hongrie
+            'IE', // Irlande
             // 'IM', // Île de Man - incluse dans le Royaume-Uni
-            'IT', // Italy
-            'LT', // Lithuania
+            'IT', // Italie
+            'LT', // Lituanie
             'LU', // Luxembourg
-            'LV', // Latvia
+            'LV', // Lettonie
             'MC', // Monaco - inclus dans la France
-            'MT', // Malta
+            'MT', // Malte
             //'NO',	// Norway
-            'PL', // Poland
+            'PL', // Pologne
             'PT', // Portugal
-            'RO', // Romania
-            'SE', // Sweden
-            'SK', // Slovakia
-            'SI', // Slovenia
+            'RO', // Roumanie
+            'SE', // Suède
+            'SK', // Slovaquie
+            'SI', // Slovénie
             // 'UK', // United Kingdom
             //'CH',	// Suisse - non, la Suisse ne fait pas partie de la CEE
         );

@@ -21,7 +21,7 @@
  * \brief   Réglage de la traduction automatique, partagé par les modules NS INFO : page appelée avec ?namemodule=<module> (API de traduction choisie dans une liste, ses réglages et ses conditions d'utilisation)
  */
 
-// Load Dolibarr environment
+// Chargement de l'environnement Dolibarr
 $res = 0;
 if (!$res && !empty($_SERVER["CONTEXT_DOCUMENT_ROOT"])) {
 	$res = @include $_SERVER["CONTEXT_DOCUMENT_ROOT"]."/main.inc.php";
@@ -69,6 +69,8 @@ $prefix = nsinfoTradPrefix();
 $forcedscope = nsinfoTradForcedScope($namemodule);	// Périmètre imposé par le module (<module>TradScope()), '' = choix libre
 $canscope = ($namemodule != 'nsinfo');
 
+// Administrateurs seulement : la page lit et modifie les réglages communs de traduction (clés d’API des fournisseurs, partagées
+// par tous les modules), le droit « Réglages du module » d’un module ne suffit donc pas
 if (!$user->admin) {
 	accessforbidden();
 }

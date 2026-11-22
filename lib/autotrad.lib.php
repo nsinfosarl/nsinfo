@@ -178,7 +178,7 @@ function nsinfoTradLinksHtml($provider, $langs)
 /**
  * Position du picto de traduction défini dans les réglages : right (à côté du champ), top ou bottom (dans le champ, à droite)
  *
- * @return	string	'right', 'top' or 'bottom'
+ * @return	string	'right', 'top' ou 'bottom'
  */
 function nsinfoTradPosition()
 {
@@ -190,7 +190,7 @@ function nsinfoTradPosition()
 /**
  * Nom de la constante des champs qui ont le picto : toujours propre au module (même lorsque les réglages de l'API sont communs à tous les modules)
  *
- * @param	string	$module		Code of the module ('' = the current one)
+ * @param	string	$module		Code du module ('' = le module courant)
  * @return	string
  */
 function nsinfoTradFieldsConst($module = '')
@@ -629,7 +629,7 @@ function nsinfoTradHtmlNodes($html, $from, $to, &$error, $provider)
  * Appel d'une API
  *
  * @param	string		$url		URL
- * @param	string		$method		GET or POST
+ * @param	string		$method		GET ou POST
  * @param	string		$body		Corps (JSON) pour POST
  * @param	string[]	$headers	En-têtes
  * @param	int			$localurl	0 = URL externe seulement, 2 = aussi URL locale (instance sur le réseau)
@@ -660,9 +660,9 @@ function nsinfoTradDecode($res, &$error)
 /**
  * Erreur d'une API : message du fournisseur ou code HTTP
  *
- * @param	array<string,mixed>	$res	Result of getURLContent()
+ * @param	array<string,mixed>	$res	Résultat de getURLContent()
  * @param	array<mixed>		$data	Réponse décodée
- * @param	string				$error	Error message (output)
+ * @param	string				$error	Message d'erreur (sortie)
  * @return	null
  */
 function nsinfoTradFail($res, $data, &$error)

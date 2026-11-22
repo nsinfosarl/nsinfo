@@ -42,7 +42,7 @@ abstract class ModelePDFMyObject extends CommonDocGenerator
 	/**
 	 *  Renvoie la liste des modules de génération actifs
 	 *
-	 *  @param	DoliDB	$db     			Database handler
+	 *  @param	DoliDB	$db     			Gestionnaire de base de données
 	 *  @param  integer	$maxfilenamelength  Longueur maximale de la valeur à afficher
 	 *  @return	array						Liste des modèles
 	 */
@@ -98,7 +98,7 @@ abstract class ModeleNumRefMyObject
 	/**
 	 *	Renvoie un exemple de numérotation
 	 *
-	 *	@return     string      Example
+	 *	@return     string      Exemple
 	 */
 	public function getExample()
 	{

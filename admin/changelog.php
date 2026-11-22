@@ -22,7 +22,7 @@
  * \brief   Page À propos du module dpersoplus.
  */
 
-// Load Dolibarr environment
+// Charge l'environnement Dolibarr
 $res = 0;
 // Essaie main.inc.php dans la racine web connue, définie dans CONTEXT_DOCUMENT_ROOT (pas toujours définie)
 if (!$res && !empty($_SERVER["CONTEXT_DOCUMENT_ROOT"])) $res = @include $_SERVER["CONTEXT_DOCUMENT_ROOT"]."/main.inc.php";
@@ -31,24 +31,24 @@ $tmp = empty($_SERVER['SCRIPT_FILENAME']) ? '' : $_SERVER['SCRIPT_FILENAME']; $t
 while ($i > 0 && $j > 0 && isset($tmp[$i]) && isset($tmp2[$j]) && $tmp[$i] == $tmp2[$j]) { $i--; $j--; }
 if (!$res && $i > 0 && file_exists(substr($tmp, 0, ($i + 1))."/main.inc.php")) $res = @include substr($tmp, 0, ($i + 1))."/main.inc.php";
 if (!$res && $i > 0 && file_exists(dirname(substr($tmp, 0, ($i + 1)))."/main.inc.php")) $res = @include dirname(substr($tmp, 0, ($i + 1)))."/main.inc.php";
-// Try main.inc.php using relative path
+// Essaie main.inc.php avec un chemin relatif
 if (!$res && file_exists("../../main.inc.php")) $res = @include "../../main.inc.php";
 if (!$res && file_exists("../../../main.inc.php")) $res = @include "../../../main.inc.php";
 if (!$res) die("Include of main fails");
 
-// Libraries
+// Bibliothèques
 require_once DOL_DOCUMENT_ROOT.'/core/lib/admin.lib.php';
 require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
 
 dol_include_once('/nsinfo/lib/nsinfo.lib.php');
 
-// Translations
+// Traductions
 $langs->loadLangs(array("errors", "admin", "dpersoplus@dpersoplus", "nsinfo@nsinfo"));
 
-// Access control
+// Contrôle d'accès
 if (!$user->admin) accessforbidden();
 
-// Parameters
+// Paramètres
 $action = GETPOST('action', 'alpha');
 $backtopage = GETPOST('backtopage', 'alpha');
 
@@ -69,12 +69,12 @@ $form = new Form($db);
 $page_name = "NsinfoSetupPage";
 llxHeader('', $langs->trans($page_name));
 
-// Subheader
+// En-tête secondaire
 $linkback = '<a href="'.($backtopage ? $backtopage : DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_values=1').'">'.$langs->trans("BackToModuleList").'</a>';
 
 print load_fiche_titre($langs->trans($page_name), $linkback, 'object_nsinfo@nsinfo');
 
-// Configuration header
+// En-tête de configuration
 $head = nsinfoAdminPrepareHead();
 print dol_get_fiche_head($head, 'changelog', $langs->trans("ChangeLog"), -1, "object_nsinfo.png@nsinfo");
 
@@ -86,7 +86,7 @@ print '<a href="https://www.ns-info.fr" border=0 target="_blank"><img src="../im
 // print $tmpmodule->getDescLong();
 print $tmpmodule->getChangeLog();
 
-// Page end
+// Fin de page
 dol_fiche_end();
 llxFooter();
 $db->close();

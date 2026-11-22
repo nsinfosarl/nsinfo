@@ -136,7 +136,7 @@ tr.nstabletitle:has(td.nssep) {
 }
 
 /* ------------------------------------------------------------------
- * NSINFO media gallery + confirmation popup
+ * Galerie de médias NSINFO + popup de confirmation
  * Sans ces règles, la classe .modal-active et les bascules d'affichage en ligne définies par
  * js/modules/{modal,mediaGallery}.js n'ont rien vers quoi basculer « dedans » :
  * les éléments restent dans le flux normal de la page au lieu de la recouvrir.

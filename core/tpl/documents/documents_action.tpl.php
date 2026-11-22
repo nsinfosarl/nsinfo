@@ -32,7 +32,7 @@
 
 require_once DOL_DOCUMENT_ROOT . '/core/lib/functions2.lib.php';
 
-// Build doc action.
+// Action de génération du document.
 if (($action == 'builddoc' || GETPOST('forcebuilddoc')) && $permissiontoadd) {
     global $hookmanager;
 
