@@ -1,6 +1,7 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
-## 24.0.1 - 21/11/2026
+## 24.0.2 - 22/11/2026
+- Nouvelle fonction `nsinfoIsPwaApp()` : vraie quand la page est affichée dans l'application installable du module nspwadolibarr (témoin `nspwa_app` posé par son script, ou page d'ouverture de l'application marquée `nspwa=1`) ; les modules NS INFO s'en servent pour couper leurs fonctions de bureau dans l'application sans être désactivés
 - Pictos Font Awesome 7 : espace entre le picto et le texte quand la classe `paddingright` ou `pictofixedwidth` est donnée (onglets des réglages)
 - Commentaires du code traduits en français
 

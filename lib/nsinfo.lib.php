@@ -368,6 +368,23 @@ function nsinfoFontAwesomeLoaded()
 }
 
 /**
+ * Page affichée dans l'application installable (PWA) du module nspwadolibarr
+ *
+ * @return bool
+ */
+function nsinfoIsPwaApp()
+{
+	// Page affichée dans l'application installable du module nspwadolibarr (témoin nspwa_app posé par son script) : les modules
+	// NS INFO y coupent leurs fonctions de bureau sans être désactivés (ils restent actifs dans le navigateur normal)
+	// ou ouverture de l'application (page d'ouverture du manifeste marquée « nspwa=1 », avant que le témoin soit posé)
+	if (!isModEnabled('nspwadolibarr')) {
+		return false;
+	}
+
+	return (!empty($_COOKIE['nspwa_app']) && $_COOKIE['nspwa_app'] === '1') || GETPOST('nspwa', 'aZ09') === '1';
+}
+
+/**
  * Icône de Font Awesome Free 7 : les classes nsfa-* lorsque la copie du framework NSINFO est chargée, sinon les classes fa-* de Dolibarr
  * (Dolibarr 7 ou plus)
  *
