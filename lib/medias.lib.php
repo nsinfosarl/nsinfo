@@ -304,7 +304,7 @@ function nsinfo_show_medias_linked(string $modulepart = 'ecm', string $sdir, $si
                             else $return              .= '<a href="' . DOL_URL_ROOT . '/viewimage.php?modulepart=' . $modulepart . '&entity=' . $conf->entity . '&file=' . urlencode($pdir . $photo) . '" class="aphoto" target="_blank">';
                         }
 
-                        // Show image (width height=$maxHeight)
+                        // Afficher l'image (largeur, hauteur=$maxHeight)
                         $alt               = $langs->transnoentitiesnoconv('File') . ': ' . $relativefile;
                         $alt              .= ' - ' . $langs->transnoentitiesnoconv('Size') . ': ' . $imgarray['width'] . 'x' . $imgarray['height'];
                         if ($notitle) $alt = '';
