@@ -18,7 +18,7 @@
 #
 
 # Module label 'ModuleNsinfoName'
-ModuleNsinfoName = Nsinfo
+ModuleNsinfoName = NSINFO - Framework
 # Module description 'ModuleNsinfoDesc'
 ModuleNsinfoDesc = Framework of functions for NSINFO modules and development
 NsinfoArea = NS INFO area
@@ -160,3 +160,24 @@ NsinfoCfgImportHelp = Only the settings whose name starts with %s are imported; 
 NsinfoCfgCount = %s setting(s) saved in this module, including %s sensitive (password, key, token).
 NsinfoCfgShowDetail = Show the detail of the settings (to choose the ones to export)
 NsinfoTradScopeForced = Scope imposed by this module (cannot be changed).
+
+# Onglet « Modules NS INFO »
+NsinfoModsTab = NS INFO modules
+NsinfoModsHelp = %s NS INFO modules installed, %s enabled. Reloading a module = disabling then enabling it again (menus, permissions, constants and hooks refreshed, settings kept): do it after each update.
+NsinfoModsReloadAll = Reload enabled modules
+NsinfoModsReloadAllConfirm = Disable then enable again the %s enabled NS INFO modules?
+NsinfoModsEnableAll = Enable disabled modules
+NsinfoModsEnableAllConfirm = Enable the %s disabled NS INFO modules?
+NsinfoModsReload = Reload
+NsinfoModsReloadOne = Disable then enable this module again
+NsinfoModsDisableConfirm = Disable module %s?
+NsinfoModsDone = %s module(s) processed
+NsinfoModsErrors = Errors:
+NsinfoModsOn = Enabled modules
+NsinfoModsOff = Disabled modules
+NsinfoModsNsinfoRequired = The NSINFO - Framework module cannot be disabled from this page (NS INFO modules depend on it)
+NsinfoModsNotReenabled = module left disabled after the reload: enable it manually
+NsinfoModsDateInstall = Installation
+NsinfoModsDateUpdate = Update
+NsinfoModsDateReload = Reactivation
+NsinfoModsDir = Folder

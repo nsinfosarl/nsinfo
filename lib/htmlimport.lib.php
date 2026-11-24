@@ -107,7 +107,7 @@ function nsinfoHtmlToStored($text)
  *
  * @param	string					$url		URL de la page
  * @param	array<string,string>	$hiddens	Valeurs cachées (id)
- * @param	int						$disabled	1 = button inactive (no right)
+ * @param	int						$disabled	1 = bouton inactif (pas de droit)
  * @param	string					$action		Action envoyée à la page
  * @param	string					$filename	Nom du champ fichier ($_FILES[$filename]['tmp_name'][0])
  * @return	string							HTML

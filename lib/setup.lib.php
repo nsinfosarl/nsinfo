@@ -10,6 +10,11 @@
  * @throws Exception
  * return array()
  */
+// Pictos Font Awesome 7 du framework (nsinfoFaIcon)
+if (!function_exists('nsinfoFaIcon')) {
+	dol_include_once('/nsinfo/lib/nsinfo.lib.php');
+}
+
 function nsinfofieldlist($elementtype, $type = '')
 {
     global $conf;
@@ -188,8 +193,7 @@ function nsinfoSectionResetFlag($changed, $section)
     // Les clés sont aussi envoyées (une section peut être construite à partir d’une liste de réglages, pas seulement d’un bloc 'titletab') ; validées par nsinfoAction()
     $query = array_merge($query, array('action' => 'nsinforesetsection', 'section' => (int) $section, 'keys' => implode(',', $changed), 'token' => newToken()));
     $url = $_SERVER['PHP_SELF'] . '?' . http_build_query($query);
-    return ' <span class="fas fa-undo-alt nsinfo-reset" style="color: #553885; cursor: pointer" data-url="' . dol_escape_htmltag($url)
-        . '" title="' . dol_escape_htmltag($langs->trans('NsinfoDefaultsDiffer', count($changed))) . '"></span>';
+    return ' ' . str_replace('<i ', '<i data-url="' . dol_escape_htmltag($url) . '" title="' . dol_escape_htmltag($langs->trans('NsinfoDefaultsDiffer', count($changed))) . '" ', nsinfoFaIcon('rotate-left', '#553885', 'solid', 'nsinfo-reset cursorpointer'));
 }
 
 /**
@@ -281,7 +285,7 @@ function nsinfoDefaultsNotice($arrayofparameters, $keys = null)
 	parse_str((string) (isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : ''), $query);
 	unset($query['action'], $query['var'], $query['token']);
 	$query = array_merge($query, array('action' => 'nsinforesetall', 'token' => newToken()));
-	return '<div class="opacitymedium nsinfo-defaults-notice" style="margin: 6px 0 10px;"><span class="fas fa-undo-alt paddingright" style="color: #553885"></span>'
+	return '<div class="opacitymedium nsinfo-defaults-notice" style="margin: 6px 0 10px;">' . nsinfoFaIcon('rotate-left', '#553885', 'solid', 'paddingright')
 		. dol_escape_htmltag($langs->trans('NsinfoDefaultsDiffer', count($changed))) . ' '
 		. '<a class="reposition" href="' . $_SERVER['PHP_SELF'] . '?' . http_build_query($query) . '">' . dol_escape_htmltag($langs->trans('NsinfoResetAllDefaults')) . '</a></div>';
 }
@@ -305,7 +309,7 @@ function nsinfoDefaultPicto($key, $desc)
 	parse_str((string) (isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : ''), $query);
 	unset($query['action'], $query['var'], $query['token']);
 	$query = array_merge($query, array('action' => 'nsinforeset', 'var' => $key, 'token' => newToken()));
-	return ' <a class="reposition nsinfo-default" href="' . $_SERVER['PHP_SELF'] . '?' . http_build_query($query) . '" title="' . dol_escape_htmltag($langs->trans('NsinfoResetDefault')) . '"><span class="fas fa-undo-alt" style="color: #553885"></span></a>';
+	return ' <a class="reposition nsinfo-default" href="' . $_SERVER['PHP_SELF'] . '?' . http_build_query($query) . '" title="' . dol_escape_htmltag($langs->trans('NsinfoResetDefault')) . '">' . nsinfoFaIcon('rotate-left', '#553885') . '</a>';
 }
 
 /**
@@ -579,7 +583,7 @@ function nsinfoSetup($arrayofparameters)
                     print '</td>';
                     print '<td>';
                     $resetlabel = !empty($desc['label']) ? $langs->trans($desc['label']) : $langs->trans('NsinfoResetDefault');
-                    print '<a class="button button-cancel reposition" href="' . $_SERVER['PHP_SELF'] . '?action=resetdefault&var=' . urlencode($key) . '&token=' . newToken() . '" onclick="return confirm(' . dol_escape_htmltag(json_encode($langs->transnoentitiesnoconv('NsinfoResetDefaultConfirm'))) . ');"><span class="fas fa-undo-alt paddingright"></span>' . dol_escape_htmltag($resetlabel) . '</a>';
+                    print '<a class="button button-cancel reposition" href="' . $_SERVER['PHP_SELF'] . '?action=resetdefault&var=' . urlencode($key) . '&token=' . newToken() . '" onclick="return confirm(' . dol_escape_htmltag(json_encode($langs->transnoentitiesnoconv('NsinfoResetDefaultConfirm'))) . ');">' . nsinfoFaIcon('rotate-left', '', 'solid', 'paddingright') . dol_escape_htmltag($resetlabel) . '</a>';
                     print '</td><td>';
                     print '&emsp;';
                     print '</td>';

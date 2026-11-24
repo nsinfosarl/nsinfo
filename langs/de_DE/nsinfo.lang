@@ -18,7 +18,7 @@
 #
 
 # Module label 'ModuleNsinfoName'
-ModuleNsinfoName = Nsinfo
+ModuleNsinfoName = NSINFO - Framework
 # Module description 'ModuleNsinfoDesc'
 ModuleNsinfoDesc = Funktions-Framework für die NSINFO-Module und -Entwicklung
 NsinfoArea = NS INFO Bereich
@@ -159,3 +159,24 @@ NsinfoCfgImportHelp = Nur Einstellungen, deren Name mit %s beginnt, werden impor
 NsinfoCfgCount = %s Einstellung(en) in diesem Modul gespeichert, davon %s sensibel (Passwort, Schlüssel, Token).
 NsinfoCfgShowDetail = Details der Einstellungen anzeigen (zur Auswahl der zu exportierenden)
 NsinfoTradScopeForced = Von diesem Modul vorgegebener Geltungsbereich (nicht änderbar).
+
+# Onglet « Modules NS INFO »
+NsinfoModsTab = NS INFO-Module
+NsinfoModsHelp = %s NS INFO-Module installiert, davon %s aktiviert. Ein Modul neu laden = deaktivieren und wieder aktivieren (Menüs, Berechtigungen, Konstanten und Hooks aktualisiert, Einstellungen bleiben erhalten): nach jedem Update ausführen.
+NsinfoModsReloadAll = Aktive Module neu laden
+NsinfoModsReloadAllConfirm = Die %s aktivierten NS INFO-Module deaktivieren und wieder aktivieren?
+NsinfoModsEnableAll = Deaktivierte Module aktivieren
+NsinfoModsEnableAllConfirm = Die %s deaktivierten NS INFO-Module aktivieren?
+NsinfoModsReload = Neu laden
+NsinfoModsReloadOne = Dieses Modul deaktivieren und wieder aktivieren
+NsinfoModsDisableConfirm = Modul %s deaktivieren?
+NsinfoModsDone = %s Modul(e) verarbeitet
+NsinfoModsErrors = Fehler:
+NsinfoModsOn = Aktivierte Module
+NsinfoModsOff = Deaktivierte Module
+NsinfoModsNsinfoRequired = Das Modul NSINFO - Framework kann auf dieser Seite nicht deaktiviert werden (die NS INFO-Module hängen davon ab)
+NsinfoModsNotReenabled = Modul nach dem Neuladen deaktiviert geblieben: manuell aktivieren
+NsinfoModsDateInstall = Installation
+NsinfoModsDateUpdate = Aktualisierung
+NsinfoModsDateReload = Reaktivierung
+NsinfoModsDir = Ordner

@@ -211,8 +211,8 @@ print dol_get_fiche_head($head, 'configmodule', $langs->trans('NsinfoCfgTab'), -
 // Sous-onglets horizontaux : export / import
 $self = $_SERVER['PHP_SELF'].'?namemodule='.urlencode($namemodule);
 $subhead = array(
-	array($self.'&subtab=export', '<span class="fas fa-file-export pictofixedwidth" style="color: #E67E22"></span>'.$langs->trans('NsinfoCfgExport'), 'export'),
-	array($self.'&subtab=import', '<span class="fas fa-file-import pictofixedwidth" style="color: #3879B2"></span>'.$langs->trans('NsinfoCfgImport'), 'import'),
+	array($self.'&subtab=export', nsinfoFaIcon('file-export', '#E67E22', 'solid', 'pictofixedwidth').$langs->trans('NsinfoCfgExport'), 'export'),
+	array($self.'&subtab=import', nsinfoFaIcon('file-import', '#3879B2', 'solid', 'pictofixedwidth').$langs->trans('NsinfoCfgImport'), 'import'),
 );
 print dol_get_fiche_head($subhead, $subtab, '', -1, '');
 print '<style nonce="'.getNonce().'">.nsinfo-cfgbtn { display: inline-block; min-width: 170px; text-align: center; margin: 0 !important; box-sizing: border-box; }</style>';
@@ -243,7 +243,7 @@ if ($subtab == 'export') {
 	}
 	print '</table></div><br>';
 	print '<label><input type="checkbox" name="withsecrets" value="1"> '.$langs->trans('NsinfoCfgWithSecrets').'</label><br><br>';
-	print '<div class="center"><button type="submit" class="butAction nsinfo-cfgbtn"'.(empty($all) ? ' disabled' : '').'><span class="fas fa-download paddingright"></span>'.$langs->trans('Download').'</button></div>';
+	print '<div class="center"><button type="submit" class="butAction nsinfo-cfgbtn"'.(empty($all) ? ' disabled' : '').'>'.nsinfoFaIcon('download', '', 'solid', 'paddingright').$langs->trans('Download').'</button></div>';
 	print '</form>';
 	print '<script nonce="'.getNonce().'">document.getElementById("nsinfocfgdetail").addEventListener("change",function(){document.getElementById("nsinfocfglist").style.display=this.checked?"":"none";});document.getElementById("nsinfocfgall").addEventListener("change",function(){var c=this.checked;document.querySelectorAll(".nsinfocfgsel").forEach(function(e){e.checked=c;});});</script>';
 }

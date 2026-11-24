@@ -165,11 +165,14 @@ function nsinfoTradProviders()
  */
 function nsinfoTradLinksHtml($provider, $langs)
 {
+	if (!function_exists('nsinfoFaIcon')) {
+		dol_include_once('/nsinfo/lib/nsinfo.lib.php');
+	}
 	$links = isset($provider['links']) ? $provider['links'] : array();
 	$links[] = array('NsinfoTradDoc', $provider['doc']);
 	$out = '<div class="margintoponly">';
 	foreach ($links as $link) {
-		$out .= '<div><a href="'.dol_escape_htmltag($link[1]).'" target="_blank" rel="noopener noreferrer">'.img_picto('', 'fa-external-link-alt', 'class="pictofixedwidth"').$langs->transnoentitiesnoconv($link[0]).'</a></div>';
+		$out .= '<div><a href="'.dol_escape_htmltag($link[1]).'" target="_blank" rel="noopener noreferrer">'.nsinfoFaIcon('arrow-up-right-from-square', '#3879B2', 'solid', 'pictofixedwidth').$langs->transnoentitiesnoconv($link[0]).'</a></div>';
 	}
 
 	return $out.'</div>';

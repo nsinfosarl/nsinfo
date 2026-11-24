@@ -149,8 +149,8 @@ $hasfields = function_exists($namemodule.'TradFields');
 $subtab = ($hasfields && GETPOST('subtab', 'aZ09') == 'fields') ? 'fields' : 'api';
 if ($hasfields) {
 	$subhead = array();
-	$subhead[0] = array(dol_buildpath('/nsinfo/admin/trad_module.php', 1).'?namemodule='.$namemodule.'&subtab=api', '<i class="fas fa-plug paddingright pictofixedwidth valignmiddle" style="color: #2E7D32"></i>'.$langs->trans('NsinfoTradSubApi'), 'api');
-	$subhead[1] = array(dol_buildpath('/nsinfo/admin/trad_module.php', 1).'?namemodule='.$namemodule.'&subtab=fields', '<i class="fas fa-list-check paddingright pictofixedwidth valignmiddle" style="color: #3879B2"></i>'.$langs->trans('NsinfoTradFields'), 'fields');
+	$subhead[0] = array(dol_buildpath('/nsinfo/admin/trad_module.php', 1).'?namemodule='.$namemodule.'&subtab=api', nsinfoFaIcon('plug', '#2E9E5B', 'solid', 'paddingright pictofixedwidth valignmiddle').$langs->trans('NsinfoTradSubApi'), 'api');
+	$subhead[1] = array(dol_buildpath('/nsinfo/admin/trad_module.php', 1).'?namemodule='.$namemodule.'&subtab=fields', nsinfoFaIcon('list-check', '#3879B2', 'solid', 'paddingright pictofixedwidth valignmiddle').$langs->trans('NsinfoTradFields'), 'fields');
 	dol_include_once('/nsinfo/lib/setup.lib.php');
 	nsinfoVerticalTabsStart($subhead, $subtab);
 }
@@ -212,7 +212,7 @@ print '<tr><td class="titlefield">'.$langs->trans('NsinfoTradPosition').'</td><t
 foreach (array('right' => 'NsinfoTradPosRight', 'top' => 'NsinfoTradPosTop', 'bottom' => 'NsinfoTradPosBottom') as $k => $key) {
 	// Mini aperçu d'un champ avec le picto à la position choisie
 	print '<div class="tdl-pos-tile'.($k == $position ? ' on' : '').'" data-value="'.$k.'" data-name="'.$prefix.'POSITION" tabindex="0" role="radio" aria-checked="'.($k == $position ? 'true' : 'false').'">';
-	print '<div class="tdl-pos-prev tdl-pos-'.$k.'"><span class="tdl-pos-field">'.($k == 'right' ? '' : '<i class="fas fa-language tdl-sample" style="color: '.nsinfoTradColor().'"></i>').'</span>'.($k == 'right' ? '<i class="fas fa-language tdl-sample" style="color: '.nsinfoTradColor().'"></i>' : '').'</div>';
+	print '<div class="tdl-pos-prev tdl-pos-'.$k.'"><span class="tdl-pos-field">'.($k == 'right' ? '' : nsinfoFaIcon('language', nsinfoTradColor(), 'solid', 'tdl-sample')).'</span>'.($k == 'right' ? nsinfoFaIcon('language', nsinfoTradColor(), 'solid', 'tdl-sample') : '').'</div>';
 	print '<div class="tdl-pos-label">'.dol_escape_htmltag($langs->transnoentitiesnoconv($key)).'</div></div>';
 }
 print '</div><span class="tdl-ok">&#10004;</span><br><span class="opacitymedium small">'.$langs->trans('NsinfoTradPositionHelp').'</span></td></tr>';
@@ -251,7 +251,7 @@ if (isset($providers[$current])) {
 	print '<div>'.$langs->transnoentitiesnoconv('NsinfoTradCond'.ucfirst($current)).'</div>';
 	print '<div class="margintoponly">'.nsinfoTradLinksHtml($p, $langs).'</div>';
 
-	print '<div class="margintoponly"><button type="button" class="button" id="tdl-test"><span class="fas fa-vial pictofixedwidth"></span>'.$langs->trans('NsinfoTradTest').'</button> <span id="tdl-test-res"></span></div>';
+	print '<div class="margintoponly"><button type="button" class="button" id="tdl-test">'.nsinfoFaIcon('vial', '#22A7D8', 'solid', 'pictofixedwidth').$langs->trans('NsinfoTradTest').'</button> <span id="tdl-test-res"></span></div>';
 	print '</div>';
 } else {
 	// Tableau récapitulatif de tous les fournisseurs pour aider au choix

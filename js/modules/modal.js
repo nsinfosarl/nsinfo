@@ -67,7 +67,7 @@ window.nsinfo.modal.openModal = function() {
 /**
  * Ferme la fenêtre modale active.
  *
- * @param  {MouseEvent} event Click event
+ * @param  {MouseEvent} event Événement de clic
  * @return {void}
  */
 window.nsinfo.modal.closeModal = function(event) {

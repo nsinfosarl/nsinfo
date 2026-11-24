@@ -57,7 +57,7 @@
 	function parseTyped(text, lang) {
 		var t = $.trim(String(text)), ord = order(lang), parts;
 		if (t === '') { return null; }
-		if (/^\d+$/.test(t)) {	/* digits only : ddmmyyyy, ddmmyy */
+		if (/^\d+$/.test(t)) {	/* chiffres seuls : ddmmyyyy, ddmmyy */
 			var n = t.length;
 			if (n === 8) { parts = [t.substr(0, 2), t.substr(2, 2), t.substr(4, 4)]; if (ord[0] === 'year') { parts = [t.substr(0, 4), t.substr(4, 2), t.substr(6, 2)]; } }
 			else if (n === 6) { parts = [t.substr(0, 2), t.substr(2, 2), t.substr(4, 2)]; }
@@ -69,7 +69,7 @@
 			if (parts.length < 2 || parts.length > 3) { return false; }
 		}
 		var v = {};
-		if (parts.length === 2) {	/* day and month : the current year */
+		if (parts.length === 2) {	/* jour et mois : l'année en cours */
 			var dm = $.grep(ord, function (k) { return k !== 'year'; });
 			v[dm[0]] = +parts[0]; v[dm[1]] = +parts[1]; v.year = new Date().getFullYear();
 		} else {
@@ -108,7 +108,7 @@
 		function month(first) {
 			var html = '<div class="nsinfo-cal-month"><div class="nsinfo-cal-title">' + monthTitle(first) + '</div><div class="nsinfo-cal-grid">';
 			for (var w = 0; w < 7; w++) {
-				var ref = new Date(2024, 0, 1 + w);	/* a Monday + w */
+				var ref = new Date(2024, 0, 1 + w);	/* un lundi + w */
 				html += '<span class="nsinfo-cal-dow">' + ref.toLocaleDateString(o.lang, {weekday: 'narrow'}) + '</span>';
 			}
 			var offset = (first.getDay() + 6) % 7, nb = new Date(first.getFullYear(), first.getMonth() + 1, 0).getDate();
@@ -197,11 +197,11 @@
 		el.on('pointerdown', '.nsinfo-cal-day', function (ev) {
 			ev.preventDefault();
 			var d = fromIso($(this).data('iso'));
-			if (o.single) {	/* one day : the click chooses it */
+			if (o.single) {	/* un seul jour : le clic le choisit */
 				finish(d, d);
 				return;
 			}
-			if (start && !end) {	/* second click : the days are the bounds */
+			if (start && !end) {	/* second clic : les jours sont les bornes */
 				finish(start, d);
 				return;
 			}
@@ -215,7 +215,7 @@
 			}
 		});
 		el.on('pointermove', function (ev) {
-			if (!dragging || ev.pointerType === 'mouse') { return; }	/* the touch has no hover : follow the finger */
+			if (!dragging || ev.pointerType === 'mouse') { return; }	/* le tactile n'a pas de survol : suivre le doigt */
 			var d = dayAt(ev.clientX, ev.clientY);
 			if (d && !sameDay(d, hover)) { hover = d; render(); }
 		});
@@ -226,7 +226,7 @@
 				finish(anchorDay, hover);
 			} else if (start && !end) {
 				hover = null;
-				render();	/* simple click : the first day is chosen, the last one is the next click */
+				render();	/* clic simple : le premier jour est choisi, le dernier est le clic suivant */
 			}
 		});
 		$(document).on('mousedown.nsinforange', function (ev) {

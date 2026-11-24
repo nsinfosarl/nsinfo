@@ -56,7 +56,7 @@ class NsinfoFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 	 * @see authenticate
 	 */
 	protected static $dol_admin_pass = 'admin';
-	/** @var int Dolibarr module ID */
+	/** @var int Identifiant de module Dolibarr */
 	private static $module_id = 500000; // TODO: détection automatique ?
 
 	/** @var array Navigateurs à tester */

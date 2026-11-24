@@ -1,5 +1,13 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 24.0.6 - 24/11/2026
+- Nouvel onglet « Modules NS INFO » dans les réglages de nsinfo : liste des modules NS INFO installés (picto, nom, dossier, version, état), activation / désactivation de chaque module, rechargement (désactiver puis réactiver, réglages conservés) d’un module ou de tous les modules actifs en un clic (« Recharger les modules actifs » : les modules désactivés ne sont pas touchés), en deux sous-onglets verticaux : modules activés et modules désactivés (un module activé ou désactivé passe dans l’autre sous-onglet), activation des modules désactivés en un clic
+- Modules NS INFO : dates de dernière installation (activation, depuis cet onglet ou la liste des modules de Dolibarr), de dernière mise à jour (changement de version relevé) et de dernière réactivation (rechargement) de chaque module, conservées dans la nouvelle table llx_nsinfo_modhistory (objet ModuleBuilder Modhistory) ; listes au format des listes de Dolibarr : ligne de recherche (nom, dossier ou description ; version), colonnes triables (module, version, dates), dossier et description sous le nom du module
+- Administration : pictos en Font Awesome 7 colorés (onglets Réglages / ChangeLog / À propos de nsinfo, sous-onglets de la traduction et de la sauvegarde des paramètres, picto ↺ de remise par défaut de tous les modules, liens des services de traduction) au lieu des pictos gris ou Font Awesome de Dolibarr
+- Logo du module : badge en rouge (disque rouge, pièces de puzzle inchangées) au lieu du violet
+- Nom du module dans la liste des modules : « NSINFO - Framework » (au lieu de « Nsinfo »), dans les cinq langues
+- Commentaires du code traduits en français (sélecteur de période, médias, modèle ODT)
+
 ## 24.0.5 - 24/11/2026
 - Nouvelle fonction `nsinfoCanSetup($module)` : accès aux réglages d'un module pour un administrateur ou un utilisateur ayant le droit `setup` / `write` du module ; les onglets partagés ChangeLog, À propos et Sauvegarde des paramètres l'utilisent (Traduction automatique reste réservée aux administrateurs : elle touche aux clés d'API communes à tous les modules) ; nom du module filtré dans ChangeLog et À propos avant l'inclusion de ses fichiers (un module peut ainsi ouvrir ses réglages sans les droits d'administrateur de Dolibarr)
 - Commentaires du code encore en anglais traduits en français (dont pages À propos, ChangeLog, Traduction, modèles de documents, galerie de médias)

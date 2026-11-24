@@ -57,8 +57,8 @@ function nsinfo_get_media_thumb_size(string $modulepart, string $size): array
  * Génère une vignette pour un fichier média (simple enveloppe de la fonction native vignette() de Dolibarr).
  *
  * @param  string $file      Chemin complet du fichier source
- * @param  int    $maxWidth  Thumb max width
- * @param  int    $maxHeight Thumb max height
+ * @param  int    $maxWidth  Largeur maximale de la vignette
+ * @param  int    $maxHeight Hauteur maximale de la vignette
  * @param  string $extName   Suffixe de la vignette générée (ex. '_small')
  * @return string             Chemin complet de la vignette générée, ou message d'erreur
  */
@@ -74,7 +74,7 @@ function nsinfo_vignette(string $file, int $maxWidth = 160, int $maxHeight = 120
  *
  * @param  string $filename   Nom du fichier
  * @param  string $modulepart Nom du module, utilisé pour lire la configuration {MODULE}_MEDIA_MAX_WIDTH/HEIGHT_{SIZE}
- * @param  string $thumbType  Thumb type (mini, small, medium, large)
+ * @param  string $thumbType  Type de vignette (mini, small, medium, large)
  * @param  string $filePath   Répertoire contenant le fichier
  * @return string|int         Nom de fichier de la vignette, ou -1 en cas d'erreur
  */
@@ -310,18 +310,18 @@ function nsinfo_show_medias_linked(string $modulepart = 'ecm', string $sdir, $si
                         if ($notitle) $alt = '';
                         if ($usesharelink) {
                             if (empty($maxHeight) || $photo_vignette && $imgarray['height'] > $maxHeight) {
-                                $return .= '<!-- Show thumb file -->';
+                                $return .= '<!-- Affiche la vignette -->';
                                 $return .= '<img width="' . $maxWidth . '" height="' . $maxHeight . '" class="photo '. $morecss .' photowithmargin" height="' . $maxHeight . '" src="' . DOL_URL_ROOT . '/viewimage.php?modulepart=' . $modulepart . '&entity=' . $object->entity . '&file=' . urlencode($pdirthumb . $photo_vignette) . '" title="' . dol_escape_htmltag($alt) . '" data-object-id="' . $object->id . '">';
                             } else {
-                                $return .= '<!-- Show original file -->';
+                                $return .= '<!-- Affiche le fichier original -->';
                                 $return .= '<img width="' . $maxWidth . '" height="' . $maxHeight . '" class="photo '. $morecss .' photowithmargin" src="' . DOL_URL_ROOT . '/viewimage.php?modulepart=' . $modulepart . '&entity=' . $object->entity . '&file=' . urlencode($pdir . $photo) . '" title="' . dol_escape_htmltag($alt) . '" data-object-id="' . $object->id . '">';
                             }
                         } else {
                             if (empty($maxHeight) || $photo_vignette && $imgarray['height'] > $maxHeight) {
-                                $return .= '<!-- Show thumb file -->';
+                                $return .= '<!-- Affiche la vignette -->';
                                 $return .= '<img width="' . $maxWidth . '" height="' . $maxHeight . '" class="photo '. $morecss .'"  src="' . DOL_URL_ROOT . '/viewimage.php?modulepart=' . $modulepart . '&entity=' . $conf->entity . '&file=' . urlencode($pdirthumb . $photo_vignette) . '" title="' . dol_escape_htmltag($alt) . '" data-object-id="' . $object->id . '">';
                             } else {
-                                $return .= '<!-- Show original file -->';
+                                $return .= '<!-- Affiche le fichier original -->';
                                 $return .= '<img width="' . $maxWidth . '" height="' . $maxHeight . '" class="photo '. $morecss .' photowithmargin" height="' . $maxHeight . '" src="' . DOL_URL_ROOT . '/viewimage.php?modulepart=' . $modulepart . '&entity=' . $conf->entity . '&file=' . urlencode($pdir . $photo) . '" title="' . dol_escape_htmltag($alt) . '" data-object-id="' . $object->id . '">';
                             }
                         }

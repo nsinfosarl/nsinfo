@@ -397,7 +397,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 							if (file_exists($value)) $odfHandler->setImage($key, $value);
 							else $odfHandler->setVars($key, 'ErrorFileNotFound', true, 'UTF-8');
 						}
-						else    // Text
+						else    // Texte
 						{
 							$odfHandler->setVars($key, $value, true, 'UTF-8');
 						}

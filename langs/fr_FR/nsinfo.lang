@@ -18,7 +18,7 @@
 #
 
 # Module label 'ModuleNsinfoName'
-ModuleNsinfoName = Nsinfo
+ModuleNsinfoName = NSINFO - Framework
 # Module description 'ModuleNsinfoDesc'
 ModuleNsinfoDesc = Framework de fonctions liées aux modules et développement NSINFO
 NsinfoArea = Espace NS INFO
@@ -163,3 +163,24 @@ NsinfoCfgImportHelp = Seuls les paramètres dont le nom commence par %s sont imp
 NsinfoCfgCount = %s paramètre(s) enregistré(s) dans ce module, dont %s sensible(s) (mot de passe, clé, jeton).
 NsinfoCfgShowDetail = Afficher le détail des paramètres (pour choisir ceux à exporter)
 NsinfoTradScopeForced = Portée imposée par ce module (non modifiable).
+
+# Onglet « Modules NS INFO »
+NsinfoModsTab = Modules NS INFO
+NsinfoModsHelp = %s modules NS INFO installés, dont %s activés. Recharger un module = le désactiver puis le réactiver (menus, droits, constantes et hooks remis à jour, réglages conservés) : à faire après chaque mise à jour.
+NsinfoModsReloadAll = Recharger les modules actifs
+NsinfoModsReloadAllConfirm = Désactiver puis réactiver les %s modules NS INFO activés ?
+NsinfoModsEnableAll = Activer les modules désactivés
+NsinfoModsEnableAllConfirm = Activer les %s modules NS INFO désactivés ?
+NsinfoModsReload = Recharger
+NsinfoModsReloadOne = Désactiver puis réactiver ce module
+NsinfoModsDisableConfirm = Désactiver le module %s ?
+NsinfoModsDone = %s module(s) traité(s)
+NsinfoModsErrors = Erreurs :
+NsinfoModsOn = Modules activés
+NsinfoModsOff = Modules désactivés
+NsinfoModsNsinfoRequired = Le module NSINFO - Framework ne peut pas être désactivé depuis cette page (les modules NS INFO en dépendent)
+NsinfoModsNotReenabled = module resté désactivé après le rechargement : l'activer à la main
+NsinfoModsDateInstall = Installation
+NsinfoModsDateUpdate = Mise à jour
+NsinfoModsDateReload = Réactivation
+NsinfoModsDir = Dossier

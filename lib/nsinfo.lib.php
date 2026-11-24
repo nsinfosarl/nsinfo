@@ -36,17 +36,21 @@ function nsinfoAdminPrepareHead()
 	$head = array();
 
 	$head[$h][0] = dol_buildpath("/nsinfo/admin/setup.php", 1);
-	$head[$h][1] = '<i class="fas fa-cogs paddingright pictofixedwidth valignmiddle"></i>' . $langs->trans("Settings");
+	$head[$h][1] = nsinfoFaIcon('cogs', '#5A2D82', 'solid', 'paddingright pictofixedwidth valignmiddle') . $langs->trans("Settings");
 	$head[$h][2] = 'settings';
 	$h++;
+	$head[$h][0] = dol_buildpath("/nsinfo/admin/modules_nsinfo.php", 1);
+	$head[$h][1] = nsinfoFaIcon('puzzle-piece', '#22A7D8', 'solid', 'paddingright pictofixedwidth valignmiddle') . $langs->trans("NsinfoModsTab");
+	$head[$h][2] = 'modules';
+	$h++;
     $head[$h][0] = dol_buildpath("/nsinfo/admin/changelog_module.php?namemodule=nsinfo", 1);
-    $head[$h][1] = '<i class="fas fa-code-branch paddingright pictofixedwidth valignmiddle"></i>' . $langs->trans("NSINFOChangeLog");
+    $head[$h][1] = nsinfoFaIcon('code-branch', '#3879B2', 'solid', 'paddingright pictofixedwidth valignmiddle') . $langs->trans("NSINFOChangeLog");
     $head[$h][2] = 'changelog';
     $h++;
 
 
     $head[$h][0] = dol_buildpath("/nsinfo/admin/about_module.php?namemodule=nsinfo", 1);
-    $head[$h][1] = '<i class="fab fa-readme paddingright pictofixedwidth valignmiddle"></i>' . $langs->trans("About");
+    $head[$h][1] = nsinfoFaIcon('readme', '#14182B', 'brands', 'paddingright pictofixedwidth valignmiddle') . $langs->trans("About");
     $head[$h][2] = 'about';
     $h++;
 

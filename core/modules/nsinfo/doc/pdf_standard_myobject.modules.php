@@ -817,7 +817,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	/**
 	 *  Renvoie la liste des modules de génération actifs
 	 *
-	 *  @param	DoliDB	$db     			Database handler
+	 *  @param	DoliDB	$db     			Gestionnaire de base de données
 	 *  @param  integer	$maxfilenamelength  Longueur maximale de la valeur à afficher
 	 *  @return	array						Liste des modèles
 	 */
@@ -1238,7 +1238,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
             'content' => array(
                 'padding' => array(0, 0, 0, 0), // Comme en css : 0 => haut, 1 => droite, 2 => bas, 3 => gauche
             ),
-            'border-left' => false, // remove left line separator
+            'border-left' => false, // retire le séparateur gauche
         );
 
 	    if (!empty($conf->global->MAIN_GENERATE_INVOICES_WITH_PICTURE) && !empty($this->atleastonephoto))
@@ -1255,7 +1255,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	        'title' => array(
 	            'textkey' => 'VAT'
 	        ),
-	        'border-left' => true, // add left line separator
+	        'border-left' => true, // ajoute le séparateur gauche
 	    );
 
 	    if (empty($conf->global->MAIN_GENERATE_DOCUMENTS_WITHOUT_VAT) && empty($conf->global->MAIN_GENERATE_DOCUMENTS_WITHOUT_VAT_COLUMN))
@@ -1271,7 +1271,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	        'title' => array(
 	            'textkey' => 'PriceUHT'
 	        ),
-	        'border-left' => true, // add left line separator
+	        'border-left' => true, // ajoute le séparateur gauche
 	    );
 
 	    $rank = $rank + 10;
@@ -1282,7 +1282,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	        'title' => array(
 	            'textkey' => 'Qty'
 	        ),
-	        'border-left' => true, // add left line separator
+	        'border-left' => true, // ajoute le séparateur gauche
 	    );
 
 	    $rank = $rank + 10;
@@ -1293,7 +1293,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	        'title' => array(
 	            'textkey' => 'Progress'
 	        ),
-	        'border-left' => true, // add left line separator
+	        'border-left' => true, // ajoute le séparateur gauche
 	    );
 
 	    if ($this->situationinvoice)
@@ -1309,7 +1309,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	        'title' => array(
 	            'textkey' => 'Unit'
 	        ),
-	        'border-left' => true, // add left line separator
+	        'border-left' => true, // ajoute le séparateur gauche
 	    );
 	    if (getDolGlobalString('PRODUCT_USE_UNITS')) {
 	        $this->cols['unit']['status'] = true;
@@ -1323,7 +1323,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	        'title' => array(
 	            'textkey' => 'ReductionShort'
 	        ),
-	        'border-left' => true, // add left line separator
+	        'border-left' => true, // ajoute le séparateur gauche
 	    );
 	    if ($this->atleastonediscount) {
 	        $this->cols['discount']['status'] = true;
@@ -1337,7 +1337,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	        'title' => array(
 	            'textkey' => 'TotalHT'
 	        ),
-	        'border-left' => true, // add left line separator
+	        'border-left' => true, // ajoute le séparateur gauche
 	    );
 
 	    // Ajouter les colonnes des champs supplémentaires
