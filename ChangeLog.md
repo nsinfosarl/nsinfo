@@ -1,16 +1,8 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
 ## 24.0.5 - 24/11/2026
-- Commentaires du code encore en anglais traduits en français (pages À propos, ChangeLog, Traduction, modèles de documents, galerie de médias)
-
-## 24.0.4 - 22/11/2026
-- Commentaires du code encore en anglais traduits en français
-
-
-## 24.0.3 - 22/11/2026
 - Nouvelle fonction `nsinfoCanSetup($module)` : accès aux réglages d'un module pour un administrateur ou un utilisateur ayant le droit `setup` / `write` du module ; les onglets partagés ChangeLog, À propos et Sauvegarde des paramètres l'utilisent (Traduction automatique reste réservée aux administrateurs : elle touche aux clés d'API communes à tous les modules) ; nom du module filtré dans ChangeLog et À propos avant l'inclusion de ses fichiers (un module peut ainsi ouvrir ses réglages sans les droits d'administrateur de Dolibarr)
-- Commentaires du code encore en anglais traduits en français
-
+- Commentaires du code encore en anglais traduits en français (dont pages À propos, ChangeLog, Traduction, modèles de documents, galerie de médias)
 
 ## 24.0.2 - 22/11/2026
 - Nouvelle fonction `nsinfoIsPwaApp()` : vraie quand la page est affichée dans l'application installable du module nspwadolibarr (témoin `nspwa_app` posé par son script, ou page d'ouverture de l'application marquée `nspwa=1`) ; les modules NS INFO s'en servent pour couper leurs fonctions de bureau dans l'application sans être désactivés
