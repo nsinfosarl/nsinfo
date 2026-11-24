@@ -160,7 +160,7 @@ print '</table>' . "\n";
 
 print $modModule->getDescLong();
 
-// Page end
+// Fin de page
 dol_fiche_end();
 llxFooter();
 $db->close();

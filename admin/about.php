@@ -72,7 +72,7 @@ $supportvalue.= "Description de votre problème :"."<br>";
 
 
 /*
- * View
+ * Affichage
  */
 
 $form = new Form($db);

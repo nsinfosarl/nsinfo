@@ -764,7 +764,7 @@ class pdf_standard_myobject extends ModelePDFMyObject
 	                $bottomlasttab = $this->page_hauteur - $heightforinfotot - $heightforfreetext - $heightforfooter + 1;
 	            }
 
-	            // Display infos area
+	            // Zone d'affichage des informations
 	            //$posy = $this->drawInfoTable($pdf, $object, $bottomlasttab, $outputlangs);
 
 	            // Afficher la zone des totaux

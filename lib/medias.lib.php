@@ -196,10 +196,10 @@ function nsinfo_show_medias(string $modulepart, string $sdir = '', string $size 
  * @param  int|string  $size                 Taille des médias
  * @param  int|string  $nbmax                Nombre max de médias affichés par page
  * @param  int         $nbbyrow              Nombre d'images par ligne
- * @param  int         $showfilename         Show filename under image
+ * @param  int         $showfilename         Afficher le nom du fichier sous l'image
  * @param  int         $showaction           Affiche l'icône avec les liens d'action
- * @param  int         $maxHeight            Media max height
- * @param  int         $maxWidth             Media max width
+ * @param  int         $maxHeight            Hauteur max du média
+ * @param  int         $maxWidth             Largeur max du média
  * @param  int         $nolink 	             Ne pas ajouter de lien href à l'image
  * @param  int         $notitle              Ne pas ajouter de balise title à l'image
  * @param  int         $usesharelink         Utiliser le lien partagé public de l'image (si indisponible, l'image 'nophoto' sera affichée à la place)
@@ -209,7 +209,7 @@ function nsinfo_show_medias(string $modulepart, string $sdir = '', string $size 
  * @param  int         $show_favorite_button Affiche ou masque le bouton favori
  * @param  int         $show_unlink_button   Affiche ou masque le bouton délier
  * @param  int         $use_mini_format      Utiliser le format mini au lieu de small
- * @param  int         $show_only_favorite   Show only object favorite media
+ * @param  int         $show_only_favorite   Afficher uniquement les médias favoris de l'objet
  * @param  string      $morecss              Ajoute du CSS au lien
  * @param  int         $showdiv              Ajoute une div avec la classe « media-container »
  * @return string      $return               Affiche les médias liés

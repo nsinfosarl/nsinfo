@@ -25,7 +25,7 @@
 /**
  * Les variables suivantes doivent être définies :
  * Global     : $langs
- * Parameters : $confirmationParams
+ * Paramètres : $confirmationParams
  * options    : $confirmationParams[picto, moreCSS, confirmationTitle, buttonLabels]
  */ ?>
 

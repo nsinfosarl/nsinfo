@@ -25,7 +25,7 @@
 /**
  * Les variables suivantes doivent être définies :
  * Global     : $conf, $db, $hookmanager, $langs, $user,
- * Parameters : $action,
+ * Paramètres : $action,
  * Objets     : $object, $document
  * Variable   : $permissiontoadd, $permissiontodelete, $shouldRedirect (optional)
  */

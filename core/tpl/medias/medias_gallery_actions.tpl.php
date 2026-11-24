@@ -35,7 +35,7 @@
  * Ce modèle ne dépend pas du module Saturne. Il n'a besoin que des
  * bibliothèques d'aide NSINFO (lib/medias.lib.php, lib/pagination.lib.php).
  *
- * medias_gallery_modal.tpl.php (affiché plus tard, dans la section « View ») s'appuie
+ * medias_gallery_modal.tpl.php (affiché plus tard, dans la section « Affichage ») s'appuie
  * sur $mediaSizes, $modulepartUpper et $ecmMediasDir définis ci-dessous.
  */
 

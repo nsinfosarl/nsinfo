@@ -128,7 +128,7 @@ if ($action == 'testtrad') {
 }
 
 /*
- * View
+ * Affichage
  */
 
 $modulelabel = $langs->trans('Module'.ucfirst($namemodule).'Name');

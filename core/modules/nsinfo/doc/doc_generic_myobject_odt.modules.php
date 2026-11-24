@@ -41,7 +41,7 @@ require_once DOL_DOCUMENT_ROOT.'/core/lib/doc.lib.php';
 class doc_generic_myobject_odt extends ModelePDFMyObject
 {
 	/**
-	 * Issuer
+	 * Émetteur
 	 * @var Societe
 	 */
 	public $emetteur;
@@ -59,7 +59,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 
 
 	/**
-	 *	Constructor
+	 *	Constructeur
 	 *
 	 *  @param		DoliDB		$db      Gestionnaire de base de données
 	 */

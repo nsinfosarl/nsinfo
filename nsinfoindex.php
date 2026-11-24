@@ -82,7 +82,7 @@ print '<div class="fichecenter"><div class="fichethirdleft">';
 
 
 /* BEGIN MODULEBUILDER DRAFT MYOBJECT
-// Draft MyObject
+// Brouillon MyObject
 if (! empty($conf->nsinfo->enabled) && $user->rights->nsinfo->read)
 {
 	$langs->load("orders");
@@ -168,7 +168,7 @@ $NBMAX = 3;
 $max = 3;
 
 /* BEGIN MODULEBUILDER LASTMODIFIED MYOBJECT
-// Last modified myobject
+// Dernier myobject modifié
 if (! empty($conf->nsinfo->enabled) && $user->rights->nsinfo->read)
 {
 	$sql = "SELECT s.rowid, s.nom as name, s.client, s.datec, s.tms, s.canvas";

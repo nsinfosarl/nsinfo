@@ -23,7 +23,7 @@
  *
  * medias_gallery_actions.tpl.php DOIT déjà avoir été inclus (depuis la
  * section « Actions » de la page appelante, avant ce modèle) afin que les
- * medias listed below reflect any subaction (addFiles, unlinkFile, ...)
+ * les médias listés ci-dessous reflètent chaque sous-action (addFiles, unlinkFile, ...)
  * traités pour la requête courante.
  *
  * Les variables suivantes doivent être définies avant d'inclure ce modèle :
@@ -41,7 +41,7 @@ require_once __DIR__ . '/../../../lib/medias.lib.php';
 require_once __DIR__ . '/../../../lib/pagination.lib.php';
 
 ?>
-<!-- START NSINFO MEDIA GALLERY MODAL -->
+<!-- DEBUT GALERIE MEDIAS NSINFO (modale) -->
 <div class="wpeo-modal modal-photo" id="media_gallery" data-id="<?php echo (isset($object) && $object) ? $object->id : 0 ?>">
 	<div class="modal-container wpeo-modal-event">
 		<div class="modal-header">
@@ -131,4 +131,4 @@ require_once __DIR__ . '/../../../lib/pagination.lib.php';
 		</div>
 	</div>
 </div>
-<!-- END NSINFO MEDIA GALLERY MODAL -->
+<!-- FIN GALERIE MEDIAS NSINFO (modale) -->

@@ -1,5 +1,8 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 24.0.5 - 24/11/2026
+- Commentaires du code encore en anglais traduits en français (pages À propos, ChangeLog, Traduction, modèles de documents, galerie de médias)
+
 ## 24.0.4 - 22/11/2026
 - Commentaires du code encore en anglais traduits en français
 

@@ -57,11 +57,11 @@ $backtopage = GETPOST('backtopage', 'alpha');
  * Actions
  */
 
-// None
+// Aucune
 
 
 /*
- * View
+ * Affichage
  */
 
 $form = new Form($db);
