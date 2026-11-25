@@ -229,7 +229,7 @@ function nsinfoTradFieldEnabled($code)
 /**
  * Couleur du picto de traduction défini dans les réglages (vert par défaut)
  *
- * @return	string	Color #rrggbb
+ * @return string Couleur #rrggbb
  */
 function nsinfoTradColor()
 {

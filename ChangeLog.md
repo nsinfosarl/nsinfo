@@ -1,5 +1,8 @@
 # CHANGELOG NSINFO FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 24.0.7 - 25/11/2026
+- Code : commentaires traduits en français
+
 ## 24.0.6 - 24/11/2026
 - Nouvel onglet « Modules NS INFO » dans les réglages de nsinfo : liste des modules NS INFO installés (picto, nom, dossier, version, état), activation / désactivation de chaque module, rechargement (désactiver puis réactiver, réglages conservés) d’un module ou de tous les modules actifs en un clic (« Recharger les modules actifs » : les modules désactivés ne sont pas touchés), en deux sous-onglets verticaux : modules activés et modules désactivés (un module activé ou désactivé passe dans l’autre sous-onglet), activation des modules désactivés en un clic
 - Modules NS INFO : dates de dernière installation (activation, depuis cet onglet ou la liste des modules de Dolibarr), de dernière mise à jour (changement de version relevé) et de dernière réactivation (rechargement) de chaque module, conservées dans la nouvelle table llx_nsinfo_modhistory (objet ModuleBuilder Modhistory) ; listes au format des listes de Dolibarr : ligne de recherche (nom, dossier ou description ; version), colonnes triables (module, version, dates), dossier et description sous le nom du module
